@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>tools</title>
+    <link href="/2025/06/18/tools/"/>
+    <url>/2025/06/18/tools/</url>
+    
+    <content type="html"><![CDATA[<p>靶机攻略</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>pwn</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>pwn</tag>
+      
+      <tag>web</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2025/06/17/hello-world/"/>
     <url>/2025/06/17/hello-world/</url>
