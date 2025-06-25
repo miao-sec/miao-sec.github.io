@@ -19,18 +19,18 @@
   <meta name="author" content="Miao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="靶机说明 下载地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;hero.zip  主机探测123456789101112131415┌──(kali㉿kali)-[&#x2F;miao&#x2F;hmv&#x2F;hero]└─$ sudo nmap -sn 192.168.2.0&#x2F;24Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-02-07 21:09">
+    <meta name="description" content="靶机说明https:&#x2F;&#x2F;hackmyvm.eu&#x2F;machines&#x2F;machine.php?vm&#x3D;Hero 主机探测123456789101112131415┌──(kali㉿kali)-[&#x2F;miao&#x2F;hmv&#x2F;hero]└─$ sudo nmap -sn 192.168.2.0&#x2F;24Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-02-07 21">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hero">
 <meta property="og:url" content="http://miao-sec.github.io/hackmyvm/Hero/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="靶机说明 下载地址：https:&#x2F;&#x2F;downloads.hackmyvm.eu&#x2F;hero.zip  主机探测123456789101112131415┌──(kali㉿kali)-[&#x2F;miao&#x2F;hmv&#x2F;hero]└─$ sudo nmap -sn 192.168.2.0&#x2F;24Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-02-07 21:09">
+<meta property="og:description" content="靶机说明https:&#x2F;&#x2F;hackmyvm.eu&#x2F;machines&#x2F;machine.php?vm&#x3D;Hero 主机探测123456789101112131415┌──(kali㉿kali)-[&#x2F;miao&#x2F;hmv&#x2F;hero]└─$ sudo nmap -sn 192.168.2.0&#x2F;24Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-02-07 21">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502072146175.png">
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502072154216.png">
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502072157384.png">
 <meta property="article:published_time" content="2025-06-19T14:52:14.000Z">
-<meta property="article:modified_time" content="2025-06-20T03:06:45.881Z">
+<meta property="article:modified_time" content="2025-06-25T15:42:21.587Z">
 <meta property="article:author" content="Miao">
 <meta property="article:tag" content="n8n">
 <meta property="article:tag" content="提权-Banner">
@@ -303,9 +303,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><ul>
-<li>下载地址：<a target="_blank" rel="noopener" href="https://downloads.hackmyvm.eu/hero.zip">https://downloads.hackmyvm.eu/hero.zip</a></li>
-</ul>
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p><a target="_blank" rel="noopener" href="https://hackmyvm.eu/machines/machine.php?vm=Hero">https://hackmyvm.eu/machines/machine.php?vm=Hero</a></p>
 <h1 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/hmv/hero]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sn 192.168.2.0/24<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-07 21:09 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00015s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00019s latency).<br>MAC Address: 08:00:27:40:3A:6A (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.9<br>Host is up (0.00065s latency).<br>MAC Address: 08:00:27:D2:3D:FB (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.03 seconds<br></code></pre></td></tr></table></figure>
 <h1 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h1><p>（1）进行端口扫描</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/hmv/hero]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT --min-rate 10000 -p- 192.168.2.9 -oA nmapscan/ports               <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-07 21:10 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.9<br>Host is up (0.0050s latency).<br>Not shown: 65533 closed tcp ports (conn-refused)<br>PORT     STATE SERVICE<br>80/tcp   open  http<br>5678/tcp open  rrac<br>MAC Address: 08:00:27:D2:3D:FB (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 1.92 seconds<br></code></pre></td></tr></table></figure>

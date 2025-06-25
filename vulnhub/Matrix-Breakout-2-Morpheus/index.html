@@ -19,12 +19,12 @@
   <meta name="author" content="Miao">
   <meta name="keywords" content="">
   
-    <meta name="description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;matrix-breakout-2-morpheus,757&#x2F; 靶机下载：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;matrix-breakout&#x2F;matrix-breakout-2-morpheus.ova  主机探测123456789101112131415161718┌──(kali㉿kali)-">
+    <meta name="description" content="靶机说明https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;matrix-breakout-2-morpheus,757&#x2F; 主机探测123456789101112131415161718┌──(kali㉿kali)-[&#x2F;miao&#x2F;vulnhub&#x2F;matrix-breakout-2-morpheus]└─$ sudo nmap -sn 192.168.1.0&#x2F;24 Starting Nmap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matrix-Breakout-2-Morpheus">
 <meta property="og:url" content="http://miao-sec.github.io/vulnhub/Matrix-Breakout-2-Morpheus/index.html">
 <meta property="og:site_name" content="Miao&#39;s Blog">
-<meta property="og:description" content="靶机说明 靶机说明：https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;matrix-breakout-2-morpheus,757&#x2F; 靶机下载：https:&#x2F;&#x2F;download.vulnhub.com&#x2F;matrix-breakout&#x2F;matrix-breakout-2-morpheus.ova  主机探测123456789101112131415161718┌──(kali㉿kali)-">
+<meta property="og:description" content="靶机说明https:&#x2F;&#x2F;www.vulnhub.com&#x2F;entry&#x2F;matrix-breakout-2-morpheus,757&#x2F; 主机探测123456789101112131415161718┌──(kali㉿kali)-[&#x2F;miao&#x2F;vulnhub&#x2F;matrix-breakout-2-morpheus]└─$ sudo nmap -sn 192.168.1.0&#x2F;24 Starting Nmap">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502101541750.png">
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502101554751.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502101623390.png">
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502101630578.png">
 <meta property="article:published_time" content="2025-06-20T02:55:32.000Z">
-<meta property="article:modified_time" content="2025-06-20T03:06:32.280Z">
+<meta property="article:modified_time" content="2025-06-25T15:41:15.605Z">
 <meta property="article:author" content="Miao">
 <meta property="article:tag" content="逻辑漏洞">
 <meta property="article:tag" content="提权-dirtypipe">
@@ -309,10 +309,7 @@
             
               <div class="markdown-body">
                 
-                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><ul>
-<li>靶机说明：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/matrix-breakout-2-morpheus,757/">https://www.vulnhub.com/entry/matrix-breakout-2-morpheus,757/</a></li>
-<li>靶机下载：<a target="_blank" rel="noopener" href="https://download.vulnhub.com/matrix-breakout/matrix-breakout-2-morpheus.ova">https://download.vulnhub.com/matrix-breakout/matrix-breakout-2-morpheus.ova</a></li>
-</ul>
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p><a target="_blank" rel="noopener" href="https://www.vulnhub.com/entry/matrix-breakout-2-morpheus,757/">https://www.vulnhub.com/entry/matrix-breakout-2-morpheus,757/</a></p>
 <h1 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/matrix-breakout-2-morpheus]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sn 192.168.1.0/24 <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-10 15:33 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.1<br>Host is up (0.00012s latency).<br>MAC Address: 00:50:56:C0:00:08 (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.2<br>Host is up (0.00023s latency).<br>MAC Address: 00:50:56:E8:96:F1 (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.6<br>Host is up (0.00042s latency).<br>MAC Address: 00:0C:29:47:20:8B (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.254<br>Host is up (0.0018s latency).<br>MAC Address: 00:50:56:EF:22:46 (VMware)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.5<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (5 hosts up) scanned <span class="hljs-keyword">in</span> 28.00 seconds<br></code></pre></td></tr></table></figure>
 <h1 id="nmap扫描"><a href="#nmap扫描" class="headerlink" title="nmap扫描"></a>nmap扫描</h1><p>（1）进行端口扫描</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[/miao/vulnhub/matrix-breakout-2-morpheus]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT --min-rate 10000 -p- 192.168.1.6 -oA nmapscan/ports           <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-10 15:34 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.1.6<br>Host is up (0.0029s latency).<br>Not shown: 65532 closed tcp ports (conn-refused)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>81/tcp open  hosts2-ns<br>MAC Address: 00:0C:29:47:20:8B (VMware)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 20.39 seconds<br></code></pre></td></tr></table></figure>
