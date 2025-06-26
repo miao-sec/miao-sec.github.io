@@ -1,4 +1,4 @@
-::selection {
+/* ::selection {
   background: #ffffff00;
   color: #f00;
 }
@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6, .line, footer, #toc, time, #subtitle.h2, .nav-link, .pos
   -webkit-user-select:none;
   -ms-user-select:none;
   user-select:none;
-}
+} */
 
 /*代码块样式*/
 .hljs-comment, .hljs-quote {
