@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/10.jpg">
 <meta property="article:published_time" content="2025-07-01T12:52:47.000Z">
-<meta property="article:modified_time" content="2025-07-01T12:55:50.276Z">
+<meta property="article:modified_time" content="2025-07-01T13:21:39.362Z">
 <meta property="article:author" content="Miao">
 <meta property="article:tag" content="snmp服务">
 <meta property="article:tag" content="提取-dpkg">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          11 分钟
+          17 分钟
         
       </span>
     
@@ -335,7 +335,7 @@
 <h1 id="WEB渗透"><a href="#WEB渗透" class="headerlink" title="WEB渗透"></a>WEB渗透</h1><h2 id="1、80端口"><a href="#1、80端口" class="headerlink" title="1、80端口"></a>1、80端口</h2><p>访问80端口<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507011030718.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
 <h3 id="1-目录扫描"><a href="#1-目录扫描" class="headerlink" title="1-目录扫描"></a>1-目录扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.42 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.42<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html,bak<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.html                (Status: 403) [Size: 277]<br>/index.html           (Status: 200) [Size: 15740]<br>/.php                 (Status: 403) [Size: 277]<br>/.php                 (Status: 403) [Size: 277]<br>/.html                (Status: 403) [Size: 277]<br>/server-status        (Status: 403) [Size: 277]<br>Progress: 1102800 / 1102805 (100.00%)<br>===============================================================<br>Finished<br>=============================================================== <br></code></pre></td></tr></table></figure>
 <p>没有发现其他的目录，基本上没有啥东西</p>
-<h2 id="2、161端口"><a href="#2、161端口" class="headerlink" title="2、161端口"></a>2、161端口</h2><h3 id="1、snmpwalk利用"><a href="#1、snmpwalk利用" class="headerlink" title="1、snmpwalk利用"></a>1、snmpwalk利用</h3><p>由于161端口的服务是<code>snmp</code>，直接使用工具<code>snmapwalk</code>获取信息<br>由于获取到的信息比较多，为了方便查看直接保存到文件里面</p>
+<h2 id="2、161端口"><a href="#2、161端口" class="headerlink" title="2、161端口"></a>2、161端口</h2><h3 id="1、SNMP信息泄露"><a href="#1、SNMP信息泄露" class="headerlink" title="1、SNMP信息泄露"></a>1、SNMP信息泄露</h3><p>由于161端口的服务是<code>snmp</code>，SNMP 服务常因配置不当而泄露大量敏感信息。<br>直接使用工具<code>snmapwalk</code>获取信息</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# snmpwalk -v 2c -c public 192.168.2.42 &gt; 1.txt  <br></code></pre></td></tr></table></figure>
 
 <p>在文件里面找到一个服务<code>leak-service</code>的用户名和密码：<code>Shinozaki：ShinozakiAi</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507012002678.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
@@ -347,7 +347,7 @@
 <h3 id="2-目录扫描"><a href="#2-目录扫描" class="headerlink" title="2-目录扫描"></a>2-目录扫描</h3><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc">┌──(root㉿kali)-[/tmp]<br><span class="hljs-section">└─# gobuster dir -u http://sunset.leak.dsz -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak</span><br><span class="hljs-section">===============================================================</span><br>Gobuster v3.6<br><span class="hljs-section">by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)</span><br><span class="hljs-section">===============================================================</span><br>[+] Url:                     http://sunset.leak.dsz<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html,bak<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster in directory enumeration mode<br>===============================================================<br>/.php                 (Status: 403) [Size: 280]<br>/.html                (Status: 403) [Size: 280]<br>/index.html           (Status: 200) [Size: 15740]<br>/manager              (Status: 301) [Size: 320] [--&gt; http://sunset.leak.dsz/manager/]<br>/.html                (Status: 403) [Size: 280]<br>/.php                 (Status: 403) [Size: 280]<br>/server-status        (Status: 403) [Size: 280]<br><span class="hljs-section">Progress: 1102800 / 1102805 (100.00%)</span><br><span class="hljs-section">===============================================================</span><br><span class="hljs-section">Finished</span><br><span class="hljs-section">===============================================================</span><br></code></pre></td></tr></table></figure>
 <p>发现存在一个目录<code>manager</code></p>
 <p>尝试进行访问，发现需要账号和密码，使用在<code>snmp</code>里面发现的账号密码<code>Shinozaki：ShinozakiAi</code>进行登录，成功进入<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507012012760.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload><br>发现已经提示我们利用的步骤了，照着来就好了</p>
-<h3 id="3-John爆破"><a href="#3-John爆破" class="headerlink" title="3-John爆破"></a>3-John爆破</h3><p>使用<code>crunch</code>制作字典</p>
+<h3 id="3-John爆破"><a href="#3-John爆破" class="headerlink" title="3-John爆破"></a>3-John爆破</h3><p>使用 <code>crunch</code> 生成一个以 <code>baba</code> 开头的8位字典</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# crunch 8 8 -t baba@@@@ -o wordlist.txt <br>Crunch will now generate the following amount of data: 4112784 bytes<br>3 MB<br>0 GB<br>0 TB<br>0 PB<br>Crunch will now generate the following number of lines: 456976 <br><br>crunch: 100% completed generating output<br></code></pre></td></tr></table></figure>
 
 <p>使用<code>John</code>进行爆破</p>
@@ -379,6 +379,39 @@
 <p><strong>ROOT FLAG</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Leak:/home/ai# <span class="hljs-built_in">cat</span> /root/root.txt<br>flag&#123;root-357d3d08-5598-11f0-a27e-639fd7e7110b&#125;<br></code></pre></td></tr></table></figure>
 
+<h1 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a>【总结】</h1><h2 id="1、SNMP渗透"><a href="#1、SNMP渗透" class="headerlink" title="1、SNMP渗透"></a>1、SNMP渗透</h2><h3 id="1-SNMP渗透的常见方式"><a href="#1-SNMP渗透的常见方式" class="headerlink" title="1-SNMP渗透的常见方式"></a>1-<strong>SNMP渗透的常见方式</strong></h3><ul>
+<li><strong>利用默认社区字符串</strong>：许多设备默认有两个社区字符串“public”（只读）和“private”（读写）。攻击者可尝试使用这些默认字符串来获取设备信息，如设备型号、配置文件等。</li>
+<li><strong>暴力破解社区字符串</strong>：通过编写脚本或使用工具，对设备的SNMP社区字符串进行暴力破解，一旦破解成功，攻击者就可能获得设备的管理权限。</li>
+<li><strong>利用SNMP漏洞</strong>：某些设备的SNMP实现存在漏洞，如缓冲区溢出、命令注入等。攻击者可利用这些漏洞，向设备发送恶意请求，从而控制设备或获取敏感信息。</li>
+<li><strong>信息收集与利用</strong>：通过SNMP获取设备的系统信息、接口信息、路由表等，分析这些信息以发现网络中的薄弱环节，为进一步的攻击做准备。例如，获取设备的IP地址、MAC地址、端口状态等信息，可帮助攻击者了解网络拓扑结构。</li>
+</ul>
+<h3 id="2-SNMP渗透的工具"><a href="#2-SNMP渗透的工具" class="headerlink" title="2-SNMP渗透的工具"></a>2-<strong>SNMP渗透的工具</strong></h3><ul>
+<li><strong>snmpget</strong>：用于获取单个SNMP对象的值。例如，<code>snmpget -v2c -c public 10.10.11.48 1.3.6.1.2.1.1.1.0</code>可以查询设备的系统描述。</li>
+<li><strong>snmpwalk</strong>：用于获取一系列SNMP对象的值。例如，<code>snmpwalk -v2c -c public 10.10.11.48 1.3.6.1.2.1.1</code>可以获取设备的系统信息。</li>
+<li><strong>snmp-check</strong>：用于检查目标设备的SNMP信息，如系统信息、接口信息等。例如，<code>snmp-check -c public 10.10.11.48</code>可以检查目标设备的SNMP信息。</li>
+<li><strong>cisc0wn</strong>：针对开启了SNMP协议的Cisco路由器和交换机的攻击脚本，可暴力猜解community string、下载配置文件以及破解密码。</li>
+<li><strong>h3c-pt-tools</strong>：可针对华为、HP、H3C的设备进行渗透测试和审计，可使用其中的nmap脚本和msf模块进行SNMP自动化攻击。</li>
+</ul>
+<h3 id="3-防御SNMP渗透的措施"><a href="#3-防御SNMP渗透的措施" class="headerlink" title="3-防御SNMP渗透的措施"></a>3-<strong>防御SNMP渗透的措施</strong></h3><ul>
+<li><strong>更改默认社区字符串</strong>：将设备的默认社区字符串修改为复杂且唯一的字符串，避免使用默认的“public”和“private”。</li>
+<li><strong>限制访问</strong>：通过防火墙或访问控制列表（ACL），限制对SNMP端口（UDP 161&#x2F;162）的访问，只允许特定的IP地址或网络段访问。</li>
+<li><strong>启用认证和加密</strong>：对于支持SNMP v3的设备，启用认证和加密功能，以确保SNMP通信的安全性。</li>
+<li><strong>定期审计和监控</strong>：定期对网络设备的SNMP配置进行审计，检查是否存在安全漏洞。同时，使用监控工具对SNMP流量进行实时监控，及时发现异常行为。</li>
+</ul>
+<p>【参考】</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/b6v0hW5_rBKN5YgXKK2dvw">https://mp.weixin.qq.com/s/b6v0hW5_rBKN5YgXKK2dvw</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VGVBlgrzoSDgOZkESTS66A">https://mp.weixin.qq.com/s/VGVBlgrzoSDgOZkESTS66A</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/cceDMM4dJbC_IpexrMO8jg">https://mp.weixin.qq.com/s/cceDMM4dJbC_IpexrMO8jg</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/5_TbDNzyw_b9HEI5Z6-ZNw">https://mp.weixin.qq.com/s/5_TbDNzyw_b9HEI5Z6-ZNw</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/u3rqd7cFPMGKoRaZInJIQw">https://mp.weixin.qq.com/s/u3rqd7cFPMGKoRaZInJIQw</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/1pnI03pluIGGeYsg3EWBDw">https://mp.weixin.qq.com/s/1pnI03pluIGGeYsg3EWBDw</a></li>
+</ul>
+<h2 id="2、提权-软件包"><a href="#2、提权-软件包" class="headerlink" title="2、提权-软件包"></a>2、提权-软件包</h2><ul>
+<li>查看当前系统的软件包：<code>dpkg -l</code></li>
+<li>查看软件包信息：<code>dpkg -s &lt;deb_name&gt;</code></li>
+<li>验证软件包的完整性：<code>dpkg -V</code><br> <a target="_blank" rel="noopener" href="https://www.cnblogs.com/xzongblogs/p/15535087.html">Linux Ubuntu dpkg 命令详解 - 五月的麦田 - 博客园</a></li>
+</ul>
 
                 
               </div>
