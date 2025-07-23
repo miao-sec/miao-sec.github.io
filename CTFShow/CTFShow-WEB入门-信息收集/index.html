@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="WEB-1-注释泄露提示：开发注释未及时删除直接查看页面源码 1234567891011121314|&lt;!DOCTYPE HTML&gt;||&lt;html&gt;||&lt;head&gt;||&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;||&lt;title&gt;CTFshow 新手入门题目 &lt;&#x2F;title&gt;||&lt;script typ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFShow-WEB入门-信息收集">
+<meta property="og:url" content="http://miao-sec.github.io/CTFShow/CTFShow-WEB%E5%85%A5%E9%97%A8-%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="WEB-1-注释泄露提示：开发注释未及时删除直接查看页面源码 1234567891011121314|&lt;!DOCTYPE HTML&gt;||&lt;html&gt;||&lt;head&gt;||&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;||&lt;title&gt;CTFshow 新手入门题目 &lt;&#x2F;title&gt;||&lt;script typ">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/ctfshow%E3%80%82png">
+<meta property="article:published_time" content="2025-07-23T03:08:54.000Z">
+<meta property="article:modified_time" content="2025-07-23T03:09:36.467Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="WEB入门">
+<meta property="article:tag" content="信息收集">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/ctfshow%E3%80%82png">
+  
+  
+  
+  <title>CTFShow-WEB入门-信息收集 - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="CTFShow-WEB入门-信息收集"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-23 11:08" pubdate>
+          2025年7月23日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">CTFShow-WEB入门-信息收集</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="WEB-1-注释泄露"><a href="#WEB-1-注释泄露" class="headerlink" title="WEB-1-注释泄露"></a>WEB-1-注释泄露</h2><p>提示：开发注释未及时删除<br>直接查看页面源码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs html">|<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">HTML</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>CTFshow 新手入门题目 <span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span>|<br>||<br>|<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>web1:where is flag?<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>|<br>|<span class="hljs-comment">&lt;!-- ctfshow&#123;c1d9600f-fb34-4549-ae4b-bbe8e1e9841b&#125; --&gt;</span>|<br>|<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>|<br>|<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>|<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-2-JS拦截"><a href="#WEB-2-JS拦截" class="headerlink" title="WEB-2-JS拦截"></a>WEB-2-JS拦截</h2><p>提示：js前台拦截 &#x3D;&#x3D;&#x3D; 无效操作<br>直接打开开发者工具<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507230928154.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-3-数据包"><a href="#WEB-3-数据包" class="headerlink" title="WEB-3-数据包"></a>WEB-3-数据包</h2><p>提示：抓包<br>直接查看网络请求的数据包<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507230929430.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-4-robots"><a href="#WEB-4-robots" class="headerlink" title="WEB-4-robots"></a>WEB-4-robots</h2><p>提示：robots<br>访问<code>/robots.txt</code>，找到目录<code>/flagishere.txt</code>，访问即可<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507230935974.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-5-phps源码泄露"><a href="#WEB-5-phps源码泄露" class="headerlink" title="WEB-5-phps源码泄露"></a>WEB-5-phps源码泄露</h2><p>提示：phps源码泄露<br>直接访问<code>/index.phps</code>，即可下载文件，打开查看即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">//ctfshow&#123;f99cedb3-f079-4343-bb72-b28dc1d0c16a&#125;<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;web5:where is flag ?&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-6-备份文件"><a href="#WEB-6-备份文件" class="headerlink" title="WEB-6-备份文件"></a>WEB-6-备份文件</h2><p>提示：解压源码到当前目录<br>直接进行目录扫描，找到<code>www.zip</code>，解压缩，找到<code>fl000g.txt</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# dirsearch -u <span class="hljs-string">&quot;https://7d1a27dd-1523-468c-bb3c-94072a1d15a1.challenge.ctf.show/&quot;</span><br>[09:43:55] Starting: <br>[09:45:00] 200 -  486B  - /www.zip<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# unzip www.zip        <br>Archive:  www.zip<br>  inflating: index.php               <br>  inflating: fl000g.txt              <br>                                                                                                                                               <br>┌──(root㉿kali)-[/miao/ctfshow]<br>└─# <span class="hljs-built_in">cat</span> fl000g.txt                                    <br>flag&#123;flag_here&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-7-git泄露"><a href="#WEB-7-git泄露" class="headerlink" title="WEB-7-git泄露"></a>WEB-7-git泄露</h2><p>提示：版本控制很重要，但不要部署到生产环境更重要<br>直接目录扫描，找到<code>.git</code>文件，直接访问即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# curl http://bdc2fb59-28c1-41ba-85cc-4b40adca5613.challenge.ctf.show/.git/                                                            <br>ctfshow&#123;c1d04c02-4fe8-4d85-9267-4f7bbe43957b&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-8-svn泄露"><a href="#WEB-8-svn泄露" class="headerlink" title="WEB-8-svn泄露"></a>WEB-8-svn泄露</h2><p>提示：版本控制很重要，但不要部署到生产环境更重要<br>直接目录扫描，找到<code>.svn</code>文件，直接访问即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# curl http://632e7c71-4f7a-4862-a491-6e2db711e1c4.challenge.ctf.show/.svn/<br>ctfshow&#123;74a36b51-8614-4d18-9435-790b865374cf&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-9-vim缓存泄露"><a href="#WEB-9-vim缓存泄露" class="headerlink" title="WEB-9-vim缓存泄露"></a>WEB-9-vim缓存泄露</h2><p>提示：发现网页有个错别字？赶紧在生产环境vim改下</p>
+<p>在使用vim时会创建临时缓存文件，关闭vim时缓存文件则会被删除，<br>当vim异常退出后，因为未处理缓存文件，导致可以通过缓存文件恢复原始文件内容<br>以 index.php 为例：</p>
+<ul>
+<li>第一次产生的交换文件名为<code>.index.php.swp </code></li>
+<li>再次意外退出后，将会产生名为 <code>.index.php.swo</code> 的交换文件  </li>
+<li>第三次产生的交换文件则为 <code>.index.php.swn</code></li>
+</ul>
+<p>直接访问<code>/.index.php.swp</code>下载文件，查看即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# <span class="hljs-built_in">cat</span> index.php.swp                                                        <br>ctfshow&#123;d7810c95-b09f-452e-b2e7-755821952494&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-10-Cookie"><a href="#WEB-10-Cookie" class="headerlink" title="WEB-10-Cookie"></a>WEB-10-Cookie</h2><p>提示：cookie 只是一块饼干，不能存放任何隐私数据<br>直接查看cookie值即可<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507231003140.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-11-DNS"><a href="#WEB-11-DNS" class="headerlink" title="WEB-11-DNS"></a>WEB-11-DNS</h2><p>提示：域名其实也可以隐藏信息，比如flag.ctfshow.com 就隐藏了一条信息<br>直接使用<code>nslookup</code>查询所有解析的域名即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nslookup -query=any flag.ctfshow.com<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-12-弱密码"><a href="#WEB-12-弱密码" class="headerlink" title="WEB-12-弱密码"></a>WEB-12-弱密码</h2><p>提示：有时候网站上的公开信息，就是管理员常用密码<br>查看网站的页面，找到密码：<code>372619038</code>，直接使用<code>admin:372619038</code>登录即可<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507231010322.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-13-技术文档"><a href="#WEB-13-技术文档" class="headerlink" title="WEB-13-技术文档"></a>WEB-13-技术文档</h2><p>提示：技术文档里面不要出现敏感信息，部署到生产环境后及时修改默认密码<br>访问<code>document.pdf</code>，找到相关的文档，找到后台和登录用户及密码</p>
+<ul>
+<li>默认后台地址：<a target="_blank" rel="noopener" href="http://your-domain/system1103/login.php">http://your-domain/system1103/login.php</a></li>
+<li>默认用户名：admin</li>
+<li>默认密码：admin1103<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507231017375.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></li>
+</ul>
+<h2 id="WEB-14-editor默认配置"><a href="#WEB-14-editor默认配置" class="headerlink" title="WEB-14-editor默认配置"></a>WEB-14-editor默认配置</h2><p>提示：有时候源码里面就能不经意间泄露重要(editor)的信息,默认配置害死人<br>目录扫描，找到路径<code>editor</code>，尝试上传图片，发现无法上传，但找到<code>图片空间</code>，点进行找到<code>flag</code>的路径<code>/var/www/html/nothinghere/fl000g.txt</code>，直接访问即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# curl http://1da72904-ac7d-4ea7-9d7d-f0932c17d88c.challenge.ctf.show/nothinghere/fl000g.txt <br>ctfshow&#123;8c02723b-b735-4136-bdd5-73dd501cdc00&#125;  <br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-15-社工"><a href="#WEB-15-社工" class="headerlink" title="WEB-15-社工"></a>WEB-15-社工</h2><p>提示：公开的信息比如邮箱，可能造成信息泄露，产生严重后果<br>在页面找到邮箱<code>1156631961@qq.com</code><br>访问后台<code>admin</code>，发现可以重置密码，密保问题为所在的城市，直接查看QQ邮箱，显示为西安，填写后成功重置密码<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507231029343.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>进行登录即可<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507231030123.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-16-PHP探针"><a href="#WEB-16-PHP探针" class="headerlink" title="WEB-16-PHP探针"></a>WEB-16-PHP探针</h2><p>提示：对于测试用的探针，使用完毕后要及时删除，可能会造成信息泄露<br><code>php探针是用来探测空间、服务器运行状况和PHP信息用的，探针可以实时查看服务器硬盘资源、内存占用、网卡流量、系统负载、服务器时间等信息</code><br>直接访问<code>tz.php</code>，然后找到<code>phpinfo</code>，即可找到<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507231036363.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-17-SQL泄露"><a href="#WEB-17-SQL泄露" class="headerlink" title="WEB-17-SQL泄露"></a>WEB-17-SQL泄露</h2><p>提示：备份的sql文件会泄露敏感信息<br>目录扫描，找到SQL备份文件目录<code>backup.sql</code>，直接访问即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# curl http://3f272bfe-4912-47f2-95a3-ddcc3af043d7.challenge.ctf.show/backup.sql <br>CREATE DATABASE IF NOT EXISTS ctfshow;<br>USE ctfshow;<br><br>--<br>-- Table structure <span class="hljs-keyword">for</span> table `products`<br>--<br><br>CREATE TABLE IF NOT EXISTS `products` (<br>  `product_id` int(11) NOT NULL,<br>  `name` varchar(100) NOT NULL,<br>  `sku` varchar(14) NOT NULL,<br>  `price` decimal(15,2) NOT NULL,<br>  `image` varchar(50) NOT NULL,<br>  PRIMARY KEY (`product_id`),<br>  UNIQUE KEY `sku` (`sku`)<br>) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;<br><br>CREATE TABLE `ctfshow_secret` (<br>  `secret` varchar(255) DEFAULT NULL<br>) ENGINE=InnoDB DEFAULT CHARSET=utf8;<br><br><br>INSERT INTO `ctfshow_secret` VALUES (<span class="hljs-string">&#x27;ctfshow&#123;d61ad1a1-182c-4438-a274-ae9a17633354&#125;&#x27;</span>);<br><br>--<br>-- Dumping data <span class="hljs-keyword">for</span> table `products`<br>--<br><br>INSERT INTO `products` (`product_id`, `name`, `sku`, `price`, `image`) VALUES<br>(1, <span class="hljs-string">&#x27;Iphone&#x27;</span>, <span class="hljs-string">&#x27;IPHO001&#x27;</span>, <span class="hljs-string">&#x27;400.00&#x27;</span>, <span class="hljs-string">&#x27;images/iphone.jpg&#x27;</span>),<br>(2, <span class="hljs-string">&#x27;Camera&#x27;</span>, <span class="hljs-string">&#x27;CAME001&#x27;</span>, <span class="hljs-string">&#x27;700.00&#x27;</span>, <span class="hljs-string">&#x27;images/camera.jpg&#x27;</span>),<br>(3, <span class="hljs-string">&#x27;Watch&#x27;</span>, <span class="hljs-string">&#x27;WATC001&#x27;</span>, <span class="hljs-string">&#x27;100.00&#x27;</span>, <span class="hljs-string">&#x27;images/watch.jpg&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-18-js文件"><a href="#WEB-18-js文件" class="headerlink" title="WEB-18-js文件"></a>WEB-18-js文件</h2><p>提示：不要着急，休息，休息一会儿，玩101分给你flag<br>自己查看JS文件<code>js/Flappy_js.js</code>，找到<code>\u4f60\u8d62\u4e86\uff0c\u53bb\u5e7a\u5e7a\u96f6\u70b9\u76ae\u7231\u5403\u76ae\u770b\u770b</code>，直接<code>unicode</code>解码，结果为<code>你赢了，去幺幺零点皮爱吃皮看看</code>，直接访问</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/ctfshow]<br>└─# curl http://28e3d780-ac84-4182-83da-3c45c1374bac.challenge.ctf.show/110.php <br>ctfshow&#123;c4e29974-08c8-454a-ac09-1f4c5ac86d4e&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="WEB-19-密钥泄露"><a href="#WEB-19-密钥泄露" class="headerlink" title="WEB-19-密钥泄露"></a>WEB-19-密钥泄露</h2><p>提示：密钥什么的，就不要放在前端了<br>查看页面源码，找到<code>$u===&#39;admin&#39; &amp;&amp; $p ===&#39;a599ac85a73384ee3219fa684296eaa62667238d608efa81837030bd1ce1bf04&#39;</code>，直接将请求包的pazzword修改即可<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507231057344.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h2 id="WEB-20-mdb文件泄露"><a href="#WEB-20-mdb文件泄露" class="headerlink" title="WEB-20-mdb文件泄露"></a>WEB-20-mdb文件泄露</h2><p>提示：mdb文件是早期asp+access构架的数据库文件，文件泄露相当于数据库被脱裤了<br>进行两次目录扫描，找到路径<code>/db/db.mdb</code>，下载文件<code>db.mdb</code>，使用记事本打开后，找到flag</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">flag&#123;ctfshow_old_database&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CTFShow/" class="category-chain-item">CTFShow</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/WEB%E5%85%A5%E9%97%A8/" class="print-no-link">#WEB入门</a>
+      
+        <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/" class="print-no-link">#信息收集</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>CTFShow-WEB入门-信息收集</div>
+      <div>http://miao-sec.github.io/CTFShow/CTFShow-WEB入门-信息收集/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/CTFShow/CTFShow-WEB%E5%85%A5%E9%97%A8-sql-labs/" title="CTFShow-WEB入门-sql-labs">
+                        <span class="hidden-mobile">CTFShow-WEB入门-sql-labs</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
