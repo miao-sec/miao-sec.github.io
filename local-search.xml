@@ -197,6 +197,33 @@
   
   
   <entry>
+    <title>CTFShow-WEB入门-爆破</title>
+    <link href="/CTFSHow/CTFShow-WEB%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4/"/>
+    <url>/CTFSHow/CTFShow-WEB%E5%85%A5%E9%97%A8-%E7%88%86%E7%A0%B4/</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="WEB-21-Basic认证"><a href="#WEB-21-Basic认证" class="headerlink" title="WEB-21-Basic认证"></a>WEB-21-Basic认证</h2><p>抓包，得到<code>Authorization请求头</code>用于验证是否有从服务器访问所需数据的权限<br><code>Authorization: Basic YWRtaW46YWRtaW4=</code> 解密后为<code>admin:admin</code>，格式为：<code>用户名:密码</code></p><ul><li>将请求包发送到<code>intruder</code>中，选择<code>sniper模式</code></li><li>然后payload选择<code>Custom iterator</code>，根据已知格式，我们设置第一组payload位账号：<code>admin</code>，第二组一个冒号<code>:</code>，第三组密码：<code>密码字典</code>。 </li><li>设置<code>Payload Processing</code>的base64加密，点击<code>add</code>，选择<code>encode&gt;Base64-encode</code></li><li>最后将<code>PayLoad Encoding</code>取消选择<code>urlencode</code>加密特俗字符串。<br>找到用户名和密码：<code>YWRtaW46c2hhcms2Mw==</code>，解密为：<code>admin:shark63</code><br><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507241056058.png"></li></ul><h2 id="WEB-22-子域名爆破"><a href="#WEB-22-子域名爆破" class="headerlink" title="WEB-22-子域名爆破"></a>WEB-22-子域名爆破</h2><p>子域名爆破发现子域名<code>vip.ctf.show</code>下面有flag—&gt;<code>flag&#123;ctf_show_web&#125;</code><br>由于目前域名失效，已无法进行爆破</p><h2 id="WEB-23-MD5值爆破"><a href="#WEB-23-MD5值爆破" class="headerlink" title="WEB-23-MD5值爆破"></a>WEB-23-MD5值爆破</h2><p>找到相关代码</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">error_reporting</span>(<span class="hljs-number">0</span>);<br><br><span class="hljs-keyword">include</span>(<span class="hljs-string">&#x27;flag.php&#x27;</span>);<br><span class="hljs-keyword">if</span>(<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;token&#x27;</span>]))&#123;<br>    <span class="hljs-variable">$token</span> = <span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&#x27;token&#x27;</span>]);<br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">1</span>,<span class="hljs-number">1</span>)===<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">14</span>,<span class="hljs-number">1</span>) &amp;&amp; <span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">14</span>,<span class="hljs-number">1</span>) ===<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">17</span>,<span class="hljs-number">1</span>))&#123; <span class="hljs-comment">//md5值第2,15,18位字符相同</span><br>        <span class="hljs-keyword">if</span>((<span class="hljs-title function_ invoke__">intval</span>(<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">1</span>,<span class="hljs-number">1</span>))+<span class="hljs-title function_ invoke__">intval</span>(<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">14</span>,<span class="hljs-number">1</span>))+<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">17</span>,<span class="hljs-number">1</span>))/<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">1</span>,<span class="hljs-number">1</span>)===<span class="hljs-title function_ invoke__">intval</span>(<span class="hljs-title function_ invoke__">substr</span>(<span class="hljs-variable">$token</span>, <span class="hljs-number">31</span>,<span class="hljs-number">1</span>)))&#123;   <span class="hljs-comment">//md5值第32位字符是3</span><br>            <span class="hljs-keyword">echo</span> <span class="hljs-variable">$flag</span>;<br>        &#125;<br>    &#125;<br>&#125;<span class="hljs-keyword">else</span>&#123;<br>    <span class="hljs-title function_ invoke__">highlight_file</span>(<span class="hljs-keyword">__FILE__</span>);<br><br>&#125;<br><span class="hljs-meta">?&gt;</span> <br></code></pre></td></tr></table></figure><p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202507241133066.png"><br><code>token=422</code>，MD5值为<code>f85454e8279be180185cac7d243c5eb3</code></p><h2 id="WEB-24"><a href="#WEB-24" class="headerlink" title="WEB-24"></a>WEB-24</h2><h2 id="WEB-25"><a href="#WEB-25" class="headerlink" title="WEB-25"></a>WEB-25</h2><h2 id="WEB-26"><a href="#WEB-26" class="headerlink" title="WEB-26"></a>WEB-26</h2><h2 id="WEB-27"><a href="#WEB-27" class="headerlink" title="WEB-27"></a>WEB-27</h2><h2 id="WEB-28"><a href="#WEB-28" class="headerlink" title="WEB-28"></a>WEB-28</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>CTFSHow</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>WEB入门</tag>
+      
+      <tag>爆破</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Base</title>
     <link href="/Maze-sec/Base/"/>
     <url>/Maze-sec/Base/</url>
