@@ -1443,9 +1443,9 @@
     
     <tags>
       
-      <tag>git泄露</tag>
-      
       <tag>文件上传</tag>
+      
+      <tag>git泄露</tag>
       
     </tags>
     
@@ -2238,9 +2238,9 @@
     
     <tags>
       
-      <tag>文件上传</tag>
-      
       <tag>Textpattern CMS</tag>
+      
+      <tag>文件上传</tag>
       
       <tag>CVE-2025-32463</tag>
       
