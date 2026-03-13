@@ -20,9 +20,9 @@
     
     <tags>
       
-      <tag>RCE</tag>
-      
       <tag>TCP2049_Nfs</tag>
+      
+      <tag>RCE</tag>
       
       <tag>Nfs_no_root_squash</tag>
       
@@ -1563,9 +1563,9 @@
     
     <tags>
       
-      <tag>git泄露</tag>
-      
       <tag>文件上传</tag>
+      
+      <tag>git泄露</tag>
       
     </tags>
     
@@ -2358,9 +2358,9 @@
     
     <tags>
       
-      <tag>Textpattern CMS</tag>
-      
       <tag>文件上传</tag>
+      
+      <tag>Textpattern CMS</tag>
       
       <tag>CVE-2025-32463</tag>
       
